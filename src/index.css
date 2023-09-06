@@ -1,0 +1,187 @@
+/* /DEFAULT/ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+*:focus {
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-weight: 300;
+  line-height: 1.6;
+  font-family: "Montserrat", "Sans-serif";
+  height: 100vh;
+}
+
+/* DEFAULT */
+
+/* HEADER */
+
+.header {
+  background-color: transparent;
+  display: flex;
+  /* padding: 2rem 2rem; */
+  align-items: center;
+  /* position: fixed; */
+}
+
+nav {
+  display: flex;
+  gap: 10rem;
+}
+
+nav ul {
+  display: flex;
+  font-size: 2.4rem;
+  list-style: none;
+  gap: 2rem;
+  color: aliceblue;
+}
+
+nav ul li a:visited {
+  color: aliceblue;
+}
+
+nav ul li a {
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+}
+
+nav ul li a span {
+  position: relative;
+  z-index: 2;
+}
+
+.header__logo {
+  width: 14rem;
+  height: 14rem;
+}
+
+.header__link::after {
+  content: "";
+  background-image: url("/src/assets/paw.png");
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  width: 7rem;
+  height: 7rem;
+  position: absolute;
+  top: -80%;
+  left: 12%;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  /* transform: ; */
+  transition: all 0.3s;
+}
+
+ul li:nth-child(even) .header__link::after {
+  transform: rotate(20deg);
+}
+ul li:nth-child(odd) .header__link::after {
+  transform: rotate(-20deg);
+}
+
+.header__link:hover::after {
+  opacity: 0.5;
+  pointer-events: all;
+  transform: scale(1) rotate(0deg);
+}
+
+/* HEADER */
+/* HERO */
+/* .hero {
+  background-image: url("/src/assets/main2.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+} */
+.hero {
+  color: aliceblue;
+}
+
+.hero h1 {
+  font-size: 6rem;
+}
+
+.hero h2 {
+  font-size: 4.5rem;
+}
+
+.header-hero__background {
+  background-image: url("/src/assets/main.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 97vh;
+  padding: 2rem 3rem;
+}
+
+/* HERO */
+
+/* WHY US */
+.why-us {
+  height: 40vh;
+  background-color: #151e3f;
+  color: aliceblue;
+  font-size: 4rem;
+}
+
+/* WHY US */
+
+/* SERVICES */
+.services {
+  height: 40vh;
+  background-color: #471929;
+  color: aliceblue;
+  font-size: 4rem;
+}
+/* SERVICES */
+
+/* REVIEWS */
+.reviews {
+  height: 40vh;
+  background-color: #151e3f;
+  color: aliceblue;
+  font-size: 4rem;
+}
+/* REVIEWS */
+
+/* FOOTER */
+.footer {
+  height: 40vh;
+  background-color: #471929;
+  color: aliceblue;
+  font-size: 4rem;
+}
+/* FOOTER */
+
+/* AUTHORIZATION PAGE */
+.authorization {
+  margin: 4rem;
+}
+
+.authorization__inner {
+  border: 2px solid #151e3f;
+  display: flex;
+  font-size: 3rem;
+}
+
+.authorization__login {
+  background-color: #151e3f;
+  color: aliceblue;
+  width: 40%;
+}
+
+.authorization__signup {
+  width: 60%;
+}
+/* AUTHORIZATION PAGE */
