@@ -1,5 +1,5 @@
-import Login from "./log-in.component";
-import Signup from "./sign-up.component";
+import Login from "../components/log-in.component";
+import Signup from "../components/sign-up.component";
 
 export const AuthorizationPage = () => {
   return (
