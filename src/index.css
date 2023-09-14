@@ -1,3 +1,11 @@
+/* Variables */
+:root {
+  --side-paddings: 6rem;
+  --accent-color: #f9a8c5;
+  --dark-grey: #212529;
+  --light-gey: #e9ecef;
+}
+
 /* /DEFAULT/ */
 *,
 *::before,
@@ -27,29 +35,70 @@ body {
 .header {
   background-color: transparent;
   display: flex;
-  /* padding: 2rem 2rem; */
+  flex-direction: column;
+  margin-bottom: 6rem;
+}
+
+.header-bottom {
+  display: flex;
   align-items: center;
-  /* position: fixed; */
+  padding: 0 var(--side-paddings);
+  justify-content: space-between;
+}
+
+.header-top {
+  padding: 1rem var(--side-paddings);
+
+  font-size: 2.4rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: #e9ecef;
+  color: #212529;
+  font-weight: 500;
+}
+
+.header-top-side {
+  display: flex;
+  align-items: center;
+}
+
+.header-top-side p {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.6rem;
+}
+.header-top-side p:first-child {
+  border-right: 1px solid var(--accent-color);
+  padding-right: 2rem;
+}
+
+.header-top-side p:nth-child(2) {
+  padding-left: 2rem;
 }
 
 nav {
   display: flex;
-  gap: 10rem;
+  align-items: center;
+  gap: 2rem;
 }
 
 nav ul {
   display: flex;
   font-size: 2.4rem;
   list-style: none;
-  gap: 2rem;
-  color: aliceblue;
+  gap: 4rem;
+  color: #e9ecef;
 }
 
-nav ul li a:visited {
+.header__link:visited,
+.header__link:link {
   color: aliceblue;
+  transition: all 0.3s ease;
 }
 
 nav ul li a {
+  font-weight: 400;
   text-decoration: none;
   position: relative;
   z-index: 2;
@@ -61,39 +110,44 @@ nav ul li a span {
 }
 
 .header__logo {
-  width: 14rem;
+  width: 16rem;
   height: 14rem;
 }
 
-.header__link::after {
-  content: "";
-  background-image: url("/src/assets/paw.png");
-  background-size: cover;
-  background-position: center;
-  display: inline-block;
-  width: 7rem;
-  height: 7rem;
-  position: absolute;
-  top: -80%;
-  left: 12%;
-  z-index: 1;
-  opacity: 0;
-  pointer-events: none;
-  /* transform: ; */
-  transition: all 0.3s;
+.header__link:visited:hover,
+.header-link:link:hover,
+.header__link:hover {
+  color: var(--accent-color);
 }
 
-ul li:nth-child(even) .header__link::after {
-  transform: rotate(20deg);
-}
-ul li:nth-child(odd) .header__link::after {
-  transform: rotate(-20deg);
+.header-top__icon {
+  width: 2rem;
+  height: 2rem;
+  fill: #f9a8c5;
 }
 
-.header__link:hover::after {
-  opacity: 0.5;
-  pointer-events: all;
-  transform: scale(1) rotate(0deg);
+.header-top__icon-fb {
+  width: 2rem;
+  height: 2rem;
+  fill: rgb(44, 103, 230);
+}
+
+.header-top__icon-ig {
+  width: 2rem;
+  height: 2rem;
+}
+
+.header__link-not-main:link,
+.header__link-not-main:visited {
+  color: var(--accent-color);
+}
+
+.header-not-main {
+  background-color: #151e3f48;
+}
+
+.header__paws {
+  height: 2rem;
 }
 
 /* HEADER */
@@ -106,24 +160,33 @@ ul li:nth-child(odd) .header__link::after {
 } */
 .hero {
   color: aliceblue;
-  height: 97vh;
+  height: 100vh;
+  padding: 0 var(--side-paddings);
 }
 
 .hero h1 {
-  font-size: 6rem;
+  font-size: 7rem;
+  margin-bottom: 1rem;
+}
+
+.hero h1 span {
+  color: var(--accent-color);
 }
 
 .hero h2 {
-  font-size: 4.5rem;
+  font-weight: 400;
+  font-size: 4rem;
+  width: 50%;
+  margin-bottom: 2rem;
 }
 
 .header-hero__background {
   background-image: url("/src/assets/main.jpg");
   background-position: center;
   background-size: cover;
-  height: 97vh;
-  width: 100vw;
-  padding: 2rem 3rem;
+  height: 100vh;
+  width: 100%;
+  /* padding: 2rem 3rem; */
   position: absolute;
   z-index: -10;
   top: 0;
@@ -142,7 +205,7 @@ ul li:nth-child(odd) .header__link::after {
 /* WHY US */
 
 /* SERVICES */
-.services {
+.services-section {
   height: 40vh;
   background-color: #471929;
   color: aliceblue;
@@ -191,9 +254,6 @@ ul li:nth-child(odd) .header__link::after {
 /* AUTHORIZATION PAGE */
 
 /* ABOUT US PAGE */
-.about-us h2 {
-  font-size: 10rem;
-}
 
 .about-us p {
   font-size: 2rem;
@@ -201,9 +261,6 @@ ul li:nth-child(odd) .header__link::after {
 /* ABOUT US PAGE */
 
 /* OUR TEAM */
-.our-team h2 {
-  font-size: 10rem;
-}
 
 .our-team__card {
   height: 40rem;
@@ -251,3 +308,31 @@ ul li:nth-child(odd) .header__link::after {
   height: 80%;
 }
 /* OUR TEAM */
+
+/* HEADINGS */
+.page-heading {
+  font-size: 7rem;
+}
+/* HEADINGS */
+
+/* CTA */
+
+.cta {
+  border: none;
+  font-size: 2.2rem;
+  color: var(--light-gey);
+  background-color: var(--accent-color);
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  text-transform: uppercase;
+  /* letter-spacing: ; */
+}
+
+.cta:hover {
+  background-color: #e097b1;
+}
+
+/* CTA */

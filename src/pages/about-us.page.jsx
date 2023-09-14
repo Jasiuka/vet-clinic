@@ -1,21 +1,29 @@
 export const AboutUsPage = () => {
   return (
     <div className="about-us">
-      <h2>Apie mus</h2>
+      <h2 className="page-heading">Apie mus</h2>
       <p>
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-        illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-        explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-        odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
-        voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum
-        quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam
-        eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-        voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam
-        corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
-        Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
-        quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo
-        voluptas nulla pariatur?
+        Veterinarijos klinika "Laimingos letenėlės" - tai moderni ir jau 2010
+        metais atidaryta veterinarinė įstaiga, kuri puoselėja aukštus standartus
+        gyvūnų sveikatos priežiūroje. Mūsų klinikoje aktyviai taikome naujausias
+        veterinarines technologijas ir nuolat sekdami naujausius medicinos
+        mokslinius pasiekimus, siekiame užtikrinti jūsų augintinių gerovę ir
+        sveikatą. "Laimingos letenėlės" veterinarijos klinika yra vietinės
+        bendruomenės patikimas partneris, teikiant profesionalesnę veterinarinę
+        priežiūrą jūsų augintiniams. Mūsų komanda sudaryta iš aukštos
+        kvalifikacijos veterinarų, kurie nuoširdžiai rūpinasi kiekviena gyvūno
+        sveikata. Mes suprantame, kad kiekvienas augintinis yra unikalus, todėl
+        mūsų paslaugos visada individualizuojamos, atsižvelgiant į jūsų
+        augintinio specifinius poreikius. Klinikos patalpose rasite šiuolaikišką
+        įrangą ir prietaisus, skirtus diagnozuoti ir gydyti įvairias
+        veterinarines bėdas. Mes stengiamės užtikrinti jūsų augintinių patogumą
+        ir ramybę, todėl mūsų klinika sukurta su šiltu ir draugišku aplinkos
+        dizainu. "Laimingos letenėlės" klinikos tikslas - suteikti aukščiausios
+        kokybės veterinarinę priežiūrą bei patarimus, padėti jūsų augintiniams
+        gyventi ilgą, sveiką ir laimingą gyvenimą. Mes esame čia, kad
+        pasirūpintume jūsų augintinio sveikata, todėl visada galite kreiptis į
+        mus su bet kokiomis gyvūno sveikatos klausimais. Ačiū, kad pasirinkote
+        "Laimingos letenėlės" jūsų augintinio sveikatai!
       </p>
     </div>
   );
