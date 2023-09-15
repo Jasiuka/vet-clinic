@@ -46,12 +46,12 @@ export const Header = () => {
           </a>
           <nav>
             <ul>
-              <li>
+              <li className="header__list-item">
                 <a className={`header__link ${isLinkInMainPage}`} href="/">
                   <span>Pradinis</span>
                 </a>
               </li>
-              <li>
+              <li className="header__list-item">
                 <a
                   className={`header__link ${isLinkInMainPage}`}
                   href="/apie-mus"
@@ -59,7 +59,7 @@ export const Header = () => {
                   <span>Apie mus</span>
                 </a>
               </li>
-              <li>
+              <li className="header__list-item">
                 <a
                   className={`header__link ${isLinkInMainPage}`}
                   href="/paslaugos"
@@ -67,7 +67,7 @@ export const Header = () => {
                   <span>Paslaugos</span>
                 </a>
               </li>
-              <li>
+              <li className="header__list-item">
                 <a
                   className={`header__link ${isLinkInMainPage}`}
                   href="/komanda"
@@ -75,12 +75,12 @@ export const Header = () => {
                   <span>Komanda</span>
                 </a>
               </li>
-              <li>
+              <li className="header__list-item">
                 <a className={`header__link ${isLinkInMainPage}`} href="/duk">
                   <span>D.U.K</span>
                 </a>
               </li>
-              <li>
+              <li className="header__list-item">
                 <a
                   className={`header__link ${isLinkInMainPage}`}
                   href="/kontaktai"
@@ -91,10 +91,10 @@ export const Header = () => {
             </ul>
             <img className="header__paws" src="/src/assets/paws-half.png" />
             <ul>
-              <li>
+              <li className="header__list-item">
                 <a
                   className={`header__link ${isLinkInMainPage}`}
-                  href="/prisijungimas"
+                  href="/prisijungti"
                 >
                   <span>Prisijungti</span>
                 </a>

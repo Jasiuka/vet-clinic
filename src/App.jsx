@@ -1,8 +1,7 @@
-import { Hero } from "./components/hero.component";
-import { Why } from "./components/why.component";
-import Reviews from "./components/reviews.component";
-import Services from "./components/services.component";
-import AuthorizationPage from "./pages/auth.page";
+import { Hero } from "./sections/hero.section";
+import { Why } from "./sections/why-us.section";
+import Reviews from "./sections/reviews.section";
+import Services from "./sections/services.section";
 import AppointmentPage from "./pages/appointment.page";
 import HeaderHeroBackground from "./components/hero-header-background.component";
 
@@ -11,7 +10,6 @@ export const Home = () => {
     <>
       <HeaderHeroBackground />
       <Hero />
-      <AuthorizationPage />
       <Why />
       <Services />
       <AppointmentPage />

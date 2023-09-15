@@ -68,6 +68,14 @@ const router = createBrowserRouter([
       </Layout>
     ),
   },
+  {
+    path: "/prisijungti",
+    element: (
+      <Layout>
+        <AuthorizationPage />
+      </Layout>
+    ),
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
