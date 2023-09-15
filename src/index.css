@@ -217,6 +217,10 @@ nav ul li a span {
   font-size: 1.8rem;
 }
 
+.why-us__item:hover > .why-us__icon {
+  transform: scale(1.15);
+}
+
 .why-us__item-heading {
   font-weight: 500;
 }
@@ -232,6 +236,7 @@ nav ul li a span {
   height: 6rem;
   fill: var(--accent-color);
   margin-bottom: 1rem;
+  transition: all 0.3s ease;
 }
 
 /* WHY US */
@@ -326,19 +331,109 @@ nav ul li a span {
 
 /* REVIEWS */
 .reviews {
-  height: 40vh;
-  background-color: #151e3f;
-  color: aliceblue;
-  font-size: 4rem;
+  height: 60vh;
+  padding: var(--section-padding);
+  background-color: var(--light-gey);
+  color: var(--dark-grey);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
+
+.reviews__heading {
+  font-size: var(--section-heading);
+  text-align: center;
+  margin-bottom: 8rem;
+}
+
+.reviews__slider {
+  position: relative;
+  /* overflow: hidden; */
+  width: 80vw;
+}
+
+.reviews__slider-data {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.8rem;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.reviews__slider-name {
+  color: var(--dark-grey);
+  font-size: 2.6rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+.reviews__slider-review {
+  line-height: 1.5;
+  color: #495057;
+}
+
+.slide-active {
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+  transition: opacity 0.5s ease;
+}
+
+.reviews__slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background-color: transparent;
+  font-family: "Montserrat";
+
+  font-size: 15rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.reviews__slider-btn:hover {
+  color: var(--accent-color);
+}
+
+.reviews__slider-btn-left {
+  left: 4rem;
+}
+.reviews__slider-btn-right {
+  right: 4rem;
+}
+
 /* REVIEWS */
+
+/* MAP */
+
+.map-container {
+  height: 100%;
+  width: 20%;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  filter: grayscale(90%);
+}
+/* MAP */
 
 /* FOOTER */
 .footer {
+  padding: var(--section-padding);
+  -webkit-box-shadow: 0px -2px 56px -20px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px -2px 56px -20px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px -2px 56px -20px rgba(0, 0, 0, 0.75);
   height: 40vh;
-  background-color: #471929;
-  color: aliceblue;
-  font-size: 4rem;
+  background-color: var(--light-gey);
+  padding-bottom: 0;
 }
 /* FOOTER */
 

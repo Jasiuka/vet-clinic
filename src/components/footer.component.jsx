@@ -1,7 +1,9 @@
+import Map from "./map.component";
 export const Footer = () => {
   return (
     <footer className="footer">
-      <h1>Footer</h1>
+      <Map />
+      <div className="footer__right-side"></div>
     </footer>
   );
 };

@@ -22,32 +22,32 @@ export const Why = () => {
     {
       icon: <PersonalCareIcon />,
       heading: "Asmeninė priežiūra",
-      text: "kiekvienas augintinis yra unikalus, o savo paslaugas pritaikome taip, kad atitiktų konkrečius jūsų pūkuoto šeimos nario poreikius, užtikrindami individualų požiūrį į jų sveikatos priežiūrą.",
+      text: "Kiekvienas augintinis yra unikalus, o savo paslaugas pritaikome taip, kad atitiktų konkrečius jūsų pūkuoto šeimos nario poreikius, užtikrindami individualų požiūrį į jų sveikatos priežiūrą.",
     },
     {
       icon: <ServicesIcon />,
       heading: "Visapusiškos paslaugos",
-      text: "nuo profilaktinės priežiūros ir skiepų iki chirurginių procedūrų ir skubios pagalbos paslaugų – jūsų patogumui siūlome platų veterinarinių paslaugų spektrą po vienu stogu.",
+      text: "Nuo profilaktinės priežiūros ir skiepų iki chirurginių procedūrų ir skubios pagalbos paslaugų – jūsų patogumui siūlome platų veterinarinių paslaugų spektrą po vienu stogu.",
     },
     {
       icon: <EnvironmentIcon />,
       heading: "Patogi aplinka",
-      text: " mūsų klinika sukurta atsižvelgiant į jūsų augintinio komfortą, o tai sukuria šiltą ir draugišką atmosferą, kad sumažintų bet kokį nerimą ar stresą jų apsilankymo metu.",
+      text: "Mūsų klinika sukurta atsižvelgiant į jūsų augintinio komfortą, o tai sukuria šiltą ir draugišką atmosferą, kad sumažintų bet kokį nerimą ar stresą jų apsilankymo metu.",
     },
     {
       icon: <CommunityTrustIcon />,
       heading: "Bendruomenės pasitikėjimas",
-      text: "užsitarnavome vietos bendruomenės pasitikėjimą nuolat teikdami aukščiausios kokybės veterinarinę priežiūrą, todėl esame patikimi partneriai jūsų augintinio sveikatos kelyje.",
+      text: "Užsitarnavome vietos bendruomenės pasitikėjimą nuolat teikdami aukščiausios kokybės veterinarinę priežiūrą, todėl esame patikimi partneriai jūsų augintinio sveikatos kelyje.",
     },
     {
       icon: <ConvenientLocationIcon />,
       heading: "Patogi lokacija",
-      text: "mūsų klinika yra patogioje vietoje, todėl galite lengvai ir be vargo gauti išskirtinę veterinarinę priežiūrą savo augintiniams.",
+      text: "Mūsų klinika yra patogioje vietoje, todėl galite lengvai ir be vargo gauti išskirtinę veterinarinę priežiūrą savo augintiniams.",
     },
     {
       icon: <EducationIcon />,
       heading: "Mokymo ištekliai",
-      text: "esame įsipareigoję šviesti naminių gyvūnėlių savininkus apie atsakingą naminių gyvūnėlių laikymą ir sveikatos priežiūrą, siūlydami vertingus išteklius ir patarimus, kad jūsų augintiniai būtų laimingi ir sveiki.",
+      text: "Esame įsipareigoję šviesti naminių gyvūnėlių savininkus apie atsakingą naminių gyvūnėlių laikymą ir sveikatos priežiūrą, siūlydami vertingus išteklius ir patarimus, kad jūsų augintiniai būtų laimingi ir sveiki.",
     },
   ];
 
