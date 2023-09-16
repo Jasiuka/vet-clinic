@@ -1,7 +1,9 @@
-export const ClockIcon = () => {
+import PropTypes from "prop-types";
+
+export const ClockIcon = ({ className }) => {
   return (
     <svg
-      className="header-top__icon"
+      className={className}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 122.88 122.88"
     >
@@ -11,6 +13,10 @@ export const ClockIcon = () => {
       />
     </svg>
   );
+};
+
+ClockIcon.propTypes = {
+  className: PropTypes.string,
 };
 
 export default ClockIcon;

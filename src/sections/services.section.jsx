@@ -22,10 +22,9 @@ export const Services = () => {
 
   return (
     <section className="services-section">
-      <h1 className="services-section__heading">
+      <h2 className="services-section__heading section-heading">
         Mūsų klinikoje teikiamos paslaugos
-      </h1>
-      {/* <div className="services-section__background"></div> */}
+      </h2>
       <div className="services-section__services-container">
         {servicesData.map((serviceItem) => {
           return (

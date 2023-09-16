@@ -1,8 +1,9 @@
-export const EmailIcon = () => {
+import PropTypes from "prop-types";
+export const EmailIcon = ({ className }) => {
   return (
     <svg
       version="1.1"
-      className="header-top__icon"
+      className={className}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       x="0px"
@@ -22,6 +23,10 @@ export const EmailIcon = () => {
       </g>
     </svg>
   );
+};
+
+EmailIcon.propTypes = {
+  className: PropTypes.string,
 };
 
 export default EmailIcon;

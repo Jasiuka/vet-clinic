@@ -7,14 +7,14 @@ import HeaderHeroBackground from "./components/hero-header-background.component"
 
 export const Home = () => {
   return (
-    <>
+    <main>
       <HeaderHeroBackground />
       <Hero />
       <Why />
       <Services />
       <AppointmentPage />
       <Reviews />
-    </>
+    </main>
   );
 };
 

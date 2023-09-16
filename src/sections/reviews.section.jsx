@@ -44,7 +44,9 @@ export const Reviews = () => {
 
   return (
     <section className="reviews">
-      <h1 className="reviews__heading">Jūsų atsiliepimai apie mus</h1>
+      <h2 className="reviews__heading section-heading">
+        Jūsų atsiliepimai apie mus
+      </h2>
       <button
         onClick={handlePreviousButton}
         className="reviews__slider-btn-left reviews__slider-btn"

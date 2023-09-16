@@ -1,8 +1,10 @@
-export const PhoneIcon = () => {
+import PropTypes from "prop-types";
+
+export const PhoneIcon = ({ className }) => {
   return (
     <svg
       version="1.1"
-      className="header-top__icon"
+      className={className}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       x="0px"
@@ -16,6 +18,10 @@ export const PhoneIcon = () => {
       </g>
     </svg>
   );
+};
+
+PhoneIcon.propTypes = {
+  className: PropTypes.string,
 };
 
 export default PhoneIcon;

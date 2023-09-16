@@ -1,16 +1,18 @@
 // import { Header } from "./header.component";
 
+import { Link } from "react-router-dom";
+
 export const Hero = () => {
   return (
     <section className="hero">
-      <h1>
+      <h1 className="for-observer">
         Sveikos letenėlės - laimingos letenėlės<span>!</span>
       </h1>
-      <h2>
+      <p>
         Jūsų pasitikėjimas, mūsų įsipareigojimas - tai, kas skatina mus būti
         moderniausia veterinarine klinika jūsų mieste
-      </h2>
-      <button className="cta">Registracija vizitui</button>
+      </p>
+      <Link className="booking-btn">Registracija vizitui</Link>
     </section>
   );
 };

@@ -8,7 +8,7 @@ export const ServicesSectionItem = ({ imageLink, name, imageAlt }) => {
         src={`${imageLink}`}
         alt={imageAlt}
       />
-      <p className="services-section__item-name">{name}</p>
+      <h4 className="services-section__item-name">{name}</h4>
     </div>
   );
 };

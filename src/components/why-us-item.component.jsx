@@ -4,8 +4,8 @@ export const WhyUsItem = ({ IconComponent, text, heading }) => {
   return (
     <div className="why-us__item">
       {IconComponent}
-      <p className="why-us__item-heading">{heading}</p>
-      <span className="why-us__item-text">{text}</span>
+      <h3 className="why-us__item-heading">{heading}</h3>
+      <p className="why-us__item-text">{text}</p>
     </div>
   );
 };

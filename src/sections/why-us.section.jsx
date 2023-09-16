@@ -53,7 +53,7 @@ export const Why = () => {
 
   return (
     <section className="why-us">
-      <h2 className="why-us__heading">Kodėl rinktis mus?</h2>
+      <h2 className="why-us__heading section-heading">Kodėl rinktis mus?</h2>
       <div className="why-us__items-container">
         {dataForItems.map((itemData) => {
           return (

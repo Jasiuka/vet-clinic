@@ -1,8 +1,9 @@
-export const LocationIcon = () => {
+import PropTypes from "prop-types";
+export const LocationIcon = ({ className }) => {
   return (
     <svg
       version="1.1"
-      className="header-top__icon"
+      className={className}
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
@@ -20,6 +21,10 @@ export const LocationIcon = () => {
       </g>
     </svg>
   );
+};
+
+LocationIcon.propTypes = {
+  className: PropTypes.string,
 };
 
 export default LocationIcon;
