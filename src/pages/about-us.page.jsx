@@ -31,7 +31,7 @@ export const AboutUsPage = () => {
           aukščiausios kokybės veterinarinę priežiūrą bei patarimus, padėti jūsų
           augintiniams gyventi ilgą, sveiką ir laimingą gyvenimą. Mes esame čia,
           kad pasirūpintume jūsų augintinio sveikata, todėl visada galite
-          kreiptis į mus su bet kokiomis gyvūno sveikatos klausimais.
+          kreiptis į mus su bet kokiais gyvūno sveikatos klausimais.
         </p>
         <div className="about-us__vision">
           <h3 className="about-us__vision-heading">Mūsų vizija</h3>

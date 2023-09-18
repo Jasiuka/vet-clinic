@@ -624,9 +624,11 @@ nav ul li a span {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 1fr 2fr 1fr;
+  font-weight: 400;
 }
 
 .about-us__motto {
+  border-radius: 4px;
   grid-column: 1/ 3;
   grid-row: 1 / 2;
   padding: 3rem;
@@ -639,35 +641,47 @@ nav ul li a span {
   grid-row: 2 / 3;
   align-self: center;
   line-height: 1.5;
+  border-bottom: 3px solid var(--dark-grey);
+  border-top: 3px solid var(--dark-grey);
+  padding: 3rem 0;
 }
 
 .about-us__vision {
+  border-radius: 4px;
+
   background-color: var(--accent-color);
   grid-column: 3/ -1;
   grid-row: 3 / 4;
   padding: 3rem;
 }
 
-.about-us__paws {
-  position: absolute;
-  top: 0;
-  left: 20%;
-  background-image: url("./assets/paws-bg.png");
-  background-size: cover;
-  background-repeat: repeat;
-  height: 60%;
-  width: 40%;
-  z-index: 5;
-  transform: rotate(90deg);
-}
-
 /* ABOUT US PAGE */
 
 /* OUR TEAM */
 
+.our-team__main {
+  display: flex;
+  padding: var(--section-padding);
+  flex-direction: column;
+  gap: 6rem;
+}
+
+.our-team__main-box {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 2rem;
+}
+
+.our-team__main-heading {
+  font-size: var(--font-medium);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
 .our-team__card {
   height: 40rem;
   width: 35rem;
+  border-radius: 4px;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -677,16 +691,17 @@ nav ul li a span {
 }
 
 .our-team__card--image {
-  /* padding-top: 1rem; */
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   transition: all 0.3s ease;
-  /* transform-origin: center bottom; */
+  transform-origin: center bottom;
+  filter: grayscale(30%);
 }
 
 .our-team__card--details {
-  background-color: #000000d9;
+  background-color: var(--accent-color);
   overflow: hidden;
   height: 0;
   transition: all 0.3s ease;
@@ -700,7 +715,7 @@ nav ul li a span {
 
 .our-team__card--spec {
   font-size: 2rem;
-  background-color: #000000d9;
+  background-color: var(--accent-color);
   text-align: center;
 }
 
@@ -709,6 +724,7 @@ nav ul li a span {
 }
 .our-team__card:hover > .our-team__card--image {
   height: 80%;
+  filter: grayscale(0);
 }
 /* OUR TEAM */
 
