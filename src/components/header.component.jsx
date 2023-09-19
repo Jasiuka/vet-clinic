@@ -10,6 +10,7 @@ export const Header = () => {
     const header = document.querySelector(".header");
     const headerLogo = document.querySelector(".header__logo");
     const headerTop = document.querySelector(".header-top");
+    const scrollToTopButton = document.querySelector(".scroll-to-top");
 
     const options = {
       root: null,
@@ -24,10 +25,12 @@ export const Header = () => {
         headerTop.classList.remove("hide-top");
         header.classList.remove("sticky");
         headerLogo.classList.remove("header__logo-smaller");
+        scrollToTopButton.classList.remove("scroll-to-top-visible");
       } else {
         headerTop.classList.add("hide-top");
         header.classList.add("sticky");
         headerLogo.classList.add("header__logo-smaller");
+        scrollToTopButton.classList.add("scroll-to-top-visible");
       }
     }, options);
 

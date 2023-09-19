@@ -25,6 +25,11 @@ export const Footer = () => {
           <h5 className="footer__box-heading">Navigacija</h5>
           <ul>
             <li>
+              <Link className="footer__navigation-link" to={"/"}>
+                Pradinis
+              </Link>
+            </li>
+            <li>
               <Link className="footer__navigation-link" to={"/apie-mus"}>
                 Apie mus
               </Link>

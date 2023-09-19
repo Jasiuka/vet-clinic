@@ -1,6 +1,8 @@
 import Footer from "./footer.component";
 import { Header } from "./header.component";
 import PropType from "prop-types";
+import ScrollToTop from "./scrollToTop.component";
+import ScrollToTopButton from "./scrollToTopButton.component";
 
 export const Layout = ({ children }) => {
   return (
@@ -8,6 +10,8 @@ export const Layout = ({ children }) => {
       <Header />
       {children}
       <Footer />
+      <ScrollToTop />
+      <ScrollToTopButton />
     </>
   );
 };

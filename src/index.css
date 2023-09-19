@@ -30,6 +30,7 @@
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -728,6 +729,13 @@ nav ul li a span {
 }
 /* OUR TEAM */
 
+/* FAQ */
+
+.faq {
+}
+
+/* FAQ */
+
 /* HEADINGS */
 .page-heading {
   font-size: var(--font-heading);
@@ -772,3 +780,98 @@ nav ul li a span {
 }
 
 /* CTA */
+
+/* OTHERS */
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  padding: 1rem;
+  font-size: var(--font-large);
+  background-color: var(--dark-grey);
+  z-index: 100;
+  border: 1px solid var(--dark-grey);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: translateY(5rem);
+  opacity: 0;
+}
+
+.scroll-to-top__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: var(--light-grey);
+  transition: fill 0.3s ease-in-out;
+}
+
+.scroll-to-top:hover > .scroll-to-top__icon {
+  fill: var(--accent-color);
+  animation: scrollToTheTopButtonAnimation infinite 1.5s linear;
+}
+
+.scroll-to-top:hover {
+  transform: scale(1.1);
+  -webkit-box-shadow: 0px 5px 23px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 5px 23px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px 23px -8px rgba(0, 0, 0, 0.75);
+}
+
+.scroll-to-top-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@keyframes scrollToTheTopButtonAnimation {
+  0% {
+    transform: translateY(-3px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+
+  100% {
+    transform: translateY(-3px);
+  }
+}
+
+/* ACCORDION */
+
+.accordion {
+  padding: var(--section-padding);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  /* grid-template-rows: auto 1fr; */
+  /* gap: 5rem; */
+}
+
+.accordion-item {
+  width: 45%;
+  color: var(--light-grey);
+  background-color: var(--dark-grey);
+  border-radius: 4px;
+  padding: 2rem;
+  cursor: pointer;
+  height: fit-content;
+}
+
+.accordion-item__heading {
+  font-size: var(--font-medium);
+}
+
+.accordion-item__text {
+  height: 0;
+  overflow: hidden;
+  transition: all 0.6s ease;
+  font-size: var(--font-medium);
+}
+
+.accordion-item__text-open {
+  height: 10rem;
+  margin-top: 2rem;
+}
