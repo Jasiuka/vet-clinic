@@ -1,4 +1,4 @@
-import TeamMemberCard from "../components/team-member-card.component";
+import TeamMemberCard from "./team-member-card.component";
 
 const teamMembersDataVets = [
   {

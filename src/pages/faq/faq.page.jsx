@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import AccordionItem from "../components/accordion.component";
+import AccordionItem from "../../components/accordion.component";
 export const FaqPage = () => {
   const accordionRef = useRef();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -60,7 +60,7 @@ export const FaqPage = () => {
   return (
     <div className="faq">
       <h2 className="page-heading">Dažniausiai užduodami klausimai</h2>
-      <div ref={accordionRef} className="accordion">
+      <main ref={accordionRef} className="accordion">
         {accordionData.map(({ title, text, index }) => {
           return (
             <AccordionItem
@@ -104,7 +104,7 @@ export const FaqPage = () => {
               : () => setActiveIndex(2)
           }
         /> */}
-      </div>
+      </main>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import propTypes from "prop-types";
 export const AccordionItem = ({ title, text, isActive, clickHandler }) => {
   return (
     <div
@@ -14,6 +15,13 @@ export const AccordionItem = ({ title, text, isActive, clickHandler }) => {
       </p>
     </div>
   );
+};
+
+AccordionItem.propTypes = {
+  title: propTypes.string,
+  text: propTypes.string,
+  isActive: propTypes.bool,
+  clickHandler: propTypes.func,
 };
 
 export default AccordionItem;

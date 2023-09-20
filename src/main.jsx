@@ -3,12 +3,12 @@ import ReactDOM from "react-dom/client";
 import Home from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import AuthorizationPage from "./pages/auth.page.jsx";
-import AboutUsPage from "./pages/about-us.page.jsx";
-import OurTeamPage from "./pages/our-team.page.jsx";
-import ServicesPage from "./pages/services.page.jsx";
-import FaqPage from "./pages/faq.page.jsx";
-import ContactsPage from "./pages/contacts.page.jsx";
+import AuthorizationPage from "./pages/authorization/auth.page.jsx";
+import AboutUsPage from "./pages/about-us/about-us.page.jsx";
+import OurTeamPage from "./pages/our-team/our-team.page.jsx";
+import ServicesPage from "./pages/services/services.page.jsx";
+import FaqPage from "./pages/faq/faq.page.jsx";
+import ContactsPage from "./pages/contacts/contacts.page.jsx";
 import { Layout } from "./components/layout.component.jsx";
 
 const router = createBrowserRouter([

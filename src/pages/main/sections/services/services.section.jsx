@@ -1,4 +1,4 @@
-import ServicesSectionItem from "../components/services-section-item.component";
+import ServicesSectionItem from "./services-section-item.component";
 
 export const Services = () => {
   const servicesData = [

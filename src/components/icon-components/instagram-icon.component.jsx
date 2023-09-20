@@ -1,10 +1,12 @@
-export const InstagramIcon = () => {
+import PropTypes from "prop-types";
+
+export const InstagramIcon = ({ className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 132.004 132"
-      className="header-top__icon-ig"
+      className={className}
     >
       <defs>
         <linearGradient id="b">
@@ -57,6 +59,10 @@ export const InstagramIcon = () => {
       />
     </svg>
   );
+};
+
+InstagramIcon.propTypes = {
+  className: PropTypes.string,
 };
 
 export default InstagramIcon;

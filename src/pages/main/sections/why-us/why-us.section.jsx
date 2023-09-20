@@ -1,12 +1,12 @@
-import WhyUsItem from "../components/why-us-item.component";
-import CommunityTrustIcon from "../components/icon-components/why-us-icons/community-trust-icon.component";
-import ConvenientLocationIcon from "../components/icon-components/why-us-icons/convenient-location-icon";
-import EducationIcon from "../components/icon-components/why-us-icons/education-icon.component";
-import EnvironmentIcon from "../components/icon-components/why-us-icons/environment-icon.component";
-import EquipmentIcon from "../components/icon-components/why-us-icons/equipment-icon.component";
-import PersonalCareIcon from "../components/icon-components/why-us-icons/personal-care-icon.component";
-import ServicesIcon from "../components/icon-components/why-us-icons/services-icon.component";
-import TeamIcon from "../components/icon-components/why-us-icons/team-icon.component";
+import WhyUsItem from "./why-us-item.component";
+import CommunityTrustIcon from "../../../../components/icon-components/why-us-icons/community-trust-icon.component";
+import ConvenientLocationIcon from "../../../../components/icon-components/why-us-icons/convenient-location-icon";
+import EducationIcon from "../../../../components/icon-components/why-us-icons/education-icon.component";
+import EnvironmentIcon from "../../../../components/icon-components/why-us-icons/environment-icon.component";
+import EquipmentIcon from "../../../../components/icon-components/why-us-icons/equipment-icon.component";
+import PersonalCareIcon from "../../../../components/icon-components/why-us-icons/personal-care-icon.component";
+import ServicesIcon from "../../../../components/icon-components/why-us-icons/services-icon.component";
+import TeamIcon from "../../../../components/icon-components/why-us-icons/team-icon.component";
 export const Why = () => {
   const dataForItems = [
     {

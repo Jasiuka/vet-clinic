@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import LocationIcon from "./icon-components/location-icon.component";
 import PhoneIcon from "./icon-components/phone-icon.component";
 import EmailIcon from "./icon-components/email-icon.component";
+import FacebookIcon from "./icon-components/facebook-icon.component";
+import InstagramIcon from "./icon-components/instagram-icon.component";
 export const Footer = () => {
   return (
     <footer className="footer">
@@ -56,6 +58,21 @@ export const Footer = () => {
           <p>UAB „VET LETENELES“</p>
           <p>Įmonės kodas 313805282</p>
           <p>Sukilėlių pr. 20, 50157 Kaunas</p>
+        </div>
+        <div className="footer__box footer__social">
+          <h5 className="footer__box-heading">Mus taip pat rasite</h5>
+          <ul>
+            <li>
+              <a href="https://facebook.com/" target="_blank" rel="noreferrer">
+                <FacebookIcon className={"footer__icon icon-fb"} />
+              </a>
+            </li>
+            <li>
+              <a href="https://instagram.com/" target="_blank" rel="noreferrer">
+                <InstagramIcon className={"footer__icon icon-insta"} />
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
 

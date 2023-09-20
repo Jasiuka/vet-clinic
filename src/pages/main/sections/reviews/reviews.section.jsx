@@ -1,4 +1,4 @@
-import Slider from "../components/slider.component";
+import Slider from "./slider.component";
 import { useState } from "react";
 export const Reviews = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
