@@ -1,0 +1,70 @@
+{
+  "veterinarians": [
+    {
+      "name": "Lina Alienė",
+      "specialty": "Veterinarijos gydytoja",
+      "imageUrl": "./src/assets/team-members/lin-ali.jpg"
+    },
+    {
+      "name": "Tomas Lokys",
+      "specialty": "Veterinarijos gydytojas",
+      "imageUrl": "./src/assets/team-members/tom-lok.jpg"
+    },
+    {
+      "name": "Asta Lašienė",
+      "specialty": "Veterinarijos gydytoja",
+      "imageUrl": "./src/assets/team-members/ast-las.jpg"
+    },
+    {
+      "name": "Erika Labienė",
+      "specialty": "Veterinarijos gydytoja",
+      "imageUrl": "./src/assets/team-members/eri-lab.jpg"
+    },
+    {
+      "name": "Lukrecija Apašiūtė",
+      "specialty": "Veterinarijos gydytoja",
+      "imageUrl": "./src/assets/team-members/luk-apa.jpg"
+    },
+    {
+      "name": "Kęstutis Arinkus",
+      "specialty": "Veterinarijos gydytojas",
+      "imageUrl": "./src/assets/team-members/kes-ari.jpg"
+    }
+  ],
+
+  "helpers": [
+    {
+      "name": "Kristina Valančiūtė",
+      "specialty": "Vet. Gydytojo padėjėja",
+      "imageUrl": "./src/assets/team-members/kri-val.jpg"
+    },
+    {
+      "name": "Simona Lašiūtė",
+      "specialty": "Vet. Gydytojo padėjėja",
+      "imageUrl": "./src/assets/team-members/sim-las.jpg"
+    },
+    {
+      "name": "Ramūnas Mikalauskas",
+      "specialty": "Vet. Gydytojo padėjėjas",
+      "imageUrl": "./src/assets/team-members/ram-mik.jpg"
+    }
+  ],
+
+  "others": [
+    {
+      "name": "Karina Valečko",
+      "specialty": "Administratorė",
+      "imageUrl": "./src/assets/team-members/kar-val.jpg"
+    },
+    {
+      "name": "Martyna Sikutė",
+      "specialty": "Administratorė",
+      "imageUrl": "./src/assets/team-members/mar-sik.jpg"
+    }
+  ],
+  "director": {
+    "name": "Rokas Valiūnas",
+    "specialty": "Direktorius / Vet. Gydytojas",
+    "imageUrl": "./src/assets/team-members/rok-val.jpg"
+  }
+}

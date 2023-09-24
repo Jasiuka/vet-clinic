@@ -684,6 +684,36 @@ nav ul li a span {
 
 /* ABOUT US PAGE */
 
+/* SERVICES PAGE */
+
+.services {
+  padding: var(--section-padding);
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+}
+
+.filter-button {
+  padding: 1rem;
+}
+
+.filter-button-active {
+  background-color: blue;
+}
+
+.filter-reset {
+  border: none;
+}
+
+.filter-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* SERVICES PAGE */
+
 /* OUR TEAM */
 
 .our-team__main {
@@ -938,14 +968,18 @@ nav ul li a span {
 .accordion {
   padding: var(--section-padding);
   display: flex;
-  flex-wrap: wrap;
   gap: 4rem;
-  /* grid-template-rows: auto 1fr; */
-  /* gap: 5rem; */
+}
+
+.accordion-side {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .accordion-item {
-  width: 45%;
+  width: 90%;
   color: var(--light-grey);
   background-color: var(--dark-grey);
   border-radius: 4px;

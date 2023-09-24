@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import Home from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import AuthorizationPage from "./pages/authorization/auth.page.jsx";
+import AuthenticationPage from "./pages/authentication/auth.page.jsx";
 import AboutUsPage from "./pages/about-us/about-us.page.jsx";
 import OurTeamPage from "./pages/our-team/our-team.page.jsx";
 import ServicesPage from "./pages/services/services.page.jsx";
@@ -17,14 +17,6 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <Home />
-      </Layout>
-    ),
-  },
-  {
-    path: "/prisijungimas",
-    element: (
-      <Layout>
-        <AuthorizationPage />,
       </Layout>
     ),
   },
@@ -72,7 +64,7 @@ const router = createBrowserRouter([
     path: "/prisijungti",
     element: (
       <Layout>
-        <AuthorizationPage />
+        <AuthenticationPage />
       </Layout>
     ),
   },
