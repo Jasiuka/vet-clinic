@@ -4,183 +4,181 @@
       "name": "Pirminė gydytojo konsultacija ir apžiūra",
       "description": "Gyvūno apžiūros metu gydytojas apžiūrės jūsų augintinį, patikrins pagrindines gyvybines funkcijas - paklausys širdį, plaučius, pamatuos kūno temperatūrą, pasvers augintinį, apžiūrės burnos ertmę, ausis, akis, kailį ir kt. – taip gydytojas įvertins bendrą gyvūno buklę.",
       "price": 15,
-      "forType": "Visi",
-      "type": [5]
+      "type": [1, 2, 3, 4]
     },
     {
       "name": "MRT – magnetinio rezonanso tomografija",
       "description": "MRT metu nustatoma gyvūnų organų būklė, galimi jų pakitimai. Šis tyrimas pritaikytas atlikti galvos smegenų, stuburo, sąnarių, blauzdos, čiurnos, dubens, urogenitalinės sistemos, pilvo organų ir kt. tyrimus be ir su kontrastine medžiaga",
       "price": 70,
-      "forType": "Katės, Šunys, Kiti",
       "type": [1, 2, 4]
     },
     {
       "name": "Kardiologija",
       "description": "Echokardiografija  yra dar kitaip žinoma kaip širdies ultragarsinis (echoskopinis) tyrimas. Tyrimo metu yra tikrinama širdies raumens (miokardo), vožtuvų funkcija, kraujo tėkmė pagrindinėse kraujagyslėse, slėgiai širdies kamerose. Šio tyrimo pagalba galima nustatyti esamas širdies patologijas",
       "price": 30,
-      "forType": "Katės, Šunys",
+
       "type": [1, 2]
     },
     {
       "name": "Skubi veterinarinė pagalba visą parą",
       "description": "Skubios veterinarinės pagalbos metu, gyvūnas yra priimamas be eilės ir kuo skubiau apžiūrimas veterinarijos gydytojo. Gyvūno apžiūros metu gydytojas apžiūrės jūsų augintinį, patikrins pagrindines gyvybines funkcijas - paklausys širdį, plaučius, pamatuos kūno temperatūrą, apžiūrės burnos ertmę, ausis, akis, odą ir kt . – taip gydytojas įvertins bendrą gyvūno būklę.",
       "price": 25,
-      "forType": "Visi",
-      "type": [5]
+
+      "type": [1, 2, 3, 4]
     },
     {
       "name": "Fizioterapija",
       "description": "Fizioterapija – tai ligų ir traumų gydymas natūraliais bei dirbtiniais fizikiniais veiksniais. Šis metodas – svarbi kompleksinės terapijos ir medicininės reabilitacijos sudėtinė dalis, kuri sustiprina gydymo efektą, padeda išvengti komplikacijų, greičiau atstato mobilumą ir pagerina gyvenimo kokybę.",
       "price": "nuo 30",
-      "forType": "Katės, Šunys",
+
       "type": [1, 2]
     },
     {
       "name": "Veterinarinė endoskopija",
       "description": "Tai saugi diagnostinė procedūra, leidžianti vizualiai įvertinti vidaus organų pažeidimus. Endoskopas – tai lankstus įrankis, kurio sudėtyje yra spalvota vaizdo kamera. Naudojant kamerą galima apžiūrėti organų vidų, jų gleivines: stemplę, skrandį ir dvylikapirštę žarną, įėjus rektaliai – apžiūrėti storąjį žarnyną, o įėjus pro šnerves – apžiūrėti nosies landą, trachėją bei viršutinius bronchus.",
       "price": "nuo 20",
-      "forType": "Katės, Šunys",
+
       "type": [1, 2]
     },
     {
       "name": "Laboratoriniai tyrimai",
       "description": "Mūsų klinikos laboratorijoje atliekami plataus spektro tyrimai Jūsų augintinams siekiant greitai bei efektyviai nustatyti ligos priežastį, o taip pat ir atliekant profilaktinius sveikatos patikrinimo tyrimus.",
       "price": "nuo 15",
-      "forType": "Visi",
-      "type": [5]
+
+      "type": [1, 2, 3, 4]
     },
     {
       "name": "Gydytojo iškvietimas į namus",
       "description": "Mūsų veterinarijos gydytojai gali atvykti į Jūsų namus ir suteikti medicininę pagalbą Jūsų augintiniui. Ištikus bėdai, nedvejodami skambinkite.",
       "price": "nuo 15",
-      "forType": "Visi",
-      "type": [5]
+
+      "type": [1, 2, 3, 4]
     },
     {
       "name": "Chirurgija",
       "description": "Gydytojas apžiūrės Jūsų augintinį, įvertins jo sveikatos būklę bei paskirs reikalingus diagnostinius tyrimus prieš chirurginę procedūrą",
       "price": "nuo 30",
-      "forType": "Visi",
-      "type": [5]
+
+      "type": [1, 2, 3, 4]
     },
     {
       "name": "Rentgenas, ultragarsas, oftalmologija, otoskopija",
       "description": "Veterinarijos gydytojas užregistruos Jūsų augintinį. Jūs užpildysite prašymą/sutikimą gydymui. Gydytojas atlikęs gyvūno klinikinę apžiūrą, įvertins jo būklę, paskirs reikalingus diagnostinius tyrimus, kuriais galės nustatyti ligą ir paskirti reikiamą gydymą.",
       "price": "nuo 20",
-      "forType": "Visi",
-      "type": [5]
+
+      "type": [1, 2, 3, 4]
     },
     {
       "name": "Egzotinių gyvūnų gydymas",
       "description": "Veterinarijos gydytojas užregistruos Jūsų augintinį. Jūs užpildysite prašymą/sutikimą gydymui. Gydytojas atlikęs gyvūno klinikinę apžiūrą, įvertins jo būklę, paskirs reikalingus diagnostinius tyrimus, kuriais galės nustatyti ligą ir paskirti reikiamą gydymą.",
       "price": "-",
-      "forType": "Kiti",
+
       "type": [3, 4]
     },
     {
       "name": "Kastracija/Sterilizacija",
       "description": "Veterinarijos gydytojas užregistruos Jūsų augintinį. Jūs užpildysite prašymą/sutikimą gydymui. Gydytojas atlikęs gyvūno klinikinę apžiūrą, įvertins jo būklę, paskirs reikalingus diagnostinius tyrimus, kuriais galės nustatyti ligą ir paskirti reikiamą gydymą.",
       "price": "45",
-      "forType": "Katės, Šunys",
+
       "type": [1, 2]
     },
     {
       "name": "Odontologija / Dantų apnašų valymas",
       "description": "Gydytojas apžiūrės Jūsų augintinį, įvertins jo sveikatos būklę, įvertins dantų ir dantenų būklę, atliks kraujo morfologinį ir (arba) biocheminį tyrimą (esant butinybei), paskirs medikamentinį ir (arba) chirurginį gydymo metodą",
       "price": "nuo 10",
-      "forType": "Katės, Šunys",
+
       "type": [1, 2]
     },
     {
       "name": "Neurologija",
       "description": "Veterinarijos gydytojas kruopščiai apžiūrės ir įvertins bendrą sveikatos būklę. Bus vertinami gyvybinės organų sistemos, širdies, kvėpavimo ligos. Po to atliekami tyrimai CNS – centrinės nervų sistemos ir PNS – periferinės nervų sistemos",
       "price": "nuo 25",
-      "forType": "Katės, Šunys",
+
       "type": [1, 2]
     },
     {
       "name": "Traumatologija / Ortopedija",
       "description": "veterinarijos gydytojai – ortopedai traumatologai konsultuoja dėl ūmių raumenų ar skeleto traumų, jų pasekmių, ortopedinių susirgimų, diagnozuoja ir gydo sąnarių pažeidimus, meniskų plyšimus, kaulų lūžius, ortopedines ligas (artrozes, raiščių plyšimus, patempimus ir kt.), atlieka tausojančias ortopedines operacijas.",
       "price": "nuo 30",
-      "forType": "Katės, Šunys, Pauškčiai",
+
       "type": [1, 2, 3]
     },
     {
       "name": "Apsauga nuo blusų, erkių, plaukagraužių, kirminų",
       "description": "Gydytojas apžiūrės Jūsų augintinį, įvertins jo sveikatos būklę. Išklausys Jūsų nuomonę bei norus, susirinks duomenis apie Jūsų augintinį, užduos klausimus bei patars ir pasiūlys efektyviausią profilaktinę ar gydomąją priemonę nuo parazitų.",
       "price": "nuo 20",
-      "forType": "Katės, Šunys",
+
       "type": [1, 2]
     },
     {
       "name": "Vakcinacija, skiepai",
       "description": "Mūsų veterinarijos klinikoje šunims, katėms, šeškams ir triušiams atliekami profilaktiniai skiepai nuo užkrečiamųjų ligų.Skiepai leidžia apsaugoti Jūsų augintinius nuo ligų, kurios gali būti mirtinos.",
       "price": "nuo 10",
-      "forType": "Katės, Šunys, Kiti",
+
       "type": [1, 2, 4]
     },
     {
       "name": "Ginekologija / Urologija",
       "description": "Veterinarijos gydytojai gali konsultuoti kergimo klausimais, atlikti nėštumo echoskopiją, suteikti gimdymo pagalbą ar atlikti cezario pjūvio operaciją stacionarizuojant gyvūną.",
       "price": "nuo 30",
-      "forType": "Katės, Šunys, Kiti",
+
       "type": [1, 2, 4]
     },
     {
       "name": "Vidaus ligos",
       "description": "Klinikoje taikomas medikamentinis - terapinis vidaus ligų gydymas, paskiriamos priemonės paciento organizmui stiprinti, esant reikalui koreguojama mityba, rekomenduojami profesionalūs gydomieji ėdalai, gydymo eigoje priklausomai nuo situacijos, paskiriamas ir ambulatorinis gydymas. ",
       "price": "nuo 30",
-      "forType": "Katės, Šunys, Kiti",
+
       "type": [1, 2, 4]
     },
     {
       "name": "Odos ligos / Dermatologija",
       "description": "Mūsų klinikoje nustatant odos bei ausų ligas yra taikoma: bendras odos tyrimas, mikroskopiniai tyrimai – odos citologinis tyrimas, odos skutmenų tyrimas, trichoskopinis tyrimas, ausų turinio citologinis tyrimas.",
       "price": "nuo 20",
-      "forType": "Katės, Šunys, Kiti",
+
       "type": [1, 2, 4]
     },
     {
       "name": "Gyvūnų draudimas",
       "description": "Pamirškite išlaidas veterinarijos paslaugoms- atlyginame gydymo išlaidas, kai šuo arba katė suserga ar patiria traumą",
       "price": "nuo 20",
-      "forType": "Visi",
-      "type": [5]
+
+      "type": [1, 2, 3, 4]
     },
     {
       "name": "Gyvūno patikra prieš kelionę",
       "description": "Mūsų Veterinarijos klinikos gydytojai padės Jums tinkamai paruošti augintinio kelionės dokumentus, apžiūrės gyvūno klinikinę būklę.",
       "price": "nuo 15",
-      "forType": "Visi",
-      "type": [5]
+
+      "type": [1, 2, 3, 4]
     },
     {
       "name": "Gyvūno ženklinimas, registracija, pasų išdavimas",
       "description": "Ženklinimas (Čipavimas) –  tai elektoninė gyvūno indentifikavimo sistema. Čipavimas gali būti atliekamas bet kokio amžiaus šunims, katėms ar šeškams.",
       "price": "nuo 15",
-      "forType": "Katės, Šunys, Kiti",
+
       "type": [1, 2, 4]
     },
     {
       "name": "Stacionaro paslaugos",
       "description": "Sunkiai sergantiems ligoniams, ar ligoniams po operacijų, kuriems yra reikalingas gydymas ir/ar pastovi vetarinarinė priežiūra, yra paliekami mūsų klinikos intensyvaus terapijos skyriaus stacionare.",
       "price": "nuo 20",
-      "forType": "Visi",
-      "type": [5]
+
+      "type": [1, 2, 3, 4]
     },
     {
       "name": "Higienos paslaugos",
       "description": "Gyvūno sveikatai didelę reikšmę turi jo kūno higiena. Rūpintis savo gyvūnu, kad jis būtų sveikas ir gerai atrodytų reikia reguliariai.",
       "price": "nuo 15",
-      "forType": "Visi",
-      "type": [5]
+
+      "type": [1, 2, 3, 4]
     },
     {
       "name": "Eutanazija / kremavimas",
       "description": "Eutanazija ir kremavimas – modernus ir humaniškas būdas atsisveikinti su savo mylimu augintiniu.",
       "price": "nuo 15",
-      "forType": "Visi",
-      "type": [5]
+
+      "type": [1, 2, 3, 4]
     }
   ]
 }

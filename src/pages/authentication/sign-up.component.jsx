@@ -1,8 +1,8 @@
 export const Signup = () => {
   return (
-    <div className="authorization__signup">
+    <div className="authentication__signup authentication__main-box">
       <h4>Neturi profilio? Registruokis</h4>
-      <form className="authorization__signup-form">
+      <form className="authentication__signup-form authentication__form">
         <label className="form-label" htmlFor="signup-input--name">
           Vardas
         </label>

@@ -5,9 +5,9 @@ import LocationICon from "../../components/icon-components/location-icon.compone
 export const ContactsPage = () => {
   return (
     <div className="contacts">
-      <h2 className="page-heading">Kontaktai</h2>
+      <h2 className="page-heading for-observer">Kontaktai</h2>
       <main className="contacts__main">
-        <div className="contacts__main-contacts-container">
+        <div className="contacts__main-contacts-container ">
           <div className="contacts__main-contacts-element">
             <LocationICon className={"contacts__icon"} />{" "}
             <h3 className="contacts__main-contacts-heading">

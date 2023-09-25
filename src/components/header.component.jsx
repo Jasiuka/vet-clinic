@@ -3,41 +3,38 @@ import LocationIcon from "./icon-components/location-icon.component";
 import EmailIcon from "./icon-components/email-icon.component";
 import ClockIcon from "./icon-components/clock-icon.component";
 import PhoneIcon from "./icon-components/phone-icon.component";
-import { useEffect } from "react";
+import ScrollToTopButton from "./scrollToTopButton.component";
+import { useEffect, useState } from "react";
+
 export const Header = () => {
+  const [isIntersecting, setIsIntersecting] = useState(true);
+
+  const observerCallback = (entries) => {
+    const [entry] = entries;
+
+    setIsIntersecting(entry.isIntersecting);
+  };
+
   useEffect(() => {
-    const targetElement = document.querySelector(".for-observer");
-    const header = document.querySelector(".header");
-    const headerLogo = document.querySelector(".header__logo");
-    const headerTop = document.querySelector(".header-top");
-    const scrollToTopButton = document.querySelector(".scroll-to-top");
+    const observerTargetElement = document.querySelector(".for-observer");
 
     const options = {
       root: null,
-      rootMargin: "0px",
-      threshold: 0.5,
+      rootMargin: "100px",
+      threshold: 0.1,
     };
 
-    if (!targetElement) return;
+    const observer = new IntersectionObserver(observerCallback, options);
+    if (observerTargetElement) observer.observe(observerTargetElement);
 
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        headerTop.classList.remove("hide-top");
-        header.classList.remove("sticky");
-        headerLogo.classList.remove("header__logo-smaller");
-        scrollToTopButton.classList.remove("scroll-to-top-visible");
-      } else {
-        headerTop.classList.add("hide-top");
-        header.classList.add("sticky");
-        headerLogo.classList.add("header__logo-smaller");
-        scrollToTopButton.classList.add("scroll-to-top-visible");
-      }
-    }, options);
-
-    observer.observe(targetElement);
-
-    return () => observer.unobserve(targetElement);
+    return () => {
+      if (observerTargetElement) observer.unobserve(observerTargetElement);
+    };
   }, []);
+
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
 
   const location = useLocation();
 
@@ -48,8 +45,12 @@ export const Header = () => {
 
   return (
     <>
-      <header className={`header ${isHeaderInMainPage}`}>
-        <div className="header-top">
+      <header
+        className={`header ${isHeaderInMainPage} ${
+          isIntersecting ? "" : "sticky"
+        } `}
+      >
+        <div className={`header-top  ${isIntersecting ? "" : "hide-top"}`}>
           <div className="header-top-side">
             <p>
               <LocationIcon className={"header-top__icon"} />
@@ -74,7 +75,9 @@ export const Header = () => {
         <div className="header-bottom">
           <a className="header__logo-link" href="/">
             <img
-              className="header__logo"
+              className={`header__logo ${isHeaderInMainPage} ${
+                isIntersecting ? "" : "header__logo-smaller"
+              }`}
               src="/src/assets/vet-logo.png"
               alt="Veterinary clinic logo"
             ></img>
@@ -143,6 +146,11 @@ export const Header = () => {
           </nav>
         </div>
       </header>
+      {/* Scroll to top button */}
+      <ScrollToTopButton
+        handleScrollToTop={handleScrollToTop}
+        isIntersecting={isIntersecting}
+      />
     </>
   );
 };

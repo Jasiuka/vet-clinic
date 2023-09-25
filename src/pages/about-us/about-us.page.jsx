@@ -1,7 +1,7 @@
 export const AboutUsPage = () => {
   return (
     <main className="about-us">
-      <h2 className="page-heading">Apie mus</h2>
+      <h2 className="page-heading for-observer">Apie mus</h2>
       <div className="about-us__inner">
         <div className="about-us__paws"></div>
         <div className="about-us__motto">

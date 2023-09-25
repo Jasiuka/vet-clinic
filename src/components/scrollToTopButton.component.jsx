@@ -1,13 +1,11 @@
-export const ScrollToTopButton = () => {
-  const scrollToTop = () => {
-    window.scrollTo(0, 0);
-  };
-
+export const ScrollToTopButton = ({ handleScrollToTop, isIntersecting }) => {
   return (
     <button
       title="Pakilti į viršų"
-      onClick={scrollToTop}
-      className="scroll-to-top"
+      onClick={handleScrollToTop}
+      className={`scroll-to-top ${
+        isIntersecting ? "" : "scroll-to-top-visible"
+      }`}
     >
       <svg
         className="scroll-to-top__icon"

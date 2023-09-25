@@ -4,9 +4,9 @@ import TEAM_MEMBERS_DATA from "../../data/team-members-data.json";
 export const OurTeamPage = () => {
   return (
     <div className="our-team">
-      <h2 className="page-heading">Mūsų komanda</h2>
+      <h2 className="page-heading for-observer">Mūsų komanda</h2>
       <main className="our-team__main">
-        <div className="our-team__main-vets">
+        <div className="our-team__main-vets ">
           <h3 className="our-team__main-vets-heading our-team__main-heading">
             Veterinarijos gydytojai
           </h3>

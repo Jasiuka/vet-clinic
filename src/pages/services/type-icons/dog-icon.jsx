@@ -1,7 +1,7 @@
-export const DogIcon = () => {
+export const DogIcon = ({ className }) => {
   return (
     <svg
-      className="filter-icon"
+      className={className}
       xmlns="http://www.w3.org/2000/svg"
       shapeRendering="geometricPrecision"
       textRendering="geometricPrecision"

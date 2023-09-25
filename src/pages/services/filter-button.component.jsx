@@ -22,6 +22,6 @@ FilterButton.propTypes = {
   whatFor: PropTypes.string,
   isActive: PropTypes.bool,
   handleClick: PropTypes.func,
-  index: PropTypes.number,
+  index: PropTypes.any,
 };
 export default FilterButton;

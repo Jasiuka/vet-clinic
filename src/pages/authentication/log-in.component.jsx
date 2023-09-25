@@ -1,8 +1,8 @@
 export const Login = () => {
   return (
-    <div className="authorization__login">
+    <div className="authentication__login authentication__main-box">
       <h4>Prisijungti</h4>
-      <form className="authorization__login-form">
+      <form className="authentication__login-form authentication__form">
         <label htmlFor="login-email--input">El. Paštas</label>
         <input id="login-email--input" />
         <label htmlFor="login-pass--input">Slaptažodis</label>

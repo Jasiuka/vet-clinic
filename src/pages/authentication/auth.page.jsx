@@ -1,10 +1,10 @@
 import Login from "./log-in.component";
 import Signup from "./sign-up.component";
 
-export const AuthorizationPage = () => {
+export const AuthenticationPage = () => {
   return (
-    <div className="authorization">
-      <div className="authorization__inner">
+    <div className="authentication">
+      <div className="authentication__inner">
         <Login />
         <Signup />
       </div>
@@ -12,4 +12,4 @@ export const AuthorizationPage = () => {
   );
 };
 
-export default AuthorizationPage;
+export default AuthenticationPage;
