@@ -1,5 +1,5 @@
 // import { Header } from "./header.component";
-
+import "./hero.style.css";
 import { Link } from "react-router-dom";
 
 export const Hero = () => {

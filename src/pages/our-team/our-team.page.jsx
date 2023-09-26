@@ -1,5 +1,6 @@
 import TeamMemberCard from "./team-member-card.component";
 import TEAM_MEMBERS_DATA from "../../data/team-members-data.json";
+import "./our-team.style.css";
 
 export const OurTeamPage = () => {
   return (

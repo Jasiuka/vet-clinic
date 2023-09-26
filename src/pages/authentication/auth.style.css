@@ -1,0 +1,35 @@
+/* AUTHENTICATION PAGE */
+.authentication {
+  margin: 4rem;
+}
+
+.authentication__main-box {
+  padding: 3rem;
+  border-radius: 4px;
+}
+
+.authentication__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.authentication__form input {
+  padding: 1rem;
+  font-size: var(--font-medium);
+}
+
+.authentication__inner {
+  display: flex;
+  font-size: 3rem;
+}
+
+.authentication__login {
+  background-color: var(--accent-color);
+  color: aliceblue;
+  width: 40%;
+}
+
+.authentication__signup {
+  width: 60%;
+}
+/* AUTHENTICATION PAGE */

@@ -1,10 +1,11 @@
 import { useLocation } from "react-router-dom";
-import LocationIcon from "./icon-components/location-icon.component";
-import EmailIcon from "./icon-components/email-icon.component";
-import ClockIcon from "./icon-components/clock-icon.component";
-import PhoneIcon from "./icon-components/phone-icon.component";
-import ScrollToTopButton from "./scrollToTopButton.component";
+import LocationIcon from "../icon-components/location-icon.component";
+import EmailIcon from "../icon-components/email-icon.component";
+import ClockIcon from "../icon-components/clock-icon.component";
+import PhoneIcon from "../icon-components/phone-icon.component";
+import ScrollToTopButton from "../scrollToTopButton.component";
 import { useEffect, useState } from "react";
+import "./header.style.css";
 
 export const Header = () => {
   const [isIntersecting, setIsIntersecting] = useState(true);

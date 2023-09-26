@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import AccordionItem from "../../components/accordion.component";
 import FAQ_DATA from "../../data/faq-data.json";
+import "./faq.style.css";
 export const FaqPage = () => {
   const accordionRef = useRef();
   const [activeIndex, setActiveIndex] = useState(0);

@@ -1,0 +1,135 @@
+/* HEADER */
+
+.header {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8rem;
+}
+
+.sticky {
+  position: sticky;
+  background-color: var(--dark-grey);
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.header-bottom {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--side-paddings);
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.header-top {
+  padding: 1rem var(--side-paddings);
+
+  font-size: var(--font-smallest);
+  display: flex;
+  justify-content: space-between;
+  background-color: #e9ecef;
+  color: #212529;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.hide-top {
+  display: none;
+  position: absolute;
+}
+
+.header-top-side {
+  display: flex;
+  align-items: center;
+}
+
+.header-top-side p {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.header-top-side p:first-child {
+  border-right: 1px solid var(--accent-color);
+  padding-right: 2rem;
+}
+
+.header-top-side p:nth-child(2) {
+  padding-left: 2rem;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  font-size: 1.6rem;
+  list-style: none;
+  gap: 4rem;
+  color: var(--light-grey);
+}
+
+.header__link:visited,
+.header__link:link {
+  color: currentColor;
+  transition: all 0.3s ease;
+}
+
+nav ul li a {
+  font-weight: 400;
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+}
+
+nav ul li a span {
+  position: relative;
+  z-index: 2;
+}
+
+.header__logo {
+  width: 16rem;
+  height: 14rem;
+  transition: all 0.3s ease;
+}
+
+.header__logo-smaller {
+  width: 9rem;
+  height: 7rem;
+}
+
+.header__link:visited:hover,
+.header-link:link:hover,
+.header__link:hover {
+  color: var(--accent-color);
+}
+
+.header-top__icon {
+  width: 2rem;
+  height: 2rem;
+  fill: #f9a8c5;
+}
+
+.header__link-not-main:link,
+.header__link-not-main:visited {
+  color: var(--light-grey);
+}
+
+.header__link-not-main:hover,
+.header__link-not-main:link:hover,
+.header__link-not-main:visited:hover {
+  color: var(--accent-color);
+}
+
+.header-not-main {
+  background-color: var(--dark-grey);
+}
+
+.header__paws {
+  height: 2rem;
+}

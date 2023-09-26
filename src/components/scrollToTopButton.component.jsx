@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 export const ScrollToTopButton = ({ handleScrollToTop, isIntersecting }) => {
   return (
     <button
@@ -24,6 +25,11 @@ export const ScrollToTopButton = ({ handleScrollToTop, isIntersecting }) => {
       </svg>
     </button>
   );
+};
+
+ScrollToTopButton.propTypes = {
+  isIntersecting: PropTypes.bool,
+  handleScrollToTop: PropTypes.func,
 };
 
 export default ScrollToTopButton;

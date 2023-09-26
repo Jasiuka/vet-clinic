@@ -1,3 +1,4 @@
+import "./about-us.style.css";
 export const AboutUsPage = () => {
   return (
     <main className="about-us">

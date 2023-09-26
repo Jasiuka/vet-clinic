@@ -7,6 +7,7 @@ import EquipmentIcon from "../../../../components/icon-components/why-us-icons/e
 import PersonalCareIcon from "../../../../components/icon-components/why-us-icons/personal-care-icon.component";
 import ServicesIcon from "../../../../components/icon-components/why-us-icons/services-icon.component";
 import TeamIcon from "../../../../components/icon-components/why-us-icons/team-icon.component";
+import "./why-us.style.css";
 export const Why = () => {
   const dataForItems = [
     {

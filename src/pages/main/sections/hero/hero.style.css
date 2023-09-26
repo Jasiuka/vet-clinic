@@ -1,0 +1,43 @@
+/* HERO */
+/* .hero {
+  background-image: url("/src/assets/main2.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+} */
+.hero {
+  color: aliceblue;
+  height: 70vh;
+  padding: var(--section-padding);
+}
+
+.hero h1 {
+  font-size: var(--font-hero-heading);
+  margin-bottom: 1rem;
+}
+
+.hero h1 span {
+  color: var(--accent-color);
+}
+
+.hero p {
+  font-weight: 400;
+  font-size: var(--font-large);
+  width: 50%;
+  margin-bottom: 2rem;
+}
+
+.header-hero__background {
+  background-image: url("/src/assets/main.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  height: 120vh;
+  width: 100%;
+  /* padding: 2rem 3rem; */
+  position: absolute;
+  z-index: -10;
+  top: 0;
+}
+
+/* HERO */

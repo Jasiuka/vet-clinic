@@ -1,0 +1,70 @@
+/* OUR TEAM */
+
+.our-team__main {
+  display: flex;
+  padding: var(--section-padding);
+  flex-direction: column;
+  gap: 6rem;
+}
+
+.our-team__main-box {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 2rem;
+}
+
+.our-team__main-heading {
+  font-size: var(--font-medium);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.our-team__card {
+  height: 40rem;
+  width: 35rem;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  cursor: pointer;
+}
+
+.our-team__card--image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: all 0.3s ease;
+  transform-origin: center bottom;
+  filter: grayscale(30%);
+}
+
+.our-team__card--details {
+  background-color: var(--accent-color);
+  overflow: hidden;
+  height: 0;
+  transition: all 0.3s ease;
+  color: #e9ecef;
+}
+
+.our-team__card--name {
+  font-size: 2.4rem;
+  text-align: center;
+}
+
+.our-team__card--spec {
+  font-size: 2rem;
+  background-color: var(--accent-color);
+  text-align: center;
+}
+
+.our-team__card:hover > .our-team__card--details {
+  height: 20%;
+}
+.our-team__card:hover > .our-team__card--image {
+  height: 80%;
+  filter: grayscale(0);
+}
+/* OUR TEAM */

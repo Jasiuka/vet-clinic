@@ -1,4 +1,5 @@
 import ServicesSectionItem from "./services-section-item.component";
+import "./services-section.style.css";
 
 export const Services = () => {
   const servicesData = [

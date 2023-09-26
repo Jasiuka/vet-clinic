@@ -5,6 +5,7 @@ import CatIcon from "./type-icons/cat-icon";
 import DogIcon from "./type-icons/dog-icon";
 import BirdIcon from "./type-icons/bird-icon";
 import OthersIcon from "./type-icons/other-icon";
+import "./services.style.css";
 import { useState } from "react";
 export const ServicesPage = () => {
   const [activeFilters, setActiveFilters] = useState(new Set());

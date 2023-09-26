@@ -1,6 +1,7 @@
 import EmailIcon from "../../components/icon-components/email-icon.component";
 import PhoneIcon from "../../components/icon-components/phone-icon.component";
 import LocationICon from "../../components/icon-components/location-icon.component";
+import "./contacts.style.css";
 
 export const ContactsPage = () => {
   return (

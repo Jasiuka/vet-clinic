@@ -1,0 +1,45 @@
+/* WHY US */
+.why-us {
+  padding: var(--section-padding);
+
+  background-color: var(--light-grey);
+  color: var(--dark-grey);
+}
+
+.why-us__items-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 6rem;
+}
+
+.why-us__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: var(--font-small);
+}
+
+.why-us__item:hover > .why-us__icon {
+  transform: scale(1.15);
+}
+
+.why-us__item-heading {
+  font-weight: 500;
+}
+
+.why-us__item-text {
+  text-align: center;
+  width: 70%;
+  line-height: 1.5;
+}
+
+.why-us__icon {
+  width: 5rem;
+  height: 5rem;
+  fill: var(--accent-color);
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+/* WHY US */

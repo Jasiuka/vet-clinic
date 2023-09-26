@@ -1,7 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Home from "./App.jsx";
-import "./index.css";
+import "./base.style.css";
+import "./common.style.css";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthenticationPage from "./pages/authentication/auth.page.jsx";
 import AboutUsPage from "./pages/about-us/about-us.page.jsx";

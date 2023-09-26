@@ -1,0 +1,41 @@
+/* Variables */
+:root {
+  --font-smallest: 1rem;
+  --font-small: 1.5rem;
+  --font-medium: 2rem;
+  --font-large: 3rem;
+  --font-largest: 4rem;
+  --font-heading: 5rem;
+  --font-hero-heading: 5.5rem;
+  --side-paddings: 5rem;
+  --accent-color: #f9a8c5;
+  --dark-grey: #212529;
+  --light-grey: #e9ecef;
+  --section-padding: 8rem 5rem;
+  --section-heading-margbot: 7rem;
+  --page-heading-padding: 2rem 5rem;
+}
+
+/* /DEFAULT/ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-weight: 300;
+  line-height: 1.6;
+  font-family: "Montserrat", "Sans-serif";
+  height: 100vh;
+  background-color: #e9ecef;
+  font-size: var(--font-small);
+  color: var(--dark-grey);
+}

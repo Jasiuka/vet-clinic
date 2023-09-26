@@ -1,0 +1,80 @@
+/* REVIEWS */
+.reviews {
+  height: 60vh;
+  padding: var(--section-padding);
+  background-color: var(--light-grey);
+  color: var(--dark-grey);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.reviews__heading {
+  font-size: var(--font-heading);
+  text-align: center;
+  margin-bottom: var(--section-heading-margbot);
+}
+
+.reviews__slider {
+  position: relative;
+  width: 80vw;
+}
+
+.reviews__slider-data {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  font-size: var(--font-small);
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.reviews__slider-name {
+  color: var(--dark-grey);
+  font-size: var(--font-medium);
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+
+.reviews__slider-review {
+  line-height: 1.5;
+  color: #495057;
+}
+
+.slide-active {
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+  transition: opacity 0.5s ease;
+}
+
+.reviews__slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background-color: transparent;
+  font-family: "Montserrat";
+
+  font-size: 15rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.reviews__slider-btn:hover {
+  color: var(--accent-color);
+}
+
+.reviews__slider-btn-left {
+  left: 4rem;
+}
+.reviews__slider-btn-right {
+  right: 4rem;
+}
+
+/* REVIEWS */

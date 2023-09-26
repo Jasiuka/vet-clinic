@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import LocationIcon from "./icon-components/location-icon.component";
-import PhoneIcon from "./icon-components/phone-icon.component";
-import EmailIcon from "./icon-components/email-icon.component";
-import FacebookIcon from "./icon-components/facebook-icon.component";
-import InstagramIcon from "./icon-components/instagram-icon.component";
+import LocationIcon from "../icon-components/location-icon.component";
+import PhoneIcon from "../icon-components/phone-icon.component";
+import EmailIcon from "../icon-components/email-icon.component";
+import FacebookIcon from "../icon-components/facebook-icon.component";
+import InstagramIcon from "../icon-components/instagram-icon.component";
+import "./footer.style.css";
 export const Footer = () => {
   return (
     <footer className="footer">
