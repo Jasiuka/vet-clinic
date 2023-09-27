@@ -1,35 +1,51 @@
-export const Signup = () => {
+import FormInputBox from "./form-input-box.component";
+import PropTypes from "prop-types";
+export const SignupForm = ({ handleOnSubmit }) => {
   return (
-    <div className="authentication__signup authentication__main-box">
-      <h4>Neturi profilio? Registruokis</h4>
-      <form className="authentication__signup-form authentication__form">
-        <label className="form-label" htmlFor="signup-input--name">
-          Vardas
-        </label>
-        <input className="form-input" id="signup-input--name" />
-        <label className="form-label" htmlFor="signup-input--last-name">
-          Pavardė
-        </label>
-        <input className="form-input" id="signup-input--last-name" />
-        <label className="form-label" htmlFor="signup-input--email">
-          El. paštas
-        </label>
-        <input className="form-input" id="signup-input--email" />
-        <label className="form-label" htmlFor="signup-input--password">
-          Slaptažodis
-        </label>
-        <input className="form-input" id="signup-input--password" />
-        <label className="form-label" htmlFor="signup-input--repeat-password">
-          Pakartoti slaptažodi
-        </label>
-        <input className="form-input" id="signup-input--repeat-password" />
-        <label className="form-label" htmlFor="signup-input--phone">
-          Telefono numeris
-        </label>
-        <input className="form-input" id="signup-input--phone" />
-      </form>
-    </div>
+    <form
+      className="authentication__form-login authentication__form signup-level-1"
+      name="signupLevel_1"
+      onSubmit={(e) => handleOnSubmit(e)}
+    >
+      <FormInputBox
+        label={"Vardas"}
+        inputId={"signup-name"}
+        inputType={"text"}
+        inputName={"name"}
+      />
+      <FormInputBox
+        label={"Pavardė"}
+        inputId={"signup-last-name"}
+        inputType={"text"}
+        inputName={"lastName"}
+      />
+      <FormInputBox
+        label={"Tel. Numeris"}
+        inputId={"signup-email"}
+        inputType={"tel"}
+        inputName={"phone"}
+      />
+      <button
+        type="submit"
+        // onClick={(e) => handleLevelChange(e, true)}
+        className="form-button"
+      >
+        Toliau &rarr;
+      </button>
+
+      <button
+        onClick={() => history.back()}
+        className="form-button form-button-back"
+      >
+        &larr; Atgal
+      </button>
+    </form>
   );
 };
 
-export default Signup;
+SignupForm.propTypes = {
+  handleLevelChange: PropTypes.func,
+  handleOnSubmit: PropTypes.func,
+};
+
+export default SignupForm;

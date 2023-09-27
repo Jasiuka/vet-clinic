@@ -1,0 +1,97 @@
+/* HEADINGS */
+.page-heading {
+  font-size: var(--font-heading);
+  background-color: var(--accent-color);
+  padding: var(--page-heading-padding);
+  color: var(--dark-grey);
+}
+
+.section-heading {
+  font-size: var(--font-heading);
+  text-align: center;
+  margin-bottom: var(--section-heading-margbot);
+}
+/* HEADINGS */
+
+/* CTA */
+
+.booking-btn,
+.booking-btn:visited,
+.booking-btn:link {
+  border: none;
+  font-size: var(--font-small);
+  color: var(--light-grey);
+  background-color: var(--accent-color);
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.booking-btn:hover {
+  background-color: var(--light-grey);
+  color: var(--dark-grey);
+}
+
+/* CTA */
+
+/* OTHERS */
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  padding: 1rem;
+  font-size: var(--font-large);
+  background-color: var(--dark-grey);
+  z-index: 100;
+  border: 1px solid var(--dark-grey);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: translateY(5rem);
+  opacity: 0;
+}
+
+.scroll-to-top__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: var(--light-grey);
+  transition: fill 0.3s ease-in-out;
+}
+
+.scroll-to-top:hover > .scroll-to-top__icon {
+  fill: var(--accent-color);
+  animation: scrollToTheTopButtonAnimation infinite 1.5s linear;
+}
+
+.scroll-to-top:hover {
+  transform: scale(1.1);
+  -webkit-box-shadow: 0px 5px 23px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 5px 23px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 5px 23px -8px rgba(0, 0, 0, 0.75);
+}
+
+.scroll-to-top-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@keyframes scrollToTheTopButtonAnimation {
+  0% {
+    transform: translateY(-3px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+
+  100% {
+    transform: translateY(-3px);
+  }
+}

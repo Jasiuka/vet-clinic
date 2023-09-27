@@ -64,11 +64,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/prisijungti",
-    element: (
-      <Layout>
-        <AuthenticationPage />
-      </Layout>
-    ),
+    element: <AuthenticationPage />,
   },
 ]);
 
