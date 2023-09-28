@@ -23,8 +23,6 @@ export const ServicesPage = () => {
       setActiveFilters(newSet);
     }
   };
-
-  console.log(searchQuery);
   const handleReset = () => {
     const newSet = new Set();
     setActiveFilters(newSet);

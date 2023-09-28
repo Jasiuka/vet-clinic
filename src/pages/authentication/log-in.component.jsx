@@ -4,9 +4,12 @@ import AuthGoogleIcon from "./google-icon";
 import FormInputBox from "./form-input-box.component";
 import PropTypes from "prop-types";
 
-export const LoginForm = ({ handleFormchange }) => {
+export const LoginForm = ({ handleFormchange, handleLogin }) => {
   return (
-    <form className="authentication__form-login authentication__form">
+    <form
+      className="authentication__form-login authentication__form"
+      onSubmit={(e) => handleLogin(e)}
+    >
       <FormInputBox
         label={"El.Paštas"}
         inputId={"login-email"}
@@ -46,6 +49,7 @@ export const LoginForm = ({ handleFormchange }) => {
 
 LoginForm.propTypes = {
   handleFormchange: PropTypes.func,
+  handleLogin: PropTypes.func,
 };
 
 export default LoginForm;

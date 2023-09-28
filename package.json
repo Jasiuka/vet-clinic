@@ -11,12 +11,14 @@
     "start": "node src/server/index.js"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.6",
     "express": "^4.18.2",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^8.1.2",
     "react-router-dom": "^6.15.0",
     "sort-by": "^1.2.0",
     "vite-express": "^0.10.0"

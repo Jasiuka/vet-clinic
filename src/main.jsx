@@ -13,6 +13,18 @@ import FaqPage from "./pages/faq/faq.page.jsx";
 import ContactsPage from "./pages/contacts/contacts.page.jsx";
 import { Layout } from "./components/layout.component.jsx";
 
+// const AuthenticationPage = lazy(() =>
+//   import("./pages/authentication/auth.page.jsx")
+// );
+// const AboutUsPage = lazy(() => import("./pages/about-us/about-us.page.jsx"));
+// const OurTeamPage = lazy(() => import("./pages/our-team/our-team.page.jsx"));
+// const ServicesPage = lazy(() => import("./pages/services/services.page.jsx"));
+// const FaqPage = lazy(() => import("./pages/faq/faq.page.jsx"));
+// const ContactsPage = lazy(() => import("./pages/contacts/contacts.page.jsx"));
+
+// Redux
+import { store } from "./store/store.js";
+import { Provider } from "react-redux";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -70,6 +82,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );

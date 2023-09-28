@@ -131,5 +131,28 @@ nav ul li a span {
 }
 
 .header__paws {
+  width: 13%;
   height: 2rem;
+}
+
+/* Profile dropdown */
+
+.profile-dropdown {
+  height: 2rem;
+}
+
+.profile-dropdown__inner {
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: opacity 0.3s ease;
+  user-select: none;
+}
+
+.dropdown-open {
+  opacity: 1;
+  pointer-events: all;
 }

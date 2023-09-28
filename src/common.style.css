@@ -95,3 +95,31 @@
     transform: translateY(-3px);
   }
 }
+
+/* Loader */
+
+.loader {
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--light-grey);
+}
+
+.loader-block {
+  width: 2rem;
+  height: 0.5rem;
+  background-color: var(--accent-color);
+  animation: rotateBlock 1s infinite;
+}
+
+@keyframes rotateBlock {
+  0% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(180%);
+  }
+}

@@ -4,16 +4,30 @@ import EmailIcon from "../icon-components/email-icon.component";
 import ClockIcon from "../icon-components/clock-icon.component";
 import PhoneIcon from "../icon-components/phone-icon.component";
 import ScrollToTopButton from "../scrollToTopButton.component";
+import ProfileDropdown from "./profile-dropdown.component";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./header.style.css";
 
+// Redux
+import { useSelector } from "react-redux";
+
 export const Header = () => {
+  // Redux
+  const user = useSelector((state) => state.user);
+
+  // Redux
+
   const [isIntersecting, setIsIntersecting] = useState(true);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const observerCallback = (entries) => {
     const [entry] = entries;
-
     setIsIntersecting(entry.isIntersecting);
+  };
+
+  const handleDropdownClick = () => {
+    setIsDropdownOpen((prev) => !prev);
   };
 
   useEffect(() => {
@@ -31,7 +45,7 @@ export const Header = () => {
     return () => {
       if (observerTargetElement) observer.unobserve(observerTargetElement);
     };
-  }, []);
+  }, [isIntersecting]);
 
   const handleScrollToTop = () => {
     window.scrollTo(0, 0);
@@ -74,74 +88,83 @@ export const Header = () => {
           </div>
         </div>
         <div className="header-bottom">
-          <a className="header__logo-link" href="/">
+          <Link className="header__logo-link" to="/">
             <img
               className={`header__logo ${isHeaderInMainPage} ${
                 isIntersecting ? "" : "header__logo-smaller"
               }`}
-              src="/src/assets/vetlogo.png"
+              src="/src/assets/vetlogo.webp"
               alt="Veterinary clinic logo"
             ></img>
-          </a>
+          </Link>
           <nav>
             <ul>
               <li className="header__list-item">
-                <a className={`header__link ${isLinkInMainPage}`} href="/">
+                <Link className={`header__link ${isLinkInMainPage}`} to="/">
                   <span>Pradinis</span>
-                </a>
+                </Link>
               </li>
               <li className="header__list-item">
-                <a
+                <Link
                   className={`header__link ${isLinkInMainPage}`}
-                  href="/apie-mus"
+                  to="/apie-mus"
                 >
                   <span>Apie mus</span>
-                </a>
+                </Link>
               </li>
               <li className="header__list-item">
-                <a
+                <Link
                   className={`header__link ${isLinkInMainPage}`}
-                  href="/paslaugos"
+                  to="/paslaugos"
                 >
                   <span>Paslaugos</span>
-                </a>
+                </Link>
               </li>
               <li className="header__list-item">
-                <a
+                <Link
                   className={`header__link ${isLinkInMainPage}`}
-                  href="/komanda"
+                  to="/komanda"
                 >
                   <span>Komanda</span>
-                </a>
+                </Link>
               </li>
               <li className="header__list-item">
-                <a className={`header__link ${isLinkInMainPage}`} href="/duk">
+                <Link className={`header__link ${isLinkInMainPage}`} to="/duk">
                   <span>D.U.K</span>
-                </a>
+                </Link>
               </li>
               <li className="header__list-item">
-                <a
+                <Link
                   className={`header__link ${isLinkInMainPage}`}
-                  href="/kontaktai"
+                  to="/kontaktai"
                 >
                   <span>Kontaktai</span>
-                </a>
+                </Link>
               </li>
             </ul>
-            <img className="header__paws" src="/src/assets/paws-half.png" />
+            <img className="header__paws" src="/src/assets/paws-half.webp" />
             <ul>
-              <li className="header__list-item">
-                <a
-                  className={`header__link ${isLinkInMainPage}`}
-                  href="/prisijungti"
-                >
-                  <span>Prisijungti</span>
-                </a>
-              </li>
+              {user ? (
+                <ProfileDropdown
+                  userEmail={user.email}
+                  isOpen={isDropdownOpen}
+                  handleDropdownClick={handleDropdownClick}
+                />
+              ) : (
+                <li className="header__list-item">
+                  <Link
+                    className={`header__link ${isLinkInMainPage}`}
+                    to="/prisijungti"
+                  >
+                    <span>Prisijungti</span>
+                  </Link>
+                </li>
+              )}
+
               <li>
-                <a className="header__link-booking booking-btn" href="#">
+                <Link className="header__link-booking booking-btn" to="/">
                   Registracija vizitui
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

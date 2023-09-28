@@ -5,8 +5,36 @@ import ProgressBar from "./progress-bar.component";
 import SignupForm from "./sign-up.component";
 import SignupFormLevel2 from "./signup-form-level-2.component";
 import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+// Redux
+import { useDispatch } from "react-redux";
+import { get } from "../../store/slices/user-slice";
 
 export const AuthenticationPage = () => {
+  // Redux
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const getUserData = (object) => dispatch(get(object));
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const userObject = {
+      email: form["login-email"].value,
+      password: form["login-pass"].value,
+    };
+
+    getUserData(userObject);
+    navigate("/");
+  };
+  // Redux
+
   const [searchParams, setSearchParams] = useSearchParams({
     form: false,
     level: 1,
@@ -25,19 +53,24 @@ export const AuthenticationPage = () => {
     e.preventDefault();
 
     const form = e.target;
-    const formInputs = form.elements;
     if (e.target.classList.contains("signup-level-1")) {
-      setUserSignupData({
-        name: formInputs.name.value,
-        lastName: formInputs.lastName.value,
-        phone: formInputs.phone.value,
+      setUserSignupData((prev) => {
+        return {
+          ...prev,
+          name: form.name.value,
+          lastName: form.lastName.value,
+          phone: form.phone.value,
+        };
       });
       handleSignupLevelChange(true);
     }
     if (form.name === "signupLevel_2") {
-      setUserSignupData({
-        email: formInputs.email.value,
-        password: formInputs.password.value,
+      setUserSignupData((prev) => {
+        return {
+          ...prev,
+          email: form.email.value,
+          password: form.password.value,
+        };
       });
     }
 
@@ -73,12 +106,12 @@ export const AuthenticationPage = () => {
     <div className="authentication">
       <img
         className="authentication--img"
-        src="../../../src/assets/catsa2.png"
+        src="../../../src/assets/catsa2.webp"
       />
       <div className="authentication__container">
         <img
           className="authentication--logo"
-          src="../../../src/assets/vetlogo.png"
+          src="../../../src/assets/vetlogo.webp"
         />
         <h3 className="authentication__form--heading">
           {form ? "Prisijungimas" : "Registracija"}
@@ -86,7 +119,10 @@ export const AuthenticationPage = () => {
         {form ? "" : <ProgressBar isFirstLevel={level} />}
 
         {form ? (
-          <LoginForm handleFormchange={handleFormChange} />
+          <LoginForm
+            handleFormchange={handleFormChange}
+            handleLogin={handleLogin}
+          />
         ) : level ? (
           <SignupForm
             handleLevelChange={handleSignupLevelChange}

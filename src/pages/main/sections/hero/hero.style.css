@@ -28,7 +28,7 @@
 }
 
 .header-hero__background {
-  background-image: url("/src/assets/main.jpg");
+  background-image: url("/src/assets/main.webp");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
