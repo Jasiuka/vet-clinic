@@ -122,7 +122,8 @@ nav ul li a span {
 
 .header__link-not-main:hover,
 .header__link-not-main:link:hover,
-.header__link-not-main:visited:hover {
+.header__link-not-main:visited:hover,
+.profile-dropdown-button:hover {
   color: var(--accent-color);
 }
 
@@ -139,17 +140,67 @@ nav ul li a span {
 
 .profile-dropdown {
   height: 2rem;
+  position: relative;
+  color: var(--light-grey);
+  font-size: 1.6rem;
+  font-family: "Montserrat", "Sans-serif";
 }
 
-.profile-dropdown__inner {
+.profile-dropdown-button {
+  border: none;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.profile-dropdown__content {
+  position: absolute;
+  top: 150%;
+  left: 0;
+  z-index: 10;
+  background-color: var(--light-grey);
+  border-radius: 4px;
   opacity: 0;
   pointer-events: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
   transition: opacity 0.3s ease;
   user-select: none;
+  width: max-content;
+  box-shadow: 0px 0px 13px -2px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 13px -2px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 13px -2px rgba(0, 0, 0, 0.75);
+}
+
+.profile-dropdown__content p {
+  color: var(--dark-grey);
+}
+
+.profile-dropdown__content *,
+.profile-dropdown__content *:link {
+  padding: 2rem;
+  width: 100%;
+  color: var(--dark-grey);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+.profile-dropdown__content a:first-child {
+  border-radius: 4px 4px 0 0;
+}
+
+.profile-dropdown__content button {
+  border: none;
+  background-color: transparent;
+  border-radius: 0 0 4px 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.profile-dropdown__content *:hover {
+  background-color: #f9a8c5;
 }
 
 .dropdown-open {

@@ -20,6 +20,7 @@ export const Header = () => {
 
   const [isIntersecting, setIsIntersecting] = useState(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const bodyElement = document.querySelector("body");
 
   const observerCallback = (entries) => {
     const [entry] = entries;
@@ -28,6 +29,13 @@ export const Header = () => {
 
   const handleDropdownClick = () => {
     setIsDropdownOpen((prev) => !prev);
+  };
+
+  const hideProfileDropdownOnClickOutside = (e) => {
+    const target = e.target;
+    if (!target.closest(".profile-dropdown-button") && isDropdownOpen) {
+      setIsDropdownOpen(false);
+    }
   };
 
   useEffect(() => {
@@ -42,10 +50,18 @@ export const Header = () => {
     const observer = new IntersectionObserver(observerCallback, options);
     if (observerTargetElement) observer.observe(observerTargetElement);
 
+    bodyElement.addEventListener("click", (e) =>
+      hideProfileDropdownOnClickOutside(e)
+    );
+
     return () => {
       if (observerTargetElement) observer.unobserve(observerTargetElement);
+      bodyElement.removeEventListener(
+        "clcik",
+        hideProfileDropdownOnClickOutside
+      );
     };
-  }, [isIntersecting]);
+  }, [isIntersecting, isDropdownOpen]);
 
   const handleScrollToTop = () => {
     window.scrollTo(0, 0);

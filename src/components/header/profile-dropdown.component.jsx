@@ -1,17 +1,23 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-export const ProfileDropdown = ({ userEmail, isOpen, handleDropdownClick }) => {
+export const ProfileDropdown = ({ isOpen, handleDropdownClick }) => {
   return (
-    <span className="profile-dropdown" onClick={handleDropdownClick}>
-      <span>Mano profilis</span>
-      <div className={`profile-dropdown__inner ${isOpen && "dropdown-open"} `}>
-        <p>{userEmail}</p>
-        <Link to={"/augintiniai"}>Mano augintiniai</Link>
-        <Link to={"/nustatymai"}>Nustatymai</Link>
-        <button>Atsijungti</button>
+    <li>
+      <div
+        className="profile-dropdown profile-dropdown-button"
+        onClick={handleDropdownClick}
+      >
+        <span style={{ color: isOpen ? "#f9a8c5" : "" }}>Mano profilis</span>
+        <div
+          className={`profile-dropdown__content ${isOpen && "dropdown-open"} `}
+        >
+          <Link to={"/augintiniai"}>Mano augintiniai</Link>
+          <Link to={"/nustatymai"}>Nustatymai</Link>
+          <button>Atsijungti</button>
+        </div>
       </div>
-    </span>
+    </li>
   );
 };
 
