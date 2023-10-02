@@ -78,3 +78,23 @@
 }
 
 /* REVIEWS */
+
+/* Paws (rating) */
+
+.reviews__paws {
+  margin-top: 5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.reviews__paws p {
+  font-size: var(--font-medium);
+  margin-right: 1rem;
+}
+
+.paw-icon {
+  width: 4rem;
+  height: 4rem;
+  fill: var(--accent-color);
+}

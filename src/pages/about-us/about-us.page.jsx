@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import "./about-us.style.css";
 export const AboutUsPage = () => {
   return (

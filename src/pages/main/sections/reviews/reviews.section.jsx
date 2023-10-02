@@ -1,34 +1,37 @@
 import Slider from "./slider.component";
 import "./reviews.style.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export const Reviews = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [reviews, setReviews] = useState([]);
+  const [fetchingReviews, setFetchingReviews] = useState(true);
+  const [noError, setNoError] = useState(true);
 
-  const sliderData = [
-    {
-      name: "Linas",
-      review:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi semper lacus vel vulputate efficitur. Sed nec purus pellentesque, porta diam ac, venenatis neque. Pellentesque sed quam sit amet arcu dignissim gravida eget fringilla quam. Maecenas faucibus purus ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.",
-    },
-    {
-      name: "Aistė",
-      review:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi semper lacus vel vulputate efficitur. Sed nec purus pellentesque, porta diam ac, venenatis neque. Pellentesque sed quam sit amet arcu dignissim gravida eget fringilla quam. Maecenas faucibus purus ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi semper lacus vel vulputate efficitur. Sed nec purus pellentesque, porta diam ac, venenatis neque. Pellentesque sed quam sit amet arcu dignissim gravida eget fringilla quam. Maecenas faucibus purus ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.",
-    },
-    {
-      name: "Tomas",
-      review:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi semper lacus vel vulputate efficitur. Sed nec purus pellentesque, porta diam ac, venenatis neque. Pellentesque sed quam sit amet arcu dignissim gravida eget fringilla quam. Maecenas faucibus purus ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.",
-    },
-    {
-      name: "Kamilė",
-      review:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi semper lacus vel vulputate efficitur. Sed nec purus pellentesque, porta diam ac, venenatis neque. Pellentesque sed quam sit amet arcu dignissim gravida eget fringilla quam. Maecenas faucibus purus ante. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis.",
-    },
-  ];
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const fetchedReviews = await getReviews();
+        if (fetchingReviews) {
+          setReviews(fetchedReviews);
+        }
+        setFetchingReviews(false);
+      } catch {
+        setNoError(false);
+      }
+    };
+    fetchReviews();
+
+    return () => {};
+  }, []);
+
+  const getReviews = async () => {
+    const response = fetch("/api/v1/reviews");
+    const data = (await response).json();
+    return data;
+  };
 
   const handleNextButton = () => {
-    if (sliderData.length - 1 === currentSlide) {
+    if (reviews.length - 1 === currentSlide) {
       setCurrentSlide(0);
     } else {
       setCurrentSlide(currentSlide + 1);
@@ -37,7 +40,7 @@ export const Reviews = () => {
 
   const handlePreviousButton = () => {
     if (currentSlide === 0) {
-      setCurrentSlide(sliderData.length - 1);
+      setCurrentSlide(reviews.length - 1);
     } else {
       setCurrentSlide(currentSlide - 1);
     }
@@ -54,7 +57,7 @@ export const Reviews = () => {
       >
         &lsaquo;
       </button>
-      <Slider currentSlide={currentSlide} sliderData={sliderData} />
+      <Slider currentSlide={currentSlide} sliderData={reviews} />
       <button
         onClick={handleNextButton}
         className="reviews__slider-btn-right reviews__slider-btn"
