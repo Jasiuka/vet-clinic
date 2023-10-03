@@ -25,6 +25,20 @@ const getReviews = async () => {
   const rows = await conn.query(
     "SELECT userName,reviewText,stars FROM reviews"
   );
+  conn.end();
   return rows;
 };
+
+const postReview = async (reviewText, name, email, stars) => {
+  let conn;
+  conn = await pool.getConnection();
+  const insertQuery = `INSERT INTO reviews (userName, email, reviewText, stars) VALUES (?,?,?,?)`;
+  const values = [name, email, reviewText, stars];
+
+  conn.query(insertQuery, values);
+  conn.end();
+};
+
+// postReview("Very nice, amazing klinika", "Martynas", "martcius@gmail.com", 5);
+
 app.get("/api/v1/reviews", async (_, res) => res.send(await getReviews()));
