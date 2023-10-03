@@ -98,3 +98,19 @@
   height: 4rem;
   fill: var(--accent-color);
 }
+
+/* Write new review */
+
+.write-paw-icon {
+  cursor: pointer;
+  fill: transparent;
+  width: 4rem;
+  height: 4rem;
+  stroke: var(--accent-color);
+  stroke-width: 4px;
+  transition: fill 0.3s ease;
+}
+
+.write-paw-icon--active {
+  fill: var(--accent-color);
+}

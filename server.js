@@ -39,6 +39,4 @@ const postReview = async (reviewText, name, email, stars) => {
   conn.end();
 };
 
-// postReview("Very nice, amazing klinika", "Martynas", "martcius@gmail.com", 5);
-
 app.get("/api/v1/reviews", async (_, res) => res.send(await getReviews()));

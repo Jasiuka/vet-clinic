@@ -1,4 +1,5 @@
 import Slider from "./slider.component";
+import WriteNewForm from "./write-new.component";
 import "./reviews.style.css";
 import { useEffect, useState } from "react";
 export const Reviews = () => {
@@ -64,6 +65,7 @@ export const Reviews = () => {
       >
         &rsaquo;
       </button>
+      <WriteNewForm />
     </section>
   );
 };
