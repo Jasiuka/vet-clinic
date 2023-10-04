@@ -8,7 +8,8 @@ dotenv.config();
 
 const app = express();
 app.use(cors());
-
+app.use(express.json());
+app.use(express.urlencoded());
 ViteExpress.listen(app, 3000, () => console.log("Server is listening..."));
 
 const pool = mariadb.createPool({
@@ -31,6 +32,7 @@ const getReviews = async () => {
 
 const postReview = async (reviewText, name, email, stars) => {
   let conn;
+
   conn = await pool.getConnection();
   const insertQuery = `INSERT INTO reviews (userName, email, reviewText, stars) VALUES (?,?,?,?)`;
   const values = [name, email, reviewText, stars];
@@ -40,3 +42,13 @@ const postReview = async (reviewText, name, email, stars) => {
 };
 
 app.get("/api/v1/reviews", async (_, res) => res.send(await getReviews()));
+app.post("/api/v1/reviews", (request, response) => {
+  const userReview = request.body;
+  postReview(
+    userReview.reviewText,
+    userReview.name,
+    userReview.email,
+    userReview.rating
+  );
+  response.end("Success!");
+});

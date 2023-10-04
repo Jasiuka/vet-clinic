@@ -1,7 +1,7 @@
 import PawIcon from "./paw-icon";
 import { useEffect, useState, useRef } from "react";
-
-export const WriteNewForm = () => {
+import PropTypes from "prop-types";
+export const WriteNewForm = ({ user }) => {
   const [activeIndexArray, setActiveIndexArray] = useState([]);
   const [selectedRating, setSelectedRating] = useState(0);
   const pawArray = [1, 2, 3, 4, 5];
@@ -33,13 +33,46 @@ export const WriteNewForm = () => {
     }
     return array;
   };
+
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+
+    const reviewToSend = {
+      reviewText: form.review.value,
+      rating: selectedRating,
+      email: user.email,
+      name: user.name,
+    };
+
+    fetch("/api/v1/reviews", {
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify(reviewToSend),
+      headers: { "Content-type": "application/json" },
+    })
+      .then((response) => response.status === 200 && console.log("Success!!"))
+      .catch((err) => console.log(err));
+  };
+
   return (
-    <form ref={formRef} className="reviews__write-new--form">
+    <form
+      onSubmit={(e) => handleOnSubmit(e)}
+      ref={formRef}
+      className="reviews__write-new--form"
+    >
       <div>
-        <input type="text" id="reviews-input" />
-        <label htmlFor="reviews-input">Atsiliepimas</label>
+        <textarea
+          name="review"
+          maxLength={"1000"}
+          placeholder="Jūsų atsiliepimas.."
+          type="text"
+          id="reviews-input"
+        />
       </div>
       <div>
+        <p>Jūsų įvertinimas:</p>
         {pawArray.map((index) => {
           return (
             <PawIcon
@@ -56,4 +89,7 @@ export const WriteNewForm = () => {
   );
 };
 
+WriteNewForm.propTypes = {
+  user: PropTypes.object,
+};
 export default WriteNewForm;

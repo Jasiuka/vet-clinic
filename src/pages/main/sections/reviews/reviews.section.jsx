@@ -2,11 +2,14 @@ import Slider from "./slider.component";
 import WriteNewForm from "./write-new.component";
 import "./reviews.style.css";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
 export const Reviews = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [reviews, setReviews] = useState([]);
   const [fetchingReviews, setFetchingReviews] = useState(true);
   const [noError, setNoError] = useState(true);
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -65,7 +68,7 @@ export const Reviews = () => {
       >
         &rsaquo;
       </button>
-      <WriteNewForm />
+      {user && <WriteNewForm user={user} />}
     </section>
   );
 };

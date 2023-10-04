@@ -2,8 +2,12 @@ import PropTypes from "prop-types";
 export const PawIcon = ({ uniqueClassName, id, isActive }) => {
   return (
     <svg
+      aria-labelledby={`${id} ${id === 1 ? "letenėlė" : "letenėlės"}`}
+      title="ads"
       version="1.1"
-      className={`${uniqueClassName} ${isActive && "write-paw-icon--active"}`}
+      className={`${uniqueClassName} ${
+        isActive && "write-paw-icon--active"
+      } paw-i`}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       x="0px"

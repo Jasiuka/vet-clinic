@@ -28,6 +28,7 @@ export const AuthenticationPage = () => {
     const userObject = {
       email: form["login-email"].value,
       password: form["login-pass"].value,
+      name: "Username",
     };
 
     getUserData(userObject);

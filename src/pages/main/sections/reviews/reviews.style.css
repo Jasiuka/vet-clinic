@@ -1,6 +1,6 @@
 /* REVIEWS */
 .reviews {
-  height: 60vh;
+  /* height: 60vh; */
   padding: var(--section-padding);
   background-color: var(--light-grey);
   color: var(--dark-grey);
@@ -20,6 +20,7 @@
 .reviews__slider {
   position: relative;
   width: 80vw;
+  margin-bottom: 10rem;
 }
 
 .reviews__slider-data {
@@ -101,16 +102,91 @@
 
 /* Write new review */
 
+.reviews__write-new--form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+}
+
+.reviews__write-new--form div:first-of-type {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.reviews__write-new--form div:first-of-type label {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.reviews__write-new--form div:first-of-type textarea {
+  width: 100%;
+  height: 20rem;
+  resize: none;
+  padding: 1rem;
+  font-size: var(--font-medium);
+  font-family: "Montserrat", "Sans-serif";
+}
+
+.reviews__write-new--form div:last-of-type {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.reviews__write-new--form div:last-of-type p {
+  font-weight: 500;
+}
+
+/* Paw icons */
+
 .write-paw-icon {
   cursor: pointer;
   fill: transparent;
-  width: 4rem;
-  height: 4rem;
   stroke: var(--accent-color);
   stroke-width: 4px;
-  transition: fill 0.3s ease;
+}
+
+.paw-i {
+  width: 4rem;
+  height: 4rem;
+}
+
+.paw-i:hover {
+  transform: scale(1.1);
+  stroke: none;
 }
 
 .write-paw-icon--active {
   fill: var(--accent-color);
+  stroke: none;
 }
+
+/* write new form button */
+.reviews__write-new--form button {
+  font-size: var(--font-medium);
+  padding: 1rem;
+  width: 40%;
+  align-self: center;
+  border: none;
+  color: var(--light-grey);
+  background-color: var(--accent-color);
+
+  border-radius: 4px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.reviews__write-new--form button:hover {
+  background-color: var(--light-grey);
+  color: var(--dark-grey);
+}
+
+/* Write new review */
