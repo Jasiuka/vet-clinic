@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 export const LoginForm = ({ handleFormchange, handleLogin }) => {
   return (
     <form
-      className="authentication__form-login authentication__form"
+      className="authentication__form-login authentication__form login-form"
       onSubmit={(e) => handleLogin(e)}
     >
       <FormInputBox

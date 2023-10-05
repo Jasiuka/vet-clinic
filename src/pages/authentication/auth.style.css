@@ -11,7 +11,8 @@
 .authentication__container {
   z-index: 5;
   position: relative;
-  width: 23%;
+  min-width: 25%;
+  max-width: fit-content;
   height: 75%;
   background-color: var(--dark-grey);
   margin: 0 auto;
@@ -51,10 +52,57 @@
   margin-bottom: 2rem;
 }
 
-.signup-level-1 .form-container:not(:last-of-type),
-.signup-level-2 .form-container {
-  margin-bottom: 3rem;
+.login-form .form-button {
+  background-color: var(--accent-color);
 }
+
+.login-form .form-button:hover {
+  transform: scale(1.02);
+  background-color: var(--light-grey);
+}
+
+/* SIGNUP FORM */
+.signup-form .form-container {
+  margin-bottom: 0;
+}
+
+.signup-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 80% 10% 10%;
+}
+
+.signup-form--left {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+
+.signup-form--right {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+
+.signup-form--left,
+.signup-form--right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.signup-form .form-button:not(.form-button-back) {
+  grid-column: 1/-1;
+  width: 50%;
+  justify-self: center;
+  background-color: var(--accent-color);
+}
+
+.signup-form .form-button:not(.form-button-back):hover {
+  background-color: var(--light-grey);
+  transform: scale(1.05);
+}
+
+/* SIGNUP FORM */
 
 .form-container-no-profile {
   display: flex;
@@ -101,6 +149,10 @@
   font-size: var(--font-mediuim);
   border-radius: 4px;
   background-color: var(--light-grey);
+  width: 100%;
+}
+
+.signup-form .form-input {
   width: 100%;
 }
 
@@ -179,6 +231,14 @@
 
 .form-button-back {
   font-size: var(--font-small);
+  grid-row: 3/4;
+  grid-column: 1/-1;
+  justify-self: center;
+  width: 30%;
+}
+
+.form-button-back:hover {
+  transform: scale(0.95);
 }
 
 /* ACTIONS */
@@ -187,65 +247,4 @@
   transform: translateY(-22px);
   color: var(--dark-grey);
   font-weight: 400;
-}
-
-/* PROGRESS BAR */
-
-.authentication__progress-bar {
-  display: flex;
-  align-items: center;
-  margin-bottom: 3rem;
-}
-
-.circle {
-  position: relative;
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
-  background-color: var(--light-grey);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--dark-grey);
-  font-weight: 500;
-  overflow: hidden;
-}
-
-.circle span {
-  position: relative;
-  z-index: 3;
-}
-
-.circle-inside {
-  position: absolute;
-  width: 0%;
-  height: 100%;
-  border-radius: 50%;
-  background-color: var(--accent-color);
-  left: 0;
-  transition: all 0.5s ease 0.5s;
-}
-
-.line {
-  position: relative;
-  width: 5rem;
-  height: 1rem;
-  background-color: var(--light-grey);
-}
-
-.line-inside {
-  position: absolute;
-  width: 0%;
-  height: 100%;
-  background-color: var(--accent-color);
-  transition: all 0.5s ease 0.5s;
-}
-
-.bar-transition .line-inside,
-.bar-transition .circle-inside {
-  width: 100%;
-}
-
-.bar-active {
-  background-color: var(--accent-color);
 }

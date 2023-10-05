@@ -1,11 +1,18 @@
 import PawIcon from "./paw-icon";
 import { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
-export const WriteNewForm = ({ user }) => {
+export const WriteNewForm = ({ user, messageHandler }) => {
   const [activeIndexArray, setActiveIndexArray] = useState([]);
   const [selectedRating, setSelectedRating] = useState(0);
   const pawArray = [1, 2, 3, 4, 5];
   const formRef = useRef(null);
+
+  const handleMessageShow = () => {
+    messageHandler(true);
+    setTimeout(() => {
+      messageHandler(false);
+    }, 2000);
+  };
 
   useEffect(() => {
     const formElement = formRef.current;
@@ -52,10 +59,15 @@ export const WriteNewForm = ({ user }) => {
       body: JSON.stringify(reviewToSend),
       headers: { "Content-type": "application/json" },
     })
-      .then((response) => response.status === 200 && console.log("Success!!"))
-      .catch((err) => console.log(err));
+      .then((response) => {
+        response.status === 200 && handleMessageShow();
+        response.status === 400 &&
+          response
+            .json()
+            .then((errorMess) => console.log(errorMess.errorMessage));
+      })
+      .catch((err) => console.log(err.message));
   };
-
   return (
     <form
       onSubmit={(e) => handleOnSubmit(e)}
@@ -91,5 +103,6 @@ export const WriteNewForm = ({ user }) => {
 
 WriteNewForm.propTypes = {
   user: PropTypes.object,
+  messageHandler: PropTypes.func,
 };
 export default WriteNewForm;

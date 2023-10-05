@@ -3,34 +3,52 @@ import PropTypes from "prop-types";
 export const SignupForm = ({ handleOnSubmit }) => {
   return (
     <form
-      className="authentication__form-login authentication__form signup-level-1"
-      name="signupLevel_1"
+      className="authentication__form-login authentication__form signup-form"
+      name="signupForm"
       onSubmit={(e) => handleOnSubmit(e)}
     >
-      <FormInputBox
-        label={"Vardas"}
-        inputId={"signup-name"}
-        inputType={"text"}
-        inputName={"name"}
-      />
-      <FormInputBox
-        label={"Pavardė"}
-        inputId={"signup-last-name"}
-        inputType={"text"}
-        inputName={"lastName"}
-      />
-      <FormInputBox
-        label={"Tel. Numeris"}
-        inputId={"signup-email"}
-        inputType={"tel"}
-        inputName={"phone"}
-      />
-      <button
-        type="submit"
-        // onClick={(e) => handleLevelChange(e, true)}
-        className="form-button"
-      >
-        Toliau &rarr;
+      <div className="signup-form--left">
+        <FormInputBox
+          label={"Vardas"}
+          inputId={"signup-name"}
+          inputType={"text"}
+          inputName={"name"}
+        />
+        <FormInputBox
+          label={"Pavardė"}
+          inputId={"signup-last-name"}
+          inputType={"text"}
+          inputName={"lastName"}
+        />
+        <FormInputBox
+          label={"Tel. Numeris"}
+          inputId={"signup-phone"}
+          inputType={"tel"}
+          inputName={"phone"}
+        />
+      </div>
+      <div className="signup-form--right">
+        <FormInputBox
+          label={"El. Paštas"}
+          inputId={"signup-email"}
+          inputType={"email"}
+          inputName={"email"}
+        />
+        <FormInputBox
+          label={"Slaptažodis"}
+          inputId={"signup-pass"}
+          inputType={"password"}
+          inputName={"password"}
+        />
+        <FormInputBox
+          label={"Pakartokite slaptažodį"}
+          inputId={"signup-pass-repeat"}
+          inputType={"password"}
+          inputName={"repeatPass"}
+        />
+      </div>
+      <button type="submit" className="form-button">
+        Registruotis
       </button>
 
       <button

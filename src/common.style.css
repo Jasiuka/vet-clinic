@@ -123,3 +123,18 @@
     transform: rotate(180%);
   }
 }
+
+/* Message */
+
+.message-div {
+  background-color: var(--dark-grey);
+  padding: 1.5rem;
+  color: var(--light-grey);
+  position: absolute;
+  border-radius: 4px;
+}
+
+.message-div p {
+  font-size: var(--font-medium);
+  font-weight: 400;
+}

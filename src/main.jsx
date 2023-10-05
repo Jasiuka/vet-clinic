@@ -25,6 +25,7 @@ import { Layout } from "./components/layout.component.jsx";
 // Redux
 import { store } from "./store/store.js";
 import { Provider } from "react-redux";
+import AppointmentPage from "./pages/appointment/appointment.page.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -77,6 +78,14 @@ const router = createBrowserRouter([
   {
     path: "/prisijungti",
     element: <AuthenticationPage />,
+  },
+  {
+    path: "/vizitas",
+    element: (
+      <Layout>
+        <AppointmentPage />
+      </Layout>
+    ),
   },
 ]);
 

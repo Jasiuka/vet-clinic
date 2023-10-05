@@ -1,0 +1,27 @@
+.appointment {
+}
+
+/* CALENDAR */
+
+/* Today */
+.react-calendar__tile--now {
+  background-color: #e0e0e0;
+}
+
+/* Not active + hover */
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #ffdae7;
+}
+
+/* Active */
+.react-calendar__tile--active {
+  background-color: var(--accent-color);
+  color: var(--dark-grey);
+}
+
+/* Active + Hover */
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background-color: var(--accent-color);
+}

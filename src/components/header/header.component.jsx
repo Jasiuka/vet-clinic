@@ -178,7 +178,10 @@ export const Header = () => {
               )}
 
               <li>
-                <Link className="header__link-booking booking-btn" to="/">
+                <Link
+                  className="header__link-booking booking-btn"
+                  to="/vizitas"
+                >
                   Registracija vizitui
                 </Link>
               </li>

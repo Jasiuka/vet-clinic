@@ -12,7 +12,9 @@ export const Hero = () => {
         Jūsų pasitikėjimas, mūsų įsipareigojimas - tai, kas skatina mus būti
         moderniausia veterinarine klinika jūsų mieste
       </p>
-      <Link className="booking-btn">Registracija vizitui</Link>
+      <Link className="booking-btn" to={"/vizitas"}>
+        Registracija vizitui
+      </Link>
     </section>
   );
 };
