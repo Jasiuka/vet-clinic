@@ -77,5 +77,29 @@ app.get(
 
 // SIGNUP
 
+// Appointments
+const getNotBookedAppointments = async ({ start, end }) => {
+  let connection;
+  const query = `SELECT * FROM appointments WHERE (appointmentDate BETWEEN '${start}' AND '${end}') AND booked = 0`;
+  connection = await pool.getConnection();
+  const results = await connection.query(query);
+  connection.end();
+  return results;
+};
+
+app.get(
+  "/api/v1/appointments",
+  tryCatch(async (request, response) => {
+    const searchDates = {
+      start: request.query.startDate,
+      end: request.query.endDate,
+    };
+    console.log("search dates", searchDates);
+    const foundAppointments = await getNotBookedAppointments(searchDates);
+    console.log(foundAppointments);
+    return response.status(200).send(foundAppointments);
+  })
+);
+
 app.use(errorHandler);
 ViteExpress.listen(app, 3000, () => console.log("Server is listening..."));

@@ -3,7 +3,7 @@ import "./auth.style.css";
 import LoginForm from "./log-in.component";
 import SignupForm from "./sign-up.component";
 import { useSearchParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 // Redux
 import { useDispatch } from "react-redux";
@@ -82,10 +82,12 @@ export const AuthenticationPage = () => {
         src="../../../src/assets/catsa2.webp"
       />
       <div className="authentication__container">
-        <img
-          className="authentication--logo"
-          src="../../../src/assets/vetlogo.webp"
-        />
+        <Link to={"/"}>
+          <img
+            className="authentication--logo"
+            src="../../../src/assets/vetlogo.webp"
+          />
+        </Link>
         <h3 className="authentication__form--heading">
           {form ? "Prisijungimas" : "Registracija"}
         </h3>

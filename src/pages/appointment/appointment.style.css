@@ -1,11 +1,27 @@
 .appointment {
 }
 
+.appointment-inner {
+  padding: var(--section-padding);
+  display: flex;
+  align-items: center;
+}
+
+.appointment {
+  padding: 1rem;
+  background-color: var(--light-grey);
+  border: 3px solid var(--accent-color);
+}
+
 /* CALENDAR */
+
+.react-calendar__tile {
+  /* border-radius: 4px; */
+}
 
 /* Today */
 .react-calendar__tile--now {
-  background-color: #e0e0e0;
+  background-color: #ddd7fe;
 }
 
 /* Not active + hover */
