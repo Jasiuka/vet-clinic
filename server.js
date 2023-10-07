@@ -87,6 +87,20 @@ const getNotBookedAppointments = async ({ start, end }) => {
   return results;
 };
 
+const addDayName = (dayNumber) => {
+  const dayNamesArray = [
+    "Sekmadienis",
+    "Pirmadienis",
+    "Antradienis",
+    "Trečiadienis",
+    "Ketvirtadienis",
+    "Penktadienis",
+    "Šeštadienis",
+  ];
+  const dayName = dayNamesArray[dayNumber];
+  return dayName;
+};
+
 app.get(
   "/api/v1/appointments",
   tryCatch(async (request, response) => {
@@ -94,10 +108,18 @@ app.get(
       start: request.query.startDate,
       end: request.query.endDate,
     };
-    console.log("search dates", searchDates);
     const foundAppointments = await getNotBookedAppointments(searchDates);
-    console.log(foundAppointments);
-    return response.status(200).send(foundAppointments);
+    const addedDayNameAndFoundAppointments = foundAppointments.map(
+      (appointment) => {
+        const newObject = {
+          ...appointment,
+          dayName: addDayName(appointment.appointmentDate.getDay()),
+        };
+        return newObject;
+      }
+    );
+
+    return response.status(200).send(addedDayNameAndFoundAppointments);
   })
 );
 

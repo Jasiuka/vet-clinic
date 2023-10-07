@@ -4,13 +4,35 @@
 .appointment-inner {
   padding: var(--section-padding);
   display: flex;
-  align-items: center;
+  /* align-items: center; */
+  gap: 2rem;
 }
 
-.appointment {
-  padding: 1rem;
-  background-color: var(--light-grey);
-  border: 3px solid var(--accent-color);
+.appointment-inner__calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.appointments-inner__appointments {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+.appointment-inner__appointments-found span {
+  color: rgb(89, 89, 253);
+}
+
+.appointments-inner__appointments--cards {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  align-items: baseline;
+  gap: 2rem;
+  padding-right: 1rem;
 }
 
 /* CALENDAR */
@@ -39,5 +61,58 @@
 /* Active + Hover */
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
+  background-color: var(--accent-color);
+}
+
+/* Button */
+
+.appointment-button {
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: var(--accent-color);
+  color: var(--dark-grey);
+  border: none;
+  font-size: var(--font-medium);
+  margin-top: 2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.appointment-button:hover {
+  background-color: var(--light-grey);
+  border: 1px solid var(--dark-grey);
+}
+
+/* Appointment card */
+
+.appointment-card {
+  padding: 1rem;
+  background-color: var(--light-grey);
+  border: 3px solid var(--accent-color);
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.appointment-card-link:visited,
+.appointment-card-link:link,
+.appointment-card-link {
+  color: var(--dark-grey);
+  text-decoration: none;
+}
+
+.appointment-card--date {
+  font-size: var(--font-medium);
+  font-weight: 500;
+}
+
+.appointment-card--dayname {
+  font-weight: 400;
+}
+
+.appointment-card:hover {
+  transform: scale(1.05);
   background-color: var(--accent-color);
 }
