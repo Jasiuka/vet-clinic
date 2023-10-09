@@ -11,6 +11,7 @@ import OurTeamPage from "./pages/our-team/our-team.page.jsx";
 import ServicesPage from "./pages/services/services.page.jsx";
 import FaqPage from "./pages/faq/faq.page.jsx";
 import ContactsPage from "./pages/contacts/contacts.page.jsx";
+import AppointmentRegistration from "./pages/appointment-registration.page.jsx";
 import { Layout } from "./components/layout.component.jsx";
 
 // const AuthenticationPage = lazy(() =>
@@ -84,6 +85,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <AppointmentPage />
+      </Layout>
+    ),
+  },
+  {
+    path: "/vizitas/registracija/:id",
+    element: (
+      <Layout>
+        <AppointmentRegistration />
       </Layout>
     ),
   },

@@ -108,6 +108,10 @@
   font-weight: 500;
 }
 
+.appointment-card--time {
+  color: var(--accent-color);
+}
+
 .appointment-card--dayname {
   font-weight: 400;
 }
@@ -115,4 +119,8 @@
 .appointment-card:hover {
   transform: scale(1.05);
   background-color: var(--accent-color);
+}
+
+.appointment-card:hover > .appointment-card--time {
+  color: var(--dark-grey);
 }

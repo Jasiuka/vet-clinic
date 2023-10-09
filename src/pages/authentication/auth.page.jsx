@@ -58,14 +58,6 @@ export const AuthenticationPage = () => {
     event.preventDefault();
     const form = event.target;
 
-    console.log({
-      name: form.name.value,
-      lastName: form.lastName.value,
-      phone: form.phone.value,
-      email: form.email.value,
-      password: form.password.value,
-    });
-
     setUserSignupData({
       name: form.name.value,
       lastName: form.lastName.value,

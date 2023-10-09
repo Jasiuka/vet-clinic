@@ -114,13 +114,22 @@ export const AppointmentPage = () => {
           <div className="appointments-inner__appointments--cards">
             {fetchedResults.length > 0 &&
               fetchedResults.map(
-                ({ id, appointmentDate, appointmentTime, dayName }) => (
+                ({
+                  id,
+                  appointmentDate,
+                  appointmentTime,
+                  dayName,
+                  vetName,
+                  lastName,
+                }) => (
                   <AppointmentCard
                     key={id}
                     dayName={dayName}
                     date={extractDate(appointmentDate)}
                     time={removeSeconds(appointmentTime)}
                     appointmentId={id}
+                    vetName={vetName}
+                    vetLastName={lastName}
                   />
                 )
               )}
