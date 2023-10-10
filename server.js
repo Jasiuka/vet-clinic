@@ -110,6 +110,7 @@ app.get(
       start: request.query.startDate,
       end: request.query.endDate,
     };
+    console.log(searchDates);
     const foundAppointments = await getNotBookedAppointments(searchDates);
     const addedDayNameAndFoundAppointments = foundAppointments.map(
       (appointment) => {

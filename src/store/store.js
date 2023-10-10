@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./slices/user-slice";
 import appointmentReducer from "./slices/appointment-slice";
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import { appointmentsApi } from "../services/appointments";
 
 export const store = configureStore({
@@ -9,9 +10,8 @@ export const store = configureStore({
     appointment: appointmentReducer,
     [appointmentsApi.reducerPath]: appointmentsApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => {
-    getDefaultMiddleware().concat(appointmentsApi.middleware);
-  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(appointmentsApi.middleware),
 });
 
-// setupListeners(store.dispatch);
+setupListeners(store.dispatch);

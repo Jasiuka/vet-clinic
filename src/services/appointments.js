@@ -1,14 +1,14 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const appointmentsApi = createApi({
   reducerPath: "appointmentsApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api/v1/" }),
   endpoints: (builder) => ({
     getAppointmentsByDateRange: builder.query({
-      query: (startDate, endDate) =>
-        `appointments?startDate=${startDate}&endDate=${endDate}`,
+      query: (dateRange) =>
+        `appointments?startDate=${dateRange.start}&endDate=${dateRange.end}`,
     }),
   }),
 });
 
-export const { useGetAppointmentsByDateRange } = appointmentsApi;
+export const { useGetAppointmentsByDateRangeQuery } = appointmentsApi;

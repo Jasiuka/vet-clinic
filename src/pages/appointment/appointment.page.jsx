@@ -3,6 +3,7 @@ import "react-calendar/dist/Calendar.css";
 import "./appointment.style.css";
 import { useState } from "react";
 import AppointmentCard from "./appointment-card.component";
+import { useGetAppointmentsByDateRangeQuery } from "../../services/appointments";
 export const AppointmentPage = () => {
   const [dateRangeObject, setDateRangeObject] = useState({
     start: null,
@@ -10,31 +11,45 @@ export const AppointmentPage = () => {
   });
   const [fetchedResults, setFetchedResults] = useState([]);
   const [searchCount, setSearchCount] = useState(0);
+  const [skip, setSkip] = useState(false);
+  const { data, error, isLoading } = useGetAppointmentsByDateRangeQuery(
+    dateRangeObject,
+    { skip }
+  );
+
+  const handleSearchSubmit = () => {
+    setSkip(true);
+    const fixedResults = fixDates(data);
+
+    setFetchedResults(fixedResults);
+    setSearchCount((prev) => prev + 1);
+    setSkip(false);
+  };
   const onChangeHandler = (e) => {
     setDateRangeObject({
-      start: e[0],
-      end: e[1],
+      start: formatDate(e[0]),
+      end: formatDate(e[1]),
     });
   };
 
   // Fetches appointments by date range, if only start date is given, end date = start date
-  const fetchAppointments = async ({ start, end }) => {
-    if (!end) end = start;
-    const { startDate, endDate } = formatDates(start, end);
-    const response = await fetch(
-      `/api/v1/appointments?startDate=${startDate}&endDate=${endDate}`,
-      {
-        method: "GET",
-        mode: "cors",
-        headers: { "Content-type": "application/json" },
-      }
-    );
-    const results = await response.json();
-    const fixedResults = fixDates(results);
-    setFetchedResults(fixedResults);
+  // const fetchAppointments = async ({ start, end }) => {
+  //   if (!end) end = start;
+  //   const { startDate, endDate } = formatDates(start, end);
+  //   const response = await fetch(
+  //     `/api/v1/appointments?startDate=${startDate}&endDate=${endDate}`,
+  //     {
+  //       method: "GET",
+  //       mode: "cors",
+  //       headers: { "Content-type": "application/json" },
+  //     }
+  //   );
+  //   const results = await response.json();
+  //   const fixedResults = fixDates(results);
+  //   setFetchedResults(fixedResults);
 
-    setSearchCount((prev) => prev + 1);
-  };
+  //   setSearchCount((prev) => prev + 1);
+  // };
 
   // Extract date from date string (2023-06-10 00:00:00) -> 2023-06-10
   const extractDate = (dateString) => {
@@ -65,18 +80,13 @@ export const AppointmentPage = () => {
   };
 
   // Format date from (Sun July 08 2023...) => 2023-07-08
-  const formatDates = (startDate, endDate) => {
-    if (!startDate || !endDate) return;
+  const formatDate = (dateToFormat) => {
+    if (!dateToFormat) return;
 
-    const formatedDates1 = {
-      startDate: `${startDate.getFullYear()}-${String(
-        startDate.getMonth() + 1
-      ).padStart(2, 0)}-${String(startDate.getDate()).padStart(2, 0)}`,
-      endDate: `${endDate.getFullYear()}-${String(
-        endDate.getMonth() + 1
-      ).padStart(2, 0)}-${String(endDate.getDate()).padStart(2, 0)}`,
-    };
-    return formatedDates1;
+    const formatedDate = `${dateToFormat.getFullYear()}-${String(
+      dateToFormat.getMonth() + 1
+    ).padStart(2, 0)}-${String(dateToFormat.getDate()).padStart(2, 0)}`;
+    return formatedDate;
   };
 
   return (
@@ -97,10 +107,7 @@ export const AppointmentPage = () => {
             minDate={new Date()}
             onChange={(e) => onChangeHandler(e)}
           />
-          <button
-            className="appointment-button"
-            onClick={() => fetchAppointments(dateRangeObject)}
-          >
+          <button className="appointment-button" onClick={handleSearchSubmit}>
             Ieškoti
           </button>
         </div>
