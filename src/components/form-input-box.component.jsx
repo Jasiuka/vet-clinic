@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-export const FormInputBox = ({ label, inputId, inputType, inputName }) => {
+export const FormInputBox = ({
+  label,
+  inputId,
+  inputType,
+  inputName,
+  isDisabled = false,
+  isValue = "",
+}) => {
   const [isLabelMoved, setIsLabelMoved] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
@@ -14,13 +21,16 @@ export const FormInputBox = ({ label, inputId, inputType, inputName }) => {
         onFocus={() => setIsLabelMoved(true)}
         onBlur={() => setIsLabelMoved(false)}
         onChange={(e) => setInputValue(e.target.value)}
-        value={inputValue}
+        value={isValue ? isValue : inputValue}
         name={inputName}
+        disabled={isDisabled}
       />
       <label
         htmlFor={inputId}
         className={`form-label ${
-          isLabelMoved || inputValue.length > 0 ? "form-label-moved" : ""
+          isLabelMoved || inputValue.length > 0 || isValue
+            ? "form-label-moved"
+            : ""
         }`}
       >
         {label}
@@ -34,6 +44,8 @@ FormInputBox.propTypes = {
   inputId: PropTypes.string,
   inputType: PropTypes.string,
   inputName: PropTypes.string,
+  isDisabled: PropTypes.bool,
+  isValue: PropTypes.string,
 };
 
 export default FormInputBox;

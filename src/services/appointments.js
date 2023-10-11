@@ -8,7 +8,13 @@ export const appointmentsApi = createApi({
       query: (dateRange) =>
         `appointments?startDate=${dateRange.start}&endDate=${dateRange.end}`,
     }),
+    getAppointmentById: builder.query({
+      query: (id) => `appointments/id?id=${id}`,
+    }),
   }),
 });
 
-export const { useGetAppointmentsByDateRangeQuery } = appointmentsApi;
+export const {
+  useGetAppointmentsByDateRangeQuery,
+  useGetAppointmentByIdQuery,
+} = appointmentsApi;

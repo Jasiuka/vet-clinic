@@ -1,4 +1,4 @@
-import FormInputBox from "./form-input-box.component";
+import FormInputBox from "../../components/form-input-box.component";
 import PropTypes from "prop-types";
 export const SignupForm = ({ handleOnSubmit }) => {
   return (

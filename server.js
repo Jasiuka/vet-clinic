@@ -81,7 +81,16 @@ app.get(
 // SQL Query for getting data
 const getNotBookedAppointments = async ({ start, end }) => {
   let connection;
-  const query = `SELECT appointments.id,appointments.appointmentDate,appointments.appointmentTime,veterinarians.vetName,veterinarians.lastName FROM appointments LEFT JOIN veterinarians ON veterinarians.id = appointments.veterinarian WHERE (appointmentDate BETWEEN '${start}' AND '${end}') AND booked = 0`;
+  const query = `SELECT appointments.id,appointments.appointmentDate,appointments.appointmentTime,veterinarians.vetName,veterinarians.lastName FROM appointments LEFT JOIN veterinarians ON veterinarians.id = appointments.veterinarian WHERE (appointmentDate BETWEEN '${start}' AND '${end}') AND booked = 0 ORDER BY appointmentDate ASC`;
+  connection = await pool.getConnection();
+  const results = await connection.query(query);
+  connection.end();
+  return results;
+};
+
+const getAppointmentById = async (id) => {
+  let connection;
+  const query = `SELECT appointments.id,appointments.appointmentDate,appointments.appointmentTime,veterinarians.vetName,veterinarians.lastName FROM appointments LEFT JOIN veterinarians ON veterinarians.id = appointments.veterinarian WHERE appointments.id =${id}`;
   connection = await pool.getConnection();
   const results = await connection.query(query);
   connection.end();
@@ -110,7 +119,6 @@ app.get(
       start: request.query.startDate,
       end: request.query.endDate,
     };
-    console.log(searchDates);
     const foundAppointments = await getNotBookedAppointments(searchDates);
     const addedDayNameAndFoundAppointments = foundAppointments.map(
       (appointment) => {
@@ -123,6 +131,21 @@ app.get(
     );
 
     return response.status(200).send(addedDayNameAndFoundAppointments);
+  })
+);
+
+app.get(
+  "/api/v1/appointments/id",
+  tryCatch(async (request, response) => {
+    const id = request.query.id;
+    const result = await getAppointmentById(id);
+    const singleAppointment = result[0];
+    const singleAppointmentWithAddedDayName = {
+      ...singleAppointment,
+      dayName: addDayName(singleAppointment.appointmentDate.getDay()),
+    };
+
+    return response.status(200).send(singleAppointmentWithAddedDayName);
   })
 );
 
