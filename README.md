@@ -45,6 +45,10 @@ The design was created by myself.
 - Updates relevant information in website (for ex. Services prices)
 - Can view busyness of veterinarians
 
+## 💻 View of website design
+
+![Website design | Main page](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYng3bzg4cHl6djk0OGoyMXQwZDYzdTNhMTJzNzR6azhraG1janpyaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/zmyeLJE1M3VBp5MdOH/giphy.gif)
+
 ## 👤 Author
 
 Lukas Jasiukaitis (Jasiuka)
