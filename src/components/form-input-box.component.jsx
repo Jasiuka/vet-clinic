@@ -8,15 +8,16 @@ export const FormInputBox = ({
   inputName,
   isDisabled = false,
   isValue = "",
+  uniqueClassName,
 }) => {
   const [isLabelMoved, setIsLabelMoved] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
   return (
-    <div className="form-container">
+    <div className={`form-container ${uniqueClassName}`}>
       <input
         id={inputId}
-        className="form-input"
+        className={`form-input`}
         type={inputType}
         onFocus={() => setIsLabelMoved(true)}
         onBlur={() => setIsLabelMoved(false)}
@@ -46,6 +47,7 @@ FormInputBox.propTypes = {
   inputName: PropTypes.string,
   isDisabled: PropTypes.bool,
   isValue: PropTypes.string,
+  uniqueClassName: PropTypes.string,
 };
 
 export default FormInputBox;

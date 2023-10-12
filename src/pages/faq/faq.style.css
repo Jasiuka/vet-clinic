@@ -15,8 +15,9 @@
 
 .accordion-item {
   width: 90%;
-  color: var(--light-grey);
-  background-color: var(--dark-grey);
+  color: var(--dark-grey);
+  background-color: var(--light-grey);
+  border: 4px solid var(--accent-color);
   border-radius: 4px;
   padding: 2rem;
   cursor: pointer;
@@ -25,6 +26,9 @@
 
 .accordion-item__heading {
   font-size: var(--font-medium);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .accordion-item__text {
@@ -37,4 +41,11 @@
 .accordion-item__text-open {
   height: 10rem;
   margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: solid 1px var(--accent-color);
+}
+
+.accordion-icon {
+  width: 2rem;
+  height: 2rem;
 }

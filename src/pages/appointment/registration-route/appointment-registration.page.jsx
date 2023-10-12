@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import FormInputBox from "../../../components/form-input-box.component";
 import {
   ChangeDateFormat,
   ExtractDate,
@@ -8,6 +7,8 @@ import {
 import { useGetAppointmentByIdQuery } from "../../../services/appointments";
 import { useState, useEffect } from "react";
 import "./appointment-registration.style.css";
+import NoRegForm from "./no-reg-form.component";
+import { useSelector } from "react-redux";
 export const AppointmentRegistration = () => {
   let { id } = useParams();
   const [appointmentData, setAppointmentData] = useState({
@@ -18,6 +19,7 @@ export const AppointmentRegistration = () => {
     vetName: "",
     vetLastName: "",
   });
+  const user = useSelector((state) => state.user);
   const { data, error, isLoading } = useGetAppointmentByIdQuery(id);
   useEffect(() => {
     if (data) {
@@ -52,47 +54,13 @@ export const AppointmentRegistration = () => {
         <h1>Vizito registracija</h1>
       </div>
       <div className="appointment-registration__forms appointment-registration__inner">
-        <FormInputBox
-          inputId={"reg_date"}
-          inputName={"reg_date"}
-          inputType={"text"}
-          label={"Vizito data"}
-          isDisabled={true}
-          isValue={`${appointmentData.date} (${appointmentData.dayName})`}
-        />
-        <FormInputBox
-          inputId={"reg_time"}
-          inputName={"reg_time"}
-          inputType={"text"}
-          label={"Vizito laikas"}
-          isDisabled={true}
-          isValue={appointmentData.time}
-        />
-        <FormInputBox
-          inputId={"reg_email"}
-          inputName={"reg_email"}
-          inputType={"email"}
-          label={"Jūsų el. Paštas"}
-        />
-        <h3>Informacija apie jūsų augintinį</h3>
-        <FormInputBox
-          inputId={"reg_specie"}
-          inputName={"reg_specie"}
-          inputType={"text"}
-          label={"Augintinio rūšis"}
-        />
-        <FormInputBox
-          inputId={"reg_breed"}
-          inputName={"reg_breed"}
-          inputType={"text"}
-          label={"Augintinio veislė"}
-        />
-        <FormInputBox
-          inputId={"reg_years"}
-          inputName={"reg_years"}
-          inputType={"number"}
-          label={"Augintinio amžius"}
-        />
+        {!user && (
+          <NoRegForm
+            appointmentDate={appointmentData.date}
+            appointmentTime={appointmentData.time}
+            dayName={appointmentData.dayName.toUpperCase()}
+          />
+        )}
       </div>
     </main>
   );
