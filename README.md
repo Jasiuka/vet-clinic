@@ -16,6 +16,7 @@ The design was created by myself.
 - Reviews slider
 - Services filter / search
 - Accordion (FAQ)
+- Mini e-shop
 
 ### Client/User
 
@@ -26,7 +27,6 @@ The design was created by myself.
 - View documents sent by doctors
 - Diagnosis/disease history
 - Appointments history
-- Pay for some services
 - Live communication with vet clinic employees (adminstration)
 - Leave review
 

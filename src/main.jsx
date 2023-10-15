@@ -27,6 +27,7 @@ import { Layout } from "./components/layout.component.jsx";
 import { store } from "./store/store.js";
 import { Provider } from "react-redux";
 import AppointmentPage from "./pages/appointment/appointment.page.jsx";
+import ShopPage from "./pages/shop/shop.page.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -93,6 +94,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <AppointmentRegistration />
+      </Layout>
+    ),
+  },
+  {
+    path: "/parduotuve",
+    element: (
+      <Layout>
+        <ShopPage />
       </Layout>
     ),
   },
