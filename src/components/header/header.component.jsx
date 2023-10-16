@@ -224,8 +224,8 @@ export const Header = () => {
                   {itemsInCart !== 0 && (
                     <span key={itemsInCart}>{itemsInCart}</span>
                   )}
-                  <CartDropdown isCartOpen={isCartOpen} />
                 </div>
+                <CartDropdown isCartOpen={isCartOpen} />
               </li>
             </ul>
           </nav>

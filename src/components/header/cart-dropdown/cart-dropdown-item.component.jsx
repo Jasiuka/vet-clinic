@@ -1,5 +1,9 @@
 import PropTypes from "prop-types";
-export const CartDropdownItem = ({ quantity, title, image, price }) => {
+import { removeCartItem } from "../../../store/cart/cart.reducer";
+import { useDispatch } from "react-redux";
+export const CartDropdownItem = ({ id, quantity, title, image, price }) => {
+  const dispatch = useDispatch();
+  const handleClick = (id) => dispatch(removeCartItem(id));
   return (
     <div className="cart-dropdown-item">
       <img
@@ -19,6 +23,13 @@ export const CartDropdownItem = ({ quantity, title, image, price }) => {
           </span>
         </div>
       </div>
+      <button
+        title="Pašalinti prekę"
+        onClick={() => handleClick(id)}
+        className="cart-dropdown-item--remove"
+      >
+        x
+      </button>
     </div>
   );
 };
@@ -27,5 +38,6 @@ CartDropdownItem.propTypes = {
   title: PropTypes.string,
   image: PropTypes.string,
   price: PropTypes.number,
+  id: PropTypes.number,
 };
 export default CartDropdownItem;

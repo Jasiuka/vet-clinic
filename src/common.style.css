@@ -97,30 +97,50 @@
 }
 
 /* Loader */
-
-.loader {
-  width: 100dvw;
-  height: 100dvh;
+/* TEST */
+.test {
+  height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--light-grey);
 }
 
-.loader-block {
-  width: 2rem;
-  height: 0.5rem;
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark-grey);
+  gap: 3rem;
+  flex-direction: column;
+  position: relative;
+  border-radius: 50%;
+  border: 3px solid var(--accent-color);
   background-color: var(--accent-color);
-  animation: rotateBlock 1s infinite;
+  width: 20rem;
+  aspect-ratio: 1;
 }
 
-@keyframes rotateBlock {
-  0% {
-    transform: rotate(10deg);
-  }
+.loader .wrapper {
+  display: flex;
+  gap: 3rem;
+}
 
-  100% {
-    transform: rotate(180%);
+.loader-el {
+  transform: scale(2);
+  animation: animatePaw 1.2s ease infinite;
+  animation-fill-mode: forwards;
+  animation-delay: calc(var(--i) * 0.6s);
+  fill: var(--dark-grey);
+}
+
+.loader-icon {
+  width: 5rem;
+  height: 5rem;
+}
+
+@keyframes animatePaw {
+  90% {
+    transform: scale(1);
   }
 }
 

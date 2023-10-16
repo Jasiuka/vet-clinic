@@ -296,6 +296,7 @@ nav ul li a span {
   align-items: center;
   gap: 1rem;
   cursor: pointer;
+  user-select: none;
 }
 
 .header__cart span {
@@ -319,13 +320,15 @@ nav ul li a span {
   border-radius: 4px;
   flex-direction: column;
   width: calc(100% + 10rem);
-  height: 30rem;
-  background-color: var(--light-grey);
+  min-height: max-content;
+  max-height: 35rem;
+  background-color: white;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   cursor: auto;
+  gap: 1rem;
   /* overflow-y: scroll; */
 }
 
@@ -334,6 +337,13 @@ nav ul li a span {
   visibility: visible;
   pointer-events: all;
   padding: 1rem;
+}
+
+.cart-dropdown__items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: scroll;
 }
 
 .cart-dropdown-item {
@@ -345,16 +355,71 @@ nav ul li a span {
   width: 10rem;
   height: 10rem;
   border-radius: 4px;
+  object-fit: contain;
 }
 
 .cart-dropdown-item--details {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
+  flex: 1;
+  padding-right: 1rem;
 }
 
 .cart-dropdown-item--details h5 {
   text-align: center;
+  font-weight: 500;
+}
+
+.cart-dropdown-item--details__bottom {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cart-dropdown-item--details__bottom span {
+  font-weight: 600;
+}
+
+.cart-dropdown-item--remove {
+  border: none;
+  font-size: var(--font-medium);
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cart-dropdown-item--remove:hover {
+  color: var(--accent-color);
+}
+
+.cart-dropdown__bottom-total {
+  display: block;
+  text-align: center;
+  background-color: var(--dark-grey);
+  color: var(--light-grey);
+  font-weight: 500;
+  padding: 0.5rem 0;
+  border-radius: 4px 4px 0 0;
+}
+
+.cart-dropdown__bottom-button {
+  display: block;
+  text-align: center;
+  background-color: var(--accent-color);
+  color: var(--dark-grey);
+  border-radius: 0 0 4px 4px;
+  padding: 0.5rem;
+  font-weight: 500;
+  font-size: var(--font-medium);
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.cart-dropdown__bottom-button:hover {
+  background-color: white;
+  border: 1px solid var(--dark-grey);
 }
 /* CART DROP DOWN */
 
