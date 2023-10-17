@@ -43,3 +43,11 @@
 }
 
 /* HERO */
+
+/* Media Queries */
+
+@media only screen and (max-width: 81rem) {
+  .hero p {
+    width: 70%;
+  }
+}

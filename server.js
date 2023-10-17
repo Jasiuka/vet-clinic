@@ -28,7 +28,7 @@ const getReviews = async () => {
   try {
     connection = await pool.getConnection();
     const rows = await connection.query(
-      "SELECT userName,reviewText,stars FROM reviews"
+      "SELECT userName,reviewText,stars,reviewDate FROM reviews"
     );
     return rows;
   } catch (error) {
@@ -38,12 +38,12 @@ const getReviews = async () => {
   }
 };
 
-const postReview = async (reviewText, name, email, stars) => {
+const postReview = async (reviewText, name, email, stars, todayDate) => {
   let connection;
   try {
     connection = await pool.getConnection();
-    const insertQuery = `INSERT INTO reviews (userName, email, reviewText, stars) VALUES (?,?,?,?)`;
-    const values = [name, email, reviewText, stars];
+    const insertQuery = `INSERT INTO reviews (userName, email, reviewText, stars, reviewDate) VALUES (?,?,?,?,?)`;
+    const values = [name, email, reviewText, stars, todayDate];
 
     await connection.query(insertQuery, values);
   } catch (error) {
@@ -57,11 +57,13 @@ app.post(
   "/api/v1/reviews",
   tryCatch(async (request, response) => {
     const userReview = request.body;
+    const today = new Date();
     await postReview(
       userReview.reviewText,
       userReview.name,
       userReview.email,
-      userReview.rating
+      userReview.rating,
+      today
     );
     return response.status(200).send("Thank you for your review");
   })
@@ -149,31 +151,32 @@ app.get(
   })
 );
 
-// const addAppointments = async (date, time, booked, vet) => {
-//   let connection;
-//   connection = await pool.getConnection();
-//   const query = `INSERT INTO appointments (appointmentDate,appointmentTime,booked,veterinarian) VALUES (?,?,?,?)`;
-//   const values = [date, time, booked, vet];
-//   await connection.query(query, values);
-//   connection.end();
-// };
+const addAppointments = async (date, time, booked, vet) => {
+  let connection;
+  connection = await pool.getConnection();
+  const query = `INSERT INTO appointments (appointmentDate,appointmentTime,booked,veterinarian) VALUES (?,?,?,?)`;
+  const values = [date, time, booked, vet];
+  await connection.query(query, values);
+  connection.end();
+};
 
-// const createAppointments = async () => {
-//   const today = new Date();
-//   for (let i = 0; i < 15; i++) {
-//     const years = today.getFullYear();
-//     const month = today.getMonth() + 1;
-//     const day = today.getDate();
-//     const fullDate = `${years}-${String(month).padStart(2, 0)}-${String(
-//       day
-//     ).padStart(2, 0)}`;
-//     await addAppointments(fullDate, "10:00", 0, 4);
-//     const nextDay = today.getDate() + 1;
-//     today.setDate(nextDay);
-//     console.log(i);
-//     i++;
-//   }
-// };
+const createAppointments = async () => {
+  const today = new Date();
+  for (let i = 0; i < 15; i++) {
+    const years = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    const fullDate = `${years}-${String(month).padStart(2, 0)}-${String(
+      day
+    ).padStart(2, 0)}`;
+    await addAppointments(fullDate, "14:00", 0, 4);
+    const nextDay = today.getDate() + 1;
+    today.setDate(nextDay);
+    i++;
+  }
+};
+
+createAppointments();
 
 app.use(errorHandler);
 ViteExpress.listen(app, 3000, () => console.log("Server is listening..."));

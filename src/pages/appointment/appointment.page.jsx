@@ -77,7 +77,7 @@ export const AppointmentPage = () => {
             minDate={new Date()}
             onChange={(e) => onChangeHandler(e)}
           />
-          <button className="appointment-button" onClick={handleSearchSubmit}>
+          <button className="appointment-button pink-button" onClick={handleSearchSubmit}>
             Ieškoti
           </button>
         </div>

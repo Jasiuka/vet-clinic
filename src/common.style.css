@@ -4,12 +4,14 @@
   background-color: var(--accent-color);
   padding: var(--page-heading-padding);
   color: var(--dark-grey);
+  text-wrap: balance;
 }
 
 .section-heading {
   font-size: var(--font-heading);
   text-align: center;
   margin-bottom: var(--section-heading-margbot);
+  text-wrap: balance;
 }
 /* HEADINGS */
 
@@ -18,22 +20,9 @@
 .booking-btn,
 .booking-btn:visited,
 .booking-btn:link {
-  border: none;
-  font-size: var(--font-small);
-  color: var(--light-grey);
-  background-color: var(--accent-color);
-  padding: 1rem 2rem;
-  border-radius: 4px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  font-weight: 500;
   text-transform: uppercase;
   text-decoration: none;
-}
-
-.booking-btn:hover {
-  background-color: var(--light-grey);
-  color: var(--dark-grey);
+  font-weight: 500;
 }
 
 /* CTA */
@@ -157,4 +146,24 @@
 .message-div p {
   font-size: var(--font-medium);
   font-weight: 400;
+}
+
+/* Pink Button hover */
+
+.pink-button {
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 4px;
+  background-color: var(--accent-color);
+  color: var(--light-grey);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.pink-button:hover {
+  background-color: var(--light-grey);
+  border: 1px solid var(--dark-grey);
+  color: var(--dark-grey);
+  transform: scale(1.02);
 }

@@ -3,7 +3,7 @@
 }
 .shop-inner--products {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 3rem;
 }
 /* PRODUCT CARD */
@@ -103,3 +103,10 @@
   background-color: #303337;
 }
 /* PRODUCT CARD */
+
+/* Media Queries */
+@media only screen and (max-width: 68rem) {
+  .shop-inner--products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

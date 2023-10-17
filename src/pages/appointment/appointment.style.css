@@ -67,21 +67,8 @@
 /* Button */
 
 .appointment-button {
-  padding: 1rem;
-  border-radius: 4px;
-  background-color: var(--accent-color);
-  color: var(--dark-grey);
-  border: none;
   font-size: var(--font-medium);
   margin-top: 2rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border: 1px solid transparent;
-}
-
-.appointment-button:hover {
-  background-color: var(--light-grey);
-  border: 1px solid var(--dark-grey);
 }
 
 /* Appointment card */
@@ -123,4 +110,13 @@
 
 .appointment-card:hover > .appointment-card--time {
   color: var(--dark-grey);
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 81rem) {
+  .appointment-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

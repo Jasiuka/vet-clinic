@@ -27,9 +27,8 @@
   filter: grayscale(30%);
 }
 .contacts__main-contacts-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .contacts__main-contacts-element {
@@ -54,6 +53,7 @@
   grid-row: 1/ 2;
   border-bottom: 1px solid var(--accent-color);
   font-weight: 500;
+  text-wrap: balance;
 }
 
 .contacts__icon {

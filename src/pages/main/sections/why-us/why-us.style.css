@@ -26,6 +26,8 @@
 
 .why-us__item-heading {
   font-weight: 500;
+  text-wrap: balance;
+  text-align: center;
 }
 
 .why-us__item-text {
@@ -43,3 +45,10 @@
 }
 
 /* WHY US */
+
+/* Media Queries */
+@media only screen and (max-width: 81rem) {
+  .why-us__items-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

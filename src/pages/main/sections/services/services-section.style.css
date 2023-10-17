@@ -80,3 +80,12 @@
   border-bottom: 2px solid var(--dark-grey);
 }
 /* SERVICES */
+
+/* Media Queries */
+
+@media only screen and (max-width: 81rem) {
+  .services-section__services-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

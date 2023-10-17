@@ -1,5 +1,5 @@
 import LoaderPaw from "./icon-components/loader-paw.component";
-export const Loader = () => {
+export const PageLoader = () => {
   return (
     <div className="loader">
       <div className="wrapper">
@@ -11,4 +11,4 @@ export const Loader = () => {
   );
 };
 
-export default Loader;
+export default PageLoader;

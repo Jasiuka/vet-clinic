@@ -20,7 +20,7 @@ export const LoginForm = ({ handleFormchange, handleLogin }) => {
         inputId={"login-pass"}
         inputType={"password"}
       />
-      <button type="submit" className="form-button">
+      <button type="submit" className="form-button pink-button">
         Prisijungti
       </button>
       <Link className="form-button-forgot form-link">

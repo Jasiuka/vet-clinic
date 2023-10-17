@@ -1,4 +1,4 @@
-import Slider from "./slider.component";
+import ReviewCard from "./review-card.component";
 import WriteNewForm from "./write-new.component";
 import Message from "../../../../components/message.component";
 import "./reviews.style.css";
@@ -6,12 +6,13 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export const Reviews = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [reviews, setReviews] = useState([]);
   const [fetchingReviews, setFetchingReviews] = useState(true);
   const [noError, setNoError] = useState(true);
   const [isMessageShowing, setIsMessageShowing] = useState(false);
   const [hideForm, setHideForm] = useState(false);
+  const reviewRows = 3;
+  const [visibleReviews, setVisibleReviews] = useState(3);
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -38,25 +39,13 @@ export const Reviews = () => {
     return data;
   };
 
-  const handleNextButton = () => {
-    if (reviews.length - 1 === currentSlide) {
-      setCurrentSlide(0);
-    } else {
-      setCurrentSlide(currentSlide + 1);
-    }
-  };
-
-  const handlePreviousButton = () => {
-    if (currentSlide === 0) {
-      setCurrentSlide(reviews.length - 1);
-    } else {
-      setCurrentSlide(currentSlide - 1);
-    }
-  };
-
   const handleMessageShowing = (value) => {
     setIsMessageShowing(value);
     setHideForm(true);
+  };
+
+  const loadMoreReviews = () => {
+    setVisibleReviews((prev) => prev + reviewRows);
   };
 
   return (
@@ -64,19 +53,29 @@ export const Reviews = () => {
       <h2 className="reviews__heading section-heading">
         Jūsų atsiliepimai apie mus
       </h2>
-      <button
-        onClick={handlePreviousButton}
-        className="reviews__slider-btn-left reviews__slider-btn"
-      >
-        &lsaquo;
-      </button>
-      <Slider currentSlide={currentSlide} sliderData={reviews} />
-      <button
-        onClick={handleNextButton}
-        className="reviews__slider-btn-right reviews__slider-btn"
-      >
-        &rsaquo;
-      </button>
+      <div className="reviews__reviews">
+        {reviews
+          ?.slice(0, visibleReviews)
+          ?.map(({ userName, reviewText, stars, reviewDate }, index) => (
+            <ReviewCard
+              key={index}
+              name={userName}
+              rating={stars}
+              reviewText={reviewText}
+              date={reviewDate}
+            />
+          ))}
+        {visibleReviews >= reviews.length ? (
+          ""
+        ) : (
+          <button
+            className="reviews__load-more pink-button"
+            onClick={loadMoreReviews}
+          >
+            Užkrauti daugiau..
+          </button>
+        )}
+      </div>
       {user && !user.review && !isMessageShowing && !hideForm && (
         <WriteNewForm user={user} messageHandler={handleMessageShowing} />
       )}

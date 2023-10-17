@@ -20,6 +20,7 @@
   font-size: var(--font-small);
   font-weight: 500;
   margin-right: 0.5rem;
+  text-wrap: balance;
 }
 
 .filter-button,

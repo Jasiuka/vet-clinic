@@ -3,7 +3,6 @@ export const PawIcon = ({ uniqueClassName, id, isActive }) => {
   return (
     <svg
       aria-labelledby={`${id} ${id === 1 ? "letenėlė" : "letenėlės"}`}
-      title="ads"
       version="1.1"
       className={`${uniqueClassName} ${
         isActive && "write-paw-icon--active"

@@ -186,10 +186,7 @@ export const Header = () => {
               )}
 
               <li>
-                <Link
-                  className="header__link-booking booking-btn"
-                  to="/vizitas"
-                >
+                <Link className="booking-btn pink-button" to="/vizitas">
                   Registracija vizitui
                 </Link>
               </li>
