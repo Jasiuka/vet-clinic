@@ -151,32 +151,30 @@ app.get(
   })
 );
 
-const addAppointments = async (date, time, booked, vet) => {
-  let connection;
-  connection = await pool.getConnection();
-  const query = `INSERT INTO appointments (appointmentDate,appointmentTime,booked,veterinarian) VALUES (?,?,?,?)`;
-  const values = [date, time, booked, vet];
-  await connection.query(query, values);
-  connection.end();
-};
+// const addAppointments = async (date, time, booked, vet) => {
+//   let connection;
+//   connection = await pool.getConnection();
+//   const query = `INSERT INTO appointments (appointmentDate,appointmentTime,booked,veterinarian) VALUES (?,?,?,?)`;
+//   const values = [date, time, booked, vet];
+//   await connection.query(query, values);
+//   connection.end();
+// };
 
-const createAppointments = async () => {
-  const today = new Date();
-  for (let i = 0; i < 15; i++) {
-    const years = today.getFullYear();
-    const month = today.getMonth() + 1;
-    const day = today.getDate();
-    const fullDate = `${years}-${String(month).padStart(2, 0)}-${String(
-      day
-    ).padStart(2, 0)}`;
-    await addAppointments(fullDate, "14:00", 0, 4);
-    const nextDay = today.getDate() + 1;
-    today.setDate(nextDay);
-    i++;
-  }
-};
-
-createAppointments();
+// const createAppointments = async () => {
+//   const today = new Date();
+//   for (let i = 0; i < 15; i++) {
+//     const years = today.getFullYear();
+//     const month = today.getMonth() + 1;
+//     const day = today.getDate();
+//     const fullDate = `${years}-${String(month).padStart(2, 0)}-${String(
+//       day
+//     ).padStart(2, 0)}`;
+//     await addAppointments(fullDate, "14:00", 0, 4);
+//     const nextDay = today.getDate() + 1;
+//     today.setDate(nextDay);
+//     i++;
+//   }
+// };
 
 app.use(errorHandler);
 ViteExpress.listen(app, 3000, () => console.log("Server is listening..."));

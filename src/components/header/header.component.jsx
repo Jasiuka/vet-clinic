@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import "./header.style.css";
 import CartDropdown from "./cart-dropdown/cart-dropdown.component";
 import { setIsCartOpen } from "../../store/cart/cart.reducer";
+import MobileHeader from "./mobile-header/mobile-header.component";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -227,6 +228,7 @@ export const Header = () => {
             </ul>
           </nav>
         </div>
+        <MobileHeader />
       </header>
       {/* Scroll to top button */}
       <ScrollToTopButton
