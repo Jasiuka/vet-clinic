@@ -69,16 +69,10 @@ export const AuthenticationPage = () => {
 
   return (
     <div className="authentication">
-      <img
-        className="authentication--img"
-        src="../../../src/assets/catsa2.webp"
-      />
+      <img className="authentication--img" src="/assets/catsa2.webp" />
       <div className="authentication__container">
         <Link to={"/"}>
-          <img
-            className="authentication--logo"
-            src="../../../src/assets/vetlogo.webp"
-          />
+          <img className="authentication--logo" src="/assets/vetlogo.webp" />
         </Link>
         <h3 className="authentication__form--heading">
           {form ? "Prisijungimas" : "Registracija"}

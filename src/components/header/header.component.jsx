@@ -118,7 +118,7 @@ export const Header = () => {
               className={`header__logo ${isHeaderInMainPage} ${
                 isIntersecting ? "" : "header__logo-smaller"
               }`}
-              src="/src/assets/vetlogo.webp"
+              src="/assets/vetlogo.webp"
               alt="Veterinary clinic logo"
             ></img>
           </Link>
@@ -170,7 +170,7 @@ export const Header = () => {
                 </Link>
               </li>
             </ul>
-            <img className="header__paws" src="/src/assets/paws-half.webp" />
+            <img className="header__paws" src="/assets/paws-half.webp" />
             <ul>
               {user ? (
                 <ProfileDropdown

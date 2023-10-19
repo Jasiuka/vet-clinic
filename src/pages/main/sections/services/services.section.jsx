@@ -4,19 +4,19 @@ import "./services-section.style.css";
 export const Services = () => {
   const servicesData = [
     {
-      imageLink: "../src/assets/services/ultrasound-image.webp",
+      imageLink: "/assets/services/ultrasound-image.webp",
       name: "Diagnostika ir tyrimai",
     },
     {
-      imageLink: "../src/assets/services/dentistry-image.webp",
+      imageLink: "/assets/services/dentistry-image.webp",
       name: "Odontologijos paslaugos",
     },
     {
-      imageLink: "../src/assets/services/surgery-image.webp",
+      imageLink: "/assets/services/surgery-image.webp",
       name: "Chirurgija",
     },
     {
-      imageLink: "../src/assets/services/vaccination-image.webp",
+      imageLink: "/assets/services/vaccination-image.webp",
       name: "Vakcinacija",
     },
   ];

@@ -4,37 +4,37 @@
       "id": 1,
       "title": "Brit Care Adult Activity Support sausas maistas katėms, 400g",
       "price": 1.29,
-      "image": "/src/assets/temp/adult.webp"
+      "image": "/assets/temp/adult.webp"
     },
     {
       "id": 2,
       "title": "Sausas kačių maistas Brit Care Healthy Growth & Development Kitten, vištiena/kalakutiena, 2 kg",
       "price": 9.59,
-      "image": "/src/assets/temp/kitten.webp"
+      "image": "/assets/temp/kitten.webp"
     },
     {
       "id": 3,
       "title": "Brit Care Hair Care begrūdis maistas katėms, 2 kg",
       "price": 12.1,
-      "image": "/src/assets/temp/haircare.jpg"
+      "image": "/assets/temp/haircare.jpg"
     },
     {
       "id": 4,
       "title": "Sausas ėdalas katėms Brit Care Cat GF Indoor Anti-stress, 0.4 kg",
       "price": 2.99,
-      "image": "/src/assets/temp/indoor.jpg"
+      "image": "/assets/temp/indoor.jpg"
     },
     {
       "id": 5,
       "title": "Sausas kačių maistas Brit Care Large Cats Power & Vitality, vištiena/antiena, 7 kg",
       "price": 43.6,
-      "image": "/src/assets/temp/large-cats.jpg"
+      "image": "/assets/temp/large-cats.jpg"
     },
     {
       "id": 6,
       "title": "Kačių maistas Brit Care Cat Sterilized Urinary Health 2kg",
       "price": 11.19,
-      "image": "/src/assets/temp/sterilized.webp"
+      "image": "/assets/temp/sterilized.webp"
     }
   ]
 }

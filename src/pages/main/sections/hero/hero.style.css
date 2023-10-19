@@ -28,7 +28,7 @@
 }
 
 .header-hero__background {
-  background-image: url("/src/assets/main.webp"),
+  background-image: url("/assets/main.webp"),
     linear-gradient(rgb(154 125 138 / 15%), rgb(245 177 202 / 12%));
   background-attachment: fixed;
   background-blend-mode: overlay;
