@@ -84,7 +84,7 @@
   color: var(--dark-grey);
   font-size: var(--font-medium);
   border: 1px solid transparent;
-  transition: all 0.3s ease;
+  transition: var(--main-transition);
   cursor: pointer;
 }
 

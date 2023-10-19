@@ -35,7 +35,7 @@
   background-color: transparent;
   gap: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--main-transition);
 }
 
 .filter-button:hover {
@@ -64,7 +64,7 @@
   top: 50%;
   left: 7%;
   transform: translateY(-50%);
-  transition: all 0.3s ease;
+  transition: var(--main-transition);
   color: #868e96;
 }
 

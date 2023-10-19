@@ -41,7 +41,7 @@
   height: 5rem;
   fill: var(--accent-color);
   margin-bottom: 1rem;
-  transition: all 0.3s ease;
+  transition: var(--main-transition);
 }
 
 /* WHY US */

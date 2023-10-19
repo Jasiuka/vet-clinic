@@ -3,7 +3,9 @@ import PropTypes from "prop-types";
 export const Paws = ({ rating }) => {
   return (
     <div className="reviews__paws">
-      {Array(rating).fill(<PawIcon uniqueClassName={"paw-icon"} />)}
+      {[...new Array(rating)].map((_, index) => (
+        <PawIcon key={index} uniqueClassName={"paw-icon"} />
+      ))}
     </div>
   );
 };

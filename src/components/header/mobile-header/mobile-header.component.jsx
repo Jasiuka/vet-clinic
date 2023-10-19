@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MobileBackground from "./mobile-header-background.component";
 import MobileMenu from "./mobile-header-menu.component";
+import { useLocation } from "react-router-dom";
+import "./mobile-header.style.css";
 export const MobileHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuToggle = () => {
     setIsMenuOpen((prev) => !prev);
   };
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location]);
 
   return (
     <>
@@ -32,10 +39,8 @@ export const MobileHeader = () => {
           }`}
         ></div>
       </button>
-      <div className={`header-mobile ${isMenuOpen && "header-mobile-open"}`}>
-        <MobileMenu isMenuOpen={isMenuOpen} />
-        <MobileBackground isMenuOpen={isMenuOpen} />
-      </div>
+      <MobileMenu isMenuOpen={isMenuOpen} />
+      <MobileBackground isMenuOpen={isMenuOpen} />
     </>
   );
 };

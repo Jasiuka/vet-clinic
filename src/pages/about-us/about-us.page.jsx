@@ -8,7 +8,7 @@ export const AboutUsPage = () => {
         <h1 className="about-us__heading">
           Kiekviena letenėlė nusipelno meilės ir rūpesčio
         </h1>
-        <p className="about-us__main-text">
+        <div className="about-us__main-text">
           Veterinarijos klinika „Laimingos letenėlės" yra moderni ir jau nuo
           2010 metų veikianti veterinarinė įstaiga, kuri puoselėja aukštus
           standartus gyvūnų sveikatos priežiūroje. Klinikoje aktyviai taikomos
@@ -33,7 +33,7 @@ export const AboutUsPage = () => {
             komanda visada pasiruošusi atsakyti į bet kokius gyvūno sveikatos
             klausimus, todėl galite kreiptis į juos su pasitikėjimu.
           </p>
-        </p>
+        </div>
         <div className="about-us__vision">
           <h3 className="about-us__vision-heading">Mūsų vizija</h3>
           <p className="about-us__vision-text">

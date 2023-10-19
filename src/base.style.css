@@ -3,6 +3,7 @@
   --font-smallest: 1rem;
   --font-small: 1.5rem;
   --font-medium: 2rem;
+  --font-med-to-large: 2.4rem;
   --font-large: 3rem;
   --font-largest: 4rem;
   --font-heading: 5rem;
@@ -14,6 +15,7 @@
   --section-padding: 8rem 5rem;
   --section-heading-margbot: 7rem;
   --page-heading-padding: 2rem 5rem;
+  --main-transition: all 0.3s ease;
 }
 
 /* /DEFAULT/ */
@@ -38,4 +40,18 @@ body {
   background-color: #e9ecef;
   font-size: var(--font-small);
   color: var(--dark-grey);
+  overflow-x: hidden;
+}
+
+/* 950px */
+@media only screen and (max-width: 59rem) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media only screen and (max-width: 59rem) {
+  html {
+    font-size: 50%;
+  }
 }

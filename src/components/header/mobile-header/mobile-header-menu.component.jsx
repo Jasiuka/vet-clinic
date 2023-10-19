@@ -7,15 +7,48 @@ export const MobileMenu = ({ isMenuOpen }) => {
         isMenuOpen && "header-mobile__menu--open"
       }`}
     >
-      <ul>
-        <li>
-          <Link>Pagrindinis</Link>
+      <ul className="list">
+        <li className="list-item">
+          <Link className="list-link" to={"/"}>
+            Pagrindinis
+          </Link>
         </li>
-        <li>
-          <div></div>
+        <li className="list-item">
+          <div className="list-link">
+            Klinika
+            <div>
+              <Link className="list-link" to={"/apie-mus"}>
+                &mdash; Apie mus
+              </Link>
+              <Link className="list-link" to={"/komanda"}>
+                &mdash; Komanda
+              </Link>
+              <Link className="list-link" to={"/kontaktai"}>
+                &mdash; Kontaktai
+              </Link>
+            </div>
+          </div>
         </li>
-        <li>Something Also</li>
-        <li>Somethingss</li>
+        <li className="list-item">
+          <Link to={"/paslaugos"} className="list-link">
+            Paslaugos
+          </Link>
+        </li>
+        <li className="list-item">
+          <Link to={"/duk"} className="list-link">
+            DUK
+          </Link>
+        </li>
+        <li className="list-item">
+          <Link to={"/vizitas"} className="list-link list-booking pink-button">
+            Registracija vizitui
+          </Link>
+        </li>
+        <li className="list-item">
+          <Link to={"/parduotuve"} className="list-link">
+            El.Parduotuvė
+          </Link>
+        </li>
       </ul>
     </div>
   );

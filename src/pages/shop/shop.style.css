@@ -15,7 +15,7 @@
   border-radius: 4px;
   padding: 1rem;
   background-color: white;
-  transition: all 0.3s ease;
+  transition: var(--main-transition);
 }
 
 .shop__product-card:hover {
@@ -66,7 +66,7 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  transition: all 0.3s ease;
+  transition: var(--main-transition);
   background-image: linear-gradient(
     to bottom,
     #f9a8c520,
@@ -86,7 +86,7 @@
   color: var(--light-grey);
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--main-transition);
 }
 
 .shop__product-card--button-more {
@@ -108,5 +108,12 @@
 @media only screen and (max-width: 68rem) {
   .shop-inner--products {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 700px */
+@media only screen and (max-width: 43rem) {
+  .shop-inner--products {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

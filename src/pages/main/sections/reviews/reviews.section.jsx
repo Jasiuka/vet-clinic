@@ -63,6 +63,7 @@ export const Reviews = () => {
               rating={stars}
               reviewText={reviewText}
               date={reviewDate}
+              index={index}
             />
           ))}
         {visibleReviews >= reviews.length ? (

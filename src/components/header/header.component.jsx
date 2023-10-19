@@ -22,6 +22,7 @@ export const Header = () => {
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
 
   // Redux
+  const windowSize = window.innerWidth;
   const dispatch = useDispatch();
   const setCartIsOpen = (previous) => dispatch(setIsCartOpen(!previous));
   const [isIntersecting, setIsIntersecting] = useState(true);
@@ -45,6 +46,8 @@ export const Header = () => {
   };
 
   useEffect(() => {
+    if (windowSize < 950) return;
+
     const observerTargetElement = document.querySelector(".for-observer");
 
     const options = {
