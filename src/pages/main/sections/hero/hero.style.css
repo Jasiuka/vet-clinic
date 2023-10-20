@@ -1,18 +1,14 @@
-/* HERO */
-/* .hero {
-  background-image: url("/src/assets/main2.jpg");
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
-} */
 .hero {
   color: aliceblue;
-  height: 70vh;
-  padding: var(--section-padding);
+  height: 90vh;
+  padding: var(--section-padding-top-bottom) var(--side-paddings);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero h1 {
-  font-size: var(--font-hero-heading);
+  font-size: clamp(var(--font-lg), 4vw, var(--font-hd-bigger));
   margin-bottom: 1rem;
 }
 
@@ -21,33 +17,46 @@
 }
 
 .hero p {
+  font-size: clamp(var(--font-md), 4vw, var(--font-med-to-lg));
+  width: 60%;
+  margin-bottom: var(--gap-largest);
+  line-height: 1.2;
+  letter-spacing: -1px;
   font-weight: 400;
-  font-size: var(--font-large);
-  width: 50%;
-  margin-bottom: 2rem;
 }
 
 .header-hero__background {
   background-image: url("/assets/main.webp"),
-    linear-gradient(rgb(154 125 138 / 15%), rgb(245 177 202 / 12%));
+    linear-gradient(rgb(154 125 138 / 18%), rgb(245 177 202 / 18%));
   background-attachment: fixed;
   background-blend-mode: overlay;
   background-position: center;
   background-size: cover;
-  height: 120vh;
+  min-height: 120vh;
   width: 100%;
   /* padding: 2rem 3rem; */
   position: absolute;
   z-index: -10;
   top: 0;
+  filter: grayscale(10%);
+  filter: brightness(80%);
+}
+
+.hero .pink-button {
+  align-self: flex-start;
 }
 
 /* HERO */
 
 /* Media Queries */
 
-@media only screen and (max-width: 81rem) {
+@media only screen and (max-width: 59rem) {
   .hero p {
-    width: 70%;
+    width: 80%;
+    font-size: clamp(var(--font-sm-to-md, 5vw, --font-md));
+  }
+
+  .hero h1 {
+    font-size: clamp(var(--font-md), 5vw, var(--font-lg));
   }
 }

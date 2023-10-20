@@ -12,16 +12,16 @@
   z-index: 5;
   position: relative;
   min-width: 25%;
-  max-width: fit-content;
-  height: 75%;
+  width: fit-content;
+  min-height: 75%;
   background-color: var(--dark-grey);
   margin: 0 auto;
-  border-radius: 4px;
+  border-radius: var(--common-border-radius);
   display: flex;
   align-items: center;
   flex-direction: column;
   color: var(--light-grey);
-  padding: 2rem;
+  padding: var(--el-pd-lg);
   box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.75);
@@ -32,14 +32,13 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 2rem;
+  gap: var(--gap-md);
 }
 
 .authentication__form--heading {
   color: var(--light-grey);
-  font-size: var(--font-large);
-  margin-bottom: 1rem;
-  margin-top: -3rem;
+  font-size: var(--font-md);
+  margin-bottom: var(--gap-md);
 }
 
 .form-container {
@@ -49,7 +48,7 @@
 }
 
 .form-container:first-of-type {
-  margin-bottom: 2rem;
+  margin-bottom: var(--gap-largest);
 }
 
 .login-form .form-button {
@@ -87,7 +86,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 4rem;
+  gap: var(--gap-largest);
 }
 
 .signup-form .form-button:not(.form-button-back) {
@@ -107,26 +106,25 @@
 .form-container-no-profile {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: var(--font-mediuim);
+  gap: var(--gap-sm);
 }
 
 .form-container-social-login {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 0.5rem;
+  gap: var(--gap-sm);
 }
 
 .form-container-social-login button {
-  padding: 1rem;
-  font-size: var(--font-small);
+  padding: var(--el-pd-sm);
+  font-size: var(--font-sm);
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-  border-radius: 4px;
+  gap: var(--gap-lg);
+  border-radius: var(--common-border-radius);
   cursor: pointer;
   transition: var(--main-transition);
 }
@@ -145,9 +143,9 @@
 }
 
 .form-input {
-  padding: 3rem 1rem 1rem 1rem;
+  padding: var(--el-pd-lg) var(--el-pd-sm) var(--el-pd-sm);
   font-size: var(--font-mediuim);
-  border-radius: 4px;
+  border-radius: var(--common-border-radius);
   background-color: var(--light-grey);
   width: 100%;
 }
@@ -160,18 +158,18 @@
   position: absolute;
   top: 48.5%;
   left: 3%;
-  color: var(--dark-grey);
+  color: var(--light-dark-grey);
   transition: var(--main-transition);
 }
 
 .form-button {
-  padding: 1rem;
-  font-size: var(--font-medium);
+  padding: var(--el-pd-sm);
+  font-size: var(--font-sm);
   background-color: var(--light-grey);
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: var(--common-border-radius);
   width: 100%;
-  margin-top: 1rem;
+  margin-top: var(--gap-md);
   transition: var(--main-transition);
 }
 
@@ -181,7 +179,7 @@
 
 .authentication--img {
   width: 70%;
-  height: 80rem;
+  height: 50rem;
   position: absolute;
   top: 7.4%;
   left: 50%;
@@ -190,17 +188,17 @@
 }
 
 .authentication--logo {
-  width: 30rem;
-  height: 20rem;
+  width: var(--logo-norm-width);
+  height: var(--logo-norm-height);
   object-fit: contain;
-  margin-top: -5rem;
+  margin-top: -2.5rem;
 }
 
 .authentication--line {
   width: 63%;
   height: 3px;
   background-color: var(--accent-color);
-  border-radius: 4px;
+  border-radius: var(--common-border-radius);
   position: absolute;
   top: 66.4%;
   z-index: 2;
@@ -209,8 +207,8 @@
 /* ICONS */
 
 .auth-icon {
-  width: 2rem;
-  height: 2rem;
+  width: var(--icon-sm);
+  height: var(--icon-sm);
 }
 
 /* SEPARATE BUTTONS */
@@ -230,7 +228,7 @@
 }
 
 .form-button-back {
-  font-size: var(--font-small);
+  font-size: var(--font-sm);
   grid-row: 3/4;
   grid-column: 1/-1;
   justify-self: center;
@@ -246,5 +244,4 @@
 .form-label-moved {
   transform: translateY(-22px);
   color: var(--dark-grey);
-  font-weight: 400;
 }

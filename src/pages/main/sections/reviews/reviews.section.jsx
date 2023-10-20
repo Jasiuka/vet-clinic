@@ -12,7 +12,7 @@ export const Reviews = () => {
   const [isMessageShowing, setIsMessageShowing] = useState(false);
   const [hideForm, setHideForm] = useState(false);
   const reviewRows = 3;
-  const [visibleReviews, setVisibleReviews] = useState(3);
+  const [visibleReviews, setVisibleReviews] = useState(4);
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -66,17 +66,17 @@ export const Reviews = () => {
               index={index}
             />
           ))}
-        {visibleReviews >= reviews.length ? (
-          ""
-        ) : (
-          <button
-            className="reviews__load-more pink-button"
-            onClick={loadMoreReviews}
-          >
-            Užkrauti daugiau..
-          </button>
-        )}
       </div>
+      {visibleReviews >= reviews.length ? (
+        ""
+      ) : (
+        <button
+          className="reviews__load-more pink-button"
+          onClick={loadMoreReviews}
+        >
+          Užkrauti daugiau..
+        </button>
+      )}
       {user && !user.review && !isMessageShowing && !hideForm && (
         <WriteNewForm user={user} messageHandler={handleMessageShowing} />
       )}

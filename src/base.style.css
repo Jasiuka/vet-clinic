@@ -1,61 +1,147 @@
 /* Variables */
 :root {
-  --font-smallest: 1rem;
-  --font-small: 1.5rem;
-  --font-medium: 2rem;
-  --font-med-to-large: 2.4rem;
-  --font-large: 3rem;
-  --font-largest: 4rem;
-  --font-heading: 5rem;
-  --font-hero-heading: 5.5rem;
-  --side-paddings: 5rem;
+  /* FONTS */
+  --font-smallest: 0.7rem;
+  --font-sm: 1rem;
+  --font-sm-to-md: 1.5rem;
+  --font-md: 2rem;
+  --font-med-to-lg: 2.5rem;
+  --font-lg: 3rem;
+  --font-largest: 3.5rem;
+  --font-hd: 3.5rem;
+  --font-hd-bigger: 4rem;
+  /* GAPS / MARGINS */
+  --gap-sm: 0.5rem;
+  --gap-md: 1rem;
+  --gap-lg: 1.5rem;
+  --gap-largest: 2rem;
+  --section-heading-margbot: 7rem;
+  /* PADDINGS */
+  --side-paddings: 2rem;
+  --el-pd-sm: 0.5rem;
+  --el-pd-md: 1rem;
+  --el-pd-bg: 1.5rem;
+  --el-pd-lg: 2rem;
+  --section-padding-top-bottom: clamp(3.75rem, 5rem, 6.25rem);
+  --page-heading-padding: 2rem 5rem;
+  /* COLORS */
   --accent-color: #f89fbe;
   --dark-grey: #212529;
   --light-grey: #e9ecef;
-  --section-padding: 8rem 5rem;
-  --section-heading-margbot: 7rem;
-  --page-heading-padding: 2rem 5rem;
+  --light-dark-grey: #798087;
+  /* TRANSITION */
   --main-transition: all 0.3s ease;
+  /* ICONS */
+  --icon-sm: 1.5rem;
+  --icon-md: 2.5rem;
+  --icon-lg: 3.5rem;
+  /* OTHERS */
+  --common-border-radius: 4px;
+  /* LOGO */
+  --logo-norm-width: 11rem;
+  --logo-norm-height: 9rem;
 }
 
 /* /DEFAULT/ */
+/* Box sizing rules */
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
+/* Prevent font size inflation */
 html {
-  font-size: 62.5%;
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
   scroll-behavior: smooth;
 }
 
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core body defaults */
 body {
-  font-weight: 300;
-  line-height: 1.6;
+  min-height: 100vh;
+  line-height: 1.5;
+  font-weight: 400;
   font-family: "Montserrat", "Sans-serif";
-  height: 100vh;
   background-color: #e9ecef;
-  font-size: var(--font-small);
+  font-size: var(--font-sm);
   color: var(--dark-grey);
   overflow-x: hidden;
 }
 
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/*  */
+
 #root {
   overflow-x: hidden;
-}
-
-/* 950px */
-@media only screen and (max-width: 59rem) {
-  html {
-    font-size: 55%;
-  }
-}
-
-@media only screen and (max-width: 59rem) {
-  html {
-    font-size: 50%;
-  }
 }

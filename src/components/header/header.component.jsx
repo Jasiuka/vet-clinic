@@ -46,8 +46,6 @@ export const Header = () => {
   };
 
   useEffect(() => {
-    if (windowSize < 950) return;
-
     const observerTargetElement = document.querySelector(".for-observer");
 
     const options = {

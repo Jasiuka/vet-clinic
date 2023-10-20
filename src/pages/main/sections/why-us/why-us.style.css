@@ -1,6 +1,6 @@
 /* WHY US */
 .why-us {
-  padding: var(--section-padding);
+  padding: var(--section-padding-top-bottom) var(--side-paddings);
 
   background-color: var(--light-grey);
   color: var(--dark-grey);
@@ -10,14 +10,14 @@
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: repeat(4, 1fr);
-  row-gap: 6rem;
+  row-gap: clamp(2rem, 5vw, 6rem);
 }
 
 .why-us__item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: var(--font-small);
+  font-size: var(--font-sm);
 }
 
 .why-us__item:hover > .why-us__icon {
@@ -37,8 +37,8 @@
 }
 
 .why-us__icon {
-  width: 5rem;
-  height: 5rem;
+  width: clamp(var(--icon-md), 5vw, var(--icon-lg));
+  aspect-ratio: 1;
   fill: var(--accent-color);
   margin-bottom: 1rem;
   transition: var(--main-transition);
@@ -50,5 +50,12 @@
 @media only screen and (max-width: 81rem) {
   .why-us__items-container {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 850px */
+@media only screen and (max-width: 53rem) {
+  .why-us__items-container {
+    grid-template-columns: 1fr;
   }
 }

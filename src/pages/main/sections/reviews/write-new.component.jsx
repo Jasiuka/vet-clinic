@@ -96,7 +96,7 @@ export const WriteNewForm = ({ user, messageHandler }) => {
           );
         })}
       </div>
-      <button>Rašyti atsiliepimą</button>
+      <button className="pink-button">Rašyti atsiliepimą</button>
     </form>
   );
 };

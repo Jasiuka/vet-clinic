@@ -2,23 +2,22 @@
 }
 
 .appointment-inner {
-  padding: var(--section-padding);
+  padding: var(--section-padding-top-bottom) var(--side-paddings);
   display: flex;
-  /* align-items: center; */
-  gap: 2rem;
+  gap: var(--gap-md);
 }
 
 .appointment-inner__calendar {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--gap-sm);
 }
 
 .appointments-inner__appointments {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 1rem;
+  gap: var(--gap-sm);
 }
 .appointment-inner__appointments-found span {
   color: rgb(89, 89, 253);
@@ -31,15 +30,11 @@
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
   align-items: baseline;
-  gap: 2rem;
-  padding-right: 1rem;
+  gap: var(--gap-md);
+  padding-right: var(--el-pd-sm);
 }
 
 /* CALENDAR */
-
-.react-calendar__tile {
-  /* border-radius: 4px; */
-}
 
 /* Today */
 .react-calendar__tile--now {
@@ -67,17 +62,17 @@
 /* Button */
 
 .appointment-button {
-  font-size: var(--font-medium);
-  margin-top: 2rem;
+  font-size: var(--font-sm-to-md);
+  margin-top: var(--gap-largest);
 }
 
 /* Appointment card */
 
 .appointment-card {
-  padding: 1rem;
+  padding: var(--el-pd-sm);
   background-color: var(--light-grey);
   border: 3px solid var(--accent-color);
-  border-radius: 4px;
+  border-radius: var(--common-border-radius);
   position: relative;
   cursor: pointer;
   transition: var(--main-transition);
@@ -91,16 +86,12 @@
 }
 
 .appointment-card--date {
-  font-size: var(--font-medium);
+  font-size: var(--font-sm-to-md);
   font-weight: 500;
 }
 
 .appointment-card--time {
-  color: var(--accent-color);
-}
-
-.appointment-card--dayname {
-  font-weight: 400;
+  color: rgb(89, 89, 253);
 }
 
 .appointment-card:hover {

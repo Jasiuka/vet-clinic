@@ -1,6 +1,7 @@
 /* HEADINGS */
 .page-heading {
-  font-size: var(--font-heading);
+  margin-top: 6rem;
+  font-size: var(--font-hd);
   background-color: var(--accent-color);
   padding: var(--page-heading-padding);
   color: var(--dark-grey);
@@ -8,9 +9,10 @@
 }
 
 .section-heading {
-  font-size: var(--font-heading);
+  font-size: var(--font-lg);
   text-align: center;
   margin-bottom: var(--section-heading-margbot);
+
   text-wrap: balance;
 }
 /* HEADINGS */
@@ -31,12 +33,12 @@
 
 .scroll-to-top {
   position: fixed;
-  bottom: 25px;
-  right: 25px;
+  bottom: 4.8rem;
+  right: 2rem;
   padding: 1rem;
-  font-size: var(--font-large);
+  font-size: var(--font-lg);
   background-color: var(--dark-grey);
-  z-index: 100;
+  z-index: 20;
   border: 1px solid var(--dark-grey);
   border-radius: 50%;
   cursor: pointer;
@@ -49,8 +51,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: var(--icon-sm);
+  height: var(--icon-sm);
   fill: var(--light-grey);
   transition: fill 0.3s ease-in-out;
 }
@@ -86,13 +88,6 @@
 }
 
 /* Loader */
-/* TEST */
-.test {
-  height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .loader {
   display: flex;
@@ -140,11 +135,11 @@
   padding: 1.5rem;
   color: var(--light-grey);
   position: absolute;
-  border-radius: 4px;
+  border-radius: var(--common-border-radius);
 }
 
 .message-div p {
-  font-size: var(--font-medium);
+  font-size: var(--font-md);
   font-weight: 400;
 }
 
@@ -152,8 +147,9 @@
 
 .pink-button {
   border: none;
-  padding: 1rem 1.5rem;
-  border-radius: 4px;
+  padding: var(--el-pd-sm) var(--el-pd-md);
+  border-radius: var(--common-border-radius);
+  font-weight: 500;
   background-color: var(--accent-color);
   color: var(--light-grey);
   transition: var(--main-transition);

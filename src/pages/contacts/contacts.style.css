@@ -1,20 +1,19 @@
 /* CONTACTS PAGE */
 
 .contacts__main {
-  padding: var(--section-padding);
+  padding: var(--section-padding-top-bottom) var(--side-paddings);
   color: var(--dark-grey);
 }
 
 .contacts__main h2 {
   text-align: center;
-  font-size: var(--font-heading);
+  font-size: var(--font-hd);
   color: var(--accent-color);
 }
 
 .contacts__main-map-container {
   width: 100%;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin: var(--gap-largest) 0;
 }
 
 .contacts__map {
@@ -32,18 +31,19 @@
 }
 
 .contacts__main-contacts-element {
-  font-size: var(--font-medium);
+  font-size: var(--font-sm);
   display: grid;
   grid-template-columns: 1fr 4fr 4fr;
   grid-template-rows: 1fr 1fr;
-  column-gap: 2rem;
-  row-gap: 1rem;
-  padding: 4rem;
-  border-radius: 4px;
+  column-gap: var(--gap-md);
+  row-gap: var(--gap-sm);
+  padding: var(--el-pd-lg);
+  border-radius: var(--common-border-radius);
 }
 
 .contacts__main-contacts-element .contacts__main-contacts-data {
-  font-size: var(--font-medium);
+  font-size: var(--font-sm);
+  font-weight: 400;
   grid-column: 2 / -1;
   grid-row: 2/ 3;
 }
@@ -57,8 +57,8 @@
 }
 
 .contacts__icon {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: var(--icon-md);
+  height: var(--icon-md);
   grid-column: 1 / 2;
   fill: var(--accent-color);
   justify-self: end;

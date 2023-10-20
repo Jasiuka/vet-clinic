@@ -4,8 +4,9 @@
   background-color: var(--accent-color);
   padding: var(--page-heading-padding);
   display: flex;
-  gap: 2rem;
+  gap: var(--gap-md);
   align-items: center;
+  margin-top: 6rem;
 }
 
 .appointment-registration-heading__appointment-data {
@@ -15,13 +16,14 @@
 }
 
 .appointment-registration-heading__appointment-data p {
-  font-size: var(--font-small);
+  font-size: var(--font-sm);
   font-weight: 500;
 }
 
 .appointment-registration__inner {
-  padding: var(--section-padding);
-  height: 70vh;
+  padding: var(--section-padding-top-bottom) var(--side-paddings);
+  display: flex;
+  justify-content: center;
 }
 
 .appointment-registration__inner .form-container:first-of-type {
@@ -29,7 +31,7 @@
 }
 
 .appointment-registration__inner .form-container input {
-  padding-left: 1.5rem;
+  padding-left: var(--el-pd-md);
 }
 
 .appointment-registration__inner .form-container input:disabled {
@@ -40,7 +42,7 @@
 .no-reg-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 70% 20% 10%;
+  grid-template-rows: 3fr 1fr 1fr;
   width: 50vw;
   gap: 3rem;
   height: fit-content;
@@ -76,13 +78,12 @@
 .no-reg-form button {
   grid-column: 1/-1;
   grid-row: 3/4;
-  padding: 1rem;
-  /* width: 40%; */
-  border-radius: 4px;
+  padding: var(--el-pd-md);
+  border-radius: var(--common-border-radius);
   border: none;
   background-color: var(--accent-color);
   color: var(--dark-grey);
-  font-size: var(--font-medium);
+  font-size: var(--font-md);
   border: 1px solid transparent;
   transition: var(--main-transition);
   cursor: pointer;
