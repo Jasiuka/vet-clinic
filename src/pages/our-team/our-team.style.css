@@ -91,11 +91,34 @@
   }
 }
 
+/* 950px */
+@media only screen and (max-width: 59rem) {
+  .our-team__card {
+    pointer-events: none;
+  }
+
+  .our-team__card--details {
+    min-height: 20%;
+    overflow: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .our-team__card--image {
+    max-height: 80%;
+    min-height: 80%;
+  }
+}
 /* 750px */
 @media only screen and (max-width: 47rem) {
+  .our-team__main-box {
+    grid-template-columns: 1fr;
+  }
   .our-team__card {
-    width: 30rem;
-    height: 35rem;
+    width: 25rem;
+    height: 25rem;
   }
 
   .our-team__card--name {
@@ -112,10 +135,6 @@
 
 /* 600px */
 @media only screen and (max-width: 37.5rem) {
-  .our-team__main-box {
-    grid-template-columns: 1fr;
-  }
-
   .our-team__card {
     width: clamp(15rem, 5vw, 20rem);
     height: clamp(20rem, 5vw, 25rem);

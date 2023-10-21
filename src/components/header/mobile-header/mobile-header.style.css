@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  width: clamp(3.5rem, 10vw, 5rem);
+  width: clamp(3.5rem, 7vw, 5rem);
   aspect-ratio: 1;
   border-radius: 50%;
   margin-top: 5rem;
@@ -32,7 +32,7 @@
 
 .header-mobile__button:hover {
   color: var(--accent-color);
-  gap: clamp(0.3rem, 8vw, 0.6rem);
+  gap: clamp(0.3rem, 7vw, 0.6rem);
 }
 
 .header-mobile__button.header-mobile__button--open:hover {
@@ -136,6 +136,7 @@
   flex-direction: column;
   z-index: 20;
   pointer-events: none;
+  overflow-x: hidden;
 }
 
 .header-mobile__background--open {

@@ -91,13 +91,18 @@
 /* 950px */
 @media only screen and (max-width: 59rem) {
   .services-section__item-img {
-    height: 90%;
+    max-height: 90%;
+    min-height: 90%;
     filter: grayscale(20%);
   }
 
   .services-section__item-name {
-    height: 10%;
+    min-height: 10%;
     color: var(--dark-grey);
+  }
+
+  .services-section__item {
+    pointer-events: none;
   }
 }
 
@@ -112,5 +117,20 @@
   .services-section__item {
     min-width: 100%;
     height: 25rem;
+    pointer-events: none;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .services-section__item-img {
+    max-height: 90%;
+  }
+
+  .services-section__item-name {
+    height: 10%;
+  }
+
+  .services-section__item {
+    pointer-events: none;
   }
 }
