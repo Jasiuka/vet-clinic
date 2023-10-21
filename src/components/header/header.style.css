@@ -421,7 +421,7 @@
   border-radius: 0 0 4px 4px;
   padding: var(--el-pd-sm);
   font-weight: 500;
-  font-size: var(--font-md);
+  font-size: var(--font-sm-to-md);
   border: 1px solid transparent;
   transition: var(--main-transition);
 }

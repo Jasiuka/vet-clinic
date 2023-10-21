@@ -50,12 +50,18 @@
   box-sizing: border-box;
 }
 
+*:link,
+*:visited {
+  text-decoration: none;
+}
+
 /* Prevent font size inflation */
 html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* Remove default margin in favour of better control in authored CSS */

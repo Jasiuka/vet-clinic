@@ -1,4 +1,5 @@
 import ServicesSectionItem from "./services-section-item.component";
+import { Link } from "react-router-dom";
 import "./services-section.style.css";
 
 export const Services = () => {
@@ -38,9 +39,9 @@ export const Services = () => {
           );
         })}
       </div>
-      <a className="services-section__button" href="/paslaugos">
+      <Link className="services-section__button" to={"/paslaugos"}>
         Visos paslaugos &rarr;
-      </a>
+      </Link>
     </section>
   );
 };

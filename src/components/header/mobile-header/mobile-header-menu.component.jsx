@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 export const MobileMenu = ({ isMenuOpen }) => {
   return (
     <div
@@ -50,6 +51,7 @@ export const MobileMenu = ({ isMenuOpen }) => {
           </Link>
         </li>
       </ul>
+      <CartDropdown isCartOpen={true} />
     </div>
   );
 };

@@ -22,7 +22,7 @@ export const Header = () => {
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
 
   // Redux
-  const windowSize = window.innerWidth;
+
   const dispatch = useDispatch();
   const setCartIsOpen = (previous) => dispatch(setIsCartOpen(!previous));
   const [isIntersecting, setIsIntersecting] = useState(true);
@@ -196,7 +196,9 @@ export const Header = () => {
                 <Link to={"/parduotuve"} className="header__link-shop">
                   El.Parduotuvė
                 </Link>
+
                 <div
+                  key={"header-cart"}
                   onClick={() => setCartIsOpen(isCartOpen)}
                   className="header__cart"
                 >

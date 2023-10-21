@@ -46,7 +46,7 @@ export const ProductCard = ({ id, title, price, image }) => {
 ProductCard.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
-  price: PropTypes.string,
+  price: PropTypes.number,
   image: PropTypes.string,
 };
 
