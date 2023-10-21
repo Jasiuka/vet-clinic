@@ -115,6 +115,12 @@
   .our-team__main-box {
     grid-template-columns: 1fr;
   }
+
+  .our-team__card {
+    width: clamp(15rem, 5vw, 20rem);
+    height: clamp(20rem, 5vw, 25rem);
+    justify-self: center;
+  }
 }
 
 @media (hover: none) and (pointer: coarse) {

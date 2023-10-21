@@ -17,6 +17,9 @@
 }
 /* HEADINGS */
 
+/* 
+
+
 /* CTA */
 
 .booking-btn,
@@ -162,4 +165,21 @@
   border: 1px solid var(--dark-grey);
   color: var(--dark-grey);
   transform: scale(1.02);
+}
+
+/* Media Queries */
+
+/* 750px */
+
+@media only screen and (max-width: 47rem) {
+  .page-heading {
+    padding: var(--el-pd-lg);
+  }
+}
+
+/* 450px */
+@media only screen and (max-width: 47rem) {
+  .page-heading {
+    padding: var(--el-pd-md);
+  }
 }

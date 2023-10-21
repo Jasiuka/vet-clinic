@@ -60,11 +60,7 @@
 .header-mobile__menu {
   position: fixed;
   display: none;
-  font-size: clamp(
-    calc(var(--font-sm-to-md) - 0.5rem),
-    4vw,
-    var(--font-med-to-lg)
-  );
+  font-size: clamp(var(--font-sm-to-md), 4vw, var(--font-med-to-lg));
   color: red;
   font-weight: 600;
   visibility: hidden;

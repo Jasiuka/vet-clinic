@@ -8,7 +8,7 @@
 }
 
 .hero h1 {
-  font-size: clamp(var(--font-lg), 4vw, var(--font-hd-bigger));
+  font-size: var(--font-hd-bigger);
   margin-bottom: 1rem;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .hero p {
-  font-size: clamp(var(--font-md), 4vw, var(--font-med-to-lg));
+  font-size: var(--font-med-to-lg);
   width: 60%;
   margin-bottom: var(--gap-largest);
   line-height: 1.2;
@@ -53,10 +53,10 @@
 @media only screen and (max-width: 59rem) {
   .hero p {
     width: 80%;
-    font-size: clamp(var(--font-sm-to-md, 5vw, --font-md));
+    font-size: var(--font-md);
   }
 
   .hero h1 {
-    font-size: clamp(var(--font-md), 5vw, var(--font-lg));
+    font-size: var(--font-lg);
   }
 }

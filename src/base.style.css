@@ -2,14 +2,14 @@
 :root {
   /* FONTS */
   --font-smallest: 0.7rem;
-  --font-sm: 1rem;
-  --font-sm-to-md: 1.5rem;
-  --font-md: 2rem;
-  --font-med-to-lg: 2.5rem;
-  --font-lg: 3rem;
+  --font-sm: clamp(calc(var(--font-smallest) - 0.3rem), 4vw, 1rem);
+  --font-sm-to-md: clamp(0.7rem, 5vw, 1.5rem);
+  --font-md: clamp(var(--font-sm-to-md), 5vw, 2rem);
+  --font-med-to-lg: clamp(var(--font-md), 4vw, 2.5rem);
+  --font-lg: clamp(var(--font-md), 5vw, 3rem);
   --font-largest: 3.5rem;
-  --font-hd: 3.5rem;
-  --font-hd-bigger: 4rem;
+  --font-hd: clamp(var(--font-md), 10vw, 3.5rem);
+  --font-hd-bigger: clamp(var(--font-lg), 4vw, 4rem);
   /* GAPS / MARGINS */
   --gap-sm: 0.5rem;
   --gap-md: 1rem;

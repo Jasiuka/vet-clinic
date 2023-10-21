@@ -52,7 +52,7 @@
 }
 
 .footer__icon {
-  width: var(--icon-md);
+  width: clamp(var(--icon-sm), 5vw, var(--icon-md));
   aspect-ratio: 1;
   fill: var(--accent-color);
 }
