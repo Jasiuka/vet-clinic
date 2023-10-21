@@ -57,14 +57,18 @@
 
 /* 850px */
 @media only screen and (max-width: 53rem) {
-  .why-us__items-container {
+  /* .why-us__items-container {
     grid-template-columns: 1fr;
+  } */
+
+  .why-us__item-text {
+    width: 95%;
   }
 
   .why-us__item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: var(--font-sm);
+    font-size: var(--font-smallest);
   }
 }

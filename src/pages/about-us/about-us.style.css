@@ -25,7 +25,7 @@
   line-height: 1.5;
   text-align: justify;
   /* text-wrap: balance; */
-  font-size: var(--font-sm-to-md);
+  font-size: calc(var(--font-sm-to-md) - 0.4rem);
 }
 
 .about-us__main-text p:first-of-type {

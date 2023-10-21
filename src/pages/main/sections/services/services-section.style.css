@@ -88,7 +88,8 @@
   }
 }
 
-@media (hover: none) and (pointer: coarse) {
+/* 950px */
+@media only screen and (max-width: 59rem) {
   .services-section__item-img {
     height: 90%;
     filter: grayscale(20%);
@@ -97,5 +98,19 @@
   .services-section__item-name {
     height: 10%;
     color: var(--dark-grey);
+  }
+}
+
+/* 750px */
+@media only screen and (max-width: 47rem) {
+  .services-section__services-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .services-section__item {
+    min-width: 100%;
+    height: 25rem;
   }
 }

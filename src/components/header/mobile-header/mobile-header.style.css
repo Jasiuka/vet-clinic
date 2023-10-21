@@ -35,6 +35,11 @@
   gap: clamp(0.3rem, 8vw, 0.6rem);
 }
 
+.header-mobile__button.header-mobile__button--open:hover {
+  gap: unset;
+  color: var(--light-grey);
+}
+
 .top-rotate {
   transform: rotate(-45deg);
 }
@@ -218,5 +223,13 @@
 @media only screen and (max-width: 42rem) {
   .block-right.move-blocks {
     transform: translateX(-40%);
+  }
+}
+
+/* 400px */
+
+@media only screen and (max-width: 25rem) {
+  .header-mobile__background-block {
+    height: 25.5vh;
   }
 }

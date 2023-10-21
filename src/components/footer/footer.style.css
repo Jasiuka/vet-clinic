@@ -37,7 +37,7 @@
 .footer__box {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-lg);
+  gap: clamp(var(--gap-sm), 5vw, var(--gap-lg));
 }
 
 .footer__contacts-item {

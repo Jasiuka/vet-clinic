@@ -22,7 +22,7 @@
   --el-pd-md: 1rem;
   --el-pd-bg: 1.5rem;
   --el-pd-lg: 2rem;
-  --section-padding-top-bottom: clamp(3.75rem, 5rem, 6.25rem);
+  --section-padding-top-bottom: clamp(2rem, 5vw, 6.25rem);
   --page-heading-padding: 2rem 5rem;
   /* COLORS */
   --accent-color: #f89fbe;
