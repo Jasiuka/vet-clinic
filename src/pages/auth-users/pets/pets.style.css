@@ -1,0 +1,56 @@
+.pets-inner {
+  padding: var(--section-padding-top-bottom) var(--side-paddings);
+  display: grid;
+  gap: var(--gap-lg);
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.pets__pet-card,
+.pets__add-new {
+  padding: var(--el-pd-lg);
+  border: 4px solid var(--accent-color);
+  transition: var(--main-transition);
+  cursor: pointer;
+  color: var(--dark-grey);
+}
+
+.pets__pet-card:link,
+.pets__pet-card:visited,
+.pets__pet-card {
+  font-size: var(--font-lg);
+  font-weight: 500;
+  text-align: center;
+}
+
+.pets__pet-card:hover,
+.pets__add-new:hover {
+  transform: scale(1.05);
+  background-image: linear-gradient(
+    to bottom,
+    #f9a8c520,
+    #faa2c220,
+    #fb9cbe20,
+    #fb96bb20,
+    #fc90b720
+  );
+}
+
+.pets__pet-card-name {
+  font-size: var(--font-lg);
+  font-weight: 500;
+  text-align: center;
+}
+
+.pets__add-new {
+  cursor: pointer;
+  font-size: var(--font-md);
+  background-color: transparent;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-md);
+}
+
+.pets__add-new .plus-icon {
+}

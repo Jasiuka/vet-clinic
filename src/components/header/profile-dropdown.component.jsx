@@ -12,7 +12,7 @@ export const ProfileDropdown = ({ isOpen, handleDropdownClick }) => {
         <div
           className={`profile-dropdown__content ${isOpen && "dropdown-open"} `}
         >
-          <Link to={"/augintiniai"}>Mano augintiniai</Link>
+          <Link to={"/mano-augintiniai"}>Mano augintiniai</Link>
           <Link to={"/nustatymai"}>Nustatymai</Link>
           <button>Atsijungti</button>
         </div>

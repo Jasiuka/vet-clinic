@@ -28,6 +28,8 @@ import { store } from "./store/store.js";
 import { Provider } from "react-redux";
 import AppointmentPage from "./pages/appointment/appointment.page.jsx";
 import ShopPage from "./pages/shop/shop.page.jsx";
+import Pets from "./pages/auth-users/pets/pets.page.jsx";
+import PetPage from "./pages/auth-users/pets/pet-page/pet-page.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -102,6 +104,24 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <ShopPage />
+      </Layout>
+    ),
+  },
+
+  {
+    path: "mano-augintiniai",
+    element: (
+      <Layout>
+        <Pets />
+      </Layout>
+    ),
+  },
+
+  {
+    path: "/augintinis/:name/:id",
+    element: (
+      <Layout>
+        <PetPage />
       </Layout>
     ),
   },
