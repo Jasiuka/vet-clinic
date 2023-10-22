@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./auth.style.css";
 import LoginForm from "./log-in.component";
 import SignupForm from "./sign-up.component";
 import { useSearchParams } from "react-router-dom";
 import { useNavigate, Link } from "react-router-dom";
+import { useLoginQuery } from "../../services/appointments";
 
 // Redux
 import { useDispatch } from "react-redux";
@@ -18,20 +19,40 @@ export const AuthenticationPage = () => {
 
   const getUserData = (object) => dispatch(get(object));
 
+  const [loginCredentials, setLoginCredentials] = useState({
+    email: "",
+    password: "",
+  });
+  const { data, error, isLoading } = useLoginQuery(loginCredentials, {
+    skip: loginCredentials.email === "" && loginCredentials.password === "",
+  });
+
+  useEffect(() => {
+    if (data) {
+      getUserData(data);
+      navigate("/");
+    }
+  }, [data]);
+
   const handleLogin = (e) => {
     e.preventDefault();
 
     const form = e.target;
 
-    const userObject = {
-      email: form["login-email"].value,
-      password: form["login-pass"].value,
-      name: "Username",
-      review: null,
-    };
+    const email = form["login-email"].value;
+    const password = form["login-pass"].value;
 
-    getUserData(userObject);
-    navigate("/");
+    setLoginCredentials({
+      email,
+      password,
+    });
+
+    // const userObject = {
+    //   email: form["login-email"].value,
+    //   password: form["login-pass"].value,
+    //   name: "Username",
+    //   review: null,
+    // };
   };
   // Redux
 

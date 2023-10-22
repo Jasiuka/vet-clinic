@@ -1,6 +1,6 @@
 // converts date from UTC 0, to UTC +3 (Lithuania timezone)
-export const ChangeDateFormat = (appointmentDate) => {
-  const date = new Date(`${appointmentDate}`);
+export const ChangeDateFormat = (dateToChange) => {
+  const date = new Date(`${dateToChange}`);
   const fixedDate = date.toLocaleString("lt-LT");
   return fixedDate;
 };

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-export const ProfileDropdown = ({ isOpen, handleDropdownClick }) => {
+export const ProfileDropdown = ({ isOpen, handleDropdownClick, isAdmin }) => {
   return (
     <li>
       <div
@@ -12,8 +12,15 @@ export const ProfileDropdown = ({ isOpen, handleDropdownClick }) => {
         <div
           className={`profile-dropdown__content ${isOpen && "dropdown-open"} `}
         >
-          <Link to={"/mano-augintiniai"}>Mano augintiniai</Link>
-          <Link to={"/nustatymai"}>Nustatymai</Link>
+          {isAdmin === 1 ? (
+            <>
+              <Link to={"/valdymas"}>Valdymas</Link>
+            </>
+          ) : (
+            <>
+              <Link to={"/mano-augintiniai"}>Mano augintiniai</Link>
+            </>
+          )}
           <button>Atsijungti</button>
         </div>
       </div>
@@ -25,5 +32,6 @@ ProfileDropdown.propTypes = {
   userEmail: PropTypes.string,
   isOpen: PropTypes.bool,
   handleDropdownClick: PropTypes.func,
+  isAdmin: PropTypes.number,
 };
 export default ProfileDropdown;

@@ -99,6 +99,64 @@ const getAppointmentById = async (id) => {
   return results;
 };
 
+const getPetById = async (id) => {
+  let connection;
+  const query = `SELECT pets.petName,pets.species,pets.breed,pets.gender,pets.age,pets.petWeight,appointments.appointmentDate FROM pets LEFT JOIN appointments ON pets.id = appointments.pet WHERE pets.id = ${id} ORDER BY appointmentDate DESC LIMIT 2`;
+  connection = await pool.getConnection();
+  const results = await connection.query(query);
+  const singlePetObject = {
+    ...results[0],
+    appointmentDate: [results[0].appointmentDate, results[1].appointmentDate],
+  };
+  connection.end();
+  return singlePetObject;
+};
+
+const getPetDocumentsById = async (id) => {
+  let connection;
+  const query = `SELECT documents.title,documents.docUrl,documents.sendDate FROM pets LEFT JOIN documents ON pets.id = documents.pet WHERE pets.id = ${id} ORDER BY sendDate DESC`;
+  connection = await pool.getConnection();
+  const results = await connection.query(query);
+  connection.end();
+  return results;
+};
+
+const getPetHistoryById = async (id) => {
+  let connection;
+  const query = `SELECT diagnosis.diagnosisDate,diagnosis.diagnosisDescription FROM pets LEFT JOIN diagnosis ON pets.id = diagnosis.pet WHERE pets.id = ${id}`;
+  connection = await pool.getConnection();
+  const results = await connection.query(query);
+  connection.end();
+  return results;
+};
+
+const getUser = async (email) => {
+  let connection;
+  const query = `SELECT clients.clientName, accounts.email,accounts.accountPassword,accounts.userRole FROM clients LEFT JOIN accounts ON clients.account = accounts.id WHERE accounts.email ='${email}'`;
+  connection = await pool.getConnection();
+  const results = await connection.query(query);
+  connection.end();
+  return results;
+};
+
+const getEmployees = async () => {
+  let connection;
+  const query = `SELECT veterinarians.id AS 'ID', veterinarians.vetName AS 'Vardas', veterinarians.lastName AS 'Pavardė' FROM veterinarians`;
+  connection = await pool.getConnection();
+  const results = await connection.query(query);
+  connection.end();
+  return results;
+};
+
+const getAppointments = async () => {
+  let connection;
+  const query = `SELECT appointments.id AS 'ID',appointments.appointmentDate AS 'Data',appointments.appointmentTime AS 'Laikas',veterinarians.vetName AS 'Vardas', veterinarians.lastName AS 'Pavardė',pets.petName AS 'Augintinis' FROM appointments LEFT JOIN veterinarians ON appointments.veterinarian = veterinarians.id LEFT JOIN pets ON appointments.pet = pets.id ORDER BY appointmentDate DESC`;
+  connection = await pool.getConnection();
+  const results = await connection.query(query);
+  connection.end();
+  return results;
+};
+
 // Adds day name to the data object which is sent to FE
 const addDayName = (dayNumber) => {
   const dayNamesArray = [
@@ -113,6 +171,70 @@ const addDayName = (dayNumber) => {
   const dayName = dayNamesArray[dayNumber];
   return dayName;
 };
+
+// ADMIN
+
+app.get(
+  "/api/v1/admin/appointments",
+  tryCatch(async (request, response) => {
+    const allAppointments = await getAppointments();
+
+    return response.status(200).send(allAppointments);
+  })
+);
+
+app.get(
+  "/api/v1/admin/employees",
+  tryCatch(async (request, response) => {
+    const allEmployees = await getEmployees();
+    return response.status(200).send(allEmployees);
+  })
+);
+
+// ADMIN
+
+app.get(
+  "/api/v1/user/login/",
+  tryCatch(async (request, response) => {
+    const email = request.query.email;
+    const password = request.query.password;
+    const userData = await getUser(email);
+
+    const doesPasswordsMatch = userData[0].accountPassword === password;
+
+    if (doesPasswordsMatch) {
+      return response.status(200).send(userData);
+    }
+    return response.status(400).send("Klaida, slaptažodžiai nesutampa");
+  })
+);
+
+app.get(
+  "/api/v1/pets/history/id",
+  tryCatch(async (request, response) => {
+    const id = request.query.id;
+    const result = await getPetHistoryById(id);
+    return response.status(200).send(result);
+  })
+);
+
+app.get(
+  "/api/v1/pets/documents/id",
+  tryCatch(async (request, response) => {
+    const id = request.query.id;
+    const result = await getPetDocumentsById(id);
+    return response.status(200).send(result);
+  })
+);
+
+app.get(
+  "/api/v1/pets/id",
+  tryCatch(async (request, response) => {
+    const id = request.query.id;
+    const result = await getPetById(id);
+    return response.status(200).send(result);
+  })
+);
 
 app.get(
   "/api/v1/appointments",

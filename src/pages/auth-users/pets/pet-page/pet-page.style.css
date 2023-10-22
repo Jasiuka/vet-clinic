@@ -1,0 +1,126 @@
+.pet-page-inner {
+  padding: var(--section-padding-top-bottom) var(--side-paddings);
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 2fr 2fr;
+  gap: var(--gap-lg);
+  max-height: 100vh;
+}
+
+.pet-page-inner > * {
+  padding: var(--el-pd-lg);
+  border-radius: var(--common-border-radius);
+  /* border: 4px solid var(--accent-color); */
+}
+
+.pet-page__pet-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-lg);
+  grid-column: 1/2;
+  grid-row: 1/4;
+  border-right: 4px solid var(--accent-color);
+}
+
+.pet-page__documents {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  border-bottom: 4px solid var(--accent-color);
+}
+
+.pet-page__history {
+  grid-column: 2/3;
+  grid-row: 2/4;
+}
+
+.pet-page__box-heading {
+  margin-bottom: var(--gap-lg);
+}
+
+/* PET INFO */
+
+.pet-info__row-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.pet-info__heading {
+  font-weight: 600;
+  font-size: var(--font-sm-to-md);
+  color: var(--accent-color);
+}
+
+.pet-info__value {
+  font-size: var(--font-sm);
+}
+
+/* PET DOCUMENT */
+
+.pet-page__documents-items {
+  display: flex;
+  gap: var(--gap-lg);
+  align-items: stretch;
+  min-height: 85%;
+  height: 85%;
+}
+
+.pet-page__documents-item:link,
+.pet-page__documents-item:visited,
+.pet-page__documents-item {
+  /* border: 4px solid var(--accent-color); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-md);
+  padding: var(--el-pd-md);
+  min-height: 100%;
+  height: 100%;
+  border-radius: var(--common-border-radius);
+  color: var(--dark-grey);
+  transition: var(--main-transition);
+  box-shadow: 1px 1px 6px 0px rgba(0, 0, 0, 0.1);
+}
+
+.pet-page__documents-item:hover {
+  transform: scale(1.05);
+  background-image: linear-gradient(
+    to bottom,
+    #f9a8c520,
+    #faa2c220,
+    #fb9cbe20,
+    #fb96bb20,
+    #fc90b720
+  );
+}
+
+.icon-pdf {
+  width: var(--icon-md);
+  height: var(--icon-md);
+}
+
+/* PET HISTORY */
+
+.pet-page__history-items {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  min-height: 85%;
+}
+
+.pet-page__history-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+  /* border: 4px solid var(--accent-color); */
+  padding: var(--el-pd-md);
+  min-width: 98%;
+  max-width: 98%;
+  border-radius: var(--common-border-radius);
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.1);
+}
+
+.pet-page__history-item-value:first-of-type {
+  min-width: 100%;
+  font-weight: 500;
+}

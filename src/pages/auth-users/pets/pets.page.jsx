@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const Pets = () => {
   const someData = [
     {
-      name: "Kolis",
+      name: "Reo",
       id: 1,
     },
     {
@@ -13,7 +13,7 @@ export const Pets = () => {
       id: 2,
     },
     {
-      name: "Reo",
+      name: "Kolis",
       id: 3,
     },
     {
@@ -24,7 +24,7 @@ export const Pets = () => {
 
   return (
     <main className="page pets">
-      <h1 className="page-heading">Mano augintiniai</h1>;
+      <h1 className="page-heading for-observer">Mano augintiniai</h1>;
       <div className="pets-inner">
         {someData.map((pet) => {
           return (

@@ -1,0 +1,98 @@
+.control {
+  padding: var(--side-paddings);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-lg);
+}
+
+.control-heading-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-lg);
+}
+
+.control-heading-wrapper a,
+.control-heading-wrapper a:link,
+.control-heading-wrapper a:visited {
+  background-color: var(--dark-grey);
+  padding: var(--el-pd-md);
+  border-radius: var(--common-border-radius);
+  color: var(--light-grey);
+  font-weight: 500;
+}
+
+.control-select {
+  padding: var(--el-pd-md);
+}
+
+/* TABLE */
+
+.control-table .wrapper {
+  margin-bottom: var(--gap-sm);
+  display: flex;
+  align-items: center;
+}
+
+.control-table .wrapper h2 {
+  margin-right: var(--gap-lg);
+}
+
+.control-table .wrapper label {
+  font-size: var(--font-sm);
+  font-weight: 500;
+  margin-right: var(--gap-sm);
+}
+
+.table-search {
+  padding: var(--el-pd-sm);
+}
+
+.table {
+  border-collapse: collapse;
+  max-width: 100%;
+  width: 100%;
+  border-radius: var(--common-border-radius);
+}
+
+.control-table tr td {
+  padding: var(--el-pd-md);
+}
+
+.control-table thead td {
+  font-weight: 600;
+  color: var(--light-grey);
+}
+
+.control-table tbody tr {
+  transition: var(--main-transition);
+  border-radius: var(--common-border-radius);
+}
+
+.control-table tbody td {
+  font-weight: 500;
+}
+
+.control-table tbody tr:hover {
+  background-color: var(--accent-color);
+}
+
+.table-head {
+  background-color: var(--dark-grey);
+}
+
+.table-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.table-button:hover svg {
+  transform: scale(1.1);
+}
+
+.table-delete,
+.table-edit {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+  fill: var(--dark-grey);
+}

@@ -45,7 +45,7 @@
 }
 
 .bottom-rotate {
-  transform: rotate(45deg) translateY(-1px);
+  transform: rotate(45deg) translateY(-2px);
 }
 
 .center-remove {

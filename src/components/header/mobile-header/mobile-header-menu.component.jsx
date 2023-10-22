@@ -10,7 +10,7 @@ export const MobileMenu = ({ isMenuOpen }) => {
     >
       <ul className="list">
         <li className="list-item">
-          <Link to={"prisijungti"} className="list-link">
+          <Link to={"/prisijungti"} className="list-link">
             Prisijungti
           </Link>
         </li>
