@@ -31,7 +31,9 @@ export const CartDropdown = ({ isCartOpen }) => {
               Iš viso suma: {totalSum.toFixed(2)}
               {"€"}
             </p>
-            <Link className="cart-dropdown__bottom-button">Pirkti &gt;</Link>
+            <Link className="cart-dropdown__bottom-button" to={"/krepselis"}>
+              Pirkti &gt;
+            </Link>
           </div>
         </>
       )}

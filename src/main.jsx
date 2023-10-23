@@ -30,6 +30,7 @@ import AppointmentPage from "./pages/appointment/appointment.page.jsx";
 import ShopPage from "./pages/shop/shop.page.jsx";
 import Pets from "./pages/auth-users/pets/pets.page.jsx";
 import PetPage from "./pages/auth-users/pets/pet-page/pet-page.jsx";
+import Checkout from "./pages/shop/checkout/checkout.page.jsx";
 import Control from "./pages/admin/control.page.jsx";
 const router = createBrowserRouter([
   {
@@ -123,6 +124,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <PetPage />
+      </Layout>
+    ),
+  },
+  {
+    path: "/krepselis",
+    element: (
+      <Layout>
+        <Checkout />
       </Layout>
     ),
   },

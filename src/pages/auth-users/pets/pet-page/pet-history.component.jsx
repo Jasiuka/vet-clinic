@@ -12,7 +12,7 @@ export const PetHistory = ({ id }) => {
     <div className="pet-page__history">
       <h2 className="pet-page__box-heading">Istorija</h2>
       <div className="pet-page__history-items">
-        {history[0]?.title ? (
+        {history[0]?.diagnosisDescription ? (
           history.map((historyItem, index) => {
             return (
               <div key={index} className="pet-page__history-item">

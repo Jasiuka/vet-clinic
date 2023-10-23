@@ -164,7 +164,7 @@ const getAppointments = async () => {
 
 const getProducts = async () => {
   let connection;
-  const query = `SELECT products.title, products.price, products.category, products.imagePath, manufacturer.mName FROM products LEFT JOIN manufacturer ON products.manufacturer = manufacturer.id`;
+  const query = `SELECT products.id, products.title, products.price, products.category, products.imagePath, manufacturer.mName FROM products LEFT JOIN manufacturer ON products.manufacturer = manufacturer.id`;
   connection = await pool.getConnection();
   const results = await connection.query(query);
   connection.end();

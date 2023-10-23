@@ -21,6 +21,9 @@ export const cartSlice = createSlice({
         action.payload
       );
     },
+    addItemQuantity: (state, action) => {
+      state.cartItems = incrementItem(current(state).cartItems, action.payload);
+    },
   },
 });
 
@@ -41,6 +44,15 @@ const addItem = (cartItems, itemToAdd) => {
   }
 
   return [...cartItems, { ...itemToAdd, quantity: 1 }];
+};
+
+const incrementItem = (cartItems, itemToAddId) => {
+  return cartItems.map((cartItem) => {
+    cartItem.id === itemToAddId && {
+      ...cartItem,
+      quantity: cartItem.quantity + 1,
+    };
+  });
 };
 
 const removeFromCartItem = (cartItems, itemToRemoveId) => {
