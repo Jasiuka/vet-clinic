@@ -101,9 +101,14 @@ const getAppointmentById = async (id) => {
 
 const getPetById = async (id) => {
   let connection;
-  const query = `SELECT pets.petName,pets.species,pets.breed,pets.gender,pets.age,pets.petWeight,appointments.appointmentDate FROM pets LEFT JOIN appointments ON pets.id = appointments.pet WHERE pets.id = ${id} ORDER BY appointmentDate DESC LIMIT 2`;
+  const query = `SELECT pets.petName,pets.species,pets.breed,pets.gender,pets.age,pets.petWeight,COALESCE(appointments.appointmentDate, 'No appointments') AS appointmentDate FROM pets LEFT JOIN appointments ON pets.id = appointments.pet WHERE pets.id = ${id} ORDER BY appointmentDate DESC LIMIT 2`;
   connection = await pool.getConnection();
   const results = await connection.query(query);
+  console.log("Query result", results);
+
+  if (results[0].appointmentDate === "No appointments") {
+    return results[0];
+  }
   const singlePetObject = {
     ...results[0],
     appointmentDate: [results[0].appointmentDate, results[1].appointmentDate],
@@ -132,7 +137,7 @@ const getPetHistoryById = async (id) => {
 
 const getUser = async (email) => {
   let connection;
-  const query = `SELECT clients.clientName, accounts.email,accounts.accountPassword,accounts.userRole FROM clients LEFT JOIN accounts ON clients.account = accounts.id WHERE accounts.email ='${email}'`;
+  const query = `SELECT clients.clientName, accounts.email,accounts.accountPassword,accounts.userRole, pets.id AS 'petID', pets.petName FROM clients LEFT JOIN accounts ON clients.account = accounts.id LEFT JOIN pets ON clients.id = pets.petOwner WHERE accounts.email ='${email}'`;
   connection = await pool.getConnection();
   const results = await connection.query(query);
   connection.end();
@@ -151,6 +156,24 @@ const getEmployees = async () => {
 const getAppointments = async () => {
   let connection;
   const query = `SELECT appointments.id AS 'ID',appointments.appointmentDate AS 'Data',appointments.appointmentTime AS 'Laikas',veterinarians.vetName AS 'Vardas', veterinarians.lastName AS 'Pavardė',pets.petName AS 'Augintinis' FROM appointments LEFT JOIN veterinarians ON appointments.veterinarian = veterinarians.id LEFT JOIN pets ON appointments.pet = pets.id ORDER BY appointmentDate DESC`;
+  connection = await pool.getConnection();
+  const results = await connection.query(query);
+  connection.end();
+  return results;
+};
+
+const getProducts = async () => {
+  let connection;
+  const query = `SELECT products.title, products.price, products.category, products.imagePath, manufacturer.mName FROM products LEFT JOIN manufacturer ON products.manufacturer = manufacturer.id`;
+  connection = await pool.getConnection();
+  const results = await connection.query(query);
+  connection.end();
+  return results;
+};
+
+const getAllProducts = async () => {
+  let connection;
+  const query = `SELECT products.title AS 'Pavadinimas', products.price AS 'Kaina', products.category AS 'Kategorija', manufacturer.mName AS 'Gamintojas' FROM products LEFT JOIN manufacturer ON products.manufacturer = manufacturer.id`;
   connection = await pool.getConnection();
   const results = await connection.query(query);
   connection.end();
@@ -191,7 +214,58 @@ app.get(
   })
 );
 
+const categoryById = (categoryID) => {
+  let name;
+  switch (categoryID) {
+    case 1:
+      name = "Katės";
+      break;
+    case 2:
+      name = "Šunys";
+      break;
+    case 3:
+      name = "Paukščiai";
+      break;
+    case 4:
+      name = "Kiti";
+      break;
+    default:
+      name = "Nepriskirta";
+  }
+  return name;
+};
+
+app.get(
+  "/api/v1/admin/products",
+  tryCatch(async (request, response) => {
+    const allProducts = await getAllProducts();
+    const addCategoryName = (allProductsData) => {
+      const newArray = allProductsData.map((product) => {
+        return {
+          ...product,
+          Kategorija: categoryById(product.Kategorija),
+        };
+      });
+      return newArray;
+    };
+    const newAllProducts = addCategoryName(allProducts);
+    return response.status(200).send(newAllProducts);
+  })
+);
+
 // ADMIN
+
+// SHOP
+
+app.get(
+  "/api/v1/shop/products",
+  tryCatch(async (request, response) => {
+    const allProducts = await getProducts();
+    return response.status(200).send(allProducts);
+  })
+);
+
+// SHOP
 
 app.get(
   "/api/v1/user/login/",
@@ -200,10 +274,29 @@ app.get(
     const password = request.query.password;
     const userData = await getUser(email);
 
+    const makeSingleUserObject = (arrayOfObjects) => {
+      const newObject = { ...arrayOfObjects[0], pets: [] };
+      delete newObject.aVardas;
+      delete newObject.AugintinioID;
+      arrayOfObjects.forEach(({ petID, petName }) => {
+        const petObject = {
+          petID: petID,
+          petName: petName,
+        };
+        newObject.pets.push(petObject);
+      });
+      return newObject;
+    };
+
+    const singleObject = makeSingleUserObject(userData);
+
     const doesPasswordsMatch = userData[0].accountPassword === password;
 
     if (doesPasswordsMatch) {
-      return response.status(200).send(userData);
+      if (userData[0].userRole === 1) {
+        return response.status(200).send(userData[0]);
+      }
+      return response.status(200).send(singleObject);
     }
     return response.status(400).send("Klaida, slaptažodžiai nesutampa");
   })
@@ -213,7 +306,9 @@ app.get(
   "/api/v1/pets/history/id",
   tryCatch(async (request, response) => {
     const id = request.query.id;
+
     const result = await getPetHistoryById(id);
+
     return response.status(200).send(result);
   })
 );
@@ -222,7 +317,9 @@ app.get(
   "/api/v1/pets/documents/id",
   tryCatch(async (request, response) => {
     const id = request.query.id;
+
     const result = await getPetDocumentsById(id);
+
     return response.status(200).send(result);
   })
 );
@@ -232,6 +329,7 @@ app.get(
   tryCatch(async (request, response) => {
     const id = request.query.id;
     const result = await getPetById(id);
+
     return response.status(200).send(result);
   })
 );
@@ -297,6 +395,147 @@ app.get(
 //     i++;
 //   }
 // };
+
+const catProducts = [
+  {
+    title: "Brit Care Adult Activity Support sausas maistas katėms, 400g",
+    price: 1.29,
+    category: 1,
+    manufacturer: 1,
+    image: "/assets/shop/adult.webp",
+  },
+  {
+    title:
+      "Sausas kačių maistas Brit Care Healthy Growth & Development Kitten, vištiena/kalakutiena, 2 kg",
+    price: 9.59,
+    category: 1,
+    manufacturer: 1,
+    image: "/assets/shop/kitten.webp",
+  },
+  {
+    title: "Brit Care Hair Care begrūdis maistas katėms, 2 kg",
+    price: 12.1,
+    category: 1,
+    manufacturer: 1,
+    image: "/assets/shop/haircare.jpg",
+  },
+  {
+    title: "Sausas ėdalas katėms Brit Care Cat GF Indoor Anti-stress, 0.4 kg",
+    price: 2.99,
+    category: 1,
+    manufacturer: 1,
+    image: "/assets/shop/indoor.jpg",
+  },
+  {
+    title:
+      "Sausas kačių maistas Brit Care Large Cats Power & Vitality, vištiena/antiena, 7 kg",
+    price: 43.6,
+    category: 1,
+    manufacturer: 1,
+    image: "/assets/shop/large-cats.jpg",
+  },
+  {
+    title: "Kačių maistas Brit Care Cat Sterilized Urinary Health 2kg",
+    price: 11.19,
+    category: 1,
+    manufacturer: 1,
+    image: "/assets/shop/sterilized.webp",
+  },
+];
+
+const Products = [
+  {
+    title: "Sausas šunų maistas Josera Lamm & Reis, ėriena, 15 kg",
+    price: 50.99,
+    category: 2,
+    manufacturer: 2,
+    image: "/assets/shop/josera-lam.webp",
+  },
+  {
+    title: "Sausas šunų maistas Josera Balance, paukštiena, 15 kg",
+    price: 53.2,
+    category: 2,
+    manufacturer: 2,
+    image: "/assets/shop/josera-balance.webp",
+  },
+  {
+    title: "Sausas šunų maistas Josera JOS0252, paukštiena, 0.9 kg",
+    price: 3.99,
+    category: 2,
+    manufacturer: 2,
+    image: "/assets/shop/josera-festival.webp",
+  },
+  {
+    title: "Sausas šunų maistas Josera, paukštiena, 15 kg",
+    price: 60,
+    category: 2,
+    manufacturer: 2,
+    image: "/assets/shop/josera-sensi.webp",
+  },
+  {
+    title: "Sausas šunų maistas Josera Mini Junior, antiena, 15 kg",
+    price: 45,
+    category: 2,
+    manufacturer: 2,
+    image: "/assets/shop/josera-mini.webp",
+  },
+  {
+    title: "Sausas šunų maistas Josera Kids JOS0241, paukštiena, 0.9 kg",
+    price: 3.59,
+    category: 2,
+    manufacturer: 2,
+    image: "/assets/shop/josera-kids.webp",
+  },
+  {
+    title: "Pašaras žirgams Josera Mash Rapid, 15 kg",
+    price: 40,
+    category: 4,
+    manufacturer: 2,
+    image: "/assets/shop/josera-mash.webp",
+  },
+  {
+    title: "Pašaras žirgams Josera Mineralcobs, 3 kg",
+    price: 16.57,
+    category: 4,
+    manufacturer: 2,
+    image: "/assets/shop/josera-mineral.webp",
+  },
+  {
+    title: "Lesalas vidutinėms papūgoms Wellness Uccelli Australiani 2x850 g",
+    price: 12,
+    category: 3,
+    manufacturer: 3,
+    image: "/assets/shop/wellness-vidut.jpg",
+  },
+  {
+    title: "Lesalas banguotoms papūgėlėms Wellness Cocorite 2x1 kg",
+    price: 13.99,
+    category: 3,
+    manufacturer: 3,
+    image: "/assets/shop/wellness-banguot.jpg",
+  },
+  {
+    title: "Lesalas didžiosioms papūgoms Wellness Pappagalli 2x750 g",
+    price: 12.99,
+    category: 3,
+    manufacturer: 3,
+    image: "/assets/shop/wellness-didz.jpg",
+  },
+];
+
+// const addProducts = async (productsData) => {
+//   let connection;
+
+//   connection = await pool.getConnection();
+//   const query = `INSERT INTO Products (title,price,category,manufacturer, imagePath) VALUES (?,?,?,?,?)`;
+//   productsData.forEach(async (product) => {
+//     const values = Object.values(product);
+//     await connection.query(query, values);
+//   });
+//   connection.end();
+// };
+
+// addProducts(Products);
 
 app.use(errorHandler);
 ViteExpress.listen(app, 3000, () => console.log("Server is listening..."));

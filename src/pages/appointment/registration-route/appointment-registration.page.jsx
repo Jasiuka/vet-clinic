@@ -4,7 +4,7 @@ import {
   ExtractDate,
   RemoveSeconds,
 } from "../../../utils/helper-fncs";
-import { useGetAppointmentByIdQuery } from "../../../services/appointments";
+import { useGetAppointmentByIdQuery } from "../../../services/api-slice";
 import { useState, useEffect } from "react";
 import "./appointment-registration.style.css";
 import NoRegForm from "./no-reg-form.component";

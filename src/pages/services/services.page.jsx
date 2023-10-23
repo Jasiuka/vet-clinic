@@ -1,16 +1,16 @@
 import SERVICES_DATA from "../../data/services-data.json";
 import ServicesItem from "./services-item.component";
-import FilterButton from "./filter-button.component";
+
 import CatIcon from "./type-icons/cat-icon";
 import DogIcon from "./type-icons/dog-icon";
 import BirdIcon from "./type-icons/bird-icon";
 import OthersIcon from "./type-icons/other-icon";
 import "./services.style.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Filter from "../../components/filter.component";
 export const ServicesPage = () => {
   const [activeFilters, setActiveFilters] = useState(new Set());
   const [searchQuery, setSearchQuery] = useState("");
-  const [isSearchOnFocus, setIsSearchOnFocus] = useState(false);
 
   const handleFilterClick = (index) => {
     if (activeFilters.has(index)) {
@@ -28,28 +28,9 @@ export const ServicesPage = () => {
     setActiveFilters(newSet);
   };
 
-  const filterButtons = [
-    {
-      id: 1,
-      whatFor: "Katės",
-      icon: <CatIcon className={"filter-icon"} />,
-    },
-    {
-      id: 2,
-      whatFor: "Šunys",
-      icon: <DogIcon className={"filter-icon"} />,
-    },
-    {
-      id: 3,
-      whatFor: "Paukščiai",
-      icon: <BirdIcon className={"filter-icon"} />,
-    },
-    {
-      id: 4,
-      whatFor: "Kiti",
-      icon: <OthersIcon className={"filter-icon"} />,
-    },
-  ];
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
 
   const serviceItemWithAddedIcons = SERVICES_DATA.services.map((service) => {
     let newArray = [];
@@ -98,48 +79,14 @@ export const ServicesPage = () => {
         Mūsų klinikoje teikiamos paslaugos
       </h2>
       <div className="services">
-        <div className="filter for-observer">
-          <div className="filter__wrapper">
-            <p>Kam paslauga skirta: </p>
-            {filterButtons.map(({ id, whatFor, icon }) => {
-              return (
-                <FilterButton
-                  key={whatFor}
-                  icon={icon}
-                  whatFor={whatFor}
-                  index={id}
-                  handleClick={handleFilterClick}
-                  isActive={activeFilters.has(id)}
-                />
-              );
-            })}
-            {activeFilters.size > 0 && (
-              <button className="filter-reset" onClick={handleReset}>
-                Išvalyti
-              </button>
-            )}
-          </div>
-          <div className="filter-search__wrapper">
-            <label
-              htmlFor="search"
-              className={`filter-search__label ${
-                searchQuery || isSearchOnFocus
-                  ? "filter-search__label-moved"
-                  : ""
-              }`}
-            >
-              Paslaugos paieška
-            </label>
-            <input
-              id="search"
-              className="filter-search__input"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onFocus={() => setIsSearchOnFocus(true)}
-              onBlur={() => setIsSearchOnFocus(false)}
-            />
-          </div>
-        </div>
+        <Filter
+          handleFilterClick={handleFilterClick}
+          handleReset={handleReset}
+          filterText={"Kam paslauga skirta"}
+          activeFilters={activeFilters}
+          handleSearch={handleSearch}
+          searchQuery={searchQuery}
+        />
         <div className="services-items">
           {filteredServices.map(({ name, description, price, forType }) => {
             return (

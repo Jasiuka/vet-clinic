@@ -3,7 +3,7 @@ import "react-calendar/dist/Calendar.css";
 import "./appointment.style.css";
 import { useState } from "react";
 import AppointmentCard from "./appointment-card.component";
-import { useGetAppointmentsByDateRangeQuery } from "../../services/appointments";
+import { useGetAppointmentsByDateRangeQuery } from "../../services/api-slice";
 import {
   ChangeDateFormat,
   ExtractDate,
@@ -77,7 +77,10 @@ export const AppointmentPage = () => {
             minDate={new Date()}
             onChange={(e) => onChangeHandler(e)}
           />
-          <button className="appointment-button pink-button" onClick={handleSearchSubmit}>
+          <button
+            className="appointment-button pink-button"
+            onClick={handleSearchSubmit}
+          >
             Ieškoti
           </button>
         </div>

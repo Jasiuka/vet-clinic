@@ -1,4 +1,4 @@
-import { useGetPetHistoryByIdQuery } from "../../../../services/appointments";
+import { useGetPetHistoryByIdQuery } from "../../../../services/api-slice";
 import { ChangeDateFormat, ExtractDate } from "../../../../utils/helper-fncs";
 import { useState, useEffect } from "react";
 export const PetHistory = ({ id }) => {
@@ -12,18 +12,22 @@ export const PetHistory = ({ id }) => {
     <div className="pet-page__history">
       <h2 className="pet-page__box-heading">Istorija</h2>
       <div className="pet-page__history-items">
-        {history.map((historyItem, index) => {
-          return (
-            <div key={index} className="pet-page__history-item">
-              <p className="pet-page__history-item-value">
-                {historyItem.diagnosisDescription}
-              </p>
-              <p className="pet-page__history-item-value">
-                {ExtractDate(ChangeDateFormat(historyItem.diagnosisDate))}
-              </p>
-            </div>
-          );
-        })}
+        {history[0]?.title ? (
+          history.map((historyItem, index) => {
+            return (
+              <div key={index} className="pet-page__history-item">
+                <p className="pet-page__history-item-value">
+                  {historyItem.diagnosisDescription}
+                </p>
+                <p className="pet-page__history-item-value">
+                  {ExtractDate(ChangeDateFormat(historyItem.diagnosisDate))}
+                </p>
+              </div>
+            );
+          })
+        ) : (
+          <p>Įrašų nėra</p>
+        )}
       </div>
     </div>
   );

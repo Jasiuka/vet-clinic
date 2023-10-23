@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useGetPetDocumentsByIdQuery } from "../../../../services/appointments";
+import { useGetPetDocumentsByIdQuery } from "../../../../services/api-slice";
 import "./pet-page.style.css";
 import PetInfo from "./pet-info.component";
 import PetDocument from "./pet-document.component";
@@ -9,6 +9,7 @@ export const PetPage = () => {
   const { name, id } = useParams();
   const { data, error, isLoading } = useGetPetDocumentsByIdQuery(id);
   const [documents, setDocuments] = useState([]);
+  console.log(data);
 
   useEffect(() => {
     if (data) setDocuments(data);
@@ -25,7 +26,7 @@ export const PetPage = () => {
         <div className="pet-page__documents">
           <h2 className="pet-page__box-heading">Dokumentai</h2>
           <div className="pet-page__documents-items">
-            {data ? (
+            {data && data[0].title ? (
               documents.map((document, index) => (
                 <PetDocument key={index} document={document} />
               ))

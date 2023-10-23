@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 
 export const FormInputBox = ({
@@ -9,6 +9,7 @@ export const FormInputBox = ({
   isDisabled = false,
   isValue = "",
   uniqueClassName,
+  isRequired,
 }) => {
   const [isLabelMoved, setIsLabelMoved] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -34,7 +35,7 @@ export const FormInputBox = ({
             : ""
         }`}
       >
-        {label}
+        {`${label}`} {isRequired && <span className="is-required">*</span>}
       </label>
     </div>
   );
@@ -48,6 +49,7 @@ FormInputBox.propTypes = {
   isDisabled: PropTypes.bool,
   isValue: PropTypes.string,
   uniqueClassName: PropTypes.string,
+  isRequired: PropTypes.bool,
 };
 
 export default FormInputBox;

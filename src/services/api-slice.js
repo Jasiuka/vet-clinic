@@ -11,6 +11,9 @@ export const appointmentsApi = createApi({
     getAppointmentById: builder.query({
       query: (id) => `appointments/id?id=${id}`,
     }),
+    getAllUserPets: builder.query({
+      query: (userId) => `user/pets?id=${userId}`,
+    }),
     getPetById: builder.query({
       query: (id) => `pets/id?id=${id}`,
     }),
@@ -30,6 +33,12 @@ export const appointmentsApi = createApi({
     getAllAppointments: builder.query({
       query: () => `admin/appointments`,
     }),
+    getAllProducts: builder.query({
+      query: () => `shop/products`,
+    }),
+    getAllProductsAdmin: builder.query({
+      query: () => `admin/products`,
+    }),
   }),
 });
 
@@ -39,7 +48,10 @@ export const {
   useGetPetByIdQuery,
   useGetPetDocumentsByIdQuery,
   useGetPetHistoryByIdQuery,
+  useGetAllUserPetsQuery,
   useLoginQuery,
   useGetAllEmployeesQuery,
   useGetAllAppointmentsQuery,
+  useGetAllProductsQuery,
+  useGetAllProductsAdminQuery,
 } = appointmentsApi;

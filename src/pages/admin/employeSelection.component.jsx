@@ -1,4 +1,4 @@
-import { useGetAllEmployeesQuery } from "../../services/appointments";
+import { useGetAllEmployeesQuery } from "../../services/api-slice";
 import Table from "./table.component";
 export const EmployeeSelection = () => {
   const { data, error, isLoading } = useGetAllEmployeesQuery();

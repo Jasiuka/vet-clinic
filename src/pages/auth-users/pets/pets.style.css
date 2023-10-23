@@ -1,8 +1,12 @@
+.pets {
+  transition: var(--main-transition);
+}
 .pets-inner {
   padding: var(--section-padding-top-bottom) var(--side-paddings);
   display: grid;
   gap: var(--gap-lg);
   grid-template-columns: repeat(4, 1fr);
+  border-bottom: 3px solid #fff;
 }
 
 .pets__pet-card,
@@ -53,3 +57,35 @@
 }
 
 /* Pet page */
+
+/* NEW PET FORM */
+
+.new-pet-form {
+  width: 30%;
+  max-width: 30%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--gap-lg) + var(--gap-lg));
+  padding: var(--el-pd-lg);
+}
+
+.new-pet-form .form-container:first-of-type {
+  margin-bottom: 0;
+}
+
+.new-pet-form .pink-button {
+  text-transform: uppercase;
+  font-size: var(--font-sm-to-md);
+}
+
+.new-pet-form--heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-md);
+}
+
+.new-pet-form .new-pet-form--heading span {
+  font-weight: 500;
+}

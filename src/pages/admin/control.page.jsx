@@ -3,6 +3,7 @@ import "./control.style.css";
 import { useState } from "react";
 import EmployeeSelection from "./employeSelection.component";
 import AppointmentsSelection from "./appointmentsSelection.component";
+import ProductsSelection from "./productsSelection.component";
 export const Control = () => {
   const [selection, setSelection] = useState("");
 
@@ -19,11 +20,13 @@ export const Control = () => {
           <option>Pasirinkite sritį</option>
           <option value={"employees"}>Darbuotojai</option>
           <option value={"appointments"}>Vizitai</option>
+          <option value={"products"}>Prekės</option>
         </select>
       </div>
       <div className="control-table">
         {selection === "employees" && <EmployeeSelection />}
         {selection === "appointments" && <AppointmentsSelection />}
+        {selection === "products" && <ProductsSelection />}
       </div>
     </main>
   );

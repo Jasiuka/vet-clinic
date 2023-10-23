@@ -1,4 +1,4 @@
-import { useGetPetByIdQuery } from "../../../../services/appointments";
+import { useGetPetByIdQuery } from "../../../../services/api-slice";
 import { useEffect } from "react";
 import { useState } from "react";
 import { ChangeDateFormat, ExtractDate } from "../../../../utils/helper-fncs";
@@ -68,11 +68,19 @@ export const PetInfo = ({ id }) => {
       </div>
       <div className="pet-info__row-wrapper">
         <h3 className="pet-info__heading">Paskutinis vizitas</h3>
-        <h4 className="pet-info__value">{petDetails?.lastVisit}</h4>
+        <h4 className="pet-info__value">
+          {petDetails?.lastVisit === "Invalid"
+            ? "Vizitų nėra"
+            : petDetails?.lastVisit}
+        </h4>
       </div>
       <div className="pet-info__row-wrapper">
         <h3 className="pet-info__heading">Sekantis vizitas</h3>
-        <h4 className="pet-info__value">{petDetails?.nextVisit}</h4>
+        <h4 className="pet-info__value">
+          {petDetails?.nextVisit === "Invalid"
+            ? "Vizitų nėra"
+            : petDetails?.nextVisit}
+        </h4>
       </div>
     </>
   );

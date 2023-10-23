@@ -3,7 +3,7 @@ import userReducer from "./slices/user-slice";
 import appointmentReducer from "./slices/appointment-slice";
 import cartReducer from "./cart/cart.reducer";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
-import { appointmentsApi } from "../services/appointments";
+import { appointmentsApi } from "../services/api-slice";
 
 export const store = configureStore({
   reducer: {

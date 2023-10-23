@@ -20,6 +20,7 @@ export const Header = () => {
   const user = useSelector((state) => state.user);
   const itemsInCart = useSelector((state) => state.cart.cartItems.length);
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
+  console.log(user);
 
   // Redux
 
@@ -172,7 +173,7 @@ export const Header = () => {
             <ul>
               {user ? (
                 <ProfileDropdown
-                  isAdmin={user[0].userRole}
+                  isAdmin={user.userRole}
                   userEmail={user.email}
                   isOpen={isDropdownOpen}
                   handleDropdownClick={handleDropdownClick}

@@ -4,7 +4,7 @@ import LoginForm from "./log-in.component";
 import SignupForm from "./sign-up.component";
 import { useSearchParams } from "react-router-dom";
 import { useNavigate, Link } from "react-router-dom";
-import { useLoginQuery } from "../../services/appointments";
+import { useLoginQuery } from "../../services/api-slice";
 
 // Redux
 import { useDispatch } from "react-redux";
