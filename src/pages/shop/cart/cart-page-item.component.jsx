@@ -11,12 +11,12 @@ export const CheckoutCartItem = ({ itemUrl, itemTitle, quantity, itemId }) => {
   const handleIncrement = (id) => dispatch(incrementItemQuantity(id));
   const handleDecrement = (id) => dispatch(decrementItemQuantity(id));
   return (
-    <div className="checkout__cart-item">
-      <img className="checkout__cart-item--image" src={itemUrl} />
-      <div className="checkout__cart-item--details">
-        <h2 className="checkout__cart-item--title">{itemTitle}</h2>
+    <div className="cart-page__cart-item">
+      <img className="cart-page__cart-item--image" src={itemUrl} />
+      <div className="cart-page__cart-item--details">
+        <h2 className="cart-page__cart-item--title">{itemTitle}</h2>
       </div>
-      <div className="checkout__cart-item--quantity-box">
+      <div className="cart-page__cart-item--quantity-box">
         <button onClick={() => handleDecrement(itemId)} title="Atimti">
           -
         </button>

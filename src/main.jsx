@@ -30,8 +30,9 @@ import AppointmentPage from "./pages/appointment/appointment.page.jsx";
 import ShopPage from "./pages/shop/shop.page.jsx";
 import Pets from "./pages/auth-users/pets/pets.page.jsx";
 import PetPage from "./pages/auth-users/pets/pet-page/pet-page.jsx";
-import Checkout from "./pages/shop/checkout/checkout.page.jsx";
+import CartPage from "./pages/shop/cart/cart.page.jsx";
 import Control from "./pages/admin/control.page.jsx";
+import Checkout from "./pages/shop/checkout/checkout.page.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -129,6 +130,14 @@ const router = createBrowserRouter([
   },
   {
     path: "/krepselis",
+    element: (
+      <Layout>
+        <CartPage />
+      </Layout>
+    ),
+  },
+  {
+    path: "/uzsakymas-informacija",
     element: (
       <Layout>
         <Checkout />
