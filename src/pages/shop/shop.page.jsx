@@ -46,6 +46,7 @@ export const ShopPage = () => {
           searchQuery={searchQuery}
           filterText={"Prekės kategorija"}
           activeFilters={activeFilters}
+          searchPlaceholder={"Prekės paieška"}
         />
         <div className="shop-inner--products">
           {filteredProducts?.map(

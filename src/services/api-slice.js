@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const appointmentsApi = createApi({
+export const apiSlice = createApi({
   reducerPath: "appointmentsApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api/v1/" }),
   endpoints: (builder) => ({
@@ -39,6 +39,9 @@ export const appointmentsApi = createApi({
     getAllProductsAdmin: builder.query({
       query: () => `admin/products`,
     }),
+    getAllServices: builder.query({
+      query: () => `services`,
+    }),
   }),
 });
 
@@ -54,4 +57,5 @@ export const {
   useGetAllAppointmentsQuery,
   useGetAllProductsQuery,
   useGetAllProductsAdminQuery,
-} = appointmentsApi;
+  useGetAllServicesQuery,
+} = apiSlice;

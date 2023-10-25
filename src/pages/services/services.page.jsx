@@ -1,4 +1,3 @@
-import SERVICES_DATA from "../../data/services-data.json";
 import ServicesItem from "./services-item.component";
 
 import CatIcon from "./type-icons/cat-icon";
@@ -8,9 +7,13 @@ import OthersIcon from "./type-icons/other-icon";
 import "./services.style.css";
 import { useState } from "react";
 import Filter from "../../components/filter.component";
+import { useGetAllServicesQuery } from "../../services/api-slice";
 export const ServicesPage = () => {
   const [activeFilters, setActiveFilters] = useState(new Set());
   const [searchQuery, setSearchQuery] = useState("");
+  const { data, error, isLoading } = useGetAllServicesQuery();
+
+  const fetchedData = data?.map((object) => ({ ...object }));
 
   const handleFilterClick = (index) => {
     if (activeFilters.has(index)) {
@@ -32,44 +35,46 @@ export const ServicesPage = () => {
     setSearchQuery(query);
   };
 
-  const serviceItemWithAddedIcons = SERVICES_DATA.services.map((service) => {
+  const serviceItemWithAddedIcons = fetchedData?.map((service) => {
     let newArray = [];
-    service.type.forEach((type) => {
-      if (type === 1) {
+    service.categoryIcons = [];
+    delete service.num;
+    service.categories.forEach((category) => {
+      if (category === 1) {
         newArray = [
           ...newArray,
           <CatIcon key={5} className={"service-for__icon"} />,
         ];
       }
-      if (type === 2) {
+      if (category === 2) {
         newArray = [
           ...newArray,
           <DogIcon key={6} className={"service-for__icon"} />,
         ];
       }
-      if (type === 3) {
+      if (category === 3) {
         newArray = [
           ...newArray,
           <BirdIcon key={7} className={"service-for__icon"} />,
         ];
       }
-      if (type === 4) {
+      if (category === 4) {
         newArray = [
           ...newArray,
           <OthersIcon key={8} className={"service-for__icon"} />,
         ];
       }
     });
-    service.forType = newArray;
+    service.categoryIcons = newArray;
     return service;
   });
 
-  const filteredServices = serviceItemWithAddedIcons.filter((service) =>
-    service.type.some((type) =>
+  const filteredServices = serviceItemWithAddedIcons?.filter((service) =>
+    service.categories.some((category) =>
       activeFilters.size === 0
-        ? true && service.name.toLowerCase().includes(searchQuery)
-        : activeFilters.has(type) &&
-          service.name.toLowerCase().includes(searchQuery)
+        ? true && service.title.toLowerCase().includes(searchQuery)
+        : activeFilters.has(category) &&
+          service.title.toLowerCase().includes(searchQuery)
     )
   );
 
@@ -86,19 +91,22 @@ export const ServicesPage = () => {
           activeFilters={activeFilters}
           handleSearch={handleSearch}
           searchQuery={searchQuery}
+          searchPlaceholder={"Paslaugos paieška"}
         />
         <div className="services-items">
-          {filteredServices.map(({ name, description, price, forType }) => {
-            return (
-              <ServicesItem
-                key={name}
-                description={description}
-                price={price}
-                name={name}
-                forType={forType}
-              />
-            );
-          })}
+          {filteredServices?.map(
+            ({ title, serviceDescription, price, categoryIcons }) => {
+              return (
+                <ServicesItem
+                  key={title}
+                  description={serviceDescription}
+                  price={price}
+                  name={title}
+                  forType={categoryIcons}
+                />
+              );
+            }
+          )}
         </div>
       </div>
     </main>

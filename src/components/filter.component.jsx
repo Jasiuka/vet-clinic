@@ -13,6 +13,7 @@ export const Filter = ({
   filterText,
   handleSearch,
   searchQuery,
+  searchPlaceholder,
 }) => {
   //   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchOnFocus, setIsSearchOnFocus] = useState(false);
@@ -69,7 +70,7 @@ export const Filter = ({
             searchQuery || isSearchOnFocus ? "filter-search__label-moved" : ""
           }`}
         >
-          Paslaugos paieška
+          {searchPlaceholder}
         </label>
         <input
           id="search"
@@ -85,11 +86,12 @@ export const Filter = ({
 };
 
 Filter.propTypes = {
-  activeFilters: PropTypes.array,
+  activeFilters: PropTypes.object,
   handleFilterClick: PropTypes.func,
   handleReset: PropTypes.func,
   filterText: PropTypes.string,
   handleSearch: PropTypes.func,
   searchQuery: PropTypes.string,
+  searchPlaceholder: PropTypes.string,
 };
 export default Filter;

@@ -180,6 +180,15 @@ const getAllProducts = async () => {
   return results;
 };
 
+const getAllServices = async () => {
+  let connection;
+  const query = `SELECT services.id,services.title,services.serviceDescription,services.price, servicesCategories.num, servicesCategories.categoryName FROM Services LEFT JOIN CategoriesAndServicesJunction ON serviceID = services.id LEFT JOIN servicesCategories ON categoryID = servicesCategories.id `;
+  connection = await pool.getConnection();
+  const results = await connection.query(query);
+  connection.end();
+  return results;
+};
+
 // Adds day name to the data object which is sent to FE
 const addDayName = (dayNumber) => {
   const dayNamesArray = [
@@ -267,6 +276,49 @@ app.get(
 
 // SHOP
 
+// SERVICES
+
+// Fixes services data array. It stores for every service type numbers into one array
+const fixDataArray = (data) => {
+  if (!data || data.length == 0) return;
+  const newArray = [];
+  data.forEach((object) => {
+    const isServiceIdAdded = newArray.find(
+      (arrayObject) => arrayObject.id === object.id
+    );
+
+    if (isServiceIdAdded) {
+      const indexOfServiceAdded = newArray.findIndex(
+        (arrayObject) => arrayObject.id === object.id
+      );
+      newArray[indexOfServiceAdded] = {
+        ...newArray[indexOfServiceAdded],
+        categories: [...newArray[indexOfServiceAdded].categories, object.num],
+      };
+    }
+
+    if (!isServiceIdAdded) {
+      newArray.push({
+        ...object,
+        categories: [object.num],
+      });
+    }
+  });
+
+  return newArray;
+};
+
+app.get(
+  "/api/v1/services",
+  tryCatch(async (request, response) => {
+    const allServices = await getAllServices();
+    const fixedArray = fixDataArray(allServices);
+    return response.status(200).send(fixedArray);
+  })
+);
+
+// SERVICES
+
 app.get(
   "/api/v1/user/login/",
   tryCatch(async (request, response) => {
@@ -306,9 +358,7 @@ app.get(
   "/api/v1/pets/history/id",
   tryCatch(async (request, response) => {
     const id = request.query.id;
-
     const result = await getPetHistoryById(id);
-
     return response.status(200).send(result);
   })
 );
@@ -317,9 +367,7 @@ app.get(
   "/api/v1/pets/documents/id",
   tryCatch(async (request, response) => {
     const id = request.query.id;
-
     const result = await getPetDocumentsById(id);
-
     return response.status(200).send(result);
   })
 );
@@ -329,7 +377,6 @@ app.get(
   tryCatch(async (request, response) => {
     const id = request.query.id;
     const result = await getPetById(id);
-
     return response.status(200).send(result);
   })
 );
@@ -396,132 +443,34 @@ app.get(
 //   }
 // };
 
-const catProducts = [
-  {
-    title: "Brit Care Adult Activity Support sausas maistas katėms, 400g",
-    price: 1.29,
-    category: 1,
-    manufacturer: 1,
-    image: "/assets/shop/adult.webp",
-  },
-  {
-    title:
-      "Sausas kačių maistas Brit Care Healthy Growth & Development Kitten, vištiena/kalakutiena, 2 kg",
-    price: 9.59,
-    category: 1,
-    manufacturer: 1,
-    image: "/assets/shop/kitten.webp",
-  },
-  {
-    title: "Brit Care Hair Care begrūdis maistas katėms, 2 kg",
-    price: 12.1,
-    category: 1,
-    manufacturer: 1,
-    image: "/assets/shop/haircare.jpg",
-  },
-  {
-    title: "Sausas ėdalas katėms Brit Care Cat GF Indoor Anti-stress, 0.4 kg",
-    price: 2.99,
-    category: 1,
-    manufacturer: 1,
-    image: "/assets/shop/indoor.jpg",
-  },
-  {
-    title:
-      "Sausas kačių maistas Brit Care Large Cats Power & Vitality, vištiena/antiena, 7 kg",
-    price: 43.6,
-    category: 1,
-    manufacturer: 1,
-    image: "/assets/shop/large-cats.jpg",
-  },
-  {
-    title: "Kačių maistas Brit Care Cat Sterilized Urinary Health 2kg",
-    price: 11.19,
-    category: 1,
-    manufacturer: 1,
-    image: "/assets/shop/sterilized.webp",
-  },
-];
+const addToServiceCategoriesJunctionTable = async (data) => {
+  let connection;
 
-const Products = [
-  {
-    title: "Sausas šunų maistas Josera Lamm & Reis, ėriena, 15 kg",
-    price: 50.99,
-    category: 2,
-    manufacturer: 2,
-    image: "/assets/shop/josera-lam.webp",
-  },
-  {
-    title: "Sausas šunų maistas Josera Balance, paukštiena, 15 kg",
-    price: 53.2,
-    category: 2,
-    manufacturer: 2,
-    image: "/assets/shop/josera-balance.webp",
-  },
-  {
-    title: "Sausas šunų maistas Josera JOS0252, paukštiena, 0.9 kg",
-    price: 3.99,
-    category: 2,
-    manufacturer: 2,
-    image: "/assets/shop/josera-festival.webp",
-  },
-  {
-    title: "Sausas šunų maistas Josera, paukštiena, 15 kg",
-    price: 60,
-    category: 2,
-    manufacturer: 2,
-    image: "/assets/shop/josera-sensi.webp",
-  },
-  {
-    title: "Sausas šunų maistas Josera Mini Junior, antiena, 15 kg",
-    price: 45,
-    category: 2,
-    manufacturer: 2,
-    image: "/assets/shop/josera-mini.webp",
-  },
-  {
-    title: "Sausas šunų maistas Josera Kids JOS0241, paukštiena, 0.9 kg",
-    price: 3.59,
-    category: 2,
-    manufacturer: 2,
-    image: "/assets/shop/josera-kids.webp",
-  },
-  {
-    title: "Pašaras žirgams Josera Mash Rapid, 15 kg",
-    price: 40,
-    category: 4,
-    manufacturer: 2,
-    image: "/assets/shop/josera-mash.webp",
-  },
-  {
-    title: "Pašaras žirgams Josera Mineralcobs, 3 kg",
-    price: 16.57,
-    category: 4,
-    manufacturer: 2,
-    image: "/assets/shop/josera-mineral.webp",
-  },
-  {
-    title: "Lesalas vidutinėms papūgoms Wellness Uccelli Australiani 2x850 g",
-    price: 12,
-    category: 3,
-    manufacturer: 3,
-    image: "/assets/shop/wellness-vidut.jpg",
-  },
-  {
-    title: "Lesalas banguotoms papūgėlėms Wellness Cocorite 2x1 kg",
-    price: 13.99,
-    category: 3,
-    manufacturer: 3,
-    image: "/assets/shop/wellness-banguot.jpg",
-  },
-  {
-    title: "Lesalas didžiosioms papūgoms Wellness Pappagalli 2x750 g",
-    price: 12.99,
-    category: 3,
-    manufacturer: 3,
-    image: "/assets/shop/wellness-didz.jpg",
-  },
-];
+  connection = await pool.getConnection();
+  const query = `INSERT INTO CategoriesAndServicesJunction (serviceID,categoryID) VALUES (?,?)`;
+  data.forEach((object, index) =>
+    object.type.forEach(async (categoryID) => {
+      const values = [index + 1, categoryID];
+      await connection.query(query, values);
+    })
+  );
+  connection.end();
+};
+
+// addToServiceCategoriesJunctionTable(servicesCats);
+
+const addServices = async (services) => {
+  let connection;
+  connection = await pool.getConnection();
+  const query = `INSERT INTO Services (title,serviceDescription,price) VALUES (?,?,?)`;
+  services.forEach(async (service) => {
+    const values = Object.values(service);
+    await connection.query(query, values);
+  });
+  connection.end();
+};
+
+// addServices(servicesData);
 
 // const addProducts = async (productsData) => {
 //   let connection;

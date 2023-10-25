@@ -2,12 +2,14 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import {
   removeCartItem,
-  addItemToCart,
+  incrementItemQuantity,
+  decrementItemQuantity,
 } from "../../../store/cart/cart.reducer";
 export const CheckoutCartItem = ({ itemUrl, itemTitle, quantity, itemId }) => {
   const dispatch = useDispatch();
   const handleRemoveClick = (id) => dispatch(removeCartItem(id));
-  const handleIncrement = (id) => dispatch(addItemToCart(id));
+  const handleIncrement = (id) => dispatch(incrementItemQuantity(id));
+  const handleDecrement = (id) => dispatch(decrementItemQuantity(id));
   return (
     <div className="checkout__cart-item">
       <img className="checkout__cart-item--image" src={itemUrl} />
@@ -15,11 +17,18 @@ export const CheckoutCartItem = ({ itemUrl, itemTitle, quantity, itemId }) => {
         <h2 className="checkout__cart-item--title">{itemTitle}</h2>
       </div>
       <div className="checkout__cart-item--quantity-box">
-        <button title="Atimti">-</button>
+        <button onClick={() => handleDecrement(itemId)} title="Atimti">
+          -
+        </button>
         <p>{quantity}</p>
-        <button title="Pridėti">+</button>
+        <button onClick={() => handleIncrement(itemId)} title="Pridėti">
+          +
+        </button>
       </div>
-      <button onClick={handleRemoveClick} className="Panaikinti prekę">
+      <button
+        onClick={() => handleRemoveClick(itemId)}
+        className="Panaikinti prekę"
+      >
         X
       </button>
     </div>

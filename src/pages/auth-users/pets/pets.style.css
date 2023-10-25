@@ -68,6 +68,10 @@
   flex-direction: column;
   gap: calc(var(--gap-lg) + var(--gap-lg));
   padding: var(--el-pd-lg);
+  animation: showForm 1s ease forwards;
+  transition: var(--main-transition);
+  transform: translateX(100%);
+  opacity: 0;
 }
 
 .new-pet-form .form-container:first-of-type {
@@ -88,4 +92,11 @@
 
 .new-pet-form .new-pet-form--heading span {
   font-weight: 500;
+}
+
+@keyframes showForm {
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
