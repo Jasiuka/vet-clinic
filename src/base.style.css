@@ -23,13 +23,14 @@
   --el-pd-bg: 1.5rem;
   --el-pd-lg: 2rem;
   --section-padding-top-bottom: clamp(2rem, 5vw, 6.25rem);
-  --page-heading-padding: 2rem 5rem;
+  --page-heading-padding: 2rem var(--side-paddings);
   /* COLORS */
   --accent-color: #f89fbe;
   --dark-grey: #212529;
   --light-grey: #e9ecef;
   --light-dark-grey: #798087;
   --hover-light-pink: rgb(238, 238, 238);
+  --link-blue: #b3c7f4;
   /* TRANSITION */
   --main-transition: all 0.3s ease;
   /* ICONS */

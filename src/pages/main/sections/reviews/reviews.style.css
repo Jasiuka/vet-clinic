@@ -68,7 +68,7 @@
 
 .reviews__paws {
   display: flex;
-  gap: 0.6rem;
+  gap: calc(var(--gap-sm) - 0.4rem);
   align-items: center;
 }
 

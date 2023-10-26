@@ -4,11 +4,7 @@ import { Link } from "react-router-dom";
 import "./cart.style.css";
 export const CartPage = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
-
-  const totalSum = cartItems?.reduce(
-    (ac, cartItem) => ac + cartItem?.price * cartItem?.quantity,
-    0
-  );
+  const cartTotal = useSelector((state) => state.cart.total);
 
   return (
     <main className="cart-page">
@@ -34,7 +30,7 @@ export const CartPage = () => {
             <div className="cart-page__side">
               <div className="cart-page__side-contents">
                 <h3>Bendra kaina</h3>
-                <p className="cart-page-total">{totalSum.toFixed(2)}€</p>
+                <p className="cart-page-total">{cartTotal}€</p>
                 <Link
                   to={"/uzsakymas-informacija"}
                   className="cart-page-proceed"

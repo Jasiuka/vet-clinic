@@ -16,6 +16,10 @@ export const ProfileDropdown = ({ isOpen, handleDropdownClick, isAdmin }) => {
             <>
               <Link to={"/valdymas"}>Valdymas</Link>
             </>
+          ) : isAdmin === 3 ? (
+            <>
+              <Link to={"/funkcijos"}>Funkcijos</Link>
+            </>
           ) : (
             <>
               <Link to={"/mano-augintiniai"}>Mano augintiniai</Link>

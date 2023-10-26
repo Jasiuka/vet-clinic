@@ -137,7 +137,7 @@ const getPetHistoryById = async (id) => {
 
 const getUser = async (email) => {
   let connection;
-  const query = `SELECT clients.clientName, accounts.email,accounts.accountPassword,accounts.userRole, pets.id AS 'petID', pets.petName FROM clients LEFT JOIN accounts ON clients.account = accounts.id LEFT JOIN pets ON clients.id = pets.petOwner WHERE accounts.email ='${email}'`;
+  const query = `SELECT users.clientName, accounts.email,accounts.accountPassword,accounts.userRole, pets.id AS 'petID', pets.petName FROM users LEFT JOIN accounts ON users.account = accounts.id LEFT JOIN pets ON users.id = pets.petOwner WHERE accounts.email ='${email}'`;
   connection = await pool.getConnection();
   const results = await connection.query(query);
   connection.end();
