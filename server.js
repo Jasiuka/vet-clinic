@@ -262,6 +262,14 @@ app.get(
   })
 );
 
+app.get(
+  "/api/v1/admin/columns/tableName",
+  tryCatch(async (request, response) => {
+    const tableName = request.query.tableName;
+    console.log(tableName);
+  })
+);
+
 // ADMIN
 
 // SHOP

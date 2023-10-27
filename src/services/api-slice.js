@@ -42,6 +42,9 @@ export const apiSlice = createApi({
     getAllServices: builder.query({
       query: () => `services`,
     }),
+    getColumnNamesByTable: builder.query({
+      query: (tableName) => `admin/columns/tableName?tableName=${tableName}`,
+    }),
   }),
 });
 
@@ -58,4 +61,5 @@ export const {
   useGetAllProductsQuery,
   useGetAllProductsAdminQuery,
   useGetAllServicesQuery,
+  useGetColumnNamesByTableQuery,
 } = apiSlice;

@@ -56,6 +56,7 @@ export const Table = ({ data, tableName }) => {
           value={searchQuery}
         />
       </div>
+      <div className="table__add-new-form"></div>
       <table className="table">
         <thead className="table-head">
           <tr>

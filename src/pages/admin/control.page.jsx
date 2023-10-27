@@ -18,13 +18,13 @@ export const Control = () => {
         <h1 className="control-heading">Sistemos valdymas</h1>
         <select onChange={(e) => onChangeHandler(e)} className="control-select">
           <option>Pasirinkite sritį</option>
-          <option value={"employees"}>Darbuotojai</option>
+          <option value={"veterinarians"}>Veterinarai</option>
           <option value={"appointments"}>Vizitai</option>
           <option value={"products"}>Prekės</option>
         </select>
       </div>
       <div className="control-table">
-        {selection === "employees" && <EmployeeSelection />}
+        {selection === "veterinarians" && <EmployeeSelection />}
         {selection === "appointments" && <AppointmentsSelection />}
         {selection === "products" && <ProductsSelection />}
       </div>
