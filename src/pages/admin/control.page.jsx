@@ -14,7 +14,6 @@ export const Control = () => {
   return (
     <main className="control">
       <div className="control-heading-wrapper">
-        <Link to={"/"}>Į PAGRINDINĮ</Link>
         <h1 className="control-heading">Sistemos valdymas</h1>
         <select onChange={(e) => onChangeHandler(e)} className="control-select">
           <option>Pasirinkite sritį</option>

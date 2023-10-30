@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import Paws from "./paws.component";
-import { ChangeDateFormat, ExtractDate } from "../../../../utils/helper-fncs";
+import { FixDate } from "../../../../utils/helper-fncs";
 export const ReviewCard = ({ name, rating, reviewText, date, index }) => {
   return (
     <div className="reviews__review-card">
@@ -8,9 +8,7 @@ export const ReviewCard = ({ name, rating, reviewText, date, index }) => {
       <div className="reviews__review-card-bottom">
         <p className="reviews__review-card-name">{name}</p>
         <Paws key={index} rating={rating} />
-        <p className="reviews__review-card-date">
-          {ExtractDate(ChangeDateFormat(date))}
-        </p>
+        <p className="reviews__review-card-date">{FixDate(date)}</p>
       </div>
     </div>
   );

@@ -1,9 +1,5 @@
 import PropTypes from "prop-types";
-import {
-  ChangeDateFormat,
-  ExtractDate,
-  RemoveSeconds,
-} from "/src/utils/helper-fncs.js";
+import { RemoveSeconds, FixDate } from "/src/utils/helper-fncs.js";
 import { useEffect, useState } from "react";
 import EditIcon from "/src/components/icon-components/edit-icon.component.jsx";
 import DeleteIcon from "/src/components/icon-components/delete-icon.component.jsx";
@@ -20,7 +16,7 @@ export const Table = ({ data, tableName }) => {
     for (const [key, value] of Object.entries(dataObject)) {
       let temp = value;
       if (key.toLowerCase() === "data") {
-        temp = ExtractDate(ChangeDateFormat(value));
+        temp = FixDate(value);
       }
       if (key.toLowerCase() === "laikas") {
         temp = RemoveSeconds(value);
@@ -29,9 +25,6 @@ export const Table = ({ data, tableName }) => {
     }
     return fixedObject;
   };
-
-  //   Object.values(dataObject).some((value) =>
-  //   value.toString().includes(searchQuery)
 
   const searchedValues = data?.filter((dataObject) =>
     Object.values(dataObject).toString().includes(searchQuery)

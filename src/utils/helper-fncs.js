@@ -12,6 +12,11 @@ export const ExtractDate = (dateString) => {
   return dateSubString;
 };
 
+// Fixes date: 'converts to Lithuanian date format and returns just date without time'
+export const FixDate = (date) => {
+  return ExtractDate(ChangeDateFormat(date));
+};
+
 // Removes :00 (seconds) from time string 14:00:00 => 14:00;
 export const RemoveSeconds = (timeString) => {
   const newString = timeString.slice(0, timeString.length - 3);

@@ -33,10 +33,13 @@ import PetPage from "./pages/auth-users/pets/pet-page/pet-page.jsx";
 import CartPage from "./pages/shop/cart/cart.page.jsx";
 import Control from "./pages/admin/control.page.jsx";
 import Checkout from "./pages/shop/checkout/checkout.page.jsx";
+import VetAppointments from "./pages/vets/vet-appointments.page.jsx";
 
 // STRIPE
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import Orders from "./pages/auth-users/order.page.jsx";
+import { Header } from "./components/header/header.component.jsx";
 const stripePromise = loadStripe(
   "pk_test_51ELPw0GnhsO4RtFa7HIILjcjS8WMtFTtPk7NkTZJtQS4r4fySmUFsaQdNWS0WvcBrPygfHn2D97wgL1I9Wwnoaek00ATsqQQSM"
 );
@@ -155,7 +158,28 @@ const router = createBrowserRouter([
   },
   {
     path: "/valdymas",
-    element: <Control />,
+    element: (
+      <>
+        <Header />
+        <Control />
+      </>
+    ),
+  },
+  {
+    path: "/gydytojas/vizitai",
+    element: (
+      <Layout>
+        <VetAppointments />
+      </Layout>
+    ),
+  },
+  {
+    path: "/uzsakymai",
+    element: (
+      <Layout>
+        <Orders />
+      </Layout>
+    ),
   },
 ]);
 

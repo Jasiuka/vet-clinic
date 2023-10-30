@@ -26,12 +26,12 @@ export const ProductCard = ({ id, title, price, image }) => {
         <p className="shop__product-card--price">{`${price}€`}</p>
       </div>
       <div className="shop__product-card--hover-content">
-        <button
+        {/* <button
           title="Detaliau apie prekę"
           className="shop__product-card--button-more product-card-button"
         >
           Detaliau
-        </button>
+        </button> */}
         <button
           title="Pridėti prekę į krepšelį"
           onClick={handleToCartClick}

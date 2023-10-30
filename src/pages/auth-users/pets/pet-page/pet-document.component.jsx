@@ -1,6 +1,6 @@
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { ChangeDateFormat, ExtractDate } from "../../../../utils/helper-fncs";
+import { FixDate } from "../../../../utils/helper-fncs";
 export const PetDocument = ({ document: { sendDate, title, docUrl } }) => {
   return (
     <Link className="pet-page__documents-item" to={docUrl} target="_blank">
@@ -24,7 +24,7 @@ export const PetDocument = ({ document: { sendDate, title, docUrl } }) => {
           d="M16.33,59.78h16.2c3.53,0,6.17.83,7.94,2.51s2.63,4.08,2.63,7.18a9.71,9.71,0,0,1-2.88,7.47c-1.91,1.8-4.84,2.69-8.77,2.69H26.1V91.3H16.33V59.78ZM26.1,73.25h2.4a6.22,6.22,0,0,0,4-1,3.17,3.17,0,0,0,1.14-2.51,3.51,3.51,0,0,0-1-2.52c-.66-.69-1.91-1-3.75-1H26.1v7ZM48.3,59.78H62.78a17.47,17.47,0,0,1,6.92,1.16,11.23,11.23,0,0,1,4.35,3.33,13.66,13.66,0,0,1,2.49,5,23.36,23.36,0,0,1,.78,6.11,21.16,21.16,0,0,1-1.15,7.84A13,13,0,0,1,73,87.93a10.38,10.38,0,0,1-4.39,2.51,22.39,22.39,0,0,1-5.81.86H48.3V59.78ZM58,66.91V84.13h2.4a10.16,10.16,0,0,0,4.36-.68,4.65,4.65,0,0,0,2-2.36,14.84,14.84,0,0,0,.73-5.48q0-5-1.63-6.85c-1.09-1.23-2.91-1.85-5.44-1.85Zm24.43-7.13h24.09v6.78H92.24v5.5h12.24v6.39H92.24V91.3H82.46V59.78Z"
         />
       </svg>
-      <p>Atsiųsta: {ExtractDate(ChangeDateFormat(sendDate))}</p>
+      <p>Atsiųsta: {FixDate(sendDate)}</p>
       <p>{title}</p>
     </Link>
   );

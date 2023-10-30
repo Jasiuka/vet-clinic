@@ -1,0 +1,54 @@
+.vet-appointments__inner {
+  padding: var(--section-padding-top-bottom) var(--side-paddings);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: calc(var(--gap-lg) * 2);
+}
+
+.vet-appointments__card {
+  display: flex;
+  flex-direction: column-reverse;
+  padding: var(--el-pd-md);
+  border: 4px solid var(--accent-color);
+  border-radius: var(--common-border-radius);
+  align-items: center;
+  transition: var(--main-transition);
+  box-shadow: 0px 2px 12px -3px rgba(0, 0, 0, 0.1);
+}
+
+.vet-appointments__card:hover {
+  background-color: var(--hover-light-pink);
+}
+
+.vet-appointments__card:hover
+  .vet-appointments__card-box
+  .vet-appointments__card-link {
+  background-color: var(--accent-color);
+}
+
+.vet-appointments__card-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-sm);
+}
+
+.vet-appointments__card-details span {
+  font-weight: 500;
+}
+
+.vet-appointments__card-species {
+  font-size: var(--font-sm-to-md);
+  font-weight: 500;
+  padding: var(--el-pd-sm);
+  border-bottom: 3px solid var(--accent-color);
+}
+
+.vet-appointments__card-link {
+  font-size: var(--font-med-to-lg);
+  color: inherit;
+  text-transform: uppercase;
+  padding: var(--el-pd-sm);
+  border-radius: var(--common-border-radius);
+  transition: var(--main-transition);
+}

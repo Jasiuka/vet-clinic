@@ -1,9 +1,5 @@
 import { useParams } from "react-router-dom";
-import {
-  ChangeDateFormat,
-  ExtractDate,
-  RemoveSeconds,
-} from "../../../utils/helper-fncs";
+import { FixDate, RemoveSeconds } from "../../../utils/helper-fncs";
 import { useGetAppointmentByIdQuery } from "../../../services/api-slice";
 import { useState, useEffect } from "react";
 import "./appointment-registration.style.css";
@@ -33,7 +29,7 @@ export const AppointmentRegistration = () => {
       } = data;
       setAppointmentData({
         id: id,
-        date: ExtractDate(ChangeDateFormat(appointmentDate)),
+        date: FixDate(appointmentDate),
         time: RemoveSeconds(appointmentTime),
         dayName: dayName,
         vetName: vetName,

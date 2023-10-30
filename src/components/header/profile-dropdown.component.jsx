@@ -18,11 +18,12 @@ export const ProfileDropdown = ({ isOpen, handleDropdownClick, isAdmin }) => {
             </>
           ) : isAdmin === 3 ? (
             <>
-              <Link to={"/funkcijos"}>Funkcijos</Link>
+              <Link to={"/gydytojas/vizitai"}>Vizitai</Link>
             </>
           ) : (
             <>
               <Link to={"/mano-augintiniai"}>Mano augintiniai</Link>
+              <Link to={"/uzsakymai"}>Mano užsakymai</Link>
             </>
           )}
           <button>Atsijungti</button>

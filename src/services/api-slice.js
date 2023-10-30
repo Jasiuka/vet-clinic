@@ -23,6 +23,9 @@ export const apiSlice = createApi({
     getPetHistoryById: builder.query({
       query: (id) => `pets/history/id?id=${id}`,
     }),
+    getAllPetAppointments: builder.query({
+      query: (id) => `pets/appointments/id?id=${id}`,
+    }),
     login: builder.query({
       query: (credentials) =>
         `user/login?email=${credentials.email}&password=${credentials.password}`,
@@ -45,6 +48,12 @@ export const apiSlice = createApi({
     getColumnNamesByTable: builder.query({
       query: (tableName) => `admin/columns/tableName?tableName=${tableName}`,
     }),
+    getVetAppointments: builder.query({
+      query: () => `vet/appointments/`,
+    }),
+    getOrders: builder.query({
+      query: (id) => `/orders/id?id=${id}`,
+    }),
   }),
 });
 
@@ -62,4 +71,7 @@ export const {
   useGetAllProductsAdminQuery,
   useGetAllServicesQuery,
   useGetColumnNamesByTableQuery,
+  useGetVetAppointmentsQuery,
+  useGetAllPetAppointmentsQuery,
+  useGetOrdersQuery,
 } = apiSlice;

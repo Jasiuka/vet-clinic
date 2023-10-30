@@ -4,11 +4,7 @@ import "./appointment.style.css";
 import { useState } from "react";
 import AppointmentCard from "./appointment-card.component";
 import { useGetAppointmentsByDateRangeQuery } from "../../services/api-slice";
-import {
-  ChangeDateFormat,
-  ExtractDate,
-  RemoveSeconds,
-} from "../../utils/helper-fncs";
+import { RemoveSeconds, FixDate } from "../../utils/helper-fncs";
 export const AppointmentPage = () => {
   const [dateRangeObject, setDateRangeObject] = useState({
     start: null,
@@ -42,7 +38,7 @@ export const AppointmentPage = () => {
     const fixedDatesOfAppointments = appointmentsArray.map((appointment) => {
       const newObject = {
         ...appointment,
-        appointmentDate: ChangeDateFormat(appointment.appointmentDate),
+        appointmentDate: FixDate(appointment.appointmentDate),
       };
       return newObject;
     });
@@ -105,7 +101,7 @@ export const AppointmentPage = () => {
                   <AppointmentCard
                     key={id}
                     dayName={dayName}
-                    date={ExtractDate(appointmentDate)}
+                    date={appointmentDate}
                     time={RemoveSeconds(appointmentTime)}
                     appointmentId={id}
                     vetName={vetName}

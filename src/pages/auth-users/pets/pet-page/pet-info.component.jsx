@@ -1,8 +1,8 @@
 import { useGetPetByIdQuery } from "../../../../services/api-slice";
 import { useEffect } from "react";
 import { useState } from "react";
-import { ChangeDateFormat, ExtractDate } from "../../../../utils/helper-fncs";
-export const PetInfo = ({ id }) => {
+import { FixDate } from "../../../../utils/helper-fncs";
+export const PetInfo = ({ id, role, handlePopup }) => {
   const [petDetails, setPetDetails] = useState({
     name: "",
     species: "",
@@ -34,8 +34,8 @@ export const PetInfo = ({ id }) => {
         gender,
         age,
         weight: petWeight,
-        lastVisit: ExtractDate(ChangeDateFormat(lastVisit)),
-        nextVisit: ExtractDate(ChangeDateFormat(nextVisit)),
+        lastVisit: FixDate(lastVisit),
+        nextVisit: FixDate(nextVisit),
       });
     }
   }, [data]);
@@ -81,6 +81,11 @@ export const PetInfo = ({ id }) => {
             ? "Vizitų nėra"
             : petDetails?.nextVisit}
         </h4>
+        {role === 2 && (
+          <button onClick={() => handlePopup(true)} className="pink-button">
+            Visi vizitai
+          </button>
+        )}
       </div>
     </>
   );

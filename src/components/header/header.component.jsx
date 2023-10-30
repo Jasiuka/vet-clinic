@@ -18,9 +18,12 @@ import { useSelector, useDispatch } from "react-redux";
 export const Header = () => {
   // Redux
   const user = useSelector((state) => state.user);
-  const itemsInCart = useSelector((state) => state.cart.cartItems.length);
+  const itemsInCart = useSelector((state) => state.cart.cartItems);
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
-  console.log(user);
+  const itemsInCartNumber = itemsInCart?.reduce(
+    (ac, cartItem) => ac + cartItem?.quantity,
+    0
+  );
 
   // Redux
 
@@ -224,8 +227,8 @@ export const Header = () => {
                       />
                     </g>
                   </svg>
-                  {itemsInCart !== 0 && (
-                    <span key={itemsInCart}>{itemsInCart}</span>
+                  {itemsInCartNumber !== 0 && (
+                    <span key={itemsInCartNumber}>{itemsInCartNumber}</span>
                   )}
                 </div>
                 <CartDropdown isCartOpen={isCartOpen} />
