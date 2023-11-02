@@ -26,6 +26,7 @@ export const FormInputBox = ({
         value={isValue ? isValue : inputValue}
         name={inputName}
         disabled={isDisabled}
+        required={isRequired}
       />
       <label
         htmlFor={inputId}

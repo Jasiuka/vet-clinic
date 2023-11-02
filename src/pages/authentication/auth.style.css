@@ -47,6 +47,19 @@
   width: 100%;
 }
 
+.form-container::before {
+  content: "";
+  width: 100%;
+  height: 0.4rem;
+  position: absolute;
+  display: inline-block;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  background-color: rgb(255, 57, 57);
+  border-radius: 0 0 4px 4px;
+}
+
 .form-container:first-of-type {
   margin-bottom: var(--gap-largest);
 }
@@ -148,6 +161,7 @@
   border-radius: var(--common-border-radius);
   background-color: var(--light-grey);
   width: 100%;
+  position: relative;
 }
 
 .signup-form .form-input {

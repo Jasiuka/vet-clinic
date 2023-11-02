@@ -23,7 +23,8 @@
 .appointment-registration__inner {
   padding: var(--section-padding-top-bottom) var(--side-paddings);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .appointment-registration__inner .form-container:first-of-type {
@@ -39,6 +40,11 @@
 }
 
 /* NO REG FORM */
+
+.appointment-registration__inner .is-required {
+  margin-bottom: calc(var(--gap-lg) * 2);
+}
+
 .no-reg-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -47,6 +53,23 @@
   gap: 3rem;
   height: fit-content;
   align-items: center;
+}
+
+.no-reg-form .form-container input:valid ~ .form-container::before {
+  background-color: green;
+}
+
+.no-reg-form select {
+  padding: var(--el-pd-md);
+  font-size: var(--font-sm-to-md);
+  display: flex;
+  justify-content: center;
+  background-color: var(--light-grey);
+  color: var(--dark-grey);
+}
+
+.no-reg-form select option span {
+  color: red;
 }
 
 .no-reg-form__client {
