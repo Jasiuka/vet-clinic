@@ -27,8 +27,11 @@ export const apiSlice = createApi({
       query: (id) => `pets/appointments/id?id=${id}`,
     }),
     login: builder.query({
-      query: (credentials) =>
-        `user/login?email=${credentials.email}&password=${credentials.password}`,
+      query: (body) => ({
+        url: `user/login`,
+        method: "Post",
+        body,
+      }),
     }),
     getAllEmployees: builder.query({
       query: () => `admin/employees`,

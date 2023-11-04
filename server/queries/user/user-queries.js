@@ -6,3 +6,15 @@ export const getUser = async (pool, email) => {
   connection.end();
   return results;
 };
+
+export const findUser = async (pool, email) => {
+  let connection;
+  const query = `SELECT accounts.email, accounts.accountPassword FROM accounts WHERE accounts.email = '${email}'`;
+  connection = await pool.getConnection();
+  const userResult = await connection.query(query);
+  return userResult;
+};
+
+export const validatePassword = (password, inputPassword) => {
+  return password === inputPassword;
+};

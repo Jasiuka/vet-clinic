@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 export const NoRegForm = ({ appointmentDate, dayName, appointmentTime }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    console.log(e.target);
   };
   return (
     <>
-      <span className="is-required">* - PRIVALOMA UŽPILDYTI</span>
+      <span className="is-required">
+        {" "}
+        Žvaigždute pažymėti laukai privalo būti užpildyti!
+      </span>
 
       <form onSubmit={(e) => handleSubmit(e)} className="no-reg-form">
         <div className="no-reg-form__client">
@@ -37,15 +38,15 @@ export const NoRegForm = ({ appointmentDate, dayName, appointmentTime }) => {
           />
         </div>
         <div className="no-reg-form__pet">
-          <select>
+          <select required>
             <option>
-              Pasirinkite gyvūno rūšį<span>*</span>
+              Pasirinkite gyvūno rūšį <span>*</span>
             </option>
-            <option>Katė</option>
-            <option>Šuo</option>
-            <option>Paukštis</option>
-            <option>Žiūrkėnas</option>
-            <option>Pelė</option>
+            <option value={"Katė"}>Katė</option>
+            <option value={"Šuo"}>Šuo</option>
+            <option value={"Paukštis"}>Paukštis</option>
+            <option value={"Žiurkėnas"}>Žiurkėnas</option>
+            <option value={"Pelė"}>Pelė</option>
           </select>
           <FormInputBox
             inputId={"reg_breed"}

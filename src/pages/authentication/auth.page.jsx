@@ -46,13 +46,6 @@ export const AuthenticationPage = () => {
       email,
       password,
     });
-
-    // const userObject = {
-    //   email: form["login-email"].value,
-    //   password: form["login-pass"].value,
-    //   name: "Username",
-    //   review: null,
-    // };
   };
   // Redux
 
