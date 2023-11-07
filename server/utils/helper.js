@@ -1,3 +1,4 @@
+import pool from "../../server.js";
 // Returns dayname by given day number
 export const addDayName = (dayNumber) => {
   const dayNamesArray = [
@@ -155,4 +156,31 @@ export const insertProducts = async (pool, productsData) => {
     await connection.query(query, values);
   });
   connection.end();
+};
+
+const getUserRole = async (userId) => {
+  let connection;
+
+  connection = await pool.getConnection();
+  const query = `SELECT accounts.userRole FROM accounts WHERE accounts.id = ${userId}`;
+  const userRole = await connection.query(query);
+  connection.end();
+  return userRole[0];
+};
+
+export const checkUserRole = (allowedRoles) => {
+  return async (request, response, next) => {
+    const userId = request.session.userId;
+    if (userId) {
+      const { userRole } = await getUserRole(userId);
+      if (!allowedRoles.includes(userRole)) {
+        return response
+          .status(403)
+          .send("User not allowed to access this content.");
+      }
+    } else {
+      return response.status(401).send("Not allowed.");
+    }
+    next();
+  };
 };

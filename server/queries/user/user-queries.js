@@ -9,9 +9,13 @@ export const getUser = async (pool, email) => {
 
 export const findUser = async (pool, email) => {
   let connection;
-  const query = `SELECT accounts.email, accounts.accountPassword FROM accounts WHERE accounts.email = '${email}'`;
+  const query = `SELECT accounts.id, accounts.accountPassword, accounts.userRole FROM accounts WHERE accounts.email = '${email}'`;
   connection = await pool.getConnection();
   const userResult = await connection.query(query);
+  if (userResult.length === 0) {
+    return null;
+  }
+
   return userResult;
 };
 

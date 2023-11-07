@@ -40,6 +40,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Orders from "./pages/auth-users/order.page.jsx";
 import { Header } from "./components/header/header.component.jsx";
+import NotFoundPage from "./pages/error/not-found.page.jsx";
 const stripePromise = loadStripe(
   "pk_test_51ELPw0GnhsO4RtFa7HIILjcjS8WMtFTtPk7NkTZJtQS4r4fySmUFsaQdNWS0WvcBrPygfHn2D97wgL1I9Wwnoaek00ATsqQQSM"
 );
@@ -180,6 +181,10 @@ const router = createBrowserRouter([
         <Orders />
       </Layout>
     ),
+  },
+  {
+    path: "/nerastas",
+    element: <NotFoundPage />,
   },
 ]);
 

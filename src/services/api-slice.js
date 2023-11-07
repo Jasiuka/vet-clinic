@@ -28,7 +28,7 @@ export const apiSlice = createApi({
     }),
     login: builder.query({
       query: (body) => ({
-        url: `user/login`,
+        url: `/login`,
         method: "Post",
         body,
       }),

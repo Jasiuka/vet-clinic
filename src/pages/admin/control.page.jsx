@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "./control.style.css";
 import { useState } from "react";
 import EmployeeSelection from "./employeSelection.component";
@@ -11,6 +10,7 @@ export const Control = () => {
     const value = event.target.value;
     setSelection(value);
   };
+
   return (
     <main className="control">
       <div className="control-heading-wrapper">

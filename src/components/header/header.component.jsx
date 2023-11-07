@@ -25,6 +25,8 @@ export const Header = () => {
     0
   );
 
+  console.log(user);
+
   // Redux
 
   const dispatch = useDispatch();
