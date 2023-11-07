@@ -1,0 +1,25 @@
+.not-found {
+  height: 100dvh;
+  width: 100dvw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.not-found .not-found-wrapper h1:first-of-type {
+  font-size: calc(var(--font-lg) * 1.5);
+}
+
+.not-found .not-found-wrapper h1:nth-of-type(2) {
+  margin-bottom: var(--gap-lg);
+}
+
+.not-found-back {
+  font-size: var(--font-md);
+  transition: var(--main-transition);
+  border-radius: var(--common-border-radius);
+}
+
+.not-found-back:hover {
+  color: var(--dark-grey);
+}

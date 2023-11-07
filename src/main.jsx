@@ -186,6 +186,10 @@ const router = createBrowserRouter([
     path: "/nerastas",
     element: <NotFoundPage />,
   },
+  {
+    path: "*",
+    element: <NotFoundPage />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

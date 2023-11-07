@@ -49,4 +49,12 @@ server.get(
   })
 );
 
+server.get(
+  "/valdymas",
+  checkUserRole([1]),
+  tryCatch(async (req, res) => {
+    console.log("Succesfully entered page!");
+  })
+);
+
 export default server;

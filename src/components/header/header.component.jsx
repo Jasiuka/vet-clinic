@@ -17,15 +17,13 @@ import { useSelector, useDispatch } from "react-redux";
 
 export const Header = () => {
   // Redux
-  const user = useSelector((state) => state.user);
+  const userRole = useSelector((state) => state.user?.role);
   const itemsInCart = useSelector((state) => state.cart.cartItems);
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
   const itemsInCartNumber = itemsInCart?.reduce(
     (ac, cartItem) => ac + cartItem?.quantity,
     0
   );
-
-  console.log(user);
 
   // Redux
 
@@ -176,10 +174,9 @@ export const Header = () => {
             </ul>
             <img className="header__paws" src="/assets/paws-half.webp" />
             <ul>
-              {user ? (
+              {userRole ? (
                 <ProfileDropdown
-                  isAdmin={user.userRole}
-                  userEmail={user.email}
+                  isAdmin={userRole}
                   isOpen={isDropdownOpen}
                   handleDropdownClick={handleDropdownClick}
                 />

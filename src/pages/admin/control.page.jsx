@@ -3,6 +3,7 @@ import { useState } from "react";
 import EmployeeSelection from "./employeSelection.component";
 import AppointmentsSelection from "./appointmentsSelection.component";
 import ProductsSelection from "./productsSelection.component";
+import useCheckStatus from "../../utils/hooks/check-status.hook";
 export const Control = () => {
   const [selection, setSelection] = useState("");
 
@@ -10,6 +11,8 @@ export const Control = () => {
     const value = event.target.value;
     setSelection(value);
   };
+
+  useCheckStatus("valdymas");
 
   return (
     <main className="control">
