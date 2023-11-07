@@ -11,8 +11,8 @@ export const apiSlice = createApi({
     getAppointmentById: builder.query({
       query: (id) => `appointments/id?id=${id}`,
     }),
-    getAllUserPets: builder.query({
-      query: (userId) => `user/pets?id=${userId}`,
+    getAllUserPetsIds: builder.query({
+      query: () => `user/pets`,
     }),
     getPetById: builder.query({
       query: (id) => `pets/id?id=${id}`,
@@ -66,7 +66,7 @@ export const {
   useGetPetByIdQuery,
   useGetPetDocumentsByIdQuery,
   useGetPetHistoryByIdQuery,
-  useGetAllUserPetsQuery,
+  useGetAllUserPetsIdsQuery,
   useLoginQuery,
   useGetAllEmployeesQuery,
   useGetAllAppointmentsQuery,

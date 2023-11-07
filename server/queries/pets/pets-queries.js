@@ -30,7 +30,6 @@ export const getPetById = async (pool, id) => {
   const query = `SELECT pets.petName,pets.species,pets.breed,pets.gender,pets.age,pets.petWeight,COALESCE(appointments.appointmentDate, 'No appointments') AS appointmentDate FROM pets LEFT JOIN appointments ON pets.id = appointments.pet WHERE pets.id = ${id} ORDER BY appointmentDate DESC LIMIT 2`;
   connection = await pool.getConnection();
   const results = await connection.query(query);
-  console.log("Query result", results);
 
   if (results[0].appointmentDate === "No appointments") {
     return results[0];

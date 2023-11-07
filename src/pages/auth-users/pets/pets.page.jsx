@@ -1,19 +1,20 @@
 import "./pets.style.css";
 import "../../faq/accordion-plus-icon.component";
 import PlusIcon from "../../faq/accordion-plus-icon.component";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import NewPetForm from "../new-pet-form.component";
+import { useGetAllUserPetsIdsQuery } from "./../../../services/api-slice";
+
 export const Pets = () => {
-  const userPets = useSelector((state) => state.user.pets);
   const [isCreateNewShowing, setIsCreateNewShowing] = useState(false);
+  const { data, error, isLoading } = useGetAllUserPetsIdsQuery();
 
   return (
     <main className="page pets">
       <h1 className="page-heading for-observer">Mano augintiniai</h1>;
       <div className="pets-inner">
-        {userPets.map(({ petID, petName }) => {
+        {data?.map(({ petID, petName }) => {
           return (
             <Link
               to={`/augintinis/${petName}/${petID}`}

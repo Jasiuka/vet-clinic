@@ -1,10 +1,10 @@
-export const getUser = async (pool, email) => {
+export const getAllUserPetsIds = async (pool, userAccountId) => {
   let connection;
-  const query = `SELECT users.clientName, accounts.email,accounts.accountPassword,accounts.userRole, pets.id AS 'petID', pets.petName FROM users LEFT JOIN accounts ON users.account = accounts.id LEFT JOIN pets ON users.id = pets.petOwner WHERE accounts.email ='${email}'`;
+  const query = `SELECT pets.id AS 'petID', pets.petName FROM accounts LEFT JOIN users ON accounts.id = users.account LEFT JOIN pets ON users.id = pets.petOwner WHERE accounts.id = ${userAccountId}`;
   connection = await pool.getConnection();
-  const results = await connection.query(query);
-  connection.end();
-  return results;
+  const pets = await connection.query(query);
+  if (pets.length === 0) return null;
+  return pets;
 };
 
 export const findUser = async (pool, email) => {

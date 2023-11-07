@@ -14,6 +14,7 @@ import petsRouter from "./server/lib/routers/petsRouter.js";
 import appointmentsRouter from "./server/lib/routers/appointmentsRouter.js";
 import shopRouter from "./server/lib/routers/shopRouter.js";
 import clientRouter from "./server/lib/routers/clientRouter.js";
+import loggedUserRouter from "./server/lib/routers/loggedUserRouter.js";
 
 // Auth
 import session from "express-session";
@@ -23,11 +24,6 @@ import session from "express-session";
 dotenv.config();
 
 const app = express();
-
-const isAuthenticated = (req, res, next) => {
-  if (req.session.user) next();
-  else next("route");
-};
 
 export const pool = mariadb.createPool({
   host: process.env.DATABASE_HOST,
@@ -72,6 +68,7 @@ app.use(petsRouter);
 app.use(appointmentsRouter);
 app.use(clientRouter);
 app.use(shopRouter);
+app.use(loggedUserRouter);
 
 app.use(errorHandler);
 ViteExpress.listen(app, 3000, () => console.log(`Server is listening..  `));
