@@ -2,9 +2,9 @@ import { tryCatch } from "../../utils/tryCatch.js";
 import { findUser, validatePassword } from "../../queries/user/user-queries.js";
 import pool from "../../../server.js";
 import express from "express";
-let server = express.Router();
+let router = express.Router();
 
-server.post(
+router.post(
   "/api/v1/login",
   tryCatch(async (request, response) => {
     const { email, password } = request.body;
@@ -27,4 +27,14 @@ server.post(
   })
 );
 
-export default server;
+router.get(
+  "/logout",
+  tryCatch(async (request, response) => {
+    request.session.destroy();
+    return response.status(200).send({
+      message: "Logout successful",
+    });
+  })
+);
+
+export default router;

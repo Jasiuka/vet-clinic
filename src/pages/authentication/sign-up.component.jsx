@@ -1,11 +1,37 @@
 import FormInputBox from "../../components/form-input-box.component";
-import PropTypes from "prop-types";
-export const SignupForm = ({ handleOnSubmit }) => {
+import { useSignupMutation } from "../../services/api-slice";
+
+export const SignupForm = () => {
+  const [signup, { isLoading, isSuccess }] = useSignupMutation();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+
+    const name = form.name.value;
+    const lastName = form.lastName.value;
+    const phone = form.phone.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const repeatedPassword = form.repeatPass.value;
+
+    const userObject = {
+      name,
+      lastName,
+      phone,
+      email,
+      password,
+    };
+
+    signup(userObject);
+    console.log(isSuccess);
+  };
+
   return (
     <form
       className="authentication__form-login authentication__form signup-form"
       name="signupForm"
-      onSubmit={(e) => handleOnSubmit(e)}
+      onSubmit={(e) => handleSubmit(e)}
     >
       <div className="signup-form--left">
         <FormInputBox
@@ -59,11 +85,6 @@ export const SignupForm = ({ handleOnSubmit }) => {
       </button>
     </form>
   );
-};
-
-SignupForm.propTypes = {
-  handleLevelChange: PropTypes.func,
-  handleOnSubmit: PropTypes.func,
 };
 
 export default SignupForm;

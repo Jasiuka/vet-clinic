@@ -1,22 +1,47 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-export const ProfileDropdown = ({ isOpen, handleDropdownClick, isAdmin }) => {
+export const ProfileDropdown = ({ isOpen, handleDropdownClick, role }) => {
+  const loggedUserButtonNames = {
+    1: "Administratorius",
+    2: "Mano profilis",
+    3: "Gydytojas",
+  };
+
+  const getUserButtonName = (userRole = null) => {
+    if (userRole) {
+      return loggedUserButtonNames[userRole];
+    }
+  };
+
+  const handleLogout = async () => {
+    const response = await fetch("/logout");
+    console.log(response.status);
+    if (response.status === 200) {
+      localStorage.clear();
+      window.location.reload();
+    } else {
+      alert("Klaida! Nepavyko atsijungti.");
+    }
+  };
+
   return (
     <li>
       <div
         className="profile-dropdown profile-dropdown-button"
         onClick={handleDropdownClick}
       >
-        <span style={{ color: isOpen ? "#f9a8c5" : "" }}>Mano profilis</span>
+        <span style={{ color: isOpen ? "#f9a8c5" : "" }}>
+          {getUserButtonName(role)}
+        </span>
         <div
           className={`profile-dropdown__content ${isOpen && "dropdown-open"} `}
         >
-          {isAdmin === 1 ? (
+          {role === 1 ? (
             <>
               <Link to={"/valdymas"}>Valdymas</Link>
             </>
-          ) : isAdmin === 3 ? (
+          ) : role === 3 ? (
             <>
               <Link to={"/gydytojas/vizitai"}>Vizitai</Link>
             </>
@@ -26,7 +51,7 @@ export const ProfileDropdown = ({ isOpen, handleDropdownClick, isAdmin }) => {
               <Link to={"/uzsakymai"}>Mano užsakymai</Link>
             </>
           )}
-          <button>Atsijungti</button>
+          <button onClick={handleLogout}>Atsijungti</button>
         </div>
       </div>
     </li>
@@ -37,6 +62,6 @@ ProfileDropdown.propTypes = {
   userEmail: PropTypes.string,
   isOpen: PropTypes.bool,
   handleDropdownClick: PropTypes.func,
-  isAdmin: PropTypes.number,
+  role: PropTypes.number,
 };
 export default ProfileDropdown;

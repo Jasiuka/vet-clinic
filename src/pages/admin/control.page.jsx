@@ -12,7 +12,7 @@ export const Control = () => {
     setSelection(value);
   };
 
-  useCheckStatus("valdymas");
+  useCheckStatus({ route: "valdymas" });
 
   return (
     <main className="control">

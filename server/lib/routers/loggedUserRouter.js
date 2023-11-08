@@ -1,11 +1,12 @@
 import { tryCatch } from "../../utils/tryCatch.js";
 import pool from "../../../server.js";
 import { getAllUserPetsIds } from "../../queries/user/user-queries.js";
+import { checkUserRole } from "../../utils/helper.js";
 import express from "express";
 
-let server = express.Router();
+let router = express.Router();
 
-server.get(
+router.get(
   "/api/v1/user/pets",
   tryCatch(async (request, response) => {
     const userAccountId = request.session.userId;
@@ -15,4 +16,12 @@ server.get(
   })
 );
 
-export default server;
+router.get(
+  "/mano-augintiniai",
+  checkUserRole([2]),
+  tryCatch(async (request, response) => {
+    return response.status(200);
+  })
+);
+
+export default router;

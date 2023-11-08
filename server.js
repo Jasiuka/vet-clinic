@@ -15,11 +15,13 @@ import appointmentsRouter from "./server/lib/routers/appointmentsRouter.js";
 import shopRouter from "./server/lib/routers/shopRouter.js";
 import clientRouter from "./server/lib/routers/clientRouter.js";
 import loggedUserRouter from "./server/lib/routers/loggedUserRouter.js";
+import userRouter from "./server/lib/routers/userRouter.js";
 
 // Auth
 import session from "express-session";
 // import RedisStore from "connect-redis";
 // import { createClient } from "redis";
+const oneDay = 1000 * 60 * 60 * 24;
 
 dotenv.config();
 
@@ -52,7 +54,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       secure: false,
-      maxAge: 60000,
+      maxAge: oneDay,
     },
   })
 );
@@ -69,6 +71,7 @@ app.use(appointmentsRouter);
 app.use(clientRouter);
 app.use(shopRouter);
 app.use(loggedUserRouter);
+app.use(userRouter);
 
 app.use(errorHandler);
 ViteExpress.listen(app, 3000, () => console.log(`Server is listening..  `));

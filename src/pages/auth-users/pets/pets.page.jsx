@@ -5,10 +5,11 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import NewPetForm from "../new-pet-form.component";
 import { useGetAllUserPetsIdsQuery } from "./../../../services/api-slice";
-
+import useCheckStatus from "../../../utils/hooks/check-status.hook";
 export const Pets = () => {
   const [isCreateNewShowing, setIsCreateNewShowing] = useState(false);
   const { data, error, isLoading } = useGetAllUserPetsIdsQuery();
+  useCheckStatus({ route: "mano-augintiniai" });
 
   return (
     <main className="page pets">

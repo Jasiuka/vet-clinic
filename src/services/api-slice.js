@@ -33,6 +33,13 @@ export const apiSlice = createApi({
         body,
       }),
     }),
+    signup: builder.mutation({
+      query: (userObject) => ({
+        url: "/signup",
+        method: "POST",
+        body: userObject,
+      }),
+    }),
     getAllEmployees: builder.query({
       query: () => `admin/employees`,
     }),
@@ -68,6 +75,7 @@ export const {
   useGetPetHistoryByIdQuery,
   useGetAllUserPetsIdsQuery,
   useLoginQuery,
+  useSignupMutation,
   useGetAllEmployeesQuery,
   useGetAllAppointmentsQuery,
   useGetAllProductsQuery,

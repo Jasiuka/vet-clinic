@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import AuthFacebookIcon from "./facebook-icon";
-import AuthGoogleIcon from "./google-icon";
 import FormInputBox from "../../components/form-input-box.component";
 import PropTypes from "prop-types";
 
@@ -32,16 +30,6 @@ export const LoginForm = ({ handleFormchange, handleLogin }) => {
         <Link onClick={handleFormchange} className="form-link">
           Registruokis
         </Link>
-      </div>
-      <div className="form-container-social-login">
-        <button>
-          <AuthGoogleIcon />
-          <span>Prisijungti su Google</span>
-        </button>
-        <button>
-          <AuthFacebookIcon />
-          <span>Prisijungti su Facebook</span>
-        </button>
       </div>
     </form>
   );

@@ -9,11 +9,10 @@ import express from "express";
 import pool from "./../../../server.js";
 import { checkUserRole } from "../../utils/helper.js";
 
-let server = express.Router();
+let router = express.Router();
 
-server.get(
+router.get(
   "/api/v1/admin/appointments",
-  checkUserRole([1]),
   tryCatch(async (request, response) => {
     const allAppointments = await getAppointments(pool);
 
@@ -21,18 +20,16 @@ server.get(
   })
 );
 
-server.get(
+router.get(
   "/api/v1/admin/employees",
-  checkUserRole([1]),
   tryCatch(async (request, response) => {
     const allEmployees = await getEmployees(pool);
     return response.status(200).send(allEmployees);
   })
 );
 
-server.get(
+router.get(
   "/api/v1/admin/products",
-  checkUserRole([1]),
   tryCatch(async (request, response) => {
     const allProducts = await getAllProducts(pool);
     const addCategoryName = (allProductsData) => {
@@ -49,12 +46,14 @@ server.get(
   })
 );
 
-server.get(
+router.get(
   "/valdymas",
   checkUserRole([1]),
   tryCatch(async (req, res) => {
-    console.log("Succesfully entered page!");
+    return res.status(200);
   })
 );
 
-export default server;
+router.all("/api/v1/admin/", checkUserRole([1]));
+
+export default router;

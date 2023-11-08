@@ -7,9 +7,9 @@ import {
 import { tryCatch } from "../../utils/tryCatch.js";
 import express from "express";
 import pool from "../../../server.js";
-let server = express.Router();
+let router = express.Router();
 
-server.get(
+router.get(
   "/api/v1/pets/appointments/id",
   tryCatch(async (request, response) => {
     const id = request.query.id;
@@ -18,7 +18,7 @@ server.get(
   })
 );
 
-server.get(
+router.get(
   "/api/v1/pets/history/id",
   tryCatch(async (request, response) => {
     const id = request.query.id;
@@ -27,7 +27,7 @@ server.get(
   })
 );
 
-server.get(
+router.get(
   "/api/v1/pets/documents/id",
   tryCatch(async (request, response) => {
     const id = request.query.id;
@@ -36,7 +36,7 @@ server.get(
   })
 );
 
-server.get(
+router.get(
   "/api/v1/pets/id",
   tryCatch(async (request, response) => {
     const id = request.query.id;
@@ -45,4 +45,4 @@ server.get(
   })
 );
 
-export default server;
+export default router;

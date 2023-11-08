@@ -4,9 +4,9 @@ import { tryCatch } from "../../utils/tryCatch.js";
 import pool from "../../../server.js";
 import express from "express";
 
-let server = express.Router();
+let router = express.Router();
 
-server.get(
+router.get(
   "/api/v1/services",
   tryCatch(async (request, response) => {
     const allServices = await getAllServices(pool);
@@ -15,4 +15,4 @@ server.get(
   })
 );
 
-export default server;
+export default router;

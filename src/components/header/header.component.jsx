@@ -176,7 +176,7 @@ export const Header = () => {
             <ul>
               {userRole ? (
                 <ProfileDropdown
-                  isAdmin={userRole}
+                  role={userRole}
                   isOpen={isDropdownOpen}
                   handleDropdownClick={handleDropdownClick}
                 />

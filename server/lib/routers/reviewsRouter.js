@@ -5,9 +5,9 @@ import {
 } from "../../queries/reviews/reviews-queries.js";
 import pool from "../../../server.js";
 import express from "express";
-let server = express.Router();
+let router = express.Router();
 
-server.get(
+router.get(
   "/api/v1/reviews",
   tryCatch(async (_, response) => {
     const reviews = await getReviews(pool);
@@ -15,7 +15,7 @@ server.get(
   })
 );
 
-server.post(
+router.post(
   "/api/v1/reviews",
   tryCatch(async (request, response) => {
     const userReview = request.body;
@@ -32,4 +32,4 @@ server.post(
   })
 );
 
-export default server;
+export default router;

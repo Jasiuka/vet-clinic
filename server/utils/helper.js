@@ -168,29 +168,12 @@ const getUserRole = async (userId) => {
   return userRole[0];
 };
 
-// export const checkUserRole = (allowedRoles) => {
-//   return async (request, response, next) => {
-
-//     const userId = request.session.userId;
-//     if (userId) {
-//       const { userRole } = await getUserRole(userId);
-//       if (!allowedRoles.includes(userRole)) {
-//         return response
-//           .status(403)
-//           .send("User not allowed to access this content.");
-//       }
-//     } else {
-//       return response.status(401).send("Not allowed.");
-//     }
-//     next();
-//   };
-// };
-
 export const checkUserRole = (allowedRoles) => {
   return async (request, response, next) => {
     const userId = request.session.userId;
-    if (!userId)
+    if (!userId) {
       return response.status(401).send("Negalite pasiekti šio turinio.");
+    }
 
     const { userRole } = await getUserRole(userId);
 

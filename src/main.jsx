@@ -14,18 +14,12 @@ import ContactsPage from "./pages/contacts/contacts.page.jsx";
 import AppointmentRegistration from "./pages/appointment/registration-route/appointment-registration.page.jsx";
 import { Layout } from "./components/layout.component.jsx";
 
-// const AuthenticationPage = lazy(() =>
-//   import("./pages/authentication/auth.page.jsx")
-// );
-// const AboutUsPage = lazy(() => import("./pages/about-us/about-us.page.jsx"));
-// const OurTeamPage = lazy(() => import("./pages/our-team/our-team.page.jsx"));
-// const ServicesPage = lazy(() => import("./pages/services/services.page.jsx"));
-// const FaqPage = lazy(() => import("./pages/faq/faq.page.jsx"));
-// const ContactsPage = lazy(() => import("./pages/contacts/contacts.page.jsx"));
-
 // Redux
 import { store } from "./store/store.js";
 import { Provider } from "react-redux";
+import { persistor } from "./store/store.js";
+import { PersistGate } from "redux-persist/integration/react";
+//
 import AppointmentPage from "./pages/appointment/appointment.page.jsx";
 import ShopPage from "./pages/shop/shop.page.jsx";
 import Pets from "./pages/auth-users/pets/pets.page.jsx";
@@ -195,7 +189,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <PersistGate loading={null} persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

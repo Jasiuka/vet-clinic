@@ -10,9 +10,9 @@ import {
 import pool from "../../../server.js";
 import express from "express";
 
-let server = express.Router();
+let router = express.Router();
 
-server.get(
+router.get(
   "/api/v1/appointments",
   tryCatch(async (request, response) => {
     const searchDates = {
@@ -26,7 +26,7 @@ server.get(
   })
 );
 
-server.get(
+router.get(
   "/api/v1/appointments/id",
   tryCatch(async (request, response) => {
     const id = request.query.id;
@@ -41,4 +41,4 @@ server.get(
   })
 );
 
-export default server;
+export default router;
