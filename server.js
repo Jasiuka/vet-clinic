@@ -6,7 +6,6 @@ import dotenv from "dotenv";
 import { errorHandler } from "./server/utils/errorHandler.js";
 
 // Routers
-import loginRouter from "./server/lib/routers/loginRouter.js";
 import reviewsRouter from "./server/lib/routers/reviewsRouter.js";
 import adminRouter from "./server/lib/routers/adminRouter.js";
 import vetRouter from "./server/lib/routers/vetRouter.js";
@@ -62,7 +61,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 
-app.use(loginRouter);
 app.use(reviewsRouter);
 app.use(adminRouter);
 app.use(vetRouter);

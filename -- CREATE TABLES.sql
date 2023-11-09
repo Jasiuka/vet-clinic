@@ -103,7 +103,10 @@ CREATE TABLE CategoriesAndServicesJunction (
 
 
 
-
+-- @block
+SELECT * FROM users;
+-- @block
+SELECT * FROM accounts;
 -- @block
 SELECT * FROM categoriesandservicesjunction;
 -- INSERTS
@@ -326,3 +329,7 @@ ALTER TABLE Clients RENAME Users;
 -- UPDATES
 -- @block
 UPDATE pets SET petOwner = 2 WHERE pets.id = 1;
+
+-- DELETE
+-- @block
+DELETE FROM accounts WHERE id > 6;
