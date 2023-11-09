@@ -20,6 +20,7 @@ import userRouter from "./server/lib/routers/userRouter.js";
 import session from "express-session";
 // import RedisStore from "connect-redis";
 // import { createClient } from "redis";
+
 const oneDay = 1000 * 60 * 60 * 24;
 
 dotenv.config();

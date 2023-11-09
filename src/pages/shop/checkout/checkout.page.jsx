@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import FormInputBox from "./../../../components/form-input-box.component";
 import CheckoutSelection from "./checkout-selection.component";
+import { usePostOrderMutation } from "../../../services/api-slice";
 import { useState } from "react";
 import "./checkout.style.css";
 import { useSelector } from "react-redux";
@@ -10,13 +11,41 @@ export const Checkout = () => {
   const [payment, setPayment] = useState("");
   const cartState = useSelector((state) => state.cart);
   const totalSum = Number(cartState.total) + Number(shipmentCost);
+  const [order, { isLoading, isSuccess }] = usePostOrderMutation();
+
+  const handleSubmitOrder = (event) => {
+    event.preventDefault();
+    const form = event.target;
+
+    const email = form.checkout__email.value;
+    const fullName = form.checkout__name.value;
+    const phone = form.checkout__phone.value;
+    const payment = form.checkout__payment.value;
+
+    const orderObject = {
+      products: [...cartState.cartItems.map((item) => item.id)],
+      state: false,
+      email,
+      fullName,
+      phone,
+      payment,
+      price: totalSum,
+    };
+
+    order(orderObject);
+
+    console.log(orderObject);
+  };
 
   const handleSetShipmentCost = (price) => setShipmentCost(Number(price));
   const handleSetPayment = (type) => setPayment(type);
   return (
     <main className="checkout">
       <h1 className="page-heading">Užsakymas</h1>
-      <form className="checkout__form checkout__inner">
+      <form
+        onSubmit={(event) => handleSubmitOrder(event)}
+        className="checkout__form checkout__inner"
+      >
         <div className="checkout__form-left">
           <div className="checkout__user-box checkout__box">
             <h2 className="checkout__box--heading">Vartotojo informacija</h2>

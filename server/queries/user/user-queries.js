@@ -20,6 +20,18 @@ export const findUser = async (pool, email) => {
   return userResult;
 };
 
+export const getUserId = async (pool, email) => {
+  let connection;
+  const query = `SELECT users.id FROM accounts LEFT JOIN users ON users.account = accounts.id WHERE accounts.email = '${email}'`;
+  connection = await pool.getConnection();
+  const userResultRow = await connection.query(query);
+  connection.end();
+  if (userResultRow.length === 0) {
+    return null;
+  }
+  return userResultRow[0];
+};
+
 export const createUserAccount = async (
   pool,
   userEmail,

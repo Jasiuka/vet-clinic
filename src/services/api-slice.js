@@ -64,6 +64,13 @@ export const apiSlice = createApi({
     getOrders: builder.query({
       query: (id) => `/orders/id?id=${id}`,
     }),
+    postOrder: builder.mutation({
+      query: (data) => ({
+        url: "/shop/order",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -85,4 +92,5 @@ export const {
   useGetVetAppointmentsQuery,
   useGetAllPetAppointmentsQuery,
   useGetOrdersQuery,
+  usePostOrderMutation,
 } = apiSlice;
