@@ -2,16 +2,19 @@ import { Link } from "react-router-dom";
 import FormInputBox from "./../../../components/form-input-box.component";
 import CheckoutSelection from "./checkout-selection.component";
 import { usePostOrderMutation } from "../../../services/api-slice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./checkout.style.css";
 import { useSelector } from "react-redux";
 import { CardElement } from "@stripe/react-stripe-js";
+import { useNavigate } from "react-router-dom";
+
 export const Checkout = () => {
   const [shipmentCost, setShipmentCost] = useState(0);
   const [payment, setPayment] = useState("");
   const cartState = useSelector((state) => state.cart);
   const totalSum = Number(cartState.total) + Number(shipmentCost);
   const [order, { isLoading, isSuccess }] = usePostOrderMutation();
+  const navigate = useNavigate();
 
   const handleSubmitOrder = (event) => {
     event.preventDefault();
@@ -36,8 +39,14 @@ export const Checkout = () => {
       rules,
     };
 
-    // order(orderObject);
+    order(orderObject);
   };
+
+  useEffect(() => {
+    if (cartState.cartItems.length === 0) {
+      navigate("/nerastas");
+    }
+  });
 
   const handleSetShipmentCost = (price) => setShipmentCost(Number(price));
   const handleSetPayment = (type) => setPayment(type);

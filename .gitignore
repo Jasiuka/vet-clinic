@@ -26,3 +26,4 @@ dist-ssr
 
 pages-content.md
 CREATE TABLES.sql
+Vet mariaDB.session.sql

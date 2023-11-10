@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import "./appointment-registration.style.css";
 import NoRegForm from "./no-reg-form.component";
 import { useSelector } from "react-redux";
+import AuthenticatedForm from "./auth-form.component";
 export const AppointmentRegistration = () => {
   let { id } = useParams();
   const [appointmentData, setAppointmentData] = useState({
@@ -38,6 +39,29 @@ export const AppointmentRegistration = () => {
     }
   }, [data]);
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+
+    const species = form.reg_species.value;
+    const breed = form.reg_breed.value;
+    const age = form.reg_age.value;
+    const description = form.reg_description.value;
+    const email = form.reg_email.value;
+    const pet = form.reg_pet?.value;
+
+    const appointmentObject = {
+      species,
+      breed,
+      age,
+      description,
+      email,
+      pet,
+    };
+
+    console.log(appointmentObject);
+  };
+
   return (
     <main className="appointment-registration">
       <div className="appointment-registration-heading for-observer">
@@ -50,13 +74,19 @@ export const AppointmentRegistration = () => {
         <h1>Vizito registracija</h1>
       </div>
       <div className="appointment-registration__forms appointment-registration__inner">
-        {!user && (
+        <span className="is-required">
+          {" "}
+          Žvaigždute pažymėti laukai privalo būti užpildyti!
+        </span>
+        {!user?.role && (
           <NoRegForm
             appointmentDate={appointmentData.date}
             appointmentTime={appointmentData.time}
             dayName={appointmentData.dayName.toUpperCase()}
+            handleSubmit={handleSubmit}
           />
         )}
+        {user?.role && <AuthenticatedForm />}
       </div>
     </main>
   );

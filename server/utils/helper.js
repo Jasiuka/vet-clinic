@@ -93,16 +93,17 @@ export const addsDayNamePropertyToEveryAppointment = (appointments) => {
 };
 
 // Inserts new rows in appointments table
-export const addAppointments = async (pool, date, time, booked, vet) => {
+export const addAppointments = async (pool, date, time, pet = null, vet) => {
   let connection;
   connection = await pool.getConnection();
-  const query = `INSERT INTO appointments (appointmentDate,appointmentTime,veterinarian) VALUES (?,?,?)`;
-  const values = [date, time, booked, vet];
+  const query = `INSERT INTO appointments (appointmentDate,appointmentTime,veterinarian,pet) VALUES (?,?,?,?)`;
+  const values = [date, time, vet, pet];
   await connection.query(query, values);
   connection.end();
 };
 
-export const createAppointments = async () => {
+// Function to add new appointments for next 14 days
+export const createAppointments = async (pool, vet, pet) => {
   const today = new Date();
   for (let i = 0; i < 15; i++) {
     const years = today.getFullYear();
@@ -111,7 +112,7 @@ export const createAppointments = async () => {
     const fullDate = `${years}-${String(month).padStart(2, 0)}-${String(
       day
     ).padStart(2, 0)}`;
-    await addAppointments(fullDate, "14:00", 4);
+    await addAppointments(pool, fullDate, "16:00", pet, vet);
     const nextDay = today.getDate() + 1;
     today.setDate(nextDay);
     i++;
@@ -158,6 +159,7 @@ export const insertProducts = async (pool, productsData) => {
   connection.end();
 };
 
+// Gets user role
 const getUserRole = async (userId) => {
   let connection;
 
@@ -168,6 +170,7 @@ const getUserRole = async (userId) => {
   return userRole[0];
 };
 
+// Checks user role
 export const checkUserRole = (allowedRoles) => {
   return async (request, response, next) => {
     const userId = request.session.userId;

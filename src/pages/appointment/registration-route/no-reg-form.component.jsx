@@ -1,18 +1,42 @@
 import FormInputBox from "../../../components/form-input-box.component";
 import PropTypes from "prop-types";
-export const NoRegForm = ({ appointmentDate, dayName, appointmentTime }) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+import SelectionInput from "../../../components/selection-input";
+export const NoRegForm = ({
+  appointmentDate,
+  dayName,
+  appointmentTime,
+  handleSubmit,
+}) => {
+  const selectionOptions = [
+    {
+      value: "Katė",
+      displayText: "Katė",
+    },
+    {
+      value: "Šuo",
+      displayText: "Šuo",
+    },
+    {
+      value: "Paukštis",
+      displayText: "Paukštis",
+    },
+    {
+      value: "Žiurkėnas",
+      displayText: "Žiurkėnas",
+    },
+    {
+      value: "Pelė",
+      displayText: "Pelė",
+    },
+  ];
+
   return (
     <>
-      <span className="is-required">
-        {" "}
-        Žvaigždute pažymėti laukai privalo būti užpildyti!
-      </span>
-
-      <form onSubmit={(e) => handleSubmit(e)} className="no-reg-form">
-        <div className="no-reg-form__client">
+      <form
+        onSubmit={(e) => handleSubmit(e)}
+        className="no-reg-form appointment-book-form"
+      >
+        <div className="no-reg-form__client appointment-book-form__client">
           <FormInputBox
             inputId={"reg_date"}
             inputName={"reg_date"}
@@ -38,16 +62,11 @@ export const NoRegForm = ({ appointmentDate, dayName, appointmentTime }) => {
           />
         </div>
         <div className="no-reg-form__pet">
-          <select required>
-            <option>
-              Pasirinkite gyvūno rūšį <span>*</span>
-            </option>
-            <option value={"Katė"}>Katė</option>
-            <option value={"Šuo"}>Šuo</option>
-            <option value={"Paukštis"}>Paukštis</option>
-            <option value={"Žiurkėnas"}>Žiurkėnas</option>
-            <option value={"Pelė"}>Pelė</option>
-          </select>
+          <SelectionInput
+            options={selectionOptions}
+            name={"reg_species"}
+            noSelectionText={"Pasirinkite gyvūno rūšį"}
+          />
           <FormInputBox
             inputId={"reg_breed"}
             inputName={"reg_breed"}
@@ -56,8 +75,8 @@ export const NoRegForm = ({ appointmentDate, dayName, appointmentTime }) => {
             isRequired={true}
           />
           <FormInputBox
-            inputId={"reg_years"}
-            inputName={"reg_years"}
+            inputId={"reg_age"}
+            inputName={"reg_age"}
             inputType={"number"}
             label={"Augintinio amžius"}
             isRequired={true}
@@ -81,5 +100,6 @@ NoRegForm.propTypes = {
   appointmentDate: PropTypes.string,
   dayName: PropTypes.string,
   appointmentTime: PropTypes.string,
+  handleSubmit: PropTypes.func,
 };
 export default NoRegForm;

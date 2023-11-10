@@ -41,4 +41,12 @@ router.get(
   })
 );
 
+router.post(
+  "/api/v1/appointments",
+  tryCatch(async (request, response) => {
+    const { appointmentId, petId, species, breed, age, reason, email } =
+      request.body;
+  })
+);
+
 export default router;

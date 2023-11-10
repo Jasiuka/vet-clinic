@@ -15,6 +15,7 @@ import shopRouter from "./server/lib/routers/shopRouter.js";
 import clientRouter from "./server/lib/routers/clientRouter.js";
 import loggedUserRouter from "./server/lib/routers/loggedUserRouter.js";
 import userRouter from "./server/lib/routers/userRouter.js";
+import { createAppointments } from "./server/utils/helper.js";
 
 // Auth
 import session from "express-session";
