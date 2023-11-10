@@ -26,8 +26,23 @@ router.get(
 router.post(
   "/api/v1/shop/order",
   tryCatch(async (request, response) => {
-    const { products, state, email, fullName, phone, payment, price } =
-      request.body;
+    const {
+      products,
+      state,
+      email,
+      fullName,
+      phone,
+      payment,
+      price,
+      shippingPrice,
+      rules,
+    } = request.body;
+
+    if (!rules) {
+      return response.status(400).send({
+        message: "Turite sutikti su taisyklėmis",
+      });
+    }
 
     const userId = await getUserId(pool, request.body.email);
 
@@ -48,7 +63,7 @@ router.post(
 
     products.forEach(
       async (product) =>
-        await createOrderedProductDetail(pool, newOrderId.id, product, 1)
+        await createOrderedProductDetail(pool, newOrderId.id, product.id, 1)
     );
 
     sendEmail(
@@ -60,7 +75,10 @@ router.post(
           newOrderId.id,
           products,
           generateProductsHtml,
-          price
+          price,
+          payment,
+          shippingPrice,
+          fullName
         )
       )
     );

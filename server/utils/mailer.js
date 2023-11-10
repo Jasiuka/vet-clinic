@@ -33,28 +33,51 @@ export const sendEmail = async (options) => {
 };
 
 export const generateProductsHtml = (products) => {
-  return products.map((product) => `<h3>${product}</h3>`);
+  return products.map(
+    (product) =>
+      `<div style="border-bottom: 4px double #dedede;"><h3 style="font-size:18px;font-weight:400">${product?.title} x ${product?.quantity} vnt</h3> <p style="font-weight:600; font-size:16px; color:#f89fbe">${product?.price}€/vnt</p></div>`
+  );
 };
 
 export const generateHtmlTemplate = (
   orderId,
   products,
   productsGenerator,
-  totalSum
+  totalSum,
+  paymentType,
+  shippingType,
+  fullName
 ) => {
+  const payment =
+    paymentType === ""
+      ? "Atsiskaitymas grynais arba bankine kortele vietoje"
+      : "Atsiskaitymas kortele internetu";
+  const shipping =
+    shippingType === 0
+      ? "Atsiėmimas klinikoje"
+      : "Pristatymas kurjeriu nurodytu adresu";
   const today = new Date();
+  const todayDate = `${today.getFullYear()}-${
+    today.getMonth() + 1
+  }-${today.getDate()}`;
   return `
-  <h1>Sąskaita faktūra</h1>
-  <p>Užsakymo numeris - ${orderId} </p>
-  <p>Užsakymo data: ${today}</p>
-  <br>
-  <br>
-  <br>
-  <h2>Jūsų užsakytos prekės</h2>
-  ${productsGenerator(products)}
-  <br>
-  <br>
-  <br>
-  <h2>Bendra suma: ${totalSum}</h2>
+  <div style="color:#212529">
+    <h1>Sąskaita faktūra</h1>
+    <p style="text-transform: uppercase; font-size:14px">Užsakymo numeris - <span style="font-weight: 600" >${orderId}</span> </p>
+    <p style="text-transform: uppercase; font-size:14px">Užsakymo data: <span style="font-weight: 600" >${todayDate}</span></p>
+    <p style="text-transform: uppercase; font-size:14px">Kas užsakė: <span  style="font-weight: 600">${fullName}</span></p>
+    <br>
+    <br>
+    <br>
+    <h2>Jūsų užsakytos prekės</h2>
+    ${productsGenerator(products)}
+    <br>
+    <br>
+    <br>
+    <h3>Pristatymo būdas: ${shipping}</h3>
+    <h3>Apmokėjimas: ${payment}</h3>
+    <h2>Bendra suma: ${totalSum}€</h2>
+  </div>
+
   `;
 };

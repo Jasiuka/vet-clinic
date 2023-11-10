@@ -21,20 +21,22 @@ export const Checkout = () => {
     const fullName = form.checkout__name.value;
     const phone = form.checkout__phone.value;
     const payment = form.checkout__payment.value;
+    const shipping = form.checkout__shipping.value;
+    const rules = form.checkout__rules.checked;
 
     const orderObject = {
-      products: [...cartState.cartItems.map((item) => item.id)],
+      products: cartState.cartItems,
       state: false,
       email,
       fullName,
       phone,
       payment,
       price: totalSum,
+      shippingPrice: shipping,
+      rules,
     };
 
-    order(orderObject);
-
-    console.log(orderObject);
+    // order(orderObject);
   };
 
   const handleSetShipmentCost = (price) => setShipmentCost(Number(price));
@@ -172,11 +174,16 @@ export const Checkout = () => {
             <p>{totalSum}€</p>
           </div>
           <div className="checkout__form-right-rules">
-            <input type="checkbox" />
-            <p>
+            <input
+              name="checkout__rules"
+              id="rules"
+              value={true}
+              type="checkbox"
+            />
+            <label htmlFor="rules">
               Patvirtinu, kad susipažinau ir sutinku su „Laimingos Letenėlės”
               taisyklėmis ir privatumo politika
-            </p>
+            </label>
           </div>
           <button
             title="Užsakyti"
