@@ -30,10 +30,27 @@ export const findUser = async (pool, email) => {
   }
 };
 
-export const getUserId = async (pool, email) => {
+export const getUserIdByEmail = async (pool, email) => {
   let connection;
   try {
     const query = `SELECT users.id FROM accounts LEFT JOIN users ON users.account = accounts.id WHERE accounts.email = '${email}'`;
+    connection = await pool.getConnection();
+    const userResultRow = await connection.query(query);
+    if (userResultRow.length === 0) {
+      return null;
+    }
+    return userResultRow[0];
+  } catch (error) {
+    console.error(error);
+  } finally {
+    connection.end();
+  }
+};
+
+export const getUserIdAndNameByAccountId = async (pool, accountId) => {
+  let connection;
+  try {
+    const query = `SELECT users.id, users.userName FROM accounts LEFT JOIN users ON users.account = accounts.id WHERE accounts.id = '${accountId}'`;
     connection = await pool.getConnection();
     const userResultRow = await connection.query(query);
     if (userResultRow.length === 0) {
@@ -86,7 +103,7 @@ export const createUserAccount = async (
 export const createUser = async (pool, userObject, accountId) => {
   let connection;
   try {
-    const query = `INSERT INTO users (clientName,lastName,phone,account) VALUES (?,?,?,?)`;
+    const query = `INSERT INTO users (userName,lastName,phone,account) VALUES (?,?,?,?)`;
     const values = [
       userObject.name,
       userObject.lastName,
@@ -115,6 +132,20 @@ export const findUserEmail = async (pool, email) => {
     } else {
       return true;
     }
+  } catch (error) {
+    console.error(error);
+  } finally {
+    connection.end();
+  }
+};
+
+export const updateUserReview = async (pool, reviewId, userId) => {
+  let connection;
+  try {
+    const query = `UPDATE Users SET review = ${reviewId} WHERE users.id = ${userId}`;
+    connection = await pool.getConnection();
+
+    await connection.query(query);
   } catch (error) {
     console.error(error);
   } finally {

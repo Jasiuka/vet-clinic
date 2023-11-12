@@ -6,7 +6,7 @@ import {
 } from "../../queries/shop/shop-queries.js";
 import pool from "../../../server.js";
 import express from "express";
-import { getUserId } from "../../queries/user/user-queries.js";
+import { getUserIdByEmail } from "../../queries/user/user-queries.js";
 import {
   sendEmail,
   mailOptions,
@@ -44,7 +44,7 @@ router.post(
       });
     }
 
-    const userId = await getUserId(pool, request.body.email);
+    const userId = await getUserIdByEmail(pool, request.body.email);
 
     const newOrderId = await createNewOrder(
       pool,

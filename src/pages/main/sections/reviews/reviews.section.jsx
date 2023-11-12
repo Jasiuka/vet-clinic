@@ -4,40 +4,24 @@ import Message from "../../../../components/message.component";
 import "./reviews.style.css";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useGetReviewsQuery } from "../../../../services/api-slice";
 
 export const Reviews = () => {
   const [reviews, setReviews] = useState([]);
-  const [fetchingReviews, setFetchingReviews] = useState(true);
-  const [noError, setNoError] = useState(true);
+
   const [isMessageShowing, setIsMessageShowing] = useState(false);
   const [hideForm, setHideForm] = useState(false);
-  const reviewRows = 3;
+  const reviewRows = 4;
   const [visibleReviews, setVisibleReviews] = useState(4);
   const user = useSelector((state) => state.user);
+  const { data, error, isLoading } = useGetReviewsQuery();
+  console.log(user);
 
   useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const fetchedReviews = await getReviews();
-        if (fetchingReviews) {
-          setReviews(fetchedReviews);
-        }
-        setFetchingReviews(false);
-      } catch {
-        setNoError(false);
-      }
-    };
-    fetchReviews();
-
-    return () => {};
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const getReviews = async () => {
-    const response = fetch("/api/v1/reviews");
-    const data = (await response).json();
-    return data;
-  };
+    if (data) {
+      setReviews(data);
+    }
+  }, [data]);
 
   const handleMessageShowing = (value) => {
     setIsMessageShowing(value);
@@ -77,10 +61,10 @@ export const Reviews = () => {
           Užkrauti daugiau..
         </button>
       )}
-      {user && !user.review && !isMessageShowing && !hideForm && (
+      {user?.role && !isMessageShowing && !hideForm && (
         <WriteNewForm user={user} messageHandler={handleMessageShowing} />
       )}
-      {user && isMessageShowing && (
+      {user?.role && isMessageShowing && (
         <Message messageText={"Ačiū už jūsų atsiliepimą!"} />
       )}
     </section>

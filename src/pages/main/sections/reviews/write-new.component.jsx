@@ -1,9 +1,12 @@
 import PawIcon from "./paw-icon";
 import { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
-export const WriteNewForm = ({ user, messageHandler }) => {
+import { usePostReviewMutation } from "../../../../services/api-slice";
+export const WriteNewForm = ({ messageHandler }) => {
   const [activeIndexArray, setActiveIndexArray] = useState([]);
   const [selectedRating, setSelectedRating] = useState(0);
+  const [review, { isSuccess, isError, isLoading }] = usePostReviewMutation();
+
   const pawArray = [1, 2, 3, 4, 5];
   const formRef = useRef(null);
 
@@ -49,24 +52,9 @@ export const WriteNewForm = ({ user, messageHandler }) => {
     const reviewToSend = {
       reviewText: form.review.value,
       rating: selectedRating,
-      email: user.email,
-      name: user.name,
     };
 
-    fetch("/api/v1/reviews", {
-      method: "POST",
-      mode: "cors",
-      body: JSON.stringify(reviewToSend),
-      headers: { "Content-type": "application/json" },
-    })
-      .then((response) => {
-        response.status === 200 && handleMessageShow();
-        response.status === 400 &&
-          response
-            .json()
-            .then((errorMess) => console.log(errorMess.errorMessage));
-      })
-      .catch((err) => console.log(err.message));
+    review(reviewToSend).then((_) => handleMessageShow());
   };
   return (
     <form

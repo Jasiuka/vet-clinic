@@ -3,6 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
   reducerPath: "appointmentsApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api/v1/" }),
+  tagTypes: ["Reviews"],
   endpoints: (builder) => ({
     getAppointmentsByDateRange: builder.query({
       query: (dateRange) =>
@@ -78,6 +79,18 @@ export const apiSlice = createApi({
         body: data,
       }),
     }),
+    getReviews: builder.query({
+      query: () => `/reviews`,
+      providesTags: ["Reviews"],
+    }),
+    postReview: builder.mutation({
+      query: (review) => ({
+        url: "/reviews",
+        method: "POST",
+        body: review,
+      }),
+      invalidatesTags: ["Reviews"],
+    }),
   }),
 });
 
@@ -101,4 +114,6 @@ export const {
   useGetOrdersQuery,
   usePostOrderMutation,
   useBookAppointmentMutation,
+  useGetReviewsQuery,
+  usePostReviewMutation,
 } = apiSlice;
