@@ -49,7 +49,7 @@
 .no-reg-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 3fr 1fr 1fr;
+  grid-template-rows: 3fr 1fr 1fr 1fr;
   width: 50vw;
   gap: 3rem;
   height: fit-content;
@@ -73,6 +73,11 @@
   gap: 4rem;
 }
 
+.no-reg-form > select {
+  grid-column: 1/-1;
+  grid-row: 2/3;
+}
+
 .no-reg-form__pet {
   grid-column: 2/3;
   grid-row: 1/2;
@@ -82,7 +87,7 @@
 }
 
 .no-reg-form .description-input-box {
-  grid-row: 2/3;
+  grid-row: 3/4;
   grid-column: 1/-1;
   width: 100%;
 }
@@ -93,7 +98,7 @@
 
 .no-reg-form button {
   grid-column: 1/-1;
-  grid-row: 3/4;
+  grid-row: 4/5;
   padding: var(--el-pd-md);
   border-radius: var(--common-border-radius);
   border: none;

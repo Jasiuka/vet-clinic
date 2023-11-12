@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 import { FixDate, RemoveSeconds } from "../../../utils/helper-fncs";
-import { useGetAppointmentByIdQuery } from "../../../services/api-slice";
+import {
+  useGetAppointmentByIdQuery,
+  useBookAppointmentMutation,
+} from "../../../services/api-slice";
 import { useState, useEffect } from "react";
 import "./appointment-registration.style.css";
 import NoRegForm from "./no-reg-form.component";
@@ -18,6 +21,8 @@ export const AppointmentRegistration = () => {
   });
   const user = useSelector((state) => state.user);
   const { data, error, isLoading } = useGetAppointmentByIdQuery(id);
+  const [appointment, { isLoading: isLoadingMutation, isSuccess }] =
+    useBookAppointmentMutation();
   useEffect(() => {
     if (data) {
       const {
@@ -39,7 +44,7 @@ export const AppointmentRegistration = () => {
     }
   }, [data]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
 
@@ -48,17 +53,21 @@ export const AppointmentRegistration = () => {
     const age = form.reg_age.value;
     const description = form.reg_description.value;
     const email = form.reg_email.value;
-    const pet = form.reg_pet?.value;
+    const petId = form.reg_pet?.value;
+    const gender = form.reg_gender.value;
 
     const appointmentObject = {
       species,
       breed,
       age,
+      gender,
       description,
       email,
-      pet,
+      petId,
+      appointmentId: appointmentData.id,
     };
 
+    appointment(appointmentObject);
     console.log(appointmentObject);
   };
 

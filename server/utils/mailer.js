@@ -39,6 +39,7 @@ export const generateProductsHtml = (products) => {
   );
 };
 
+// Generates html template for invoice
 export const generateHtmlTemplate = (
   orderId,
   products,

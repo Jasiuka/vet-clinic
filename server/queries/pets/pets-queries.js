@@ -25,6 +25,7 @@ export const getAllPetAppointmentsById = async (pool, id) => {
   return results;
 };
 
+// Gets all pet data by pet id
 export const getPetById = async (pool, id) => {
   let connection;
   const query = `SELECT pets.petName,pets.species,pets.breed,pets.gender,pets.age,pets.petWeight,COALESCE(appointments.appointmentDate, 'No appointments') AS appointmentDate FROM pets LEFT JOIN appointments ON pets.id = appointments.pet WHERE pets.id = ${id} ORDER BY appointmentDate DESC LIMIT 2`;
@@ -40,4 +41,54 @@ export const getPetById = async (pool, id) => {
   };
   connection.end();
   return singlePetObject;
+};
+
+// Just checks if user has such pet
+export const getPetByPetIdAndUserId = async (pool, petId, userId) => {
+  let connection;
+  try {
+    const query = `SELECT pets.petName,pets.id FROM users LEFT JOIN pets ON users.id = pets.id WHERE pets.id =${petId} AND users.id =${userId}`;
+    connection = await pool.getConnection();
+    const row = await connection.query(query);
+    if (!row.length) {
+      return false;
+    }
+    return row[0];
+  } catch (error) {
+    console.error(error);
+  } finally {
+    connection.end();
+  }
+};
+
+export const createNewPet = async (
+  pool,
+  petName,
+  species,
+  breed,
+  gender,
+  age,
+  petWeight,
+  petOwner
+) => {
+  let query, connection, values;
+  try {
+    // If creating pet for not auth user for appointment booking
+    if (!petOwner || !petWeight || !petName) {
+      query = `INSERT INTO pets (petName,species,breed,gender,age) VALUES (?,?,?,?,?) RETURNING id`;
+      values = [petName, species, breed, gender, age];
+    }
+    // If auth user creating pet
+    query = `INSERT INTO pets (petName,species,breed,gender,age,petWeight,petOwner) VALUES (?,?,?,?,?,?,?) RETURNING id`;
+    values = [petName, species, breed, gender, age, petWeight, petOwner];
+
+    connection = await pool.getConnection();
+    const row = await connection.query(query, values);
+    return row;
+  } catch (error) {
+    console.error(error);
+    return false;
+  } finally {
+    connection.end();
+  }
 };

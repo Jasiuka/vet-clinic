@@ -7,7 +7,7 @@ export const NoRegForm = ({
   appointmentTime,
   handleSubmit,
 }) => {
-  const selectionOptions = [
+  const selectionOptionsSpecies = [
     {
       value: "Katė",
       displayText: "Katė",
@@ -27,6 +27,21 @@ export const NoRegForm = ({
     {
       value: "Pelė",
       displayText: "Pelė",
+    },
+  ];
+
+  const selectionOptionsGender = [
+    {
+      value: "Patinas",
+      displayText: "Patinas",
+    },
+    {
+      value: "Patelė",
+      displayText: "Patelė",
+    },
+    {
+      value: "Nežinoma",
+      displayText: "Nežinoma",
     },
   ];
 
@@ -63,7 +78,7 @@ export const NoRegForm = ({
         </div>
         <div className="no-reg-form__pet">
           <SelectionInput
-            options={selectionOptions}
+            options={selectionOptionsSpecies}
             name={"reg_species"}
             noSelectionText={"Pasirinkite gyvūno rūšį"}
           />
@@ -82,6 +97,11 @@ export const NoRegForm = ({
             isRequired={true}
           />
         </div>
+        <SelectionInput
+          options={selectionOptionsGender}
+          name={"reg_gender"}
+          noSelectionText={"Pasirinkite gyvūno lytį"}
+        />
         <FormInputBox
           inputId={"reg_description"}
           inputName={"reg_description"}
