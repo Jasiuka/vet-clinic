@@ -48,13 +48,13 @@ export const AppointmentRegistration = () => {
     event.preventDefault();
     const form = event.target;
 
-    const species = form.reg_species.value;
-    const breed = form.reg_breed.value;
-    const age = form.reg_age.value;
-    const description = form.reg_description.value;
-    const email = form.reg_email.value;
+    const species = form.reg_species?.value;
+    const breed = form.reg_breed?.value;
+    const age = form.reg_age?.value;
+    const description = form.reg_description?.value;
+    const email = form.reg_email?.value;
     const petId = form.reg_pet?.value;
-    const gender = form.reg_gender.value;
+    const gender = form.reg_gender?.value;
 
     const appointmentObject = {
       species,
@@ -68,7 +68,6 @@ export const AppointmentRegistration = () => {
     };
 
     appointment(appointmentObject);
-    console.log(appointmentObject);
   };
 
   return (
@@ -95,7 +94,14 @@ export const AppointmentRegistration = () => {
             handleSubmit={handleSubmit}
           />
         )}
-        {user?.role && <AuthenticatedForm />}
+        {user?.role && (
+          <AuthenticatedForm
+            appointmentDate={appointmentData.date}
+            appointmentTime={appointmentData.time}
+            dayName={appointmentData.dayName}
+            handleSubmit={handleSubmit}
+          />
+        )}
       </div>
     </main>
   );

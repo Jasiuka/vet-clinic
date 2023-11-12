@@ -96,6 +96,7 @@ router.post(
 
       await bookPet(pool, appointmentId, petId, reason);
 
+      console.log(email);
       const emailOptions = mailOptions(
         email,
         "Vizito registracija",

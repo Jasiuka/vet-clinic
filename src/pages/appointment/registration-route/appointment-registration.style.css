@@ -39,6 +39,40 @@
   font-weight: 600;
 }
 
+/* NO REG AND AUTH FORM */
+
+.appointment-book-form {
+  display: grid;
+  width: 50vw;
+  gap: 3rem;
+}
+
+.appointment-book-form select {
+  padding: var(--el-pd-md);
+  font-size: var(--font-sm-to-md);
+  display: flex;
+  justify-content: center;
+  background-color: var(--light-grey);
+  color: var(--dark-grey);
+}
+
+.appointment-book-form button {
+  padding: var(--el-pd-md);
+  border-radius: var(--common-border-radius);
+  border: none;
+  background-color: var(--accent-color);
+  color: var(--dark-grey);
+  font-size: var(--font-md);
+  border: 1px solid transparent;
+  transition: var(--main-transition);
+  cursor: pointer;
+}
+
+.appointment-book-form button:hover {
+  background-color: var(--light-grey);
+  border: 1px solid var(--dark-grey);
+}
+
 /* NO REG FORM */
 
 .appointment-registration__inner .is-required {
@@ -47,22 +81,10 @@
 }
 
 .no-reg-form {
-  display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 3fr 1fr 1fr 1fr;
-  width: 50vw;
-  gap: 3rem;
   height: fit-content;
   align-items: center;
-}
-
-.no-reg-form select {
-  padding: var(--el-pd-md);
-  font-size: var(--font-sm-to-md);
-  display: flex;
-  justify-content: center;
-  background-color: var(--light-grey);
-  color: var(--dark-grey);
 }
 
 .no-reg-form__client {
@@ -99,19 +121,19 @@
 .no-reg-form button {
   grid-column: 1/-1;
   grid-row: 4/5;
-  padding: var(--el-pd-md);
-  border-radius: var(--common-border-radius);
-  border: none;
-  background-color: var(--accent-color);
-  color: var(--dark-grey);
-  font-size: var(--font-md);
-  border: 1px solid transparent;
-  transition: var(--main-transition);
-  cursor: pointer;
 }
 
-.no-reg-form button:hover {
-  background-color: var(--light-grey);
-  border: 1px solid var(--dark-grey);
-}
 /* NO REG FORM */
+
+/* AUTH FORM */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.appointment-book-form__client {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-lg);
+}
