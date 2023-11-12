@@ -1,35 +1,64 @@
 export const getAllUserPetsIds = async (pool, userAccountId) => {
   let connection;
-  const query = `SELECT pets.id AS 'petID', pets.petName FROM accounts LEFT JOIN users ON accounts.id = users.account LEFT JOIN pets ON users.id = pets.petOwner WHERE accounts.id = ${userAccountId}`;
-  connection = await pool.getConnection();
-  const pets = await connection.query(query);
-  connection.end();
-  if (pets.length === 0) return null;
-  return pets;
+  try {
+    const query = `SELECT pets.id AS 'petID', pets.petName FROM accounts LEFT JOIN users ON accounts.id = users.account LEFT JOIN pets ON users.id = pets.petOwner WHERE accounts.id = ${userAccountId}`;
+    connection = await pool.getConnection();
+    const pets = await connection.query(query);
+    if (pets.length === 0) return null;
+    return pets;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    connection.end();
+  }
 };
 
 export const findUser = async (pool, email) => {
   let connection;
-  const query = `SELECT accounts.id, accounts.accountPassword, accounts.userRole FROM accounts WHERE accounts.email = '${email}'`;
-  connection = await pool.getConnection();
-  const userResult = await connection.query(query);
-  connection.end();
-  if (userResult.length === 0) {
-    return null;
+  try {
+    const query = `SELECT accounts.id, accounts.accountPassword, accounts.userRole FROM accounts WHERE accounts.email = '${email}'`;
+    connection = await pool.getConnection();
+    const userResult = await connection.query(query);
+    if (userResult.length === 0) {
+      return null;
+    }
+    return userResult;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    connection.end();
   }
-  return userResult;
 };
 
 export const getUserId = async (pool, email) => {
   let connection;
-  const query = `SELECT users.id FROM accounts LEFT JOIN users ON users.account = accounts.id WHERE accounts.email = '${email}'`;
-  connection = await pool.getConnection();
-  const userResultRow = await connection.query(query);
-  connection.end();
-  if (userResultRow.length === 0) {
-    return null;
+  try {
+    const query = `SELECT users.id FROM accounts LEFT JOIN users ON users.account = accounts.id WHERE accounts.email = '${email}'`;
+    connection = await pool.getConnection();
+    const userResultRow = await connection.query(query);
+    if (userResultRow.length === 0) {
+      return null;
+    }
+    return userResultRow[0];
+  } catch (error) {
+    console.error(error);
+  } finally {
+    connection.end();
   }
-  return userResultRow[0];
+};
+
+export const getUserEmail = async (pool, accountId) => {
+  let connection;
+  try {
+    const query = `SELECT accounts.email FROM accounts WHERE id = ${accountId}`;
+    connection = pool.getConnection();
+    const row = connection.query(query);
+    return row[0];
+  } catch (error) {
+    console.error(error);
+  } finally {
+    connection.end();
+  }
 };
 
 export const createUserAccount = async (

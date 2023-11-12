@@ -14,6 +14,12 @@ import {
   getPetByPetIdAndUserId,
   createNewPet,
 } from "../../queries/pets/pets-queries.js";
+import { getUserEmail } from "../../queries/user/user-queries.js";
+import {
+  mailOptions,
+  sendEmail,
+  generateAppointmentBookingHtml,
+} from "../../utils/mailer.js";
 
 let router = express.Router();
 
@@ -62,7 +68,7 @@ router.post(
 
     // Last check if appointment is still free
     const isAppointmentFree = await getAppointmentById(pool, appointmentId);
-    if (!isAppointmentFree.length)
+    if (isAppointmentFree.pet)
       return response.status(400).send({
         message: "Deja šis vizitas jau buvo užregistruotas.",
       });
@@ -89,6 +95,19 @@ router.post(
         });
 
       await bookPet(pool, appointmentId, petId, reason);
+
+      const emailOptions = mailOptions(
+        email,
+        "Vizito registracija",
+        "",
+        generateAppointmentBookingHtml(
+          isAppointmentFree.vetName,
+          isAppointmentFree.lastName,
+          isAppointmentFree.appointmentDate,
+          isAppointmentFree.appointmentTime
+        )
+      );
+      await sendEmail(emailOptions);
       return response.status(200).send({
         message: "Sėkmingai užregistravote augintinį vizitui.",
       });
@@ -115,6 +134,19 @@ router.post(
       return response.status(400).send({
         message: "Klaida. Bandykite dar kartą.",
       });
+
+    const emailOptions = mailOptions(
+      email,
+      "Vizito registracija",
+      "",
+      generateAppointmentBookingHtml(
+        isAppointmentFree.vetName,
+        isAppointmentFree.lastName,
+        isAppointmentFree.appointmentDate,
+        isAppointmentFree.appointmentTime
+      )
+    );
+    await sendEmail(emailOptions);
     return response.status(200).send({
       message: "Sėkmingai užsiregistravote vizitui.",
     });

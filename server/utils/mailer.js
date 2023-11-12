@@ -82,3 +82,28 @@ export const generateHtmlTemplate = (
 
   `;
 };
+
+// Generates appointment booking success email message
+
+export const generateAppointmentBookingHtml = (
+  vetName,
+  vetLastName,
+  appointmentDate,
+  appointmentTime
+) => {
+  const formatedDate = `${appointmentDate.getFullYear()}-${
+    appointmentDate.getMonth() + 1
+  }-${appointmentDate.getDate()}`;
+  return `
+    <h1>Sėkmingai užsiregistravote vizitui.</h1>
+    <div style="font-weight:400; color:#212529 ">
+    <h2>Vizito data: <span style="font-weight:500; color:#f89fbe">${formatedDate}</span></h2>
+    <h2>Vizito laikas: <span style="font-weight:500; color:#f89fbe" >${appointmentTime}</span></h2>
+    <h2>Pas vet. Gydytoją: <span style="font-weight:500; color:#f89fbe" >${
+      vetName + " " + vetLastName
+    }</span></h2>
+    </div>
+    <h3>Jei dėl kokių priežaščių negalėsite atvykti, praneškite telefonu: <span style="font-weight:500; color:#f89fbe" >+37063297569</span>, dieną prieš vizitą. </h3>
+    <h2>Lausime jūsų atvykstant!</h2>
+  `;
+};
