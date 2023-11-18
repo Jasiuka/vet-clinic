@@ -9,12 +9,12 @@ import { CardElement } from "@stripe/react-stripe-js";
 import { useNavigate } from "react-router-dom";
 
 export const Checkout = () => {
+  const navigate = useNavigate();
   const [shipmentCost, setShipmentCost] = useState(0);
   const [payment, setPayment] = useState("");
   const cartState = useSelector((state) => state.cart);
   const totalSum = Number(cartState.total) + Number(shipmentCost);
   const [order, { isLoading, isSuccess }] = usePostOrderMutation();
-  const navigate = useNavigate();
 
   const handleSubmitOrder = (event) => {
     event.preventDefault();

@@ -27,6 +27,12 @@ router.post(
     const today = new Date();
     const user = await getUserIdAndNameByAccountId(pool, accountId);
 
+    if (user.review) {
+      return response.status(400).send({
+        message: "Jūs jau esate parašęs atsiliepimą.",
+      });
+    }
+
     const reviewId = await postReview(
       pool,
       userReview.reviewText,

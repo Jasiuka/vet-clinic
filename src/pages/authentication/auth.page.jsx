@@ -68,7 +68,7 @@ export const AuthenticationPage = () => {
     });
   };
 
-  const handleSignupLevel1Submit = (event) => {
+  const handleSignup = (event) => {
     event.preventDefault();
     const form = event.target;
 
@@ -97,7 +97,7 @@ export const AuthenticationPage = () => {
             handleLogin={handleLogin}
           />
         ) : (
-          <SignupForm handleOnSubmit={handleSignupLevel1Submit} />
+          <SignupForm handleOnSubmit={handleSignup} />
         )}
       </div>
     </div>

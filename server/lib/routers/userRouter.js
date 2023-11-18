@@ -87,10 +87,12 @@ router.post(
         .status(400)
         .send("Klaida el. paštas arba slaptažodis klaidingas");
     }
+    const userReview = userData[0].review ? true : false;
 
     request.session.userId = userData[0].id;
     const userRole = {
       role: userData[0].userRole,
+      review: userReview,
     };
     return response.status(200).send(userRole);
   })

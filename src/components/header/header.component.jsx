@@ -24,7 +24,6 @@ export const Header = () => {
     (ac, cartItem) => ac + cartItem?.quantity,
     0
   );
-
   // Redux
 
   const dispatch = useDispatch();

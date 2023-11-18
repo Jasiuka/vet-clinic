@@ -5,7 +5,6 @@ import AddNewFormInput from "./add-new-form-input.component";
 export const EmployeeSelection = ({ selectedTable }) => {
   const { data, error, isLoading } = useGetAllEmployeesQuery();
   const [isAddNewOpen, setIsAddNewOpen] = useState(false);
-  console.log(data);
   const handleOpen = () => setIsAddNewOpen((prev) => !prev);
   return (
     <>

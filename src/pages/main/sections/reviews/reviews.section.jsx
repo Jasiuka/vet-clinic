@@ -11,11 +11,11 @@ export const Reviews = () => {
 
   const [isMessageShowing, setIsMessageShowing] = useState(false);
   const [hideForm, setHideForm] = useState(false);
+  const isUserHasReview = useSelector((state) => state.user?.review);
   const reviewRows = 4;
   const [visibleReviews, setVisibleReviews] = useState(4);
   const user = useSelector((state) => state.user);
   const { data, error, isLoading } = useGetReviewsQuery();
-  console.log(user);
 
   useEffect(() => {
     if (data) {
@@ -61,7 +61,7 @@ export const Reviews = () => {
           Užkrauti daugiau..
         </button>
       )}
-      {user?.role && !isMessageShowing && !hideForm && (
+      {user?.role && !isMessageShowing && !hideForm && !isUserHasReview && (
         <WriteNewForm user={user} messageHandler={handleMessageShowing} />
       )}
       {user?.role && isMessageShowing && (

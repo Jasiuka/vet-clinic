@@ -16,7 +16,6 @@ export const ProfileDropdown = ({ isOpen, handleDropdownClick, role }) => {
 
   const handleLogout = async () => {
     const response = await fetch("/logout");
-    console.log(response.status);
     if (response.status === 200) {
       localStorage.clear();
       window.location.reload();

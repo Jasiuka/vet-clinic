@@ -24,7 +24,6 @@ export const SignupForm = () => {
     };
 
     signup(userObject);
-    console.log(isSuccess);
   };
 
   return (

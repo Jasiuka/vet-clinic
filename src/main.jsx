@@ -32,7 +32,7 @@ import VetAppointments from "./pages/vets/vet-appointments.page.jsx";
 // STRIPE
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import Orders from "./pages/auth-users/order.page.jsx";
+import Orders from "./pages/auth-users/orders/orders.page.jsx";
 import { Header } from "./components/header/header.component.jsx";
 import NotFoundPage from "./pages/error/not-found.page.jsx";
 const stripePromise = loadStripe(
