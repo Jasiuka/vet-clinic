@@ -41,11 +41,20 @@ export const Header = () => {
     setIsDropdownOpen((prev) => !prev);
   };
 
-  const hideProfileDropdownOnClickOutside = (e) => {
-    const target = e.target;
+  const hideProfileDropdownOnClickOutside = (target) => {
     if (!target.closest(".profile-dropdown-button") && isDropdownOpen) {
       setIsDropdownOpen(false);
     }
+  };
+
+  const hideCartDropdownOnLinkClick = (target) => {
+    if (target.tagName === "A") dispatch(setIsCartOpen(false));
+  };
+
+  const bodyEventListeners = (event) => {
+    const target = event.target;
+    hideProfileDropdownOnClickOutside(target);
+    hideCartDropdownOnLinkClick(target);
   };
 
   useEffect(() => {
@@ -60,16 +69,11 @@ export const Header = () => {
     const observer = new IntersectionObserver(observerCallback, options);
     if (observerTargetElement) observer.observe(observerTargetElement);
 
-    bodyElement.addEventListener("click", (e) =>
-      hideProfileDropdownOnClickOutside(e)
-    );
+    bodyElement.addEventListener("click", (e) => bodyEventListeners(e));
 
     return () => {
       if (observerTargetElement) observer.unobserve(observerTargetElement);
-      bodyElement.removeEventListener(
-        "clcik",
-        hideProfileDropdownOnClickOutside
-      );
+      bodyElement.removeEventListener("clcik", bodyEventListeners);
     };
   }, [isIntersecting, isDropdownOpen]);
 

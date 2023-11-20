@@ -34,23 +34,25 @@ export const createNewOrder = async (
   userPhone,
   orderState,
   totalOrderPrice,
-  clientFullName
+  clientFullName,
+  date
 ) => {
   let connection;
   try {
     let query;
     let values = [];
     if (!userId) {
-      query = `INSERT INTO orders (totalPrice,email,orderState,phone, fullName) VALUES (?,?,?,?,?) RETURNING id`;
+      query = `INSERT INTO orders (totalPrice,email,orderState,phone, fullName, orderDate) VALUES (?,?,?,?,?,?) RETURNING id`;
       values = [
         totalOrderPrice,
         userEmail,
         orderState,
         userPhone,
         clientFullName,
+        date,
       ];
     }
-    query = `INSERT INTO orders (totalPrice,user,email,orderState,phone, fullName) VALUES (?,?,?,?,?,?) RETURNING id`;
+    query = `INSERT INTO orders (totalPrice,user,email,orderState,phone, fullName, orderDate) VALUES (?,?,?,?,?,?,?) RETURNING id`;
     values = [
       totalOrderPrice,
       userId,
@@ -58,6 +60,7 @@ export const createNewOrder = async (
       orderState,
       userPhone,
       clientFullName,
+      date,
     ];
 
     connection = await pool.getConnection();

@@ -45,6 +45,10 @@ router.post(
     }
 
     const userId = await getUserIdByEmail(pool, request.body.email);
+    const today = new Date();
+    const formatedToday = `${today.getFullYear()}-${
+      today.getMonth() + 1
+    }-${today.getDate()}`;
 
     const newOrderId = await createNewOrder(
       pool,
@@ -53,7 +57,8 @@ router.post(
       phone,
       state,
       price,
-      fullName
+      fullName,
+      formatedToday
     );
 
     if (!newOrderId)

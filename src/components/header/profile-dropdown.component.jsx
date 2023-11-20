@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const ProfileDropdown = ({ isOpen, handleDropdownClick, role }) => {
   const loggedUserButtonNames = {
@@ -7,6 +8,7 @@ export const ProfileDropdown = ({ isOpen, handleDropdownClick, role }) => {
     2: "Mano profilis",
     3: "Gydytojas",
   };
+  const navigate = useNavigate();
 
   const getUserButtonName = (userRole = null) => {
     if (userRole) {
@@ -18,6 +20,7 @@ export const ProfileDropdown = ({ isOpen, handleDropdownClick, role }) => {
     const response = await fetch("/logout");
     if (response.status === 200) {
       localStorage.clear();
+      navigate("/");
       window.location.reload();
     } else {
       alert("Klaida! Nepavyko atsijungti.");

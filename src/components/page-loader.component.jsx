@@ -1,14 +1,20 @@
 import LoaderPaw from "./icon-components/loader-paw.component";
-export const PageLoader = () => {
+import PropTypes from "prop-types";
+export const PageLoader = ({ loadingMessage }) => {
   return (
     <div className="loader">
+      <div className="loader-overlay"></div>
       <div className="wrapper">
-        <LoaderPaw count={1} />
-        <LoaderPaw count={2} />
+        <div className="loader__paws">
+          <LoaderPaw count={1} />
+          <LoaderPaw count={2} />
+        </div>
+        <h4>{loadingMessage}</h4>
       </div>
-      <h4>Kraunama..</h4>
     </div>
   );
 };
-
+PageLoader.propTypes = {
+  loadingMessage: PropTypes.string,
+};
 export default PageLoader;

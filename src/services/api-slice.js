@@ -91,6 +91,9 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["Reviews"],
     }),
+    getUserOrders: builder.query({
+      query: () => `/orders`,
+    }),
   }),
 });
 
@@ -116,4 +119,5 @@ export const {
   useBookAppointmentMutation,
   useGetReviewsQuery,
   usePostReviewMutation,
+  useGetUserOrdersQuery,
 } = apiSlice;

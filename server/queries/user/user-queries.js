@@ -152,3 +152,20 @@ export const updateUserReview = async (pool, reviewId, userId) => {
     connection.end();
   }
 };
+
+export const getUserOrdersByAccountId = async (pool, accountId) => {
+  let connection;
+  try {
+    const query = `SELECT orders.id,orders.totalPrice, orders.orderState, orders.orderDate, orderedproductsdetails.quantity, products.title, products.price
+    FROM Accounts LEFT JOIN users ON users.account = accounts.id
+     LEFT JOIN orders ON orders.user = users.id LEFT JOIN orderedproductsdetails ON orderedproductsdetails.orderID = orders.id
+      LEFT JOIN products ON orderedproductsdetails.productID = products.id WHERE Accounts.id = ${accountId};`;
+    connection = await pool.getConnection();
+    const rows = await connection.query(query);
+    return rows;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    connection.end();
+  }
+};

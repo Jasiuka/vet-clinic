@@ -97,23 +97,41 @@
 /* Loader */
 
 .loader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--dark-grey);
-  gap: 3rem;
-  flex-direction: column;
-  position: relative;
-  border-radius: 50%;
-  border: 3px solid var(--accent-color);
-  background-color: var(--accent-color);
-  width: 20rem;
-  aspect-ratio: 1;
+  top: 0;
+  position: fixed;
+  width: 100dvw;
+  height: 100dvh;
+  z-index: 100;
+}
+
+.loader .loader-overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
 }
 
 .loader .wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 15rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  backdrop-filter: blur(5px);
+  z-index: 100;
   gap: 3rem;
+  padding: var(--el-pd-md);
+  border: 4px double var(--accent-color);
+}
+
+.loader .loader__paws {
+  display: flex;
 }
 
 .loader-el {
@@ -125,8 +143,9 @@
 }
 
 .loader-icon {
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
+  fill: var(--accent-color);
 }
 
 @keyframes animatePaw {
