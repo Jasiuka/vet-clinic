@@ -35,10 +35,19 @@ import { loadStripe } from "@stripe/stripe-js";
 import Orders from "./pages/auth-users/orders/orders.page.jsx";
 import { Header } from "./components/header/header.component.jsx";
 import NotFoundPage from "./pages/error/not-found.page.jsx";
+import TempPage from "./temp.page.jsx";
 const stripePromise = loadStripe(
   "pk_test_51ELPw0GnhsO4RtFa7HIILjcjS8WMtFTtPk7NkTZJtQS4r4fySmUFsaQdNWS0WvcBrPygfHn2D97wgL1I9Wwnoaek00ATsqQQSM"
 );
 const router = createBrowserRouter([
+  {
+    path: "/temp",
+    element: (
+      <Layout>
+        <TempPage />
+      </Layout>
+    ),
+  },
   {
     path: "/",
     element: (

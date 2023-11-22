@@ -6,6 +6,7 @@ import { useState } from "react";
 import NewPetForm from "../new-pet-form.component";
 import { useGetAllUserPetsIdsQuery } from "./../../../services/api-slice";
 import useCheckStatus from "../../../utils/hooks/check-status.hook";
+import Spinner from "../../../components/spinner.component";
 export const Pets = () => {
   const [isCreateNewShowing, setIsCreateNewShowing] = useState(false);
   const { data, error, isLoading } = useGetAllUserPetsIdsQuery();
@@ -13,6 +14,7 @@ export const Pets = () => {
 
   return (
     <main className="page pets">
+      {isLoading && <Spinner message={"Gaunami duomenys.."} />}
       <h1 className="page-heading for-observer">Mano augintiniai</h1>;
       <div className="pets-inner">
         {data?.map(({ petID, petName }) => {

@@ -9,7 +9,7 @@ import { useLoginQuery } from "../../services/api-slice";
 // Redux
 import { useDispatch } from "react-redux";
 import { get } from "../../store/slices/user-slice";
-import PageLoader from "../../components/page-loader.component";
+import Spinner from "../../components/spinner.component";
 
 export const AuthenticationPage = () => {
   // Redux
@@ -84,7 +84,7 @@ export const AuthenticationPage = () => {
 
   return (
     <div className="authentication">
-      {isLoading && <PageLoader loadingMessage={"Prijungiama.."} />}
+      {isLoading && <Spinner message={"Prijungiama.."} />}
       <img className="authentication--img" src="/assets/catsa2.webp" />
       <div className="authentication__container">
         <Link to={"/"}>

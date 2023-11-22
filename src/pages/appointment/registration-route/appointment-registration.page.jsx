@@ -9,6 +9,7 @@ import "./appointment-registration.style.css";
 import NoRegForm from "./no-reg-form.component";
 import { useSelector } from "react-redux";
 import AuthenticatedForm from "./auth-form.component";
+import Spinner from "../../../components/spinner.component";
 export const AppointmentRegistration = () => {
   let { id } = useParams();
   const [appointmentData, setAppointmentData] = useState({
@@ -72,6 +73,7 @@ export const AppointmentRegistration = () => {
 
   return (
     <main className="appointment-registration">
+      {isLoadingMutation && <Spinner message={"Kraunama.."} />}
       <div className="appointment-registration-heading for-observer">
         <div className="appointment-registration-heading__appointment-data">
           <p>{appointmentData.date}</p>

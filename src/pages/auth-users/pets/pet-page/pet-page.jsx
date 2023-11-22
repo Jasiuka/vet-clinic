@@ -7,6 +7,7 @@ import PetDocument from "./pet-document.component";
 import PetHistory from "./pet-history.component";
 import { useSelector } from "react-redux";
 import AllAppointmentsPopup from "./all-appointments-popup.component";
+import Spinner from "../../../../components/spinner.component";
 export const PetPage = () => {
   const { name, id } = useParams();
   const { data, error, isLoading } = useGetPetDocumentsByIdQuery(id);
@@ -24,6 +25,7 @@ export const PetPage = () => {
 
   return (
     <main className="pet-page">
+      {isLoading && <Spinner message={"Gaunami duomenys"} />}
       <h1 className="page-heading for-observer">{name}</h1>
       <div className="pet-page-inner">
         <div className="pet-page__pet-info">

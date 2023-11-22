@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { CardElement } from "@stripe/react-stripe-js";
 import { useNavigate } from "react-router-dom";
 import CheckoutConfirmed from "./checkout-confirmed.component";
-import PageLoader from "../../../components/page-loader.component";
+import Spinner from "../../../components/spinner.component";
 
 export const Checkout = () => {
   const navigate = useNavigate();
@@ -58,7 +58,7 @@ export const Checkout = () => {
       <h1 className="page-heading for-observer">Užsakymas</h1>
       {!isSuccess ? (
         <>
-          {isLoading && <PageLoader loadingMessage={"Kraunama.."} />}
+          {isLoading && <Spinner message={"Kraunama.."} />}
 
           <form
             onSubmit={(event) => handleSubmitOrder(event)}

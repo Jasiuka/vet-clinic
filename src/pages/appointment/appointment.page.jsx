@@ -5,6 +5,7 @@ import { useState } from "react";
 import AppointmentCard from "./appointment-card.component";
 import { useGetAppointmentsByDateRangeQuery } from "../../services/api-slice";
 import { RemoveSeconds, FixDate } from "../../utils/helper-fncs";
+import Spinner from "../../components/spinner.component";
 export const AppointmentPage = () => {
   const [dateRangeObject, setDateRangeObject] = useState({
     start: null,
@@ -57,6 +58,7 @@ export const AppointmentPage = () => {
 
   return (
     <main className="appointment">
+      {isLoading && <Spinner message={"Ieškoma.."} />}
       <h2 className="page-heading for-observer">Registracija vizitui</h2>
       <div className="appointment-inner">
         <div className="appointment-inner__calendar">

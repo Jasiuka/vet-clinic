@@ -16,6 +16,7 @@ import clientRouter from "./server/lib/routers/clientRouter.js";
 import loggedUserRouter from "./server/lib/routers/loggedUserRouter.js";
 import userRouter from "./server/lib/routers/userRouter.js";
 import ordersRouter from "./server/lib/routers/ordersRouter.js";
+import storageRouter from "./server/lib/routers/storageRouter.js";
 
 // Auth
 import session from "express-session";
@@ -73,6 +74,7 @@ app.use(shopRouter);
 app.use(loggedUserRouter);
 app.use(userRouter);
 app.use(ordersRouter);
+app.use(storageRouter);
 
 app.use(errorHandler);
 ViteExpress.listen(app, 3000, () => console.log(`Server is listening..  `));

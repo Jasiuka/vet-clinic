@@ -5,6 +5,7 @@ import "./reviews.style.css";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useGetReviewsQuery } from "../../../../services/api-slice";
+import Spinner from "../../../../components/spinner.component";
 
 export const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -34,6 +35,7 @@ export const Reviews = () => {
 
   return (
     <section className="reviews">
+      {isLoading && <Spinner message={"Kraunama.."} />}
       <h2 className="reviews__heading section-heading">
         Jūsų atsiliepimai apie mus
       </h2>

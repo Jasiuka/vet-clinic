@@ -19,6 +19,13 @@
 
 /* 
 
+/* TEMP */
+
+.temp-inner {
+  padding: var(--section-padding-top-bottom) var(--side-paddings);
+}
+
+/* TEMP */
 
 /* CTA */
 
@@ -94,66 +101,6 @@
   }
 }
 
-/* Loader */
-
-.loader {
-  top: 0;
-  position: fixed;
-  width: 100dvw;
-  height: 100dvh;
-  z-index: 100;
-}
-
-.loader .loader-overlay {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  z-index: 10;
-}
-
-.loader .wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 15rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  backdrop-filter: blur(5px);
-  z-index: 100;
-  gap: 3rem;
-  padding: var(--el-pd-md);
-  border: 4px double var(--accent-color);
-}
-
-.loader .loader__paws {
-  display: flex;
-}
-
-.loader-el {
-  transform: scale(2);
-  animation: animatePaw 1.2s ease infinite;
-  animation-fill-mode: forwards;
-  animation-delay: calc(var(--i) * 0.6s);
-  fill: var(--dark-grey);
-}
-
-.loader-icon {
-  width: 4rem;
-  height: 4rem;
-  fill: var(--accent-color);
-}
-
-@keyframes animatePaw {
-  90% {
-    transform: scale(1);
-  }
-}
-
 /* Message */
 
 .message-div {
@@ -189,6 +136,51 @@
   color: var(--dark-grey);
   transform: scale(1.02);
 }
+
+/* SPINNER */
+
+.spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100dvw;
+  height: 100dvh;
+  z-index: 100;
+}
+
+.spinner__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-md);
+  padding: var(--el-pd-md);
+}
+
+.spinner__element {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border-right: 5px solid var(--accent-color);
+  border-bottom: 5px solid var(--accent-color);
+  display: inline-block;
+  position: relative;
+  transition: var(--main-transition);
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* SPINNER */
 
 /* Media Queries */
 
