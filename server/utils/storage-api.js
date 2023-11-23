@@ -1,58 +1,78 @@
 import dotenv from "dotenv";
+import { google } from "googleapis";
+import { Readable } from "stream";
 
-export const getAuthorizationToken = async () => {
-  // Gets the authorization token to access storage bucket
-  return fetch("https://api.backblazeb2.com/b2api/v3/b2_authorize_account", {
-    method: "GET",
-    headers: {
-      Authorization: `Basic ${Buffer.from(
-        `${process.env.STORAGE_APP_KEY_ID}:${process.env.STORAGE_APP_KEY}`
-      ).toString("base64")}`,
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      return {
-        token: data.authorizationToken,
-        accountId: data.accountId,
-        apiUrl: data.apiInfo.storageApi.apiUrl,
-      };
+const keyFile = "vet-clinic-405920-db0f00b05e16.json";
+const scopes = ["https://www.googleapis.com/auth/drive"];
+
+const auth = new google.auth.GoogleAuth({
+  keyFile,
+  scopes,
+});
+
+const drive = google.drive({ version: "v3", auth });
+
+// Lists all google drive files
+export const listFiles = async () => {
+  try {
+    // const response = await drive.files.list({});
+    const response = await drive.files.list({
+      // Filter to get only folders
+      fields: "files(id, name)",
     });
+  } catch (err) {
+    console.error("ERROR:", err);
+  }
 };
 
-export const getUploadUrl = async (token, url) => {
-  return fetch(`${url}?bucketId=17841ff8d06bf46788ba0f18`, {
-    method: "GET",
-    headers: {
-      Authorization: token,
-    },
-  })
-    .then((response) => {
-      console.log(response);
-      return response;
-    })
-    .then((data) => {
-      console.log(data.message);
-      return { uploadUrl: data.uploadUrl, token: data.authorizationToken };
+// Deletes google drive file by fileId
+export const deleteFile = async (fileID) => {
+  try {
+    const response = await drive.files.delete({
+      fileId: fileID,
     });
+  } catch (err) {
+    console.error("ERROR:", err);
+  }
 };
 
-export const uploadFile = async (
-  uploadUrl,
-  token,
-  fileName,
-  contentType,
-  sha1Sum
-) => {
-  return fetch(uploadUrl, {
-    headers: {
-      Authorization: token,
-    },
-    method: "POST",
-    body: JSON.stringify({
-      "X-Bz-File-Name": fileName,
-      "Content-type": contentType,
-      "X-Bz-Content-Sha1": sha1Sum,
-    }),
-  }).then((response) => console.log(response.status));
+// Creates new file in google drive
+export const createFile = async (file) => {
+  try {
+    const folderId = process.env.STORAGE_FOLDER_ID;
+    const fileMetadata = {
+      name: file.originalname,
+      parents: [folderId],
+    };
+
+    const media = {
+      mimeType: file.mimetype,
+      body: Readable.from(file.buffer),
+    };
+
+    const response = await drive.files.create({
+      resource: fileMetadata,
+      media: media,
+      fields: "id",
+    });
+    const { id } = response.data;
+    return id;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// Gets download link for file by fileId
+export const downloadFileById = async (fileId) => {
+  try {
+    const response = await drive.files.get({
+      fileId: fileId,
+      fields: "webContentLink",
+    });
+
+    const webContentLink = response.data.webContentLink;
+    return webContentLink;
+  } catch (error) {
+    console.error(error);
+  }
 };

@@ -1,6 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useGetPetDocumentsByIdQuery } from "../../../../services/api-slice";
+import {
+  useGetPetDocumentsByIdQuery,
+  useUploadPetDocumentMutation,
+} from "../../../../services/api-slice";
 import "./pet-page.style.css";
 import PetInfo from "./pet-info.component";
 import PetDocument from "./pet-document.component";
@@ -10,18 +13,55 @@ import AllAppointmentsPopup from "./all-appointments-popup.component";
 import Spinner from "../../../../components/spinner.component";
 export const PetPage = () => {
   const { name, id } = useParams();
-  const { data, error, isLoading } = useGetPetDocumentsByIdQuery(id);
-  const [documents, setDocuments] = useState([]);
+
+  // QUERIES / MUTATIONS
+  const {
+    data: petDocuments,
+    error,
+    isLoading,
+  } = useGetPetDocumentsByIdQuery(id);
+
+  const [
+    documentTrigger,
+    { error: uploadError, isLoading: uploadLoad, isSuccess: uploadSuccess },
+  ] = useUploadPetDocumentMutation();
+
+  // STATES
   const [isAddDocumentFormShowing, setIsAddDocumentFormShowing] =
     useState(false);
   const [isPopupShowing, setIsPopupShowing] = useState(false);
-  const userRole = useSelector((state) => state.user?.userRole);
+  const userRole = useSelector((state) => state.user?.role);
 
+  // HANDLERS
   const handleFormShow = () => setIsAddDocumentFormShowing((prev) => !prev);
   const handlePopupShow = (state) => setIsPopupShowing(state);
-  useEffect(() => {
-    if (data) setDocuments(data);
-  }, [data]);
+  const handleDownload = async (fileId) => {
+    const response = await fetch(`/api/v1/files/download?fileId=${fileId}`);
+    const { link } = await response.json();
+
+    window.open(link, "_blank");
+  };
+
+  const submitDoc = async (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+
+    const file = form.upload.files[0];
+    const title = form.title.value;
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("title", title);
+    formData.append("petId", id);
+
+    const { data } = await documentTrigger(formData);
+
+    if (data.status === 200) {
+      form.upload.value = "";
+      form.title.value = "";
+    }
+  };
 
   return (
     <main className="pet-page">
@@ -48,34 +88,34 @@ export const PetPage = () => {
           </h2>
           <div className="pet-page__documents-items">
             {isAddDocumentFormShowing && (
-              <form className="pet-page__documents-form">
+              <form onSubmit={submitDoc} className="pet-page__documents-form">
                 <div>
                   <label>Failas</label>
-                  <input type="file" />
+                  <input name="upload" type="file" />
                 </div>
                 <div>
                   <label>Pavadinimas</label>
-                  <input type="text" />
-                </div>
-                <div>
-                  <label>Aprašymas</label>
-                  <input type="text" />
+                  <input name="title" type="text" />
                 </div>
                 <button className="pink-button" type="submit">
                   Pridėti
                 </button>
               </form>
             )}
-            {data && data[0].title ? (
-              documents.map((document, index) => (
-                <PetDocument key={index} document={document} />
+            {petDocuments?.length ? (
+              petDocuments?.map((document, index) => (
+                <PetDocument
+                  key={index}
+                  document={document}
+                  handleDownload={handleDownload}
+                />
               ))
             ) : (
               <p>Susijusių dokumentų nėra</p>
             )}
           </div>
         </div>
-        <PetHistory id={id} />
+        <PetHistory id={id} userRole={userRole} />
       </div>
       {isPopupShowing && (
         <AllAppointmentsPopup

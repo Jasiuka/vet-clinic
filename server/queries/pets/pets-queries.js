@@ -1,7 +1,7 @@
 export const getPetDocumentsById = async (pool, id) => {
   let connection;
   try {
-    const query = `SELECT documents.title,documents.docUrl,documents.sendDate FROM pets LEFT JOIN documents ON pets.id = documents.pet WHERE pets.id = ${id} ORDER BY sendDate DESC`;
+    const query = `SELECT documents.title,documents.storageId,documents.sendDate FROM pets LEFT JOIN documents ON pets.id = documents.pet WHERE pets.id = ${id} ORDER BY sendDate DESC`;
     connection = await pool.getConnection();
     const results = await connection.query(query);
     return results;
@@ -105,6 +105,29 @@ export const createNewPet = async (
     connection = await pool.getConnection();
     const row = await connection.query(query, values);
     return row;
+  } catch (error) {
+    console.error(error);
+    return false;
+  } finally {
+    connection.end();
+  }
+};
+
+export const createNewPetDocument = async (
+  pool,
+  storageId,
+  title,
+  petId,
+  dateObj
+) => {
+  let connection;
+
+  try {
+    const query = `INSERT INTO documents (sendDate,sendTime,title,storageId,pet) VALUES (?,?,?,?,?)`;
+    connection = await pool.getConnection();
+    const values = [dateObj.date, dateObj.time, title, storageId, petId];
+    await connection.query(query, values);
+    return true;
   } catch (error) {
     console.error(error);
     return false;

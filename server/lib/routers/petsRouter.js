@@ -32,6 +32,9 @@ router.get(
   tryCatch(async (request, response) => {
     const id = request.query.id;
     const result = await getPetDocumentsById(pool, id);
+    if (!result[0].title) {
+      return response.status(200).send([]);
+    }
     return response.status(200).send(result);
   })
 );

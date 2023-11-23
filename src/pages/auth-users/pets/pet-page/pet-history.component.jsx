@@ -2,10 +2,9 @@ import { useSelector } from "react-redux";
 import { useGetPetHistoryByIdQuery } from "../../../../services/api-slice";
 import { FixDate } from "../../../../utils/helper-fncs";
 import { useState, useEffect } from "react";
-export const PetHistory = ({ id }) => {
+export const PetHistory = ({ id, userRole }) => {
   const { data, error, isLoading } = useGetPetHistoryByIdQuery(id);
   const [history, setHistory] = useState([]);
-  const userRole = useSelector((state) => state.user?.userRole);
   const [isFormShowing, setIsFormShowing] = useState(false);
   const handleButtonClick = () => {
     setIsFormShowing((prev) => !prev);

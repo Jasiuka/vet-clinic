@@ -1,15 +1,20 @@
 import propTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { FixDate } from "../../../../utils/helper-fncs";
-export const PetDocument = ({ document: { sendDate, title, docUrl } }) => {
+export const PetDocument = ({
+  document: { sendDate, title, storageId },
+  handleDownload,
+}) => {
   return (
-    <Link className="pet-page__documents-item" to={docUrl} target="_blank">
+    <button
+      onClick={() => handleDownload(storageId)}
+      className="pet-page__documents-item"
+    >
       <svg
         className="icon-pdf"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 122.88 121.83"
       >
-        <title>pdf failas</title>
+        <title>{title}</title>
         <path
           fillRule="evenodd"
           d="M102.42,37H81.92a8.52,8.52,0,0,1-8.85-8.7V7.53H21a.58.58,0,0,0-.41.18.45.45,0,0,0-.18.42V113.71a.7.7,0,0,0,.18.41.51.51,0,0,0,.41.18h80.84c.18,0,.17-.09.26-.18s.34-.28.34-.41V37Zm7.47,79.08a5.77,5.77,0,0,1-5.76,5.76H18.66a5.77,5.77,0,0,1-5.76-5.76V5.76a5.7,5.7,0,0,1,1.69-4.07A5.77,5.77,0,0,1,18.66,0H76.9a4.22,4.22,0,0,1,2.46.82l29.75,30.12a2.57,2.57,0,0,1,.78,2.6v82.53ZM80,27.69,79.57,9.63,100.66,31l-18.14-.81A2.4,2.4,0,0,1,80,27.69Z"
@@ -26,7 +31,7 @@ export const PetDocument = ({ document: { sendDate, title, docUrl } }) => {
       </svg>
       <p>Atsiųsta: {FixDate(sendDate)}</p>
       <p>{title}</p>
-    </Link>
+    </button>
   );
 };
 
@@ -34,6 +39,6 @@ PetDocument.propTypes = {
   document: propTypes.object,
   sendDate: propTypes.string,
   title: propTypes.string,
-  docUrl: propTypes.string,
+  handleDownload: propTypes.func,
 };
 export default PetDocument;

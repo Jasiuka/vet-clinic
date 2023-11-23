@@ -36,6 +36,16 @@ export const categoryById = (categoryID) => {
   return name;
 };
 
+// Creates today date string
+export const createTodayDateAndTimeString = () => {
+  const today = new Date();
+
+  return {
+    date: `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`,
+    time: `${today.getHours()}:${today.getMinutes()}`,
+  };
+};
+
 // Creates 'categories' object property which stores services category types [array of services id]
 export const mergeCategoriesIntoSingleProperty = (data) => {
   if (!data || data.length == 0) return;

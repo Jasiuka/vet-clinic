@@ -14,7 +14,6 @@ export const CheckoutConfirmed = () => {
     if (timeLeft > 0) {
       setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
     }
-    console.log(timeLeft);
   }, [timeLeft]);
   return (
     <div className="checkout__confirmed">

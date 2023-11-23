@@ -5,7 +5,6 @@ export const TempPage = () => {
     const file = form.upload.files[0];
     const formData = new FormData();
     formData.append("file", file);
-    console.log(file);
     const response = fetch("/api/v1/files/upload", {
       method: "POST",
       body: formData,

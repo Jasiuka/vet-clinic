@@ -10,7 +10,7 @@ export const hashPassword = async (password) => {
     const hashedPassword = await bcrypt.hash(password, salt);
     return hashedPassword;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -19,6 +19,6 @@ export const validatePassword = async (inputPassword, hashedPassword) => {
     const compareResult = await bcrypt.compare(inputPassword, hashedPassword);
     return compareResult;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
