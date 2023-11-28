@@ -1,9 +1,12 @@
-import { useSelector } from "react-redux";
-import { useGetPetHistoryByIdQuery } from "../../../../services/api-slice";
+import {
+  useGetPetHistoryByIdQuery,
+  useAddPetDiagnosisMutation,
+} from "../../../../services/api-slice";
 import { FixDate } from "../../../../utils/helper-fncs";
 import { useState, useEffect } from "react";
-export const PetHistory = ({ id, userRole }) => {
+export const PetHistory = ({ id, userRole, messageHandler }) => {
   const { data, error, isLoading } = useGetPetHistoryByIdQuery(id);
+  const [diagnosis, { isLoading: addLoading }] = useAddPetDiagnosisMutation();
   const [history, setHistory] = useState([]);
   const [isFormShowing, setIsFormShowing] = useState(false);
   const handleButtonClick = () => {
@@ -12,6 +15,28 @@ export const PetHistory = ({ id, userRole }) => {
   useEffect(() => {
     if (data) setHistory(data);
   }, [data]);
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+
+    const description = form.h_description.value;
+
+    const diagnosisObject = {
+      description,
+      petId: id,
+    };
+
+    const { data } = await diagnosis(diagnosisObject);
+    if (data.status === 200) {
+      form.h_description.value = "";
+      messageHandler(data.message);
+    }
+
+    if (data.stauts !== 200) {
+      messageHandler(data.message);
+    }
+  };
   return (
     <div className="pet-page__history">
       <h2 className="pet-page__box-heading">
@@ -25,10 +50,13 @@ export const PetHistory = ({ id, userRole }) => {
 
       <div className="pet-page__history-items">
         {isFormShowing && (
-          <form className="pet-page__history-form">
+          <form
+            onSubmit={(e) => submitHandler(e)}
+            className="pet-page__history-form"
+          >
             <div>
               <label htmlFor="text-area">Diagnozė</label>
-              <textarea id="text-area" />
+              <textarea id="text-area" name="h_description" />
             </div>
             <button className="pink-button" type="submit">
               Pridėti

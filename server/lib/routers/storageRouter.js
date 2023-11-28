@@ -4,6 +4,7 @@ import express from "express";
 import { createFile, downloadFileById } from "../../utils/storage-api.js";
 import { createNewPetDocument } from "../../queries/pets/pets-queries.js";
 import { createTodayDateAndTimeString } from "../../utils/helper.js";
+import { checkUserRole } from "../../utils/helper.js";
 import multer from "multer";
 
 const storage = multer.memoryStorage();
@@ -14,6 +15,7 @@ const router = express.Router();
 router.post(
   "/api/v1/files/upload",
   upload.single("file"),
+  checkUserRole([3]),
   tryCatch(async (request, response) => {
     const file = request.file;
     const { title, petId } = request.body;
@@ -42,6 +44,7 @@ router.post(
     } else {
       return response.status(200).send({
         message: "Įvyko klaida įkeliant failą",
+        status: 400,
       });
     }
   })

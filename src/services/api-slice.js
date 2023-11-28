@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
   reducerPath: "appointmentsApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api/v1/" }),
-  tagTypes: ["Reviews", "Documents"],
+  tagTypes: ["Reviews", "Documents", "History"],
   endpoints: (builder) => ({
     getAppointmentsByDateRange: builder.query({
       query: (dateRange) =>
@@ -31,6 +31,7 @@ export const apiSlice = createApi({
     }),
     getPetHistoryById: builder.query({
       query: (id) => `pets/history/id?id=${id}`,
+      providesTags: ["History"],
     }),
     getAllPetAppointments: builder.query({
       query: (id) => `pets/appointments/id?id=${id}`,
@@ -42,6 +43,14 @@ export const apiSlice = createApi({
         method: "POST",
       }),
       invalidatesTags: ["Documents"],
+    }),
+    addPetDiagnosis: builder.mutation({
+      query: (body) => ({
+        url: `pets/history`,
+        body: body,
+        method: "POST",
+      }),
+      invalidatesTags: ["History"],
     }),
     login: builder.query({
       query: (body) => ({
@@ -117,6 +126,7 @@ export const {
   useGetPetHistoryByIdQuery,
   useGetAllPetAppointmentsQuery,
   useGetAllUserPetsIdsQuery,
+  useAddPetDiagnosisMutation,
   // USER
   useLoginQuery,
   useSignupMutation,

@@ -1,22 +1,30 @@
+import { useState } from "react";
+import Message from "./components/message.component";
 export const TempPage = () => {
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const file = form.upload.files[0];
-    const formData = new FormData();
-    formData.append("file", file);
-    const response = fetch("/api/v1/files/upload", {
-      method: "POST",
-      body: formData,
+  const [message, setMessage] = useState({
+    messageText: "",
+    isMessageVisible: false,
+  });
+  const showMessage = (messageText) => {
+    setMessage({
+      messageText: messageText,
+      isMessageVisible: true,
     });
-  };
 
+    setTimeout(() => {
+      setMessage({
+        isMessageVisible: false,
+      });
+    }, 3000);
+  };
   return (
     <main>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input name="upload" type="file" />
-        <button>Submit</button>
-      </form>
+      {message.isMessageVisible && (
+        <Message messageText={message.messageText} />
+      )}
+      <button onClick={() => showMessage("Testing message")}>
+        Show message
+      </button>
     </main>
   );
 };

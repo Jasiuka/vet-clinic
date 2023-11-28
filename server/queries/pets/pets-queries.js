@@ -135,3 +135,19 @@ export const createNewPetDocument = async (
     connection.end();
   }
 };
+
+export const createNewDiagnosis = async (pool, date, description, petId) => {
+  let connection;
+  try {
+    const query = `INSERT INTO diagnosis (diagnosisDate,diagnosisDescription,pet) VALUES (?,?,?)`;
+    const values = [date, description, petId];
+    connection = await pool.getConnection();
+    await connection.query(query, values);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  } finally {
+    connection.end();
+  }
+};

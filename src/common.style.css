@@ -104,16 +104,19 @@
 /* Message */
 
 .message-div {
-  background-color: var(--dark-grey);
+  z-index: 50;
+  background-color: var(--accent-color-light);
   padding: 1.5rem;
-  color: var(--light-grey);
-  position: absolute;
+  color: var(--dark-grey);
+  position: fixed;
   border-radius: var(--common-border-radius);
+  top: 15%;
+  left: 45%;
 }
 
 .message-div p {
-  font-size: var(--font-md);
-  font-weight: 400;
+  font-size: var(--font-sm-to-md);
+  font-weight: 500;
 }
 
 /* Pink Button hover */

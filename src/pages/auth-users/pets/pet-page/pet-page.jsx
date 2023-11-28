@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   useGetPetDocumentsByIdQuery,
   useUploadPetDocumentMutation,
@@ -11,6 +11,7 @@ import PetHistory from "./pet-history.component";
 import { useSelector } from "react-redux";
 import AllAppointmentsPopup from "./all-appointments-popup.component";
 import Spinner from "../../../../components/spinner.component";
+import Message from "../../../../components/message.component";
 export const PetPage = () => {
   const { name, id } = useParams();
 
@@ -31,6 +32,22 @@ export const PetPage = () => {
     useState(false);
   const [isPopupShowing, setIsPopupShowing] = useState(false);
   const userRole = useSelector((state) => state.user?.role);
+  const [message, setMessage] = useState({
+    messageText: "",
+    isMessageVisible: false,
+  });
+  const showMessage = (messageText) => {
+    setMessage({
+      messageText: messageText,
+      isMessageVisible: true,
+    });
+
+    setTimeout(() => {
+      setMessage({
+        isMessageVisible: false,
+      });
+    }, 3000);
+  };
 
   // HANDLERS
   const handleFormShow = () => setIsAddDocumentFormShowing((prev) => !prev);
@@ -60,12 +77,19 @@ export const PetPage = () => {
     if (data.status === 200) {
       form.upload.value = "";
       form.title.value = "";
+      showMessage(data.message);
+    }
+    if (data.stauts !== 200) {
+      showMessage(data.message);
     }
   };
 
   return (
     <main className="pet-page">
       {isLoading && <Spinner message={"Gaunami duomenys"} />}
+      {message.isMessageVisible && (
+        <Message messageText={message.messageText} />
+      )}
       <h1 className="page-heading for-observer">{name}</h1>
       <div className="pet-page-inner">
         <div className="pet-page__pet-info">
@@ -115,7 +139,7 @@ export const PetPage = () => {
             )}
           </div>
         </div>
-        <PetHistory id={id} userRole={userRole} />
+        <PetHistory messageHandler={showMessage} id={id} userRole={userRole} />
       </div>
       {isPopupShowing && (
         <AllAppointmentsPopup

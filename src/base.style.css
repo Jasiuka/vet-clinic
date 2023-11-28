@@ -26,6 +26,7 @@
   --page-heading-padding: 2rem var(--side-paddings);
   /* COLORS */
   --accent-color: #f89fbe;
+  --accent-color-light: #fccfdf;
   --dark-grey: #212529;
   --light-grey: #e9ecef;
   --light-dark-grey: #798087;
