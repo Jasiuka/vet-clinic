@@ -10,7 +10,7 @@ import { useLoginQuery } from "../../services/api-slice";
 import { useDispatch } from "react-redux";
 import { get } from "../../store/slices/user-slice";
 import Spinner from "../../components/spinner.component";
-
+import Message from "../../components/message.component";
 export const AuthenticationPage = () => {
   // Redux
 
@@ -97,6 +97,7 @@ export const AuthenticationPage = () => {
           <LoginForm
             handleFormchange={handleFormChange}
             handleLogin={handleLogin}
+            isLoginFailed={error}
           />
         ) : (
           <SignupForm handleOnSubmit={handleSignup} />

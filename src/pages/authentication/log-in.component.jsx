@@ -2,12 +2,17 @@ import { Link } from "react-router-dom";
 import FormInputBox from "../../components/form-input-box.component";
 import PropTypes from "prop-types";
 
-export const LoginForm = ({ handleFormchange, handleLogin }) => {
+export const LoginForm = ({ handleFormchange, handleLogin, isLoginFailed }) => {
   return (
     <form
       className="authentication__form-login authentication__form login-form"
       onSubmit={(e) => handleLogin(e)}
     >
+      {isLoginFailed?.data ? (
+        <span className="login-failed">{isLoginFailed?.data}</span>
+      ) : (
+        ""
+      )}
       <FormInputBox
         label={"El.Paštas"}
         inputId={"login-email"}
@@ -38,6 +43,7 @@ export const LoginForm = ({ handleFormchange, handleLogin }) => {
 LoginForm.propTypes = {
   handleFormchange: PropTypes.func,
   handleLogin: PropTypes.func,
+  isLoginFailed: PropTypes.object,
 };
 
 export default LoginForm;

@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import {} from "react";
 export const Message = ({ messageText }) => {
   return (
     <div className={`message-div`}>

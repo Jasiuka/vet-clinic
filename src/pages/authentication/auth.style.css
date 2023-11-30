@@ -60,6 +60,13 @@
   background-color: var(--light-grey);
 }
 
+.login-failed {
+  padding: var(--el-pd-sm);
+  background-color: rgb(255, 48, 48);
+  color: var(--light-grey);
+  border-radius: var(--common-border-radius);
+}
+
 /* SIGNUP FORM */
 .signup-form .form-container {
   margin-bottom: 0;

@@ -39,6 +39,82 @@
 
 /* CTA */
 
+/* LIVE CHAT */
+
+.live-chat__open,
+.live-chat {
+  position: fixed;
+  top: 45%;
+  right: 2rem;
+  z-index: 100;
+  padding: var(--el-pd-md);
+  border-radius: var(--common-border-radius);
+}
+
+.live-chat__open,
+.live-chat__close {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  transition: var(--main-transition);
+}
+
+.live-chat__close {
+  position: absolute;
+  left: -13%;
+  top: 40%;
+  padding: var(--el-pd-md);
+  border: 1px solid var(--light-grey);
+}
+
+#live-icon,
+#live-close {
+  width: var(--icon-sm);
+  height: var(--icon-sm);
+}
+
+.live-chat {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.chat-box {
+  min-height: 20rem;
+  aspect-ratio: 1;
+  border: 2px solid var(--accent-color);
+  border-radius: var(--common-border-radius);
+}
+
+.chat-form {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+}
+
+.chat-form input {
+  flex: 1;
+  padding: var(--el-pd-sm);
+}
+
+.chat-form button {
+  padding: var(--el-pd-sm);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: var(--main-transition);
+  border-radius: var(--common-border-radius);
+}
+
+.chat-form button:hover {
+  background-color: var(--accent-color);
+}
+
 /* OTHERS */
 
 .is-required {
@@ -76,7 +152,8 @@
   animation: scrollToTheTopButtonAnimation infinite 1.5s linear;
 }
 
-.scroll-to-top:hover {
+.scroll-to-top:hover,
+.live-chat__open:hover {
   transform: scale(1.1);
   -webkit-box-shadow: 0px 5px 23px -8px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 5px 23px -8px rgba(0, 0, 0, 0.75);

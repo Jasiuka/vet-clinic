@@ -11,6 +11,7 @@ import "./header.style.css";
 import CartDropdown from "./cart-dropdown/cart-dropdown.component";
 import { setIsCartOpen } from "../../store/cart/cart.reducer";
 import MobileHeader from "./mobile-header/mobile-header.component";
+import LiveChat from "../live-chat.component";
 
 // Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -241,6 +242,7 @@ export const Header = () => {
         <MobileHeader />
       </header>
       {/* Scroll to top button */}
+      <LiveChat />
       <ScrollToTopButton
         handleScrollToTop={handleScrollToTop}
         isIntersecting={isIntersecting}
