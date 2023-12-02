@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./slices/user-slice";
 import appointmentReducer from "./slices/appointment-slice";
 import cartReducer from "./cart/cart.reducer";
+import notificationsReducer from "./notifications/notifications.reducer";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import { apiSlice } from "../services/api-slice";
 import { persistReducer, persistStore } from "redux-persist";
@@ -20,6 +21,7 @@ export const store = configureStore({
     user: persistedReducer,
     appointment: appointmentReducer,
     cart: cartReducer,
+    notifications: notificationsReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>

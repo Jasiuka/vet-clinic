@@ -74,6 +74,11 @@
   opacity: 0;
 }
 
+.new-pet-form select {
+  padding: var(--el-pd-sm);
+  font-size: var(--font-sm-to-md);
+}
+
 .new-pet-form .form-container:first-of-type {
   margin-bottom: 0;
 }

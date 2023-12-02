@@ -6,7 +6,6 @@ import dotenv from "dotenv";
 import { errorHandler } from "./server/utils/errorHandler.js";
 
 // Websockets
-import { WebSocketServer } from "ws";
 
 // Routers
 import reviewsRouter from "./server/lib/routers/reviewsRouter.js";
@@ -31,14 +30,6 @@ const oneDay = 1000 * 60 * 60 * 24;
 dotenv.config();
 
 const app = express();
-
-const wsServer = new WebSocketServer({
-  server: app,
-});
-
-const clients = {};
-
-wsServer.on("request", (request) => {});
 
 export const pool = mariadb.createPool({
   host: process.env.DATABASE_HOST,

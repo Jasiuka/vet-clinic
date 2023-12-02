@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { useEffect } from "react";
 import { RemoveSeconds, FixDate } from "../../../../utils/helper-fncs";
@@ -30,24 +31,29 @@ export const AppointmentsTable = ({ appointmentsData }) => {
   };
 
   return (
-    <table>
-      <thead>
-        <tr>
-          {headings?.length > 0 &&
-            headings.map((heading) => <td key={heading}>{heading}</td>)}
-        </tr>
-      </thead>
-      <tbody>
-        {appointmentsData?.map((appointment) => (
-          <tr key={appointment.appointmentDate}>
-            {Object.values(fixObject(appointment)).map((value) => (
-              <td key={value}>{value}</td>
-            ))}
+    <div className="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            {headings?.length > 0 &&
+              headings.map((heading) => <td key={heading}>{heading}</td>)}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {appointmentsData?.map((appointment) => (
+            <tr key={appointment.Data + "" + appointment.Laikas}>
+              {Object.values(fixObject(appointment)).map((value) => (
+                <td key={value}>{value}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
+AppointmentsTable.propTypes = {
+  appointmentsData: PropTypes.array,
+};
 export default AppointmentsTable;

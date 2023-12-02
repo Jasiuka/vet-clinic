@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
   reducerPath: "appointmentsApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api/v1/" }),
-  tagTypes: ["Reviews", "Documents", "History"],
+  tagTypes: ["Reviews", "Documents", "History", "Pets"],
   endpoints: (builder) => ({
     getAppointmentsByDateRange: builder.query({
       query: (dateRange) =>
@@ -21,6 +21,7 @@ export const apiSlice = createApi({
     }),
     getAllUserPetsIds: builder.query({
       query: () => `user/pets`,
+      providesTags: ["Pets"],
     }),
     getPetById: builder.query({
       query: (id) => `pets/id?id=${id}`,
@@ -52,10 +53,10 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["History"],
     }),
-    login: builder.query({
+    login: builder.mutation({
       query: (body) => ({
         url: `/login`,
-        method: "Post",
+        method: "POST",
         body,
       }),
     }),
@@ -112,6 +113,14 @@ export const apiSlice = createApi({
     getUserOrders: builder.query({
       query: () => `/orders`,
     }),
+    createNewPet: builder.mutation({
+      query: (body) => ({
+        method: "POST",
+        body: body,
+        url: `user/pets`,
+      }),
+      invalidatesTags: ["Pets"],
+    }),
   }),
 });
 
@@ -128,9 +137,10 @@ export const {
   useGetAllUserPetsIdsQuery,
   useAddPetDiagnosisMutation,
   // USER
-  useLoginQuery,
+  useLoginMutation,
   useSignupMutation,
   useGetUserOrdersQuery,
+  useCreateNewPetMutation,
   // ADMIN
   useGetAllEmployeesQuery,
   useGetAllAppointmentsQuery,

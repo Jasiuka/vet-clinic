@@ -16,16 +16,9 @@ export const PetPage = () => {
   const { name, id } = useParams();
 
   // QUERIES / MUTATIONS
-  const {
-    data: petDocuments,
-    error,
-    isLoading,
-  } = useGetPetDocumentsByIdQuery(id);
+  const { data: petDocuments, isLoading } = useGetPetDocumentsByIdQuery(id);
 
-  const [
-    documentTrigger,
-    { error: uploadError, isLoading: uploadLoad, isSuccess: uploadSuccess },
-  ] = useUploadPetDocumentMutation();
+  const [documentTrigger] = useUploadPetDocumentMutation();
 
   // STATES
   const [isAddDocumentFormShowing, setIsAddDocumentFormShowing] =

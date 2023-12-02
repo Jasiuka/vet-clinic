@@ -16,7 +16,7 @@ export const useCheckStatus = ({ route }) => {
     };
 
     checkStatus();
-  });
+  }, [route, navigate]);
 
   return null;
 };

@@ -1,4 +1,6 @@
 import pool from "../../server.js";
+import { availableSpecies } from "./../data/availableSpecies.js";
+import { availableGenders } from "./../data/availableGenders.js";
 // Returns dayname by given day number
 export const addDayName = (dayNumber) => {
   const dayNamesArray = [
@@ -195,4 +197,11 @@ export const checkUserRole = (allowedRoles) => {
     }
     next();
   };
+};
+
+export const checkIfAvailableGenderAndSpecies = (specie, gender) => {
+  const isGenderAvailable = availableGenders.includes(gender);
+  const isSpecieAvailable = availableSpecies.includes(specie);
+
+  return isGenderAvailable && isSpecieAvailable;
 };

@@ -12,6 +12,7 @@ import {
   createTodayDateAndTimeString,
   checkUserRole,
 } from "../../utils/helper.js";
+
 let router = express.Router();
 
 router.get(
@@ -20,6 +21,9 @@ router.get(
   tryCatch(async (request, response) => {
     const id = request.query.id;
     const appointments = await getAllPetAppointmentsById(pool, id);
+    if (!appointments[0].Vardas) {
+      return response.status(200).send([]);
+    }
     return response.status(200).send(appointments);
   })
 );
@@ -64,13 +68,12 @@ router.post(
     const { description, petId } = request.body;
 
     const today = createTodayDateAndTimeString();
-    const isCreatingSuccess = true;
-    // const isCreatingSuccess = await createNewDiagnosis(
-    //   pool,
-    //   today.date,
-    //   description,
-    //   petId
-    // );
+    const isCreatingSuccess = await createNewDiagnosis(
+      pool,
+      today.date,
+      description,
+      petId
+    );
 
     if (!isCreatingSuccess) {
       return response.status(400).send({

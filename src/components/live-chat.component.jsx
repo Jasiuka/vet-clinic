@@ -1,16 +1,8 @@
 import { useState } from "react";
 import ChatItem from "./chat-item.component";
-import useWebSocket from "react-use-websocket";
-
-const webSocket_URL = "ws://127.0.0.1:3000";
 
 export const LiveChat = () => {
   const [chatOpen, setChatOpen] = useState(false);
-  useWebSocket(webSocket_URL, {
-    onOpen: () => {
-      console.log("WebSocket connection established.");
-    },
-  });
 
   return (
     <>

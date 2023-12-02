@@ -1,50 +1,16 @@
 import FormInputBox from "../../../components/form-input-box.component";
 import PropTypes from "prop-types";
 import SelectionInput from "../../../components/selection-input";
+import {
+  selectionOptionsGenderWithUnknown as selectionOptionsGender,
+  selectionOptionsSpecies,
+} from "../../../data/selectionOptions";
 export const NoRegForm = ({
   appointmentDate,
   dayName,
   appointmentTime,
   handleSubmit,
 }) => {
-  const selectionOptionsSpecies = [
-    {
-      value: "Katė",
-      displayText: "Katė",
-    },
-    {
-      value: "Šuo",
-      displayText: "Šuo",
-    },
-    {
-      value: "Paukštis",
-      displayText: "Paukštis",
-    },
-    {
-      value: "Žiurkėnas",
-      displayText: "Žiurkėnas",
-    },
-    {
-      value: "Pelė",
-      displayText: "Pelė",
-    },
-  ];
-
-  const selectionOptionsGender = [
-    {
-      value: "Patinas",
-      displayText: "Patinas",
-    },
-    {
-      value: "Patelė",
-      displayText: "Patelė",
-    },
-    {
-      value: "Nežinoma",
-      displayText: "Nežinoma",
-    },
-  ];
-
   return (
     <>
       <form

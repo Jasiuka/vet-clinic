@@ -75,7 +75,8 @@ router.post(
 
     if (!userData)
       return response.status(400).send({
-        message: "Toks vartotojas neegzistuoja.",
+        message: "Klaida, toks vartotojas neegzistuoja.",
+        type: "error",
       });
 
     const isPasswordMatch = await validatePassword(
@@ -83,9 +84,10 @@ router.post(
       userData[0].accountPassword
     );
     if (!isPasswordMatch) {
-      return response
-        .status(400)
-        .send("Klaida el. paštas arba slaptažodis klaidingas");
+      return response.status(400).send({
+        message: "Klaida, slaptažodis arba el. paštas neteisingas.",
+        type: "error",
+      });
     }
     const userReview = userData[0].review ? true : false;
 

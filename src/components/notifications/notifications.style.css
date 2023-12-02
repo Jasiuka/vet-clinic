@@ -1,0 +1,39 @@
+.notifications-list {
+  position: fixed;
+  top: 25%;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+}
+
+.notification {
+  font-size: var(--font-sm-to-md);
+  padding: var(--el-pd-md);
+  padding-right: calc(var(--el-pd-lg) + 0.3rem);
+  border-radius: var(--common-border-radius) 0 0 var(--common-border-radius);
+  animation: slideNotification 0.3s ease forwards;
+}
+
+.notification_success {
+  background-color: var(--notification-success);
+}
+
+.notification_warning {
+  background-color: var(--notification-warning);
+}
+
+.notification_error {
+  background-color: var(--notification-error);
+}
+
+@keyframes slideNotification {
+  0% {
+    transform: translateX(120%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

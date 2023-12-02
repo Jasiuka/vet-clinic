@@ -2,7 +2,7 @@ import "./pets.style.css";
 import "../../faq/accordion-plus-icon.component";
 import PlusIcon from "../../faq/accordion-plus-icon.component";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewPetForm from "../new-pet-form.component";
 import { useGetAllUserPetsIdsQuery } from "./../../../services/api-slice";
 import useCheckStatus from "../../../utils/hooks/check-status.hook";
@@ -10,6 +10,7 @@ import Spinner from "../../../components/spinner.component";
 export const Pets = () => {
   const [isCreateNewShowing, setIsCreateNewShowing] = useState(false);
   const { data, error, isLoading } = useGetAllUserPetsIdsQuery();
+
   useCheckStatus({ route: "mano-augintiniai" });
 
   return (
@@ -37,7 +38,12 @@ export const Pets = () => {
           <PlusIcon />
         </button>
       </div>
-      {isCreateNewShowing && <NewPetForm isShowing={isCreateNewShowing} />}
+      {isCreateNewShowing && (
+        <NewPetForm
+          setShowing={setIsCreateNewShowing}
+          isShowing={isCreateNewShowing}
+        />
+      )}
     </main>
   );
 };

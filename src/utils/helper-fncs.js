@@ -22,3 +22,17 @@ export const RemoveSeconds = (timeString) => {
   const newString = timeString.slice(0, timeString.length - 3);
   return newString;
 };
+
+export const createNotificationObject = (message, type) => {
+  return {
+    message: message,
+    type: type,
+    id: new Date().toISOString(),
+  };
+};
+
+export const checkIfAtLeastOneInputHasNoValue = (inputsArray) => {
+  // Remove last element (button)
+  inputsArray.pop();
+  return inputsArray.some((input) => input?.value.trim() === "");
+};

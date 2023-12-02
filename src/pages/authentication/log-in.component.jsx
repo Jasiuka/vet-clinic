@@ -9,7 +9,7 @@ export const LoginForm = ({ handleFormchange, handleLogin, isLoginFailed }) => {
       onSubmit={(e) => handleLogin(e)}
     >
       {isLoginFailed?.data ? (
-        <span className="login-failed">{isLoginFailed?.data}</span>
+        <span className="login-failed">{isLoginFailed?.data.message}</span>
       ) : (
         ""
       )}

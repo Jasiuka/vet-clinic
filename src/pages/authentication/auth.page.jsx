@@ -1,39 +1,27 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./auth.style.css";
 import LoginForm from "./log-in.component";
 import SignupForm from "./sign-up.component";
 import { useSearchParams } from "react-router-dom";
 import { useNavigate, Link } from "react-router-dom";
-import { useLoginQuery } from "../../services/api-slice";
+import { useLoginMutation } from "../../services/api-slice";
 
 // Redux
 import { useDispatch } from "react-redux";
 import { get } from "../../store/slices/user-slice";
 import Spinner from "../../components/spinner.component";
-import Message from "../../components/message.component";
+import { createNotificationAndRemove } from "./../../store/notifications/notifications.reducer";
+import { createNotificationObject } from "./../../utils/helper-fncs";
+import NotificationsList from "../../components/notifications/notificationsList.component";
 export const AuthenticationPage = () => {
   // Redux
-
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+  const [error, setError] = useState(null);
 
   const getUserData = (object) => dispatch(get(object));
 
-  const [loginCredentials, setLoginCredentials] = useState({
-    email: "",
-    password: "",
-  });
-  const { data, error, isLoading } = useLoginQuery(loginCredentials, {
-    skip: loginCredentials.email === "" && loginCredentials.password === "",
-  });
-
-  useEffect(() => {
-    if (data) {
-      getUserData(data);
-      navigate("/");
-    }
-  }, [data]);
+  const [login, { isLoading }] = useLoginMutation();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -43,9 +31,22 @@ export const AuthenticationPage = () => {
     const email = form["login-email"].value;
     const password = form["login-pass"].value;
 
-    setLoginCredentials({
-      email,
-      password,
+    const loginCredentials = {
+      email: email,
+      password: password,
+    };
+
+    login(loginCredentials).then((response) => {
+      if (response.error) {
+        setError(response.error);
+        const { message, type } = response.error.data;
+        dispatch(
+          createNotificationAndRemove(createNotificationObject(message, type))
+        );
+      } else {
+        getUserData(response.data);
+        navigate("/");
+      }
     });
   };
   // Redux
@@ -83,7 +84,9 @@ export const AuthenticationPage = () => {
   };
 
   return (
-    <div className="authentication">
+    <>
+    <NotificationsList />
+ <div className="authentication">
       {isLoading && <Spinner message={"Prijungiama.."} />}
       <img className="authentication--img" src="/assets/catsa2.webp" />
       <div className="authentication__container">
@@ -104,6 +107,8 @@ export const AuthenticationPage = () => {
         )}
       </div>
     </div>
+    </>
+   
   );
 };
 

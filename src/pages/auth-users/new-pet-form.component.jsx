@@ -1,8 +1,66 @@
 import PropTypes from "prop-types";
 import FormInputBox from "./../../components/form-input-box.component";
-export const NewPetForm = () => {
+import { useCreateNewPetMutation } from "../../services/api-slice";
+import {
+  selectionOptionsGender,
+  selectionOptionsSpecies,
+} from "../../data/selectionOptions";
+import SelectionInput from "../../components/selection-input";
+import { useDispatch } from "react-redux";
+import { createNotificationAndRemove } from "../../store/notifications/notifications.reducer";
+import {
+  createNotificationObject,
+  checkIfAtLeastOneInputHasNoValue,
+} from "./../../utils/helper-fncs";
+export const NewPetForm = ({ setShowing }) => {
+  const [pet] = useCreateNewPetMutation();
+  const dispatch = useDispatch();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const allInputs = Array.from(form.elements);
+
+    if (checkIfAtLeastOneInputHasNoValue(allInputs)) {
+      dispatch(
+        createNotificationAndRemove(
+          createNotificationObject(
+            "Visi laukai privalo būti užpildyti!",
+            "error"
+          )
+        )
+      );
+      return;
+    }
+
+    // From all inputs make single object
+    const petDetails = allInputs.reduce((ac, element) => {
+      ac[element.name] = element.value;
+      return ac;
+    }, {});
+
+    pet(petDetails).then((response) => {
+      if (response.error) {
+        dispatch(
+          createNotificationAndRemove(
+            createNotificationObject(
+              response.error.data.message,
+              response.error.data.type
+            )
+          )
+        );
+      } else {
+        setShowing(false);
+        dispatch(
+          createNotificationAndRemove(
+            createNotificationObject(response.data.message, response.data.type)
+          )
+        );
+      }
+    });
+  };
   return (
-    <form className="new-pet-form">
+    <form onSubmit={(event) => handleSubmit(event)} className="new-pet-form">
       <div className="new-pet-form--heading">
         <h3>Sukurti nauja augintinį</h3>
         <span className="is-required">* - PRIVALOMA UŽPILDYTI</span>
@@ -14,12 +72,10 @@ export const NewPetForm = () => {
         isRequired={true}
         label={"Augintinio vardas"}
       />
-      <FormInputBox
-        inputId={"pet_specie"}
-        inputName={"pet_specie"}
-        inputType={"text"}
-        label={"Augintinio rūšis"}
-        isRequired={true}
+      <SelectionInput
+        options={selectionOptionsSpecies}
+        name={"pet_specie"}
+        noSelectionText={"Pasirinkite gyvūno rūšį"}
       />
       <FormInputBox
         inputId={"pet_breed"}
@@ -28,12 +84,10 @@ export const NewPetForm = () => {
         label={"Augintinio veislė"}
         isRequired={true}
       />
-      <FormInputBox
-        inputId={"pet_gender"}
-        inputName={"pet_gender"}
-        inputType={"text"}
-        label={"Augintinio lytis"}
-        isRequired={true}
+      <SelectionInput
+        options={selectionOptionsGender}
+        name={"pet_gender"}
+        noSelectionText={"Pasirinkite gyvūno lytį"}
       />
       <FormInputBox
         inputId={"pet_age"}
@@ -57,4 +111,7 @@ export const NewPetForm = () => {
   );
 };
 
+NewPetForm.propTypes = {
+  setShowing: PropTypes.func,
+};
 export default NewPetForm;

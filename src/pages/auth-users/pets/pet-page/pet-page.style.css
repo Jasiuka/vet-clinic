@@ -197,6 +197,10 @@
   border-radius: var(--common-border-radius);
 }
 
+.table-wrapper {
+  overflow-y: scroll;
+  height: 80%;
+}
 .pet-page__popup-heading {
   font-size: var(--font-md);
   margin-bottom: var(--gap-lg);
@@ -230,4 +234,14 @@
 
 .pet-page__popup table tbody {
   font-size: var(--font-sm-to-md);
+}
+
+.pet-page__popup:has(.pet-page__popup--no-appointments) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pet-page__popup--no-appointments {
+  font-size: var(--font-md);
 }
