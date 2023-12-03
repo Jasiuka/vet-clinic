@@ -15,7 +15,7 @@ import LiveChat from "../live-chat.component";
 // Redux
 import { useSelector, useDispatch } from "react-redux";
 
-export const Header = () => {
+export const Header = ({ isIntersecting }) => {
   // Redux
   const userRole = useSelector((state) => state.user?.role);
   const itemsInCart = useSelector((state) => state.cart.cartItems);
@@ -28,14 +28,9 @@ export const Header = () => {
 
   const dispatch = useDispatch();
   const setCartIsOpen = (previous) => dispatch(setIsCartOpen(!previous));
-  const [isIntersecting, setIsIntersecting] = useState(true);
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const bodyElement = document.querySelector("body");
-
-  const observerCallback = (entries) => {
-    const [entry] = entries;
-    setIsIntersecting(entry.isIntersecting);
-  };
 
   const handleDropdownClick = () => {
     setIsDropdownOpen((prev) => !prev);
@@ -58,28 +53,12 @@ export const Header = () => {
   };
 
   useEffect(() => {
-    const observerTargetElement = document.querySelector(".for-observer");
-
-    const options = {
-      root: null,
-      rootMargin: "100px",
-      threshold: 0.1,
-    };
-
-    const observer = new IntersectionObserver(observerCallback, options);
-    if (observerTargetElement) observer.observe(observerTargetElement);
-
     bodyElement.addEventListener("click", (e) => bodyEventListeners(e));
 
     return () => {
-      if (observerTargetElement) observer.unobserve(observerTargetElement);
       bodyElement.removeEventListener("clcik", bodyEventListeners);
     };
-  }, [isIntersecting, isDropdownOpen]);
-
-  const handleScrollToTop = () => {
-    window.scrollTo(0, 0);
-  };
+  }, [isDropdownOpen]);
 
   const location = useLocation();
 

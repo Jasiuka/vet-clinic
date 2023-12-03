@@ -1,5 +1,9 @@
 import PropTypes from "prop-types";
-export const ScrollToTopButton = ({ handleScrollToTop, isIntersecting }) => {
+export const ScrollToTopButton = ({ isIntersecting }) => {
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <button
       title="Pakilti į viršų"
