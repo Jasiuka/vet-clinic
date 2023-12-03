@@ -84,12 +84,14 @@ router.post(
       return response.status(400).send({
         message: "Įvyko klaida pridedant diagnozę!",
         status: 400,
+        type: "error",
       });
     }
 
     return response.status(200).send({
       message: "Diagnozė sėkmingai pridėta",
       status: 200,
+      type: "success",
     });
   })
 );

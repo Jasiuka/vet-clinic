@@ -1,11 +1,13 @@
+import PropTypes from "prop-types";
 import {
   useGetPetHistoryByIdQuery,
   useAddPetDiagnosisMutation,
 } from "../../../../services/api-slice";
 import { FixDate } from "../../../../utils/helper-fncs";
 import { useState, useEffect } from "react";
-export const PetHistory = ({ id, userRole, messageHandler }) => {
-  const { data, error, isLoading } = useGetPetHistoryByIdQuery(id);
+import Spinner from "../../../../components/spinner.component";
+export const PetHistory = ({ id, userRole, notificationHandler }) => {
+  const { data, isLoading } = useGetPetHistoryByIdQuery(id);
   const [diagnosis, { isLoading: addLoading }] = useAddPetDiagnosisMutation();
   const [history, setHistory] = useState([]);
   const [isFormShowing, setIsFormShowing] = useState(false);
@@ -27,16 +29,19 @@ export const PetHistory = ({ id, userRole, messageHandler }) => {
       petId: id,
     };
 
-    const { data } = await diagnosis(diagnosisObject);
-    if (data.status === 200) {
+    const { data, error } = await diagnosis(diagnosisObject);
+    if (data?.status === 200) {
       form.h_description.value = "";
-      messageHandler(data.message);
+      notificationHandler(data.message, data.type);
     }
 
-    if (data.stauts !== 200) {
-      messageHandler(data.message);
+    if (error) {
+      notificationHandler(error.data.message, error.data.type);
     }
   };
+  if (isLoading || addLoading) {
+    return <Spinner message={"Kraunama.."} />;
+  }
   return (
     <div className="pet-page__history">
       <h2 className="pet-page__box-heading">
@@ -82,6 +87,12 @@ export const PetHistory = ({ id, userRole, messageHandler }) => {
       </div>
     </div>
   );
+};
+
+PetHistory.propTypes = {
+  notificationHandler: PropTypes.func,
+  id: PropTypes.string,
+  userRole: PropTypes.number,
 };
 
 export default PetHistory;

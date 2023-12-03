@@ -7,7 +7,7 @@ import ScrollToTopButton from "./scrollToTopButton.component";
 import ObserverPoint from "./observer-point.component";
 import { useEffect, useState } from "react";
 
-export const Layout = ({ children }) => {
+export const Layout = ({ children, noFooter }) => {
   const [isIntersecting, setIsIntersecting] = useState(true);
 
   const observerCallback = (entries) => {
@@ -38,7 +38,7 @@ export const Layout = ({ children }) => {
       <NotificationsList />
       <ObserverPoint />
       {children}
-      <Footer />
+      {noFooter ? "" : <Footer />}
       <ScrollToTop />
       <ScrollToTopButton isIntersecting={isIntersecting} />
     </>
@@ -47,6 +47,7 @@ export const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropType.node,
+  noFooter: PropType.bool,
 };
 
 export default Layout;

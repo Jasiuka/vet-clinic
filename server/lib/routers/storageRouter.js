@@ -22,9 +22,17 @@ router.post(
 
     const fileId = await createFile(file);
 
+    if (title.trim() === "") {
+      return response.status(400).send({
+        message: "Neįrašytas dokumento pavadinimas!",
+        type: "error",
+      });
+    }
+
     if (!fileId) {
-      return response.status(200).send({
+      return response.status(400).send({
         message: "Įvyko klaida įkeliant failą",
+        type: "error",
       });
     }
 
@@ -40,11 +48,13 @@ router.post(
       return response.status(200).send({
         message: "Failo įkėlimas sėkmingas",
         status: 200,
+        type: "success",
       });
     } else {
-      return response.status(200).send({
+      return response.status(400).send({
         message: "Įvyko klaida įkeliant failą",
         status: 400,
+        type: "error",
       });
     }
   })

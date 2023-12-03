@@ -33,7 +33,6 @@ import VetAppointments from "./pages/vets/vet-appointments.page.jsx";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Orders from "./pages/auth-users/orders/orders.page.jsx";
-import { Header } from "./components/header/header.component.jsx";
 import NotFoundPage from "./pages/error/not-found.page.jsx";
 import TempPage from "./temp.page.jsx";
 const stripePromise = loadStripe(
@@ -43,7 +42,7 @@ const router = createBrowserRouter([
   {
     path: "/temp",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <TempPage />
       </Layout>
     ),
@@ -51,7 +50,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <Home />
       </Layout>
     ),
@@ -59,7 +58,7 @@ const router = createBrowserRouter([
   {
     path: "/apie-mus",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <AboutUsPage />
       </Layout>
     ),
@@ -67,7 +66,7 @@ const router = createBrowserRouter([
   {
     path: "/komanda",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <OurTeamPage />
       </Layout>
     ),
@@ -75,7 +74,7 @@ const router = createBrowserRouter([
   {
     path: "/paslaugos",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <ServicesPage />
       </Layout>
     ),
@@ -83,7 +82,7 @@ const router = createBrowserRouter([
   {
     path: "/duk",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <FaqPage />
       </Layout>
     ),
@@ -91,7 +90,7 @@ const router = createBrowserRouter([
   {
     path: "/kontaktai",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <ContactsPage />
       </Layout>
     ),
@@ -103,7 +102,7 @@ const router = createBrowserRouter([
   {
     path: "/vizitas",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <AppointmentPage />
       </Layout>
     ),
@@ -111,7 +110,7 @@ const router = createBrowserRouter([
   {
     path: "/vizitas/registracija/:id",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <AppointmentRegistration />
       </Layout>
     ),
@@ -119,7 +118,7 @@ const router = createBrowserRouter([
   {
     path: "/parduotuve",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <ShopPage />
       </Layout>
     ),
@@ -128,7 +127,7 @@ const router = createBrowserRouter([
   {
     path: "mano-augintiniai",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <Pets />
       </Layout>
     ),
@@ -137,7 +136,7 @@ const router = createBrowserRouter([
   {
     path: "/augintinis/:name/:id",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <PetPage />
       </Layout>
     ),
@@ -145,7 +144,7 @@ const router = createBrowserRouter([
   {
     path: "/krepselis",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <CartPage />
       </Layout>
     ),
@@ -153,7 +152,7 @@ const router = createBrowserRouter([
   {
     path: "/uzsakymas-informacija",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <Elements stripe={stripePromise}>
           <Checkout />
         </Elements>
@@ -164,15 +163,16 @@ const router = createBrowserRouter([
     path: "/valdymas",
     element: (
       <>
-        <Header />
-        <Control />
+        <Layout noFooter={true}>
+          <Control />
+        </Layout>
       </>
     ),
   },
   {
     path: "/gydytojas/vizitai",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <VetAppointments />
       </Layout>
     ),
@@ -180,7 +180,7 @@ const router = createBrowserRouter([
   {
     path: "/uzsakymai",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <Orders />
       </Layout>
     ),
