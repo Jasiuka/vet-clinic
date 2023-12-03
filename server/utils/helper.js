@@ -1,6 +1,10 @@
 import pool from "../../server.js";
 import { availableSpecies } from "./../data/availableSpecies.js";
 import { availableGenders } from "./../data/availableGenders.js";
+import {
+  getAllUserPetsIds,
+  getUserIdAndNameByAccountId,
+} from "../queries/user/user-queries.js";
 // Returns dayname by given day number
 export const addDayName = (dayNumber) => {
   const dayNamesArray = [
@@ -199,9 +203,47 @@ export const checkUserRole = (allowedRoles) => {
   };
 };
 
+export const checkIfUserHasPet = () => {
+  return async (request, response, next) => {
+    const accountId = request.session.userId;
+    // Check if user role is veterinarian
+    const { userRole } = await getUserRole(accountId);
+    if (userRole === 3) {
+      return next();
+    }
+    // If it's not veterinarian check if user has this pet.
+    const petId = request.query.id;
+    const userPets = await getAllUserPetsIds(pool, accountId);
+    const userHasPet = userPets.some((userPet) => userPet.petID == petId);
+    if (!userHasPet) {
+      return response.status(401).send("Negalite pasiekti šio turinio.");
+    }
+
+    return next();
+  };
+};
+
 export const checkIfAvailableGenderAndSpecies = (specie, gender) => {
   const isGenderAvailable = availableGenders.includes(gender);
   const isSpecieAvailable = availableSpecies.includes(specie);
 
   return isGenderAvailable && isSpecieAvailable;
+};
+
+export const checkIfNewPetFormNumbersGreaterThan = (greaterThan, ...args) => {
+  const numbersToCheck = args;
+
+  const atLeastOneGreater = numbersToCheck.some(
+    (number) => number > greaterThan
+  );
+  return atLeastOneGreater;
+};
+
+export const checkIfStringHasNumberOrSymbol = (...args) => {
+  const strings = args;
+
+  const atLeastOneHasNumberOrSymbol = strings.some((string) =>
+    /[\d\W]/.test(string)
+  );
+  return atLeastOneHasNumberOrSymbol;
 };

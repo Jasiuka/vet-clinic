@@ -10,6 +10,17 @@
   max-height: 100vh;
 }
 
+.pet-page-inner.pet-page-not-allowed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pet-page-inner.pet-page-not-allowed h2 {
+  font-size: var(--font-md);
+}
+
 .pet-page-inner > * {
   padding: var(--el-pd-lg);
   border-radius: var(--common-border-radius);

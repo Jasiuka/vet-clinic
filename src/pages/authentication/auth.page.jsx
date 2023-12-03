@@ -10,14 +10,14 @@ import { useLoginMutation } from "../../services/api-slice";
 import { useDispatch } from "react-redux";
 import { get } from "../../store/slices/user-slice";
 import Spinner from "../../components/spinner.component";
-import { createNotificationAndRemove } from "./../../store/notifications/notifications.reducer";
-import { createNotificationObject } from "./../../utils/helper-fncs";
 import NotificationsList from "../../components/notifications/notificationsList.component";
+import useCreateNotification from "../../utils/hooks/createNotification.hook";
 export const AuthenticationPage = () => {
   // Redux
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
+  const { createNotification } = useCreateNotification();
 
   const getUserData = (object) => dispatch(get(object));
 
@@ -40,9 +40,7 @@ export const AuthenticationPage = () => {
       if (response.error) {
         setError(response.error);
         const { message, type } = response.error.data;
-        dispatch(
-          createNotificationAndRemove(createNotificationObject(message, type))
-        );
+        createNotification(message, type);
       } else {
         getUserData(response.data);
         navigate("/");
@@ -85,30 +83,29 @@ export const AuthenticationPage = () => {
 
   return (
     <>
-    <NotificationsList />
- <div className="authentication">
-      {isLoading && <Spinner message={"Prijungiama.."} />}
-      <img className="authentication--img" src="/assets/catsa2.webp" />
-      <div className="authentication__container">
-        <Link to={"/"}>
-          <img className="authentication--logo" src="/assets/vetlogo.webp" />
-        </Link>
-        <h3 className="authentication__form--heading">
-          {form ? "Prisijungimas" : "Registracija"}
-        </h3>
-        {form ? (
-          <LoginForm
-            handleFormchange={handleFormChange}
-            handleLogin={handleLogin}
-            isLoginFailed={error}
-          />
-        ) : (
-          <SignupForm handleOnSubmit={handleSignup} />
-        )}
+      <NotificationsList />
+      <div className="authentication">
+        {isLoading && <Spinner message={"Prijungiama.."} />}
+        <img className="authentication--img" src="/assets/catsa2.webp" />
+        <div className="authentication__container">
+          <Link to={"/"}>
+            <img className="authentication--logo" src="/assets/vetlogo.webp" />
+          </Link>
+          <h3 className="authentication__form--heading">
+            {form ? "Prisijungimas" : "Registracija"}
+          </h3>
+          {form ? (
+            <LoginForm
+              handleFormchange={handleFormChange}
+              handleLogin={handleLogin}
+              isLoginFailed={error}
+            />
+          ) : (
+            <SignupForm handleOnSubmit={handleSignup} />
+          )}
+        </div>
       </div>
-    </div>
     </>
-   
   );
 };
 

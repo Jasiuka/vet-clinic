@@ -3,7 +3,11 @@ import pool from "../../../server.js";
 import { getAllUserPetsIds } from "../../queries/user/user-queries.js";
 import { checkUserRole } from "../../utils/helper.js";
 import express from "express";
-import { checkIfAvailableGenderAndSpecies } from "../../utils/helper.js";
+import {
+  checkIfAvailableGenderAndSpecies,
+  checkIfNewPetFormNumbersGreaterThan,
+  checkIfStringHasNumberOrSymbol,
+} from "../../utils/helper.js";
 import { getUserIdAndNameByAccountId } from "../../queries/user/user-queries.js";
 import { createNewPet } from "../../queries/pets/pets-queries.js";
 
@@ -36,6 +40,7 @@ router.post(
     const { id } = await getUserIdAndNameByAccountId(pool, accountId);
     petDetails.pet_owner = id;
 
+    // Check if select inputs are not modified and sent values exist
     const isAvailableSpecieAndGender = checkIfAvailableGenderAndSpecies(
       petDetails.pet_specie,
       petDetails.pet_gender
@@ -44,6 +49,31 @@ router.post(
     if (!isAvailableSpecieAndGender) {
       return response.status(400).send({
         message: "Negalima augintinio lytis arba rūšis!",
+        type: "error",
+      });
+    }
+
+    // Check if text type inputs doesnt contain numbers or symbols
+    const isNotAvailableTextFormat = checkIfStringHasNumberOrSymbol(
+      petDetails.pet_name,
+      petDetails.pet_breed
+    );
+    if (isNotAvailableTextFormat) {
+      return response.status(400).send({
+        message: "Augintnio vardas turi būti sudarytas tik iš raidžių!",
+        type: "error",
+      });
+    }
+
+    // Check if number type input values not greater than some number
+    const isNotAvailableNumber = checkIfNewPetFormNumbersGreaterThan(
+      151,
+      petDetails.pet_age,
+      petDetails.pet_weight
+    );
+    if (isNotAvailableNumber) {
+      return response.status(400).send({
+        message: "Augintinio svoris ar amžius negali būti daugiau už 150!",
         type: "error",
       });
     }

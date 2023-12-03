@@ -11,6 +11,7 @@ import pool from "../../../server.js";
 import {
   createTodayDateAndTimeString,
   checkUserRole,
+  checkIfUserHasPet,
 } from "../../utils/helper.js";
 
 let router = express.Router();
@@ -18,6 +19,7 @@ let router = express.Router();
 router.get(
   "/api/v1/pets/appointments/id",
   checkUserRole([2, 3]),
+  checkIfUserHasPet(),
   tryCatch(async (request, response) => {
     const id = request.query.id;
     const appointments = await getAllPetAppointmentsById(pool, id);
@@ -31,6 +33,7 @@ router.get(
 router.get(
   "/api/v1/pets/history/id",
   checkUserRole([2, 3]),
+  checkIfUserHasPet(),
   tryCatch(async (request, response) => {
     const id = request.query.id;
     const result = await getPetHistoryById(pool, id);
@@ -41,6 +44,7 @@ router.get(
 router.get(
   "/api/v1/pets/documents/id",
   checkUserRole([2, 3]),
+  checkIfUserHasPet(),
   tryCatch(async (request, response) => {
     const id = request.query.id;
     const result = await getPetDocumentsById(pool, id);
@@ -54,6 +58,7 @@ router.get(
 router.get(
   "/api/v1/pets/id",
   checkUserRole([2, 3]),
+  checkIfUserHasPet(),
   tryCatch(async (request, response) => {
     const id = request.query.id;
     const result = await getPetById(pool, id);

@@ -3,7 +3,6 @@ import LocationIcon from "../icon-components/location-icon.component";
 import EmailIcon from "../icon-components/email-icon.component";
 import ClockIcon from "../icon-components/clock-icon.component";
 import PhoneIcon from "../icon-components/phone-icon.component";
-import ScrollToTopButton from "../scrollToTopButton.component";
 import ProfileDropdown from "./profile-dropdown.component";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -241,12 +240,6 @@ export const Header = () => {
         </div>
         <MobileHeader />
       </header>
-      {/* Scroll to top button */}
-      <LiveChat />
-      <ScrollToTopButton
-        handleScrollToTop={handleScrollToTop}
-        isIntersecting={isIntersecting}
-      />
     </>
   );
 };

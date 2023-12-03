@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import {
   useGetPetDocumentsByIdQuery,
@@ -16,7 +16,11 @@ export const PetPage = () => {
   const { name, id } = useParams();
 
   // QUERIES / MUTATIONS
-  const { data: petDocuments, isLoading } = useGetPetDocumentsByIdQuery(id);
+  const {
+    data: petDocuments,
+    isLoading,
+    error,
+  } = useGetPetDocumentsByIdQuery(id);
 
   const [documentTrigger] = useUploadPetDocumentMutation();
 
@@ -76,73 +80,92 @@ export const PetPage = () => {
       showMessage(data.message);
     }
   };
+  console.log(error);
 
-  return (
-    <main className="pet-page">
-      {isLoading && <Spinner message={"Gaunami duomenys"} />}
-      {message.isMessageVisible && (
-        <Message messageText={message.messageText} />
-      )}
-      <h1 className="page-heading for-observer">{name}</h1>
-      <div className="pet-page-inner">
-        <div className="pet-page__pet-info">
-          <h2 className="pet-page__box-heading">Augintinio informacija</h2>
-          <PetInfo handlePopup={handlePopupShow} role={userRole} id={id} />
+  if (error?.originalStatus === 401) {
+    return (
+      <main className="pet-page">
+        <h1 className="page-heading for-observer">Augintinis</h1>
+        <div className="pet-page-inner pet-page-not-allowed">
+          <h2>Neturite teisės pasiekti šio turinio!</h2>
+          <Link className="pink-button" to={"/"}>
+            Grįžti į pagrindinį
+          </Link>
         </div>
-        <div className="pet-page__documents">
-          <h2 className="pet-page__box-heading">
-            Dokumentai{" "}
-            {userRole === 3 ? (
-              <button
-                onClick={() => handleFormShow()}
-                title="Pridėti dokumentą"
-              >
-                +
-              </button>
-            ) : (
-              ""
-            )}
-          </h2>
-          <div className="pet-page__documents-items">
-            {isAddDocumentFormShowing && (
-              <form onSubmit={submitDoc} className="pet-page__documents-form">
-                <div>
-                  <label>Failas</label>
-                  <input name="upload" type="file" />
-                </div>
-                <div>
-                  <label>Pavadinimas</label>
-                  <input name="title" type="text" />
-                </div>
-                <button className="pink-button" type="submit">
-                  Pridėti
-                </button>
-              </form>
-            )}
-            {petDocuments?.length ? (
-              petDocuments?.map((document, index) => (
-                <PetDocument
-                  key={index}
-                  document={document}
-                  handleDownload={handleDownload}
-                />
-              ))
-            ) : (
-              <p>Susijusių dokumentų nėra</p>
-            )}
+      </main>
+    );
+  } else {
+    return (
+      <main className="pet-page">
+        {isLoading && <Spinner message={"Gaunami duomenys"} />}
+        {message.isMessageVisible && (
+          <Message messageText={message.messageText} />
+        )}
+        <h1 className="page-heading for-observer">{name}</h1>
+        <div className="pet-page-inner">
+          <div className="pet-page__pet-info">
+            <h2 className="pet-page__box-heading">Augintinio informacija</h2>
+            <PetInfo handlePopup={handlePopupShow} role={userRole} id={id} />
           </div>
+          <div className="pet-page__documents">
+            <h2 className="pet-page__box-heading">
+              Dokumentai{" "}
+              {userRole === 3 ? (
+                <button
+                  onClick={() => handleFormShow()}
+                  title="Pridėti dokumentą"
+                >
+                  +
+                </button>
+              ) : (
+                ""
+              )}
+            </h2>
+            <div className="pet-page__documents-items">
+              {isAddDocumentFormShowing && (
+                <form onSubmit={submitDoc} className="pet-page__documents-form">
+                  <div>
+                    <label>Failas</label>
+                    <input name="upload" type="file" />
+                  </div>
+                  <div>
+                    <label>Pavadinimas</label>
+                    <input name="title" type="text" />
+                  </div>
+                  <button className="pink-button" type="submit">
+                    Pridėti
+                  </button>
+                </form>
+              )}
+              {petDocuments?.length ? (
+                petDocuments?.map((document, index) => (
+                  <PetDocument
+                    key={index}
+                    document={document}
+                    handleDownload={handleDownload}
+                  />
+                ))
+              ) : (
+                <p>Susijusių dokumentų nėra</p>
+              )}
+            </div>
+          </div>
+          <PetHistory
+            messageHandler={showMessage}
+            id={id}
+            userRole={userRole}
+          />
         </div>
-        <PetHistory messageHandler={showMessage} id={id} userRole={userRole} />
-      </div>
-      {isPopupShowing && (
-        <AllAppointmentsPopup
-          petName={name}
-          handlePopup={handlePopupShow}
-          petId={id}
-        />
-      )}
-    </main>
-  );
+        {isPopupShowing && (
+          <AllAppointmentsPopup
+            petName={name}
+            handlePopup={handlePopupShow}
+            petId={id}
+          />
+        )}
+      </main>
+    );
+  }
 };
 
 export default PetPage;
