@@ -1,10 +1,10 @@
 import Footer from "./footer/footer.component";
 import { Header } from "./header/header.component";
 import PropType from "prop-types";
-import ScrollToTop from "./scrollToTop.component";
+import ScrollToTop from "./single-use/scrollToTop.component";
 import NotificationsList from "./notifications/notificationsList.component";
-import ScrollToTopButton from "./scrollToTopButton.component";
-import ObserverPoint from "./observer-point.component";
+import ScrollToTopButton from "./single-use/scrollToTopButton.component";
+import ObserverPoint from "./single-use/observer-point.component";
 import { useEffect, useState } from "react";
 
 export const Layout = ({ children, noFooter }) => {

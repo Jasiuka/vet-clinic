@@ -4,6 +4,7 @@ import {
   createOrderedProductDetail,
   createNewOrder,
 } from "../../queries/shop/shop-queries.js";
+import { orderFormValidation } from "../../utils/helper.js";
 import pool from "../../../server.js";
 import express from "express";
 import { getUserIdByEmail } from "../../queries/user/user-queries.js";
@@ -25,6 +26,7 @@ router.get(
 
 router.post(
   "/api/v1/shop/order",
+  orderFormValidation(),
   tryCatch(async (request, response) => {
     const {
       products,
@@ -35,14 +37,7 @@ router.post(
       payment,
       price,
       shippingPrice,
-      rules,
     } = request.body;
-
-    if (!rules) {
-      return response.status(400).send({
-        message: "Turite sutikti su taisyklėmis",
-      });
-    }
 
     const userId = await getUserIdByEmail(pool, request.body.email);
     const today = new Date();
@@ -64,6 +59,7 @@ router.post(
     if (!newOrderId)
       return response.status(400).send({
         message: "Įvyko klaida. Bandykite dar kartą.",
+        type: "error",
       });
 
     products.forEach(

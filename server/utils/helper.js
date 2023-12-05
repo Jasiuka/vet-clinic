@@ -247,3 +247,76 @@ export const checkIfStringHasNumberOrSymbol = (...args) => {
   );
   return atLeastOneHasNumberOrSymbol;
 };
+
+export const checkIfAtLeastOneInputHasNoValue = (
+  inputsArray,
+  values = null
+) => {
+  if (!values) {
+    // Remove last element (button)
+    inputsArray.pop();
+    return inputsArray.some((input) => input?.value.trim() === "");
+  } else {
+    return values.some((value) => value.trim() === "");
+  }
+};
+
+export const checkPhoneNumberFormat = (phoneNumber) => {
+  const regex = /^\+[\d]+$/; // Should not contain letters, symbols after '+', only numbers and + as first char.
+  return regex.test(phoneNumber);
+};
+
+export const orderFormValidation = () => {
+  return (request, response, next) => {
+    const { email, fullName, phone, shippingPrice, rules } = request.body;
+
+    if (!rules) {
+      return response.status(400).send({
+        message: "Turite sutikti su taisyklėmis",
+        type: "error",
+      });
+    }
+
+    // Check if phone number format correct
+    const isPhoneNumberCorrectFormat = checkPhoneNumberFormat(phone);
+    if (!isPhoneNumberCorrectFormat) {
+      return response.status(400).send({
+        message: "Neteisingas tel. numerio formatas!",
+        type: "error",
+      });
+    }
+
+    const userDetailsAtLeastOneEmpty = checkIfAtLeastOneInputHasNoValue(null, [
+      fullName,
+      email,
+      phone,
+    ]);
+
+    if (userDetailsAtLeastOneEmpty) {
+      return response.status(400).send({
+        message: "Prašome užpildyti savo asmens duomenis!",
+        type: "error",
+      });
+    }
+
+    if (shippingPrice == 2.99) {
+      const { address, city, postal } = request.body;
+      // Check if all user address inputs filled
+
+      const atLeastOneAddressEmpty = checkIfAtLeastOneInputHasNoValue(null, [
+        address,
+        city,
+        postal,
+      ]);
+
+      if (atLeastOneAddressEmpty) {
+        return response.status(400).send({
+          message: "Prašome užpildyti savo gyvenamosis vietos duomenis!",
+          type: "error",
+        });
+      }
+    }
+
+    next();
+  };
+};

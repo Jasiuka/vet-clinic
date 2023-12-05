@@ -31,8 +31,15 @@ export const createNotificationObject = (message, type) => {
   };
 };
 
-export const checkIfAtLeastOneInputHasNoValue = (inputsArray) => {
-  // Remove last element (button)
-  inputsArray.pop();
-  return inputsArray.some((input) => input?.value.trim() === "");
+export const checkIfAtLeastOneInputHasNoValue = (
+  inputsArray,
+  values = null
+) => {
+  if (!values) {
+    // Remove last element (button)
+    inputsArray.pop();
+    return inputsArray.some((input) => input?.value.trim() === "");
+  } else {
+    return values.some((value) => value.trim() === "");
+  }
 };

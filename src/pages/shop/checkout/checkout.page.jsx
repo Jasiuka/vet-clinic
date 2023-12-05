@@ -9,17 +9,21 @@ import { CardElement } from "@stripe/react-stripe-js";
 import { useNavigate } from "react-router-dom";
 import CheckoutConfirmed from "./checkout-confirmed.component";
 import Spinner from "../../../components/spinner.component";
-
+import { checkIfAtLeastOneInputHasNoValue } from "../../../utils/helper-fncs";
+import useCreateNotification from "../../../utils/hooks/createNotification.hook";
 export const Checkout = () => {
+  const { createNotification } = useCreateNotification();
   const navigate = useNavigate();
   const [shipmentCost, setShipmentCost] = useState(0);
   const [payment, setPayment] = useState("");
   const cartState = useSelector((state) => state.cart);
   const totalSum = Number(cartState.total) + Number(shipmentCost);
+
   const [order, { isLoading, isSuccess }] = usePostOrderMutation();
 
-  const handleSubmitOrder = (event) => {
+  const handleSubmitOrder = async (event) => {
     event.preventDefault();
+    let orderObject;
     const form = event.target;
 
     const email = form.checkout__email.value;
@@ -29,19 +33,67 @@ export const Checkout = () => {
     const shipping = form.checkout__shipping.value;
     const rules = form.checkout__rules.checked;
 
-    const orderObject = {
-      products: cartState.cartItems,
-      state: false,
+    const userDetailsEmpty = checkIfAtLeastOneInputHasNoValue(null, [
       email,
       fullName,
       phone,
-      payment,
-      price: totalSum,
-      shippingPrice: shipping,
-      rules,
-    };
+    ]);
 
-    order(orderObject);
+    if (userDetailsEmpty) {
+      createNotification("Prašome užpildyti savo asmens duomenis!", "error");
+      return;
+    }
+
+    if (shipping == 2.99) {
+      const city = form.checkout__city.value;
+      const address = form.checkout__address.value;
+      const postal = form.checkout__code.value;
+
+      if (checkIfAtLeastOneInputHasNoValue(null, [city, address, postal])) {
+        createNotification(
+          "Prašome užpildyti savo gyvenamosis vietos duomenis!",
+          "error"
+        );
+        return;
+      } else {
+        orderObject = {
+          products: cartState.cartItems,
+          state: false,
+          email,
+          fullName,
+          phone,
+          payment,
+          price: totalSum,
+          shippingPrice: shipping,
+          rules,
+          city,
+          address,
+          postal,
+        };
+      }
+    } else {
+      orderObject = {
+        products: cartState.cartItems,
+        state: false,
+        email,
+        fullName,
+        phone,
+        payment,
+        price: totalSum,
+        shippingPrice: shipping,
+        rules,
+      };
+    }
+    if (!rules) {
+      createNotification("Turite sutikti su taisyklėmis", "error");
+      return;
+    }
+
+    const response = await order(orderObject);
+    if (response?.error) {
+      const data = response.error.data;
+      createNotification(data.message, data.type);
+    }
   };
 
   useEffect(() => {
@@ -143,6 +195,7 @@ export const Checkout = () => {
                         inputId={"checkout__code"}
                         inputName={"checkout__code"}
                         inputType={"number"}
+                        isRequired={true}
                       />
                     </div>
                   )}
