@@ -268,7 +268,8 @@ export const checkPhoneNumberFormat = (phoneNumber) => {
 
 export const orderFormValidation = () => {
   return (request, response, next) => {
-    const { email, fullName, phone, shippingPrice, rules } = request.body;
+    const { email, fullName, phone, shippingPrice, rules, payment } =
+      request.body;
 
     if (!rules) {
       return response.status(400).send({
@@ -317,6 +318,21 @@ export const orderFormValidation = () => {
       }
     }
 
+    // Check if user selected shipping method:
+    if (shippingPrice != 0 && shippingPrice != 2.99) {
+      return response.status(400).send({
+        message: "Prašome pasirinkti pristatymo būdą",
+        type: "error",
+      });
+    }
+
+    // check if user selected payment method:
+    if (payment != "clinic" && payment != "card") {
+      return response.status(400).send({
+        message: "Prašome pasirinkti apmokėjimo būdą",
+        type: "error",
+      });
+    }
     next();
   };
 };

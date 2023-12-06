@@ -19,6 +19,9 @@ export const apiSlice = createApi({
         body: body,
       }),
     }),
+    getUserDetails: builder.query({
+      query: () => `user/details`,
+    }),
     getAllUserPetsIds: builder.query({
       query: () => `user/pets`,
       providesTags: ["Pets"],
@@ -141,6 +144,7 @@ export const {
   useSignupMutation,
   useGetUserOrdersQuery,
   useCreateNewPetMutation,
+  useGetUserDetailsQuery,
   // ADMIN
   useGetAllEmployeesQuery,
   useGetAllAppointmentsQuery,

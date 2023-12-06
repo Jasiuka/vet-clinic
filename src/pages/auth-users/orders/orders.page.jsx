@@ -4,8 +4,6 @@ import OrderComponent from "./order.component";
 import { useGetUserOrdersQuery } from "../../../services/api-slice";
 export const Orders = () => {
   const { data: userOrders, error, isLoading } = useGetUserOrdersQuery();
-  console.log(userOrders);
-
   return (
     <main className="orders">
       <h1 className="page-heading">Mano užsakymai</h1>
@@ -25,5 +23,4 @@ export const Orders = () => {
   );
 };
 
-Orders.propTypes = {};
 export default Orders;

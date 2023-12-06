@@ -25,13 +25,14 @@
 .cart-page__side {
   position: relative;
   padding: var(--el-pd-lg);
+  flex: 1;
   max-width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cart-page__side-contents {
-  position: fixed;
-  top: 50%;
-  right: 10%;
   max-width: 100%;
   display: flex;
   flex-direction: column;

@@ -28,6 +28,7 @@ import CartPage from "./pages/shop/cart/cart.page.jsx";
 import Control from "./pages/admin/control.page.jsx";
 import Checkout from "./pages/shop/checkout/checkout.page.jsx";
 import VetAppointments from "./pages/vets/vet-appointments.page.jsx";
+import CheckoutConfirmed from "./pages/shop/checkout/checkout-confirmed.component.jsx";
 
 // STRIPE
 import { Elements } from "@stripe/react-stripe-js";
@@ -156,6 +157,14 @@ const router = createBrowserRouter([
         <Elements stripe={stripePromise}>
           <Checkout />
         </Elements>
+      </Layout>
+    ),
+  },
+  {
+    path: "/uzsakymas-patvirtintas",
+    element: (
+      <Layout>
+        <CheckoutConfirmed />
       </Layout>
     ),
   },

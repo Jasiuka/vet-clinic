@@ -50,7 +50,7 @@ export const getUserIdByEmail = async (pool, email) => {
 export const getUserIdAndNameByAccountId = async (pool, accountId) => {
   let connection;
   try {
-    const query = `SELECT users.id, users.userName, users.review FROM accounts LEFT JOIN users ON users.account = accounts.id WHERE accounts.id = '${accountId}'`;
+    const query = `SELECT users.id, users.userName, users.lastName, users.review,users.phone,accounts.email FROM accounts LEFT JOIN users ON users.account = accounts.id WHERE accounts.id = '${accountId}'`;
     connection = await pool.getConnection();
     const userResultRow = await connection.query(query);
     if (userResultRow.length === 0) {

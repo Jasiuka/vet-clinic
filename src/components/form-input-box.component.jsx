@@ -48,7 +48,7 @@ FormInputBox.propTypes = {
   inputType: PropTypes.string,
   inputName: PropTypes.string,
   isDisabled: PropTypes.bool,
-  isValue: PropTypes.string,
+  isValue: PropTypes.any,
   uniqueClassName: PropTypes.string,
   isRequired: PropTypes.bool,
 };

@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import userReducer from "./slices/user-slice";
 import appointmentReducer from "./slices/appointment-slice";
 import cartReducer from "./cart/cart.reducer";
@@ -12,18 +12,21 @@ import thunk from "redux-thunk";
 const persistConfig = {
   key: "root",
   storage,
+  whitelist: ["cart", "user"],
 };
 
-const persistedReducer = persistReducer(persistConfig, userReducer);
+const rootReducer = combineReducers({
+  user: userReducer,
+  appointment: appointmentReducer,
+  cart: cartReducer,
+  notifications: notificationsReducer,
+  [apiSlice.reducerPath]: apiSlice.reducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: {
-    user: persistedReducer,
-    appointment: appointmentReducer,
-    cart: cartReducer,
-    notifications: notificationsReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer,
-  },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,

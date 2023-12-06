@@ -24,6 +24,19 @@ router.get(
 );
 
 router.get(
+  "/api/v1/user/details",
+  tryCatch(async (request, response) => {
+    const userAccountId = request.session.userId;
+    if (!userAccountId) {
+      return response.status(200).send(null);
+    }
+    const userDetails = await getUserIdAndNameByAccountId(pool, userAccountId);
+    delete userDetails.id;
+    return response.status(200).send(userDetails);
+  })
+);
+
+router.get(
   "/mano-augintiniai",
   checkUserRole([2]),
   tryCatch(async (request, response) => {

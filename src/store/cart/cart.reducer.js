@@ -30,6 +30,9 @@ export const cartSlice = createSlice({
     decrementItemQuantity: (state, action) => {
       state.cartItems = decrementItem(current(state).cartItems, action.payload);
     },
+    clearCart: (state) => {
+      state.cartItems = resetCart();
+    },
   },
 });
 
@@ -39,10 +42,15 @@ export const {
   removeCartItem,
   incrementItemQuantity,
   decrementItemQuantity,
+  clearCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;
 
 // Actions
+
+const resetCart = () => {
+  return [];
+};
 
 const addItem = (cartItems, itemToAdd) => {
   const isItemExist = cartItems.find((item) => item.id === itemToAdd.id);
