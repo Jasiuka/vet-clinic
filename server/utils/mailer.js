@@ -32,6 +32,16 @@ export const sendEmail = async (options) => {
   }
 };
 
+export const generateUserVerificationHtml = (baseUrl, specialCode) => {
+  return `
+    <div>
+      <h1>Jūsų registracija sėkminga, bet prieš galėdami prisijungti turite patvirtinti savo el paštą.</h1>
+      <h2>Paspauskite šią nuoroda žemiau ir jūsų profilis bus patvirtintas</h2>
+      <a href="${baseUrl}verify-user?code=${specialCode}" target="_blank">${baseUrl}verify-user?code=${specialCode}</a>
+    </div>
+  `;
+};
+
 export const generateProductsHtml = (products) => {
   return products.map(
     (product) =>

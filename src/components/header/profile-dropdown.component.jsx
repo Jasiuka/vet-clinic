@@ -19,8 +19,8 @@ export const ProfileDropdown = ({ isOpen, handleDropdownClick, role }) => {
   const handleLogout = async () => {
     const response = await fetch("/logout");
     if (response.status === 200) {
-      localStorage.removeItem("user");
       navigate("/");
+      localStorage.clear();
       window.location.reload();
     } else {
       alert("Klaida! Nepavyko atsijungti.");

@@ -53,31 +53,11 @@ export const AuthenticationPage = () => {
     form: false,
   });
   const form = searchParams.get("form") !== "reg";
-  const [userSignupData, setUserSignupData] = useState({
-    name: "",
-    lastName: "",
-    phone: "",
-    email: "",
-    password: "",
-  });
 
   const handleFormChange = () => {
     setSearchParams((prev) => {
       prev.set("form", "reg");
       return prev;
-    });
-  };
-
-  const handleSignup = (event) => {
-    event.preventDefault();
-    const form = event.target;
-
-    setUserSignupData({
-      name: form.name.value,
-      lastName: form.lastName.value,
-      phone: form.phone.value,
-      email: form.email.value,
-      password: form.password.value,
     });
   };
 
@@ -101,7 +81,7 @@ export const AuthenticationPage = () => {
               isLoginFailed={error}
             />
           ) : (
-            <SignupForm handleOnSubmit={handleSignup} />
+            <SignupForm createNotification={createNotification} />
           )}
         </div>
       </div>

@@ -52,6 +52,34 @@ export const createTodayDateAndTimeString = () => {
   };
 };
 
+// Creates now date and time but + 1 hour
+
+export const createDateTimeOneHourLater = () => {
+  const now = new Date();
+  now.setHours(now.getHours() + 1);
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(
+    2,
+    "0"
+  )}-${String(now.getDate()).padStart(
+    2,
+    "0"
+  )} ${now.getHours()}:${now.getMinutes()} `;
+};
+
+// Changes date format to lithuanian format
+export const ChangeDateFormat = (dateToChange) => {
+  const date = new Date(`${dateToChange}`);
+  const fixedDate = date.toLocaleString("lt-LT");
+  return fixedDate;
+};
+
+// Check which if date older than today date
+export const CheckDate = (dateToCheck) => {
+  const today = new Date();
+  const givenDate = new Date(dateToCheck);
+  return today > givenDate;
+};
+
 // Creates 'categories' object property which stores services category types [array of services id]
 export const mergeCategoriesIntoSingleProperty = (data) => {
   if (!data || data.length == 0) return;

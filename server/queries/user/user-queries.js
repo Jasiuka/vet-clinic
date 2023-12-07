@@ -1,3 +1,4 @@
+import { createDateTimeOneHourLater } from "../../utils/helper.js";
 export const getAllUserPetsIds = async (pool, userAccountId) => {
   let connection;
   try {
@@ -16,13 +17,44 @@ export const getAllUserPetsIds = async (pool, userAccountId) => {
 export const findUser = async (pool, email) => {
   let connection;
   try {
-    const query = `SELECT accounts.id, accounts.accountPassword, accounts.userRole, users.review FROM accounts LEFT JOIN users ON users.account = accounts.id WHERE accounts.email = '${email}'`;
+    const query = `SELECT accounts.id, accounts.accountPassword, accounts.userRole, users.review, accounts.verified FROM accounts LEFT JOIN users ON users.account = accounts.id WHERE accounts.email = '${email}'`;
     connection = await pool.getConnection();
     const userResult = await connection.query(query);
     if (userResult.length === 0) {
       return null;
     }
     return userResult;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    connection.end();
+  }
+};
+
+export const getAccountVerified = async (pool, verifyCode) => {
+  let connection;
+  try {
+    const query = `SELECT accounts.code, accounts.id, accounts.expires, accounts.verified FROM accounts WHERE accounts.code = '${verifyCode}'`;
+    connection = await pool.getConnection();
+    const userResult = await connection.query(query);
+    if (userResult.length === 0) {
+      return null;
+    }
+    return userResult;
+  } catch (error) {
+    console.error(error);
+  } finally {
+    connection.end();
+  }
+};
+
+export const verifyAccount = async (pool, accountId) => {
+  let connection;
+  try {
+    const query = `UPDATE accounts SET verified = 1, expires = null, code = null WHERE accounts.id = '${accountId}'`;
+    connection = await pool.getConnection();
+    const result = await connection.query(query);
+    return result;
   } catch (error) {
     console.error(error);
   } finally {
@@ -82,12 +114,20 @@ export const createUserAccount = async (
   pool,
   userEmail,
   userPassword,
-  userRole
+  userRole,
+  verifyCode
 ) => {
   let connection;
   try {
-    const query = `INSERT INTO accounts (email,accountPassword,userRole) VALUES (?,?,?) RETURNING id`;
-    const values = [userEmail, userPassword, userRole];
+    const query = `INSERT INTO accounts (email,accountPassword,userRole, verified,expires,code) VALUES (?,?,?,?,?,?) RETURNING id`;
+    const values = [
+      userEmail,
+      userPassword,
+      userRole,
+      false,
+      createDateTimeOneHourLater(),
+      verifyCode,
+    ];
     connection = await pool.getConnection();
     const result = await connection.query(query, values);
     if (result.length === 0) return false;

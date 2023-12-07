@@ -1,8 +1,9 @@
 import FormInputBox from "../../components/form-input-box.component";
 import { useSignupMutation } from "../../services/api-slice";
-
-export const SignupForm = () => {
+import { useNavigate } from "react-router-dom";
+export const SignupForm = (createNotification) => {
   const [signup, { isLoading, isSuccess }] = useSignupMutation();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,7 +24,14 @@ export const SignupForm = () => {
       password,
     };
 
-    signup(userObject);
+    signup(userObject).then((response) => {
+      if (response.error) {
+        const { message, type } = response.error.data;
+        createNotification(message, type);
+      } else {
+        navigate("/");
+      }
+    });
   };
 
   return (

@@ -1,13 +1,24 @@
 import { tryCatch } from "../../utils/tryCatch.js";
 import pool from "../../../server.js";
-import { hashPassword, validatePassword } from "../../utils/hash.js";
-import { mailOptions, sendEmail } from "../../utils/mailer.js";
+import {
+  hashPassword,
+  validatePassword,
+  hashString,
+} from "../../utils/hash.js";
+import {
+  mailOptions,
+  sendEmail,
+  generateUserVerificationHtml,
+} from "../../utils/mailer.js";
 import {
   findUser,
   findUserEmail,
   createUserAccount,
   createUser,
+  getAccountVerified,
+  verifyAccount,
 } from "../../queries/user/user-queries.js";
+import { CheckDate } from "../../utils/helper.js";
 
 import express from "express";
 
@@ -22,18 +33,23 @@ router.post(
     if (isEmailExist)
       return response.status(409).send({
         message: "Šis el. paštas jau egzistuoja.",
+        type: "error",
       });
+
+    const verifyCode = await hashString(email);
 
     const createdAccountId = await createUserAccount(
       pool,
       email,
       await hashPassword(password),
-      3
+      2,
+      verifyCode
     );
 
     if (!createdAccountId) {
       return response.status(400).send({
         message: "Klaida kuriant paskyrą.",
+        type: "error",
       });
     }
 
@@ -46,23 +62,50 @@ router.post(
     if (!isCreatingUserSuccess)
       return response.status(400).send({
         message: "Klaida kuriant profilį.",
+        type: "error",
       });
 
+    const baseUrl = `http://localhost:3000/api/v1/`;
     const emailOptions = mailOptions(
       email,
       "Registracija",
-      "Jūsų registracija sėkminga!"
+      "",
+      generateUserVerificationHtml(baseUrl, verifyCode)
     );
 
     const isEmailSuccess = await sendEmail(emailOptions);
     if (!isEmailSuccess)
       return response.status(400).send({
         message: "Sistemos klaida. Bandykite dar kartą.",
+        type: "error",
       });
 
     return response.status(200).send({
-      message: "Vartotojas sukurtas. Žinutė į paštą išsiųsta.",
+      message:
+        "Vartotojas sukurtas. Žinutė su patvirtinimo nuoroda išsiųsta į jūsų nurodytą el. paštą.",
+      type: "success",
     });
+  })
+);
+
+router.get(
+  `/api/v1/verify-user`,
+  tryCatch(async (request, response) => {
+    const specialCode = request.query.code;
+
+    const accountDetails = await getAccountVerified(pool, specialCode);
+    if (!accountDetails) {
+      return response.redirect("http://localhost:3000/");
+    }
+    const isExpired = CheckDate(accountDetails[0].expires);
+    if (isExpired && accountDetails[0].verified === 0) {
+      return response
+        .status(400)
+        .send("Deja jūsų profilio aktyvavimo nuoroda baigė galioti.");
+    }
+
+    await verifyAccount(pool, accountDetails[0].id);
+    return response.redirect("http://localhost:3000/");
   })
 );
 
@@ -78,6 +121,14 @@ router.post(
         message: "Klaida, toks vartotojas neegzistuoja.",
         type: "error",
       });
+
+    if (userData[0].verified === 0) {
+      return response.status(400).send({
+        message:
+          "Klaida, pirmiau turite patvirtinti profilį per nuorodą kurią išsiuntėme",
+        type: "error",
+      });
+    }
 
     const isPasswordMatch = await validatePassword(
       password,
