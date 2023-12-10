@@ -80,9 +80,7 @@ export const ServicesPage = () => {
 
   return (
     <main>
-      <h2 className="page-heading for-observer">
-        Mūsų klinikoje teikiamos paslaugos
-      </h2>
+      <h2 className="page-heading ">Mūsų klinikoje teikiamos paslaugos</h2>
       <div className="services">
         <Filter
           handleFilterClick={handleFilterClick}

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const Hero = () => {
   return (
     <section className="hero">
-      <h1 className="for-observer">
+      <h1 className="">
         Sveikos letenėlės - laimingos letenėlės<span>!</span>
       </h1>
       <p>

@@ -42,7 +42,7 @@ export const Filter = ({
   ];
 
   return (
-    <div className="filter for-observer">
+    <div className="filter">
       <div className="filter__wrapper">
         <p>{filterText}: </p>
         {filterButtons.map(({ id, whatFor, icon }) => {

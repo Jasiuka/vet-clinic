@@ -3,7 +3,7 @@ import "./about-us.style.css";
 export const AboutUsPage = () => {
   return (
     <main className="about-us">
-      <h2 className="page-heading for-observer">Apie mus</h2>
+      <h2 className="page-heading ">Apie mus</h2>
       <div className="about-us__inner">
         <h1 className="about-us__heading">
           Kiekviena letenėlė nusipelno meilės ir rūpesčio

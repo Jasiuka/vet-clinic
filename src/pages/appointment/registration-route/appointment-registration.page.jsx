@@ -74,7 +74,7 @@ export const AppointmentRegistration = () => {
   return (
     <main className="appointment-registration">
       {isLoadingMutation && <Spinner message={"Kraunama.."} />}
-      <div className="appointment-registration-heading for-observer">
+      <div className="appointment-registration-heading ">
         <div className="appointment-registration-heading__appointment-data">
           <p>{appointmentData.date}</p>
           <p>{appointmentData.dayName.toUpperCase()}</p>

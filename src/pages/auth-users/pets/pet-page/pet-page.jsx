@@ -24,7 +24,7 @@ export const PetPage = () => {
   if (error?.originalStatus === 401) {
     return (
       <main className="pet-page">
-        <h1 className="page-heading for-observer">Augintinis</h1>
+        <h1 className="page-heading ">Augintinis</h1>
         <div className="pet-page-inner pet-page-not-allowed">
           <h2>Neturite teisės pasiekti šio turinio!</h2>
           <Link className="pink-button" to={"/"}>
@@ -36,11 +36,16 @@ export const PetPage = () => {
   } else {
     return (
       <main className="pet-page">
-        <h1 className="page-heading for-observer">{name}</h1>
+        <h1 className="page-heading ">{name}</h1>
         <div className="pet-page-inner">
           <div className="pet-page__pet-info">
             <h2 className="pet-page__box-heading">Augintinio informacija</h2>
-            <PetInfo handlePopup={handlePopupShow} role={userRole} id={id} isAuthorized={setError} />
+            <PetInfo
+              handlePopup={handlePopupShow}
+              role={userRole}
+              id={id}
+              isAuthorized={setError}
+            />
           </div>
           <PetDocuments
             notificationHandler={createNotification}

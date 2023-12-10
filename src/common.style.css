@@ -132,7 +132,12 @@
 
 /* OTHERS */
 
-.is-required {
+.italic {
+  font-style: italic;
+}
+
+.is-required,
+.important-text {
   color: red;
 }
 

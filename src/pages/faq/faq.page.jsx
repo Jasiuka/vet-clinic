@@ -8,9 +8,7 @@ export const FaqPage = () => {
 
   return (
     <div className="faq">
-      <h2 className="page-heading for-observer">
-        Dažniausiai užduodami klausimai
-      </h2>
+      <h2 className="page-heading ">Dažniausiai užduodami klausimai</h2>
       <main ref={accordionRef} className="accordion">
         <div className="accordion-left accordion-side ">
           {FAQ_DATA.leftSide.map(({ title, text, index }) => {

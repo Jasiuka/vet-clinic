@@ -18,7 +18,7 @@ import {
   getAccountVerified,
   verifyAccount,
 } from "../../queries/user/user-queries.js";
-import { CheckDate } from "../../utils/helper.js";
+import { CheckDate, signupValidation } from "../../utils/helper.js";
 
 import express from "express";
 
@@ -26,6 +26,7 @@ let router = express.Router();
 
 router.post(
   "/api/v1/signup",
+  signupValidation(),
   tryCatch(async (request, response) => {
     const { email, password, ...userObject } = request.body;
 

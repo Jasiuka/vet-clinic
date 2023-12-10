@@ -16,7 +16,7 @@ export const Pets = () => {
   return (
     <main className="page pets">
       {isLoading && <Spinner message={"Gaunami duomenys.."} />}
-      <h1 className="page-heading for-observer">Mano augintiniai</h1>;
+      <h1 className="page-heading ">Mano augintiniai</h1>;
       <div className="pets-inner">
         {data?.map(({ petID, petName }) => {
           return (

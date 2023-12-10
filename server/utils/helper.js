@@ -294,6 +294,16 @@ export const checkPhoneNumberFormat = (phoneNumber) => {
   return regex.test(phoneNumber);
 };
 
+export const checkIfValueContainsOnlyLettersAndSpace = (string) => {
+  const regex = /^[a-zA-Z\s]*$/;
+  return regex.test(string);
+};
+
+export const checkEmailFormat = (email) => {
+  const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  return regex.test(email);
+};
+
 export const orderFormValidation = () => {
   return (request, response, next) => {
     const { email, fullName, phone, shippingPrice, rules, payment } =
@@ -361,6 +371,55 @@ export const orderFormValidation = () => {
         type: "error",
       });
     }
+    next();
+  };
+};
+
+export const signupValidation = () => {
+  return (request, response, next) => {
+    const { email, password, repeatedPassword, name, lastName, phone } =
+      request.body;
+
+    if (password !== repeatedPassword) {
+      return response
+        .status(400)
+        .send({ message: "Slaptažodžiai nesutampa!", type: "error" });
+    }
+
+    if (
+      checkIfAtLeastOneInputHasNoValue(
+        [],
+        [email, password, repeatedPassword, name, lastName, phone]
+      )
+    ) {
+      return response
+        .status(400)
+        .send({ message: "Ne visi laukai užpildyti!", type: "error" });
+    }
+
+    if (
+      !checkIfValueContainsOnlyLettersAndSpace(name) ||
+      !checkIfValueContainsOnlyLettersAndSpace(lastName)
+    ) {
+      return response.status(400).send({
+        message: "Vardas ir pavardė negali turėti skaičių ar simbolių!",
+        type: "error",
+      });
+    }
+
+    if (!checkPhoneNumberFormat(phone)) {
+      return response
+        .status(400)
+        .send({ message: "Blogas tel. numerio formatas.", type: "error" });
+    }
+
+    if (!checkEmailFormat(email)) {
+      return response.status(400).send({
+        message: "Blogas el. pašto formatas",
+        type: "error",
+      });
+    }
+
     next();
   };
 };

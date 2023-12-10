@@ -36,9 +36,9 @@ export const checkIfAtLeastOneInputHasNoValue = (
   values = null
 ) => {
   if (!values) {
-    // Remove last element (button)
-    inputsArray.pop();
-    return inputsArray.some((input) => input?.value.trim() === "");
+    return inputsArray.some(
+      (input) => input?.tagName !== "BUTTON" && input?.value.trim() === ""
+    );
   } else {
     return values.some((value) => value.trim() === "");
   }

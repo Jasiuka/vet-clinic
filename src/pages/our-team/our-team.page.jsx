@@ -5,7 +5,7 @@ import "./our-team.style.css";
 export const OurTeamPage = () => {
   return (
     <div className="our-team">
-      <h2 className="page-heading for-observer">Mūsų komanda</h2>
+      <h2 className="page-heading ">Mūsų komanda</h2>
       <main className="our-team__main">
         <div className="our-team__main-vets ">
           <h3 className="our-team__main-vets-heading our-team__main-heading">

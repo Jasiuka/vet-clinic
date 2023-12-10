@@ -36,6 +36,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Orders from "./pages/auth-users/orders/orders.page.jsx";
 import NotFoundPage from "./pages/error/not-found.page.jsx";
 import TempPage from "./temp.page.jsx";
+import SignupSuccess from "./pages/signup-success/signup-success.page.jsx";
 const stripePromise = loadStripe(
   "pk_test_51ELPw0GnhsO4RtFa7HIILjcjS8WMtFTtPk7NkTZJtQS4r4fySmUFsaQdNWS0WvcBrPygfHn2D97wgL1I9Wwnoaek00ATsqQQSM"
 );
@@ -163,7 +164,7 @@ const router = createBrowserRouter([
   {
     path: "/uzsakymas-patvirtintas",
     element: (
-      <Layout>
+      <Layout noFooter={false}>
         <CheckoutConfirmed />
       </Layout>
     ),
@@ -191,6 +192,14 @@ const router = createBrowserRouter([
     element: (
       <Layout noFooter={false}>
         <Orders />
+      </Layout>
+    ),
+  },
+  {
+    path: "registracijos-patvirtinimas/:email",
+    element: (
+      <Layout noFooter={false}>
+        <SignupSuccess />
       </Layout>
     ),
   },

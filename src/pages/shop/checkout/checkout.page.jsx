@@ -120,7 +120,7 @@ export const Checkout = () => {
 
   return (
     <main className="checkout">
-      <h1 className="page-heading for-observer">Užsakymas</h1>
+      <h1 className="page-heading ">Užsakymas</h1>
       <>
         {isLoading && <Spinner message={"Kraunama.."} />}
 

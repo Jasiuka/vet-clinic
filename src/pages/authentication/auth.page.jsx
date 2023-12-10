@@ -81,7 +81,7 @@ export const AuthenticationPage = () => {
               isLoginFailed={error}
             />
           ) : (
-            <SignupForm createNotification={createNotification} />
+            <SignupForm />
           )}
         </div>
       </div>

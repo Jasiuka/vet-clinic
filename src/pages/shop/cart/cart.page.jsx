@@ -8,7 +8,7 @@ export const CartPage = () => {
 
   return (
     <main className="cart-page">
-      <h1 className="page-heading for-observer">Krepšelis</h1>
+      <h1 className="page-heading ">Krepšelis</h1>
       <div
         className={`cart-page__inner ${
           cartItems.length === 0 && "cart-page__inner-empty"

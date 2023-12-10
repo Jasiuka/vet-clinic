@@ -59,7 +59,7 @@ export const AppointmentPage = () => {
   return (
     <main className="appointment">
       {isLoading && <Spinner message={"Ieškoma.."} />}
-      <h2 className="page-heading for-observer">Registracija vizitui</h2>
+      <h2 className="page-heading ">Registracija vizitui</h2>
       <div className="appointment-inner">
         <div className="appointment-inner__calendar">
           <h3>Pasirinkite laikotarpį arba dieną</h3>

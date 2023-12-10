@@ -37,7 +37,7 @@ export const ShopPage = () => {
 
   return (
     <main className="shop">
-      <h2 className="page-heading for-observer">Elektroninė parduotuvė</h2>
+      <h2 className="page-heading ">Elektroninė parduotuvė</h2>
       <div className="shop-inner">
         <Filter
           handleFilterClick={handleFilterClick}
