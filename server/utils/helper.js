@@ -156,7 +156,7 @@ export const createAppointments = async (pool, vet, pet) => {
     const fullDate = `${years}-${String(month).padStart(2, 0)}-${String(
       day
     ).padStart(2, 0)}`;
-    await addAppointments(pool, fullDate, "16:00", pet, vet);
+    await addAppointments(pool, fullDate, "12:00", pet, vet);
     const nextDay = today.getDate() + 1;
     today.setDate(nextDay);
     i++;

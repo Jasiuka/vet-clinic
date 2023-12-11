@@ -105,7 +105,7 @@
   grid-row: 1/2;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: var(--gap-lg);
 }
 
 .no-reg-form .description-input-box {

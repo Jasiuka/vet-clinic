@@ -15,7 +15,14 @@ export const getEmployees = async (pool) => {
 export const getAppointments = async (pool) => {
   let connection;
   try {
-    const query = `SELECT appointments.id AS 'ID',appointments.appointmentDate AS 'Data',appointments.appointmentTime AS 'Laikas',veterinarians.vetName AS 'Vardas', veterinarians.lastName AS 'Pavardė',pets.petName AS 'Augintinis' FROM appointments LEFT JOIN veterinarians ON appointments.veterinarian = veterinarians.id LEFT JOIN pets ON appointments.pet = pets.id ORDER BY appointmentDate DESC`;
+    const query = `SELECT appointments.id AS 'ID',
+    appointments.appointmentDate AS 'Data',
+    appointments.appointmentTime AS 'Laikas',
+    veterinarians.vetName AS 'Vardas',
+     veterinarians.lastName AS 'Pavardė',
+     pets.petName AS 'Augintinis' FROM appointments
+      LEFT JOIN veterinarians ON appointments.veterinarian = veterinarians.id
+       LEFT JOIN pets ON appointments.pet = pets.id ORDER BY appointmentDate DESC`;
     connection = await pool.getConnection();
     const results = await connection.query(query);
     return results;

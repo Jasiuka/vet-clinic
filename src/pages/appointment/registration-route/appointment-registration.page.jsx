@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { FixDate, RemoveSeconds } from "../../../utils/helper-fncs";
 import {
   useGetAppointmentByIdQuery,
@@ -10,8 +10,11 @@ import NoRegForm from "./no-reg-form.component";
 import { useSelector } from "react-redux";
 import AuthenticatedForm from "./auth-form.component";
 import Spinner from "../../../components/spinner.component";
+import useCreateNotification from "../../../utils/hooks/createNotification.hook";
 export const AppointmentRegistration = () => {
   let { id } = useParams();
+  const { createNotification } = useCreateNotification();
+  const navigate = useNavigate();
   const [appointmentData, setAppointmentData] = useState({
     id: "",
     date: "",
@@ -68,7 +71,16 @@ export const AppointmentRegistration = () => {
       appointmentId: appointmentData.id,
     };
 
-    appointment(appointmentObject);
+    appointment(appointmentObject).then((response) => {
+      if (response.error) {
+        const { message, type } = response.error.data;
+        createNotification(message, type);
+      } else {
+        const { message, type } = response.data;
+        createNotification(message, type);
+        navigate("/");
+      }
+    });
   };
 
   return (

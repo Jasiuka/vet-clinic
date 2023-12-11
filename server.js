@@ -4,6 +4,7 @@ import cors from "cors";
 import mariadb from "mariadb";
 import dotenv from "dotenv";
 import { errorHandler } from "./server/utils/errorHandler.js";
+import { createAppointments } from "./server/utils/helper.js";
 
 // Websockets
 

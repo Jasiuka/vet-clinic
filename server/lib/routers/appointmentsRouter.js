@@ -71,6 +71,7 @@ router.post(
     if (isAppointmentFree.pet)
       return response.status(400).send({
         message: "Deja šis vizitas jau buvo užregistruotas.",
+        type: "error",
       });
 
     // If petId = auth user
@@ -79,6 +80,7 @@ router.post(
       if (!isAuthUser) {
         return response.status(400).send({
           message: "Klaida. Duomenys netikri.",
+          type: "error",
         });
       }
 
@@ -92,6 +94,7 @@ router.post(
       if (!doesUserHaveThisPet)
         return response.status(400).send({
           message: "Klaida. Jūs šio augintinio neturite.",
+          type: "error",
         });
 
       await bookPet(pool, appointmentId, petId, reason);
@@ -110,6 +113,7 @@ router.post(
       await sendEmail(emailOptions);
       return response.status(200).send({
         message: "Sėkmingai užregistravote augintinį vizitui.",
+        type: "success",
       });
     }
 
@@ -133,6 +137,7 @@ router.post(
     if (!bookingResult)
       return response.status(400).send({
         message: "Klaida. Bandykite dar kartą.",
+        type: "error",
       });
 
     const emailOptions = mailOptions(
@@ -149,6 +154,7 @@ router.post(
     await sendEmail(emailOptions);
     return response.status(200).send({
       message: "Sėkmingai užsiregistravote vizitui.",
+      type: "success",
     });
   })
 );
