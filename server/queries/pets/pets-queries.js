@@ -151,3 +151,18 @@ export const createNewDiagnosis = async (pool, date, description, petId) => {
     connection.end();
   }
 };
+
+export const deletePet = async (pool, petId) => {
+  let connection;
+  try {
+    const query = `DELETE FROM pets WHERE id = ${petId}`;
+    connection = await pool.getConnection();
+    await connection.query(query);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  } finally {
+    connection.end();
+  }
+};

@@ -2,7 +2,16 @@ import { createDateTimeOneHourLater } from "../../utils/helper.js";
 export const getAllUserPetsIds = async (pool, userAccountId) => {
   let connection;
   try {
-    const query = `SELECT pets.id AS 'petID', pets.petName FROM accounts LEFT JOIN users ON accounts.id = users.account LEFT JOIN pets ON users.id = pets.petOwner WHERE accounts.id = ${userAccountId}`;
+    const query = `SELECT pets.id AS 'petID', pets.petName, pets.species, latest_appt.appointmentDate 
+    FROM accounts 
+    LEFT JOIN users ON accounts.id = users.account 
+    LEFT JOIN pets ON users.id = pets.petOwner 
+    LEFT JOIN (
+        SELECT pet, MAX(appointmentDate) AS appointmentDate 
+        FROM appointments 
+        GROUP BY pet
+    ) AS latest_appt ON latest_appt.pet = pets.id 
+    WHERE accounts.id = ${userAccountId}`;
     connection = await pool.getConnection();
     const pets = await connection.query(query);
     if (pets.length === 0) return null;

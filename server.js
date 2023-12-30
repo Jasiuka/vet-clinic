@@ -50,6 +50,8 @@ export default pool;
 //   prefix: "vet:",
 // });
 
+// createAppointments(pool, 2);
+
 app.set("trust proxy", 1);
 app.use(
   session({

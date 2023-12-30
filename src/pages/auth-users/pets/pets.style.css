@@ -14,19 +14,48 @@
   padding: var(--el-pd-lg);
   border: 4px solid var(--accent-color);
   transition: var(--main-transition);
-  cursor: pointer;
+  text-align: center;
+  color: var(--dark-grey);
+  border-radius: var(--common-border-radius);
+}
+
+.pets__pet-card {
+  display: flex;
+}
+
+.pets__pet-card-details {
+  flex: 1;
+}
+
+.pets__pet-card-details:link,
+.pets__pet-card-details:visited,
+.pets__pet-card-details {
+  display: inline-block;
   color: var(--dark-grey);
 }
 
-.pets__pet-card:link,
-.pets__pet-card:visited,
-.pets__pet-card {
-  font-size: var(--font-lg);
-  font-weight: 500;
-  text-align: center;
+.pets__pet-card-details:hover .pets__pet-card-name {
+  background-color: var(--accent-color);
 }
 
-.pets__pet-card:hover,
+.pets__pet-card-name {
+  font-size: var(--font-lg);
+  font-weight: 500;
+  padding: var(--el-pd-md);
+  transition: var(--main-transition);
+}
+
+.pets__pet-card-species {
+  font-size: var(--font-md);
+  padding-bottom: var(--el-pd-sm);
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.pets__pet-card-date {
+  font-size: var(--font-sm-to-md);
+  font-weight: 400;
+}
+
 .pets__add-new:hover {
   transform: scale(1.05);
   background-image: linear-gradient(
@@ -39,10 +68,22 @@
   );
 }
 
-.pets__pet-card-name {
-  font-size: var(--font-lg);
-  font-weight: 500;
+.pet-delete {
+  display: flex;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-orientation: upright;
+  writing-mode: vertical-lr;
+  text-transform: uppercase;
   text-align: center;
+  font-weight: 600;
+  transition: var(--main-transition);
+  margin-left: var(--gap-md);
+}
+
+.pet-delete:hover {
+  color: rgb(228, 62, 62);
 }
 
 .pets__add-new {

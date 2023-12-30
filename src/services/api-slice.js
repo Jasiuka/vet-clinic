@@ -124,6 +124,14 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["Pets"],
     }),
+    deletePet: builder.mutation({
+      query: (body) => ({
+        method: "DELETE",
+        body: body,
+        url: "user/pets",
+      }),
+      invalidatesTags: ["Pets"],
+    }),
   }),
 });
 
@@ -145,6 +153,7 @@ export const {
   useGetUserOrdersQuery,
   useCreateNewPetMutation,
   useGetUserDetailsQuery,
+  useDeletePetMutation,
   // ADMIN
   useGetAllEmployeesQuery,
   useGetAllAppointmentsQuery,

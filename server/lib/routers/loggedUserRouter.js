@@ -9,7 +9,7 @@ import {
   checkIfStringHasNumberOrSymbol,
 } from "../../utils/helper.js";
 import { getUserIdAndNameByAccountId } from "../../queries/user/user-queries.js";
-import { createNewPet } from "../../queries/pets/pets-queries.js";
+import { createNewPet, deletePet } from "../../queries/pets/pets-queries.js";
 
 let router = express.Router();
 
@@ -111,6 +111,26 @@ router.post(
 
     return response.status(200).send({
       message: "Augintinio profilis sėkmingai sukurtas!",
+      type: "success",
+    });
+  })
+);
+
+router.delete(
+  "/api/v1/user/pets",
+  tryCatch(async (request, response) => {
+    const { id } = request.body;
+    const petDeleteSuccess = await deletePet(pool, id);
+    if (!petDeleteSuccess) {
+      return response.status(400).send({
+        message:
+          "Atsiprašome, tačiau įvyko nenumatyta klaida naikinant augintinio profilį",
+        type: "error",
+      });
+    }
+
+    return response.status(200).send({
+      message: "Augintinio profilis pašalintas sėkmingai",
       type: "success",
     });
   })
