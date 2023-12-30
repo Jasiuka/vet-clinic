@@ -4,6 +4,7 @@ import {
   getAllPetAppointmentsById,
   getPetDocumentsById,
   createNewDiagnosis,
+  editPet,
 } from "../../queries/pets/pets-queries.js";
 import { tryCatch } from "../../utils/tryCatch.js";
 import express from "express";
@@ -12,6 +13,7 @@ import {
   createTodayDateAndTimeString,
   checkUserRole,
   checkIfUserHasPet,
+  checkIfNewPetFormNumbersGreaterThan,
 } from "../../utils/helper.js";
 
 let router = express.Router();
@@ -63,6 +65,49 @@ router.get(
     const id = request.query.id;
     const result = await getPetById(pool, id);
     return response.status(200).send(result);
+  })
+);
+
+router.patch(
+  "/api/v1/pets/id",
+  checkUserRole([2]),
+  tryCatch(async (request, response) => {
+    const { age, weight, id } = request.body;
+
+    const isNotEmpty = age || weight;
+    if (!isNotEmpty) {
+      return response.status(400).send({
+        message: "Bent vienas laukas turi būti užpildytas!",
+        type: "error",
+      });
+    }
+
+    const isNotAvailableNumber = checkIfNewPetFormNumbersGreaterThan(
+      151,
+      age,
+      weight
+    );
+    if (isNotAvailableNumber) {
+      return response.status(400).send({
+        message: "Augintinio svoris ar amžius negali būti daugiau už 150!",
+        type: "error",
+      });
+    }
+
+    const isEditSuccess = await editPet(pool, id, Number(age), Number(weight));
+    if (!isEditSuccess) {
+      return response.status(400).send({
+        message: "Įvyko klaida redaguojant augintinį",
+        status: 400,
+        type: "error",
+      });
+    }
+
+    return response.status(200).send({
+      message: "Augintinio profilis redaguotas sėkmingai",
+      status: 200,
+      type: "success",
+    });
   })
 );
 

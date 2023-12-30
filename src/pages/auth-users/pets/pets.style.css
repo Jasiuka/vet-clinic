@@ -79,7 +79,7 @@
   text-align: center;
   font-weight: 600;
   transition: var(--main-transition);
-  margin-left: var(--gap-md);
+  margin-left: var(--gap-lg);
 }
 
 .pet-delete:hover {

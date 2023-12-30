@@ -6,6 +6,7 @@ import PetDocuments from "./pet-documents.component";
 import PetHistory from "./pet-history.component";
 import { useSelector } from "react-redux";
 import AllAppointmentsPopup from "./all-appointments-popup.component";
+import EditPetModal from "./edit-pet.component";
 import useCreateNotification from "../../../../utils/hooks/createNotification.hook";
 export const PetPage = () => {
   const { name, id } = useParams();
@@ -13,13 +14,17 @@ export const PetPage = () => {
   // QUERIES / MUTATIONS
 
   // STATES
-  const [isPopupShowing, setIsPopupShowing] = useState(false);
+  const [isPopupShowing, setIsPopupShowing] = useState({
+    state: false,
+    type: "",
+    details: null,
+  });
   const [error, setError] = useState(null);
   const userRole = useSelector((state) => state.user?.role);
   const { createNotification } = useCreateNotification();
 
   // HANDLERS
-  const handlePopupShow = (state) => setIsPopupShowing(state);
+  const handlePopupShow = (popupObj) => setIsPopupShowing(popupObj);
 
   if (error?.originalStatus === 401) {
     return (
@@ -58,7 +63,14 @@ export const PetPage = () => {
             notificationHandler={createNotification}
           />
         </div>
-        {isPopupShowing && (
+        {isPopupShowing.state && isPopupShowing.type === "edit" && (
+          <EditPetModal
+            handlePopup={handlePopupShow}
+            details={isPopupShowing.details}
+            notificationHandler={createNotification}
+          />
+        )}
+        {isPopupShowing.state && isPopupShowing.type === "appointments" && (
           <AllAppointmentsPopup
             petName={name}
             handlePopup={handlePopupShow}

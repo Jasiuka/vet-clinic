@@ -90,8 +90,34 @@ export const PetInfo = ({ id, role, handlePopup, isAuthorized }) => {
               ? "Vizitų nėra"
               : petDetails?.nextVisit}
           </h4>
+          <button
+            onClick={() =>
+              handlePopup({
+                state: true,
+                type: "edit",
+                details: {
+                  age: petDetails.age,
+                  weight: petDetails.weight,
+                  name: petDetails.name,
+                  id: id,
+                },
+              })
+            }
+            className="pink-button"
+          >
+            Redaguoti
+          </button>
           {role === 2 && (
-            <button onClick={() => handlePopup(true)} className="pink-button">
+            <button
+              onClick={() =>
+                handlePopup({
+                  state: true,
+                  type: "appointments",
+                  details: null,
+                })
+              }
+              className="pink-button"
+            >
               Visi vizitai
             </button>
           )}

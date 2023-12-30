@@ -256,3 +256,50 @@
 .pet-page__popup--no-appointments {
   font-size: var(--font-md);
 }
+
+/* EDIT PET MODAL */
+
+.edit-pet {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-120%, -50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-lg);
+  border: none;
+  outline: none;
+  padding: var(--el-pd-lg);
+  border-radius: var(--common-border-radius);
+  background-color: var(--dark-grey);
+  width: fit-content;
+}
+
+.edit-pet form {
+  width: 100%;
+}
+
+.edit-pet form button[type="submit"] {
+  margin-top: var(--gap-md);
+}
+
+.edit-pet h2 {
+  color: var(--light-grey);
+  margin-bottom: var(--gap-md);
+}
+
+.edit-pet-close {
+  align-self: baseline;
+  border: none;
+  cursor: pointer;
+  color: var(--light-grey);
+  background-color: transparent;
+  font-size: var(--font-sm-to-md);
+  transition: var(--main-transition);
+}
+
+.edit-pet-close:hover {
+  color: var(--accent-color);
+}

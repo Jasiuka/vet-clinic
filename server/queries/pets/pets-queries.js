@@ -166,3 +166,23 @@ export const deletePet = async (pool, petId) => {
     connection.end();
   }
 };
+
+export const editPet = async (pool, petId, age, weight) => {
+  let connection;
+  try {
+    const query = `UPDATE pets 
+    SET 
+        age = CASE WHEN ${age} IS NOT NULL AND ${age} != '' THEN ${age} ELSE age END,
+        petWeight = CASE WHEN ${weight} IS NOT NULL AND ${weight} != '' THEN ${weight} ELSE petWeight END 
+    WHERE 
+        id = ${petId};`;
+    connection = await pool.getConnection();
+    await connection.query(query);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  } finally {
+    connection.end();
+  }
+};
