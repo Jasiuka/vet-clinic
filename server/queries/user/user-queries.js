@@ -14,7 +14,7 @@ export const getAllUserPetsIds = async (pool, userAccountId) => {
     WHERE accounts.id = ${userAccountId}`;
     connection = await pool.getConnection();
     const pets = await connection.query(query);
-    if (pets.length === 0) return null;
+    if (!pets.petID) return null;
     return pets;
   } catch (error) {
     console.error(error);
@@ -66,6 +66,90 @@ export const verifyAccount = async (pool, accountId) => {
     return result;
   } catch (error) {
     console.error(error);
+  } finally {
+    connection.end();
+  }
+};
+
+export const setUserCode = async (pool, accountEmail, code) => {
+  let connection;
+  try {
+    const query = `UPDATE accounts SET expires = '${createDateTimeOneHourLater()}', code = '${code}' WHERE accounts.email = '${accountEmail}'`;
+    connection = await pool.getConnection();
+    await connection.query(query);
+    // return result;
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  } finally {
+    connection.end();
+  }
+};
+
+export const checkUserCode = async (pool, code) => {
+  let connection;
+  try {
+    const query = `SELECT accounts.id FROM accounts WHERE accounts.code = '${code}'`;
+    connection = await pool.getConnection();
+    const result = await connection.query(query);
+    if (result.length) {
+      return true;
+    }
+  } catch (error) {
+    console.error(error);
+    return false;
+  } finally {
+    connection.end();
+  }
+};
+
+export const resetUserCodeAndExpires = async (pool, code) => {
+  let connection;
+  try {
+    const query = `UPDATE accounts SET expires = null, code = null WHERE accounts.code = '${code}'`;
+    connection = await pool.getConnection();
+    const result = await connection.query(query);
+    if (result.length) {
+      return true;
+    }
+  } catch (error) {
+    console.error(error);
+    return false;
+  } finally {
+    connection.end();
+  }
+};
+
+export const resetUserPassword = async (pool, code, password) => {
+  let connection;
+  try {
+    const query = `UPDATE accounts SET expires = null, code = null, accountPassword = '${password}' WHERE accounts.code = '${code}'`;
+    connection = await pool.getConnection();
+    await connection.query(query);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  } finally {
+    connection.end();
+  }
+};
+
+export const checkIfUserCodeExpired = async (pool, code) => {
+  let connection;
+  try {
+    const query = `SELECT accounts.id FROM accounts WHERE accounts.code = '${code}' AND accounts.expires > NOW()`;
+    connection = await pool.getConnection();
+    const result = await connection.query(query);
+    if (result.length) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error(error);
+    return false;
   } finally {
     connection.end();
   }

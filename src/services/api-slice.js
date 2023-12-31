@@ -71,6 +71,13 @@ export const apiSlice = createApi({
         body: userObject,
       }),
     }),
+    forgotPassword: builder.mutation({
+      query: (body) => ({
+        method: "POST",
+        body,
+        url: `/forgot`,
+      }),
+    }),
     getAllEmployees: builder.query({
       query: () => `admin/employees`,
     }),
@@ -160,6 +167,7 @@ export const {
   // USER
   useLoginMutation,
   useSignupMutation,
+  useForgotPasswordMutation,
   useGetUserOrdersQuery,
   useCreateNewPetMutation,
   useGetUserDetailsQuery,

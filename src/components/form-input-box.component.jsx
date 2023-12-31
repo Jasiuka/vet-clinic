@@ -10,6 +10,7 @@ export const FormInputBox = ({
   isValue = "",
   uniqueClassName,
   isRequired,
+  parentSetter,
 }) => {
   const [isLabelMoved, setIsLabelMoved] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -22,7 +23,10 @@ export const FormInputBox = ({
         type={inputType}
         onFocus={() => setIsLabelMoved(true)}
         onBlur={() => setIsLabelMoved(false)}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e) => {
+          setInputValue(e.target.value);
+          parentSetter ? parentSetter(e.target.value) : null;
+        }}
         value={isValue ? isValue : inputValue}
         name={inputName}
         disabled={isDisabled}
@@ -51,6 +55,7 @@ FormInputBox.propTypes = {
   isValue: PropTypes.any,
   uniqueClassName: PropTypes.string,
   isRequired: PropTypes.bool,
+  parentSetter: PropTypes.func,
 };
 
 export default FormInputBox;

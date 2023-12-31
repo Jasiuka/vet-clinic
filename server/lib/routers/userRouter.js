@@ -9,6 +9,7 @@ import {
   mailOptions,
   sendEmail,
   generateUserVerificationHtml,
+  generateUserForgotPasswordHtml,
 } from "../../utils/mailer.js";
 import {
   findUser,
@@ -17,6 +18,11 @@ import {
   createUser,
   getAccountVerified,
   verifyAccount,
+  setUserCode,
+  checkUserCode,
+  checkIfUserCodeExpired,
+  resetUserCodeAndExpires,
+  resetUserPassword,
 } from "../../queries/user/user-queries.js";
 import { CheckDate, signupValidation } from "../../utils/helper.js";
 
@@ -149,6 +155,92 @@ router.post(
       review: userReview,
     };
     return response.status(200).send(userRole);
+  })
+);
+
+router.post(
+  "/api/v1/forgot",
+  tryCatch(async (request, response) => {
+    const { email } = request.body;
+
+    const doesUserExist = await findUserEmail(pool, email);
+    if (!doesUserExist) {
+      return response.status(200).send();
+    }
+    const emailWithCode = email + new Date().toISOString();
+    const specialCode = await hashString(emailWithCode);
+    const isSetSuccess = await setUserCode(pool, email, specialCode);
+    if (!isSetSuccess) {
+      return response.status(400).send({
+        message: "Sistemos klaida. Bandykite dar kartą.",
+        type: "error",
+      });
+    }
+
+    const baseUrl = `http://localhost:3000/`;
+    const emailOptions = mailOptions(
+      email,
+      "Slaptažodžio pakeitimas",
+      "",
+      generateUserForgotPasswordHtml(baseUrl, specialCode)
+    );
+
+    const isEmailSuccess = await sendEmail(emailOptions);
+    if (!isEmailSuccess)
+      return response.status(400).send({
+        message: "Sistemos klaida. Bandykite dar kartą.",
+        type: "error",
+      });
+    return response.status(200).send();
+  })
+);
+
+router.post(
+  "/api/v1/forgot-password",
+  tryCatch(async (request, response) => {
+    const { password, sCode } = request.body;
+    // Check if reset password code exists
+    const isCodeExist = await checkUserCode(pool, sCode);
+    if (!isCodeExist) {
+      return response.status(401).send();
+    }
+    // check if code not expired
+    const isCodeNotExpired = await checkIfUserCodeExpired(pool, sCode);
+    if (!isCodeNotExpired) {
+      await resetUserCodeAndExpires(pool, sCode);
+      return response.status(400).send({
+        message:
+          "Baigė galioti jūsų slaptažodžio atnaujinimo kodas. Turite atsisiųsti naują kodą.",
+        type: "error",
+      });
+    }
+
+    const isResetSuccess = await resetUserPassword(
+      pool,
+      sCode,
+      await hashPassword(password)
+    );
+    if (!isResetSuccess) {
+      return response.status(400).send({
+        message: "Sistemos klaida. Bandykite dar kartą.",
+        type: "error",
+      });
+    }
+    return response.status(200).send();
+  })
+);
+
+router.get(
+  "/api/v1/forgot-password",
+  tryCatch(async (request, response) => {
+    const sCode = request.query.sCode;
+    // Check if reset password code exists
+    const isCodeExist = await checkUserCode(pool, sCode);
+    if (!isCodeExist) {
+      return response.status(400).send();
+    }
+
+    return response.status(200).send();
   })
 );
 

@@ -14,7 +14,7 @@ import { FixDate } from "../../../utils/helper-fncs";
 import useCreateNotification from "../../../utils/hooks/createNotification.hook";
 export const Pets = () => {
   const [isCreateNewShowing, setIsCreateNewShowing] = useState(false);
-  const { data, error, isLoading } = useGetAllUserPetsIdsQuery();
+  const { data = [], error, isLoading } = useGetAllUserPetsIdsQuery();
   const [deletePet, { isLoading: isDeleteLoading }] = useDeletePetMutation();
   const { createNotification } = useCreateNotification();
 

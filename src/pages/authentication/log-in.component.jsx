@@ -26,13 +26,16 @@ export const LoginForm = ({ handleFormchange, handleLogin, isLoginFailed }) => {
       <button type="submit" className="form-button pink-button">
         Prisijungti
       </button>
-      <Link className="form-button-forgot form-link">
+      <Link
+        onClick={() => handleFormchange("forgot")}
+        className="form-button-forgot form-link"
+      >
         Pamiršau slaptažodį..
       </Link>
 
       <div className="form-container form-container-no-profile">
         <p>Neturi profilio?</p>
-        <Link onClick={handleFormchange} className="form-link">
+        <Link onClick={() => handleFormchange("signup")} className="form-link">
           Registruokis
         </Link>
       </div>

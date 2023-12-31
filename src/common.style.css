@@ -230,7 +230,11 @@
   border: 1px solid transparent;
 }
 
-.pink-button:hover {
+.pink-button:disabled {
+  background-color: gray;
+}
+
+.pink-button:not(:disabled):hover {
   background-color: var(--light-grey);
   border: 1px solid var(--dark-grey);
   color: var(--dark-grey);

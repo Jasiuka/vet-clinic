@@ -18,7 +18,7 @@ router.get(
   tryCatch(async (request, response) => {
     const userAccountId = request.session.userId;
     const pets = await getAllUserPetsIds(pool, userAccountId);
-    if (pets.length === 0) return response.status(200).send(0);
+    if (!pets) return response.status(200).send([]);
     return response.status(200).send(pets);
   })
 );

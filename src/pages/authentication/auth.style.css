@@ -253,3 +253,21 @@
   transform: translateY(-22px);
   color: var(--dark-grey);
 }
+
+/* FORGOT PASSWORD */
+
+.forgot-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.forgot-paragraph {
+  max-width: 20dvw;
+  margin-bottom: var(--gap-sm);
+}
+
+.forgot-success {
+  color: var(--accent-color);
+  font-weight: 500;
+  margin-bottom: var(--gap-md);
+}

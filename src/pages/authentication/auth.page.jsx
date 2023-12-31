@@ -12,6 +12,7 @@ import { get } from "../../store/slices/user-slice";
 import Spinner from "../../components/spinner.component";
 import NotificationsList from "../../components/notifications/notificationsList.component";
 import useCreateNotification from "../../utils/hooks/createNotification.hook";
+import ForgotPassword from "./forgot-pass.component";
 export const AuthenticationPage = () => {
   // Redux
   const navigate = useNavigate();
@@ -49,16 +50,16 @@ export const AuthenticationPage = () => {
   };
   // Redux
 
-  const [searchParams, setSearchParams] = useSearchParams({
-    form: false,
-  });
-  const form = searchParams.get("form") !== "reg";
+  const [searchParams, setSearchParams] = useSearchParams({ form: "login" });
+  const loginForm =
+    searchParams.get("form") === "login" ||
+    (searchParams.get("form") !== "signup" &&
+      searchParams.get("form") !== "forgot");
+  const forgotForm = searchParams.get("form") === "forgot";
+  const signupForm = searchParams.get("form") === "signup";
 
-  const handleFormChange = () => {
-    setSearchParams((prev) => {
-      prev.set("form", "reg");
-      return prev;
-    });
+  const handleFormChange = (formType) => {
+    setSearchParams({ form: formType });
   };
 
   return (
@@ -72,17 +73,22 @@ export const AuthenticationPage = () => {
             <img className="authentication--logo" src="/assets/vetlogo.webp" />
           </Link>
           <h3 className="authentication__form--heading">
-            {form ? "Prisijungimas" : "Registracija"}
+            {loginForm
+              ? "Prisijungimas"
+              : signupForm
+              ? "Registracija"
+              : "Pamiršau slaptažodį"}
           </h3>
-          {form ? (
+
+          {loginForm && (
             <LoginForm
               handleFormchange={handleFormChange}
               handleLogin={handleLogin}
               isLoginFailed={error}
             />
-          ) : (
-            <SignupForm />
           )}
+          {signupForm && <SignupForm />}
+          {forgotForm && <ForgotPassword />}
         </div>
       </div>
     </>

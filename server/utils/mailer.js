@@ -42,6 +42,17 @@ export const generateUserVerificationHtml = (baseUrl, specialCode) => {
   `;
 };
 
+export const generateUserForgotPasswordHtml = (baseUrl, specialCode) => {
+  return `
+    <div>
+      <h1>Jūs pareikalavote pakeisti slaptažodį "Laimingos letenėles" veterinarijos klinikos sistemoje.</h1>
+      <h2>Paspauskite šią nuorodą žemiau ir galėsite atnaujinti savo slaptažodį</h2>
+      <a  href="${baseUrl}slaptazodis-keisti/?code=${specialCode}" target="_blank" >${baseUrl}slaptazodis-keisti/?code=${specialCode}</a>
+      <p style='color: red'>Jeigu ne jūs pareikalavote slaptažodžio pakeitimo, ignoruokite šį laišką.</p>
+    </div>
+  `;
+};
+
 export const generateProductsHtml = (products) => {
   return products.map(
     (product) =>

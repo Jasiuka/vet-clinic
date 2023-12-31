@@ -4,7 +4,11 @@ import Home from "./App.jsx";
 import "./base.style.css";
 import "./common.style.css";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 import AuthenticationPage from "./pages/authentication/auth.page.jsx";
 import AboutUsPage from "./pages/about-us/about-us.page.jsx";
 import OurTeamPage from "./pages/our-team/our-team.page.jsx";
@@ -37,6 +41,7 @@ import Orders from "./pages/auth-users/orders/orders.page.jsx";
 import NotFoundPage from "./pages/error/not-found.page.jsx";
 import TempPage from "./temp.page.jsx";
 import SignupSuccess from "./pages/signup-success/signup-success.page.jsx";
+import ForgotPasswordPage from "./pages/forgot-password/forgot-password.page.jsx";
 const stripePromise = loadStripe(
   "pk_test_51ELPw0GnhsO4RtFa7HIILjcjS8WMtFTtPk7NkTZJtQS4r4fySmUFsaQdNWS0WvcBrPygfHn2D97wgL1I9Wwnoaek00ATsqQQSM"
 );
@@ -204,12 +209,20 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/slaptazodis-keisti/",
+    element: (
+      <Layout noFooter={false}>
+        <ForgotPasswordPage />
+      </Layout>
+    ),
+  },
+  {
     path: "/nerastas",
     element: <NotFoundPage />,
   },
   {
     path: "*",
-    element: <NotFoundPage />,
+    element: <Navigate to={"/nerastas"} />,
   },
 ]);
 
