@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 export const ProfileDropdown = ({ isOpen, handleDropdownClick, role }) => {
   const loggedUserButtonNames = {
-    1: "Administratorius",
     2: "Mano profilis",
     3: "Gydytojas",
   };
@@ -39,11 +38,7 @@ export const ProfileDropdown = ({ isOpen, handleDropdownClick, role }) => {
         <div
           className={`profile-dropdown__content ${isOpen && "dropdown-open"} `}
         >
-          {role === 1 ? (
-            <>
-              <Link to={"/valdymas"}>Valdymas</Link>
-            </>
-          ) : role === 3 ? (
+          {role === 3 ? (
             <>
               <Link to={"/gydytojas/vizitai"}>Vizitai</Link>
             </>

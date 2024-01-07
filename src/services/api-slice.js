@@ -78,23 +78,11 @@ export const apiSlice = createApi({
         url: `/forgot`,
       }),
     }),
-    getAllEmployees: builder.query({
-      query: () => `admin/employees`,
-    }),
-    getAllAppointments: builder.query({
-      query: () => `admin/appointments`,
-    }),
     getAllProducts: builder.query({
       query: () => `shop/products`,
     }),
-    getAllProductsAdmin: builder.query({
-      query: () => `admin/products`,
-    }),
     getAllServices: builder.query({
       query: () => `services`,
-    }),
-    getColumnNamesByTable: builder.query({
-      query: (tableName) => `admin/columns/tableName?tableName=${tableName}`,
     }),
     getVetAppointments: builder.query({
       query: () => `vet/appointments/`,
@@ -172,13 +160,9 @@ export const {
   useCreateNewPetMutation,
   useGetUserDetailsQuery,
   useDeletePetMutation,
-  // ADMIN
-  useGetAllEmployeesQuery,
-  useGetAllAppointmentsQuery,
+
   useGetAllProductsQuery,
-  useGetAllProductsAdminQuery,
   useGetAllServicesQuery,
-  useGetColumnNamesByTableQuery,
   useGetVetAppointmentsQuery,
   // ORDERS
   useGetOrdersQuery,

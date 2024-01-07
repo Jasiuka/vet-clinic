@@ -13,7 +13,6 @@ The design was created by myself.
 
 - Responsive design
 - Animations
-- Reviews slider
 - Services filter / search
 - Accordion (FAQ)
 - Mini e-shop
@@ -24,26 +23,25 @@ The design was created by myself.
 - Online appointments booking
 - Search free appointments by date range
 - Clients can create their pet profiles
-- View documents sent by doctors
+- View pet documents sent by doctors
 - Diagnosis/disease history
-- Appointments history
+- Pet appointments history
 - Live communication with vet clinic employees (adminstration)
 - Leave review
 
 ### Veterinarians
 
-- Sending documents to clients
-- View sent documents to clients
+- Sending documents to clients pets
+- View sent documents to clients pets
 - Check clients pet profiles
-- Fills out appointments description/information
 - Fills out clients pet diagnosis/condition information
+- View their visits
 
 ### Administration
 
-- Communicates live with clients
-- Edit (delete,create) appointments data in database if required
-- Updates relevant information in website (for ex. Services prices)
-- Can view busyness of veterinarians
+    #### For administration employees I will create separate project (probably in Vue.js framework), it will be simple data base management system. Which will have features:
+        - Communicates live with clients
+        - CRUD Operations of tables
 
 ## 🔧 Tech stack
 

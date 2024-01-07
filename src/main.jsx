@@ -29,7 +29,6 @@ import ShopPage from "./pages/shop/shop.page.jsx";
 import Pets from "./pages/auth-users/pets/pets.page.jsx";
 import PetPage from "./pages/auth-users/pets/pet-page/pet-page.jsx";
 import CartPage from "./pages/shop/cart/cart.page.jsx";
-import Control from "./pages/admin/control.page.jsx";
 import Checkout from "./pages/shop/checkout/checkout.page.jsx";
 import VetAppointments from "./pages/vets/vet-appointments.page.jsx";
 import CheckoutConfirmed from "./pages/shop/checkout/checkout-confirmed.component.jsx";
@@ -172,16 +171,6 @@ const router = createBrowserRouter([
       <Layout noFooter={false}>
         <CheckoutConfirmed />
       </Layout>
-    ),
-  },
-  {
-    path: "/valdymas",
-    element: (
-      <>
-        <Layout noFooter={true}>
-          <Control />
-        </Layout>
-      </>
     ),
   },
   {
