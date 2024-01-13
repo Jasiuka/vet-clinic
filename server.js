@@ -9,8 +9,8 @@ import { createAppointments } from "./server/utils/helper.js";
 // Websockets
 
 // Routers
-import reviewsRouter from "./server/lib/routers/reviewsRouter.js";
 import adminRouter from "./server/lib/routers/adminRouter.js";
+import reviewsRouter from "./server/lib/routers/reviewsRouter.js";
 import vetRouter from "./server/lib/routers/vetRouter.js";
 import petsRouter from "./server/lib/routers/petsRouter.js";
 import appointmentsRouter from "./server/lib/routers/appointmentsRouter.js";
@@ -69,8 +69,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
 
-app.use(reviewsRouter);
 app.use(adminRouter);
+app.use(reviewsRouter);
 app.use(vetRouter);
 app.use(petsRouter);
 app.use(appointmentsRouter);

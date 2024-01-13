@@ -125,7 +125,7 @@ router.post(
 
     if (!userData)
       return response.status(400).send({
-        message: "Klaida, toks vartotojas neegzistuoja.",
+        message: "Klaida, slaptažodis arba el. paštas neteisingas.",
         type: "error",
       });
 
