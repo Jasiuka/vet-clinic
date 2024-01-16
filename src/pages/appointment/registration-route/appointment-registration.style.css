@@ -73,6 +73,10 @@
   border: 1px solid var(--dark-grey);
 }
 
+.appointment-book-form button:disabled {
+  background-color: rgb(170, 170, 170);
+}
+
 /* NO REG FORM */
 
 .appointment-registration__inner .is-required {

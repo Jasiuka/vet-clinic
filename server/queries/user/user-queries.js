@@ -14,7 +14,7 @@ export const getAllUserPetsIds = async (pool, userAccountId) => {
     WHERE accounts.id = ${userAccountId}`;
     connection = await pool.getConnection();
     const pets = await connection.query(query);
-    if (!pets.petID) return null;
+    if (!pets[0].petID) return null;
     return pets;
   } catch (error) {
     console.error(error);
@@ -295,10 +295,25 @@ export const getUserOrdersByAccountId = async (pool, accountId) => {
       LEFT JOIN products ON orderedproductsdetails.productID = products.id WHERE Accounts.id = ${accountId};`;
     connection = await pool.getConnection();
     const rows = await connection.query(query);
+    if (!rows[0]?.id) {
+      return null;
+    }
     return rows;
   } catch (error) {
     console.error(error);
   } finally {
     connection.end();
+  }
+};
+
+export const getUserReviewByAccountId = async (pool, accountId) => {
+  let connection;
+  try {
+    const query = `SELECT reviews.id FROM accounts LEFT JOIN users ON users.account = accounts.id LEFT JOIN reviews ON users.review = reviews.id WHERE accounts.id = ${accountId}`;
+    connection = await pool.getConnection();
+    const rows = await connection.query(query);
+    return rows;
+  } catch (error) {
+    console.error(error);
   }
 };

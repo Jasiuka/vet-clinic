@@ -8,7 +8,10 @@ import {
   checkIfNewPetFormNumbersGreaterThan,
   checkIfStringHasNumberOrSymbol,
 } from "../../utils/helper.js";
-import { getUserIdAndNameByAccountId } from "../../queries/user/user-queries.js";
+import {
+  getUserIdAndNameByAccountId,
+  getUserReviewByAccountId,
+} from "../../queries/user/user-queries.js";
 import { createNewPet, deletePet } from "../../queries/pets/pets-queries.js";
 
 let router = express.Router();
@@ -133,6 +136,18 @@ router.delete(
       message: "Augintinio profilis pašalintas sėkmingai",
       type: "success",
     });
+  })
+);
+
+router.get(
+  "/api/v1/user/review",
+  tryCatch(async (request, response) => {
+    const accountId = request.session.userId;
+    if (!accountId) {
+      return response.status(200).send([]);
+    }
+    const review = await getUserReviewByAccountId(pool, accountId);
+    return response.status(200).send(review);
   })
 );
 

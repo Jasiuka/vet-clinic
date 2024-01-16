@@ -9,16 +9,22 @@ export const VetAppointments = () => {
     <main className="vet-appointments">
       <h1 className="page-heading">Mano vizitai</h1>
       <div className="vet-appointments__inner">
-        {data?.map((appointmentData, index) => (
-          <VetAppointmentCard
-            key={index}
-            petId={appointmentData.aID}
-            petName={appointmentData.aVardas}
-            date={FixDate(appointmentData.data)}
-            time={RemoveSeconds(appointmentData.laikas)}
-            species={appointmentData.rusis}
-          />
-        ))}
+        {data?.map((appointmentData, index) => {
+          if (appointmentData.aID) {
+            return (
+              <VetAppointmentCard
+                key={index}
+                petId={appointmentData.aID}
+                petName={appointmentData.aVardas}
+                date={FixDate(appointmentData.data)}
+                time={RemoveSeconds(appointmentData.laikas)}
+                species={appointmentData.rusis}
+              />
+            );
+          } else {
+            return;
+          }
+        })}
       </div>
     </main>
   );

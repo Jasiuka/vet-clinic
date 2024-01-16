@@ -85,7 +85,7 @@ export const createOrderedProductDetail = async (
     const query = `INSERT INTO orderedProductsDetails (quantity,productID,orderID) VALUES (?,?,?) `;
     const values = [productQuantity, productId, orderId];
     connection = await pool.getConnection();
-    const row = await connection.query(query, values);
+    await connection.query(query, values);
   } catch (error) {
     console.error(error);
     return false;

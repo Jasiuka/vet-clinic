@@ -6,6 +6,9 @@ import { getUserOrdersByAccountId } from "../../queries/user/user-queries.js";
 let router = express.Router();
 
 const mergeUserOrderProducts = (userOrders) => {
+  if (!userOrders) {
+    return null;
+  }
   const orders = [];
   for (let i = 0; i < userOrders.length; i++) {
     const addedOrder = orders.find((order) => order.id === userOrders[i].id);

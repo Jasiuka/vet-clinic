@@ -39,6 +39,7 @@ export const AuthenticatedForm = ({
           inputType={"email"}
           label={"Jūsų el. Paštas"}
           isRequired={true}
+          isDisabled={!data?.length}
         />
         <SelectionInput
           options={data?.map(({ petID, petName }) => {
@@ -52,7 +53,9 @@ export const AuthenticatedForm = ({
           }
         />
         {!data?.length && (
-          <Link to={"/mano-augintiniai"}>Susikurti augintinio profilį</Link>
+          <Link className="pink-button" to={"/mano-augintiniai"}>
+            Susikurti augintinio profilį
+          </Link>
         )}
       </div>
       <FormInputBox
@@ -62,8 +65,11 @@ export const AuthenticatedForm = ({
         label={"Vizito priežastis"}
         uniqueClassName={"description-input-box"}
         isRequired={true}
+        isDisabled={!data?.length}
       />
-      <button type="submit">Registruotis</button>
+      <button disabled={!data?.length} type="submit">
+        Registruotis
+      </button>
     </form>
   );
 };

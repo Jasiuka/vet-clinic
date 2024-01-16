@@ -53,7 +53,10 @@ export const getPetById = async (pool, id) => {
     }
     const singlePetObject = {
       ...results[0],
-      appointmentDate: [results[0].appointmentDate, results[1].appointmentDate],
+      appointmentDate: [
+        results[0].appointmentDate,
+        results[1]?.appointmentDate,
+      ],
     };
     return singlePetObject;
   } catch (error) {
@@ -67,7 +70,7 @@ export const getPetById = async (pool, id) => {
 export const getPetByPetIdAndUserId = async (pool, petId, userId) => {
   let connection;
   try {
-    const query = `SELECT pets.petName,pets.id FROM users LEFT JOIN pets ON users.id = pets.petOwner WHERE pets.id =${petId} AND users.id =${userId}`;
+    const query = `SELECT pets.petName,pets.id FROM accounts LEFT JOIN users ON users.account = accounts.id LEFT JOIN pets ON users.id = pets.petOwner WHERE pets.id = ${petId} AND accounts.id = ${userId}`;
     connection = await pool.getConnection();
     const row = await connection.query(query);
     if (!row.length) {

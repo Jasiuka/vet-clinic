@@ -4,7 +4,10 @@ import Message from "../../../../components/message.component";
 import "./reviews.style.css";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useGetReviewsQuery } from "../../../../services/api-slice";
+import {
+  useGetReviewsQuery,
+  useGetUserReviewQuery,
+} from "../../../../services/api-slice";
 import Spinner from "../../../../components/spinner.component";
 
 export const Reviews = () => {
@@ -13,6 +16,7 @@ export const Reviews = () => {
   const [isMessageShowing, setIsMessageShowing] = useState(false);
   const [hideForm, setHideForm] = useState(false);
   const isUserHasReview = useSelector((state) => state.user?.review);
+  const { data: userReview = [] } = useGetUserReviewQuery();
   const reviewRows = 4;
   const [visibleReviews, setVisibleReviews] = useState(4);
   const user = useSelector((state) => state.user);
@@ -63,9 +67,12 @@ export const Reviews = () => {
           Užkrauti daugiau..
         </button>
       )}
-      {user?.role && !isMessageShowing && !hideForm && !isUserHasReview && (
-        <WriteNewForm user={user} messageHandler={handleMessageShowing} />
-      )}
+      {user?.role === 2 &&
+        !userReview[0]?.id &&
+        !hideForm &&
+        !isUserHasReview && (
+          <WriteNewForm user={user} messageHandler={handleMessageShowing} />
+        )}
       {user?.role && isMessageShowing && (
         <Message messageText={"Ačiū už jūsų atsiliepimą!"} />
       )}

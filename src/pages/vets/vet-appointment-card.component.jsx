@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 export const VetAppointmentCard = ({ petId, petName, date, time, species }) => {
+  const [isPast, setIsPast] = useState(false);
+  useEffect(() => {
+    const appointmentDate = new Date(date).getTime();
+    const today = new Date().getTime();
+    if (appointmentDate < today) {
+      setIsPast(true);
+    }
+  }, []);
   return (
-    <div className="vet-appointments__card">
+    <div className={`vet-appointments__card ${isPast ? "past-date" : ""}`}>
       <div className="vet-appointments__card-box">
         <p className="vet-appointments__card-details">
           Data: <span>{date}</span>
@@ -13,12 +22,16 @@ export const VetAppointmentCard = ({ petId, petName, date, time, species }) => {
       </div>
       <div className="vet-appointments__card-box">
         <h3 className="vet-appointments__card-species">{species}</h3>
-        <Link
-          className="vet-appointments__card-link"
-          to={`/augintinis/${petName}/${petId}`}
-        >
-          {petName}
-        </Link>
+        {petName ? (
+          <Link
+            className="vet-appointments__card-link"
+            to={`/augintinis/${petName}/${petId}`}
+          >
+            {petName}
+          </Link>
+        ) : (
+          <p className="vet-appointments__card-not-reg">Neregistruotas</p>
+        )}
       </div>
     </div>
   );

@@ -64,7 +64,12 @@ router.post(
 
     products.forEach(
       async (product) =>
-        await createOrderedProductDetail(pool, newOrderId.id, product.id, 1)
+        await createOrderedProductDetail(
+          pool,
+          newOrderId.id,
+          product.id,
+          product.quantity
+        )
     );
 
     sendEmail(

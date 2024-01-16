@@ -22,6 +22,9 @@ export const apiSlice = createApi({
     getUserDetails: builder.query({
       query: () => `user/details`,
     }),
+    getUserReview: builder.query({
+      query: () => `user/review`,
+    }),
     getAllUserPetsIds: builder.query({
       query: () => `user/pets`,
       providesTags: ["Pets"],
@@ -160,6 +163,7 @@ export const {
   useCreateNewPetMutation,
   useGetUserDetailsQuery,
   useDeletePetMutation,
+  useGetUserReviewQuery,
 
   useGetAllProductsQuery,
   useGetAllServicesQuery,

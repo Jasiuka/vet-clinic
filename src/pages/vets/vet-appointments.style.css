@@ -16,8 +16,13 @@
   box-shadow: 0px 2px 12px -3px rgba(0, 0, 0, 0.1);
 }
 
-.vet-appointments__card:hover {
+.vet-appointments__card:not(.past-date):hover {
   background-color: var(--hover-light-pink);
+}
+
+.vet-appointments__card.past-date {
+  background-color: rgb(203, 203, 203);
+  border: 4px solid rgb(177, 177, 177);
 }
 
 .vet-appointments__card:hover
@@ -44,7 +49,8 @@
   border-bottom: 3px solid var(--accent-color);
 }
 
-.vet-appointments__card-link {
+.vet-appointments__card-link,
+.vet-appointments__card-not-reg {
   font-size: var(--font-med-to-lg);
   color: inherit;
   text-transform: uppercase;

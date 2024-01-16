@@ -89,6 +89,8 @@
 }
 
 .reviews__write-new--form div:first-of-type {
+  display: flex;
+  justify-content: center;
   position: relative;
   margin-bottom: var(--gap-md);
 }

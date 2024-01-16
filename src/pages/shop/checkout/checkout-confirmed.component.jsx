@@ -5,9 +5,13 @@ export const CheckoutConfirmed = () => {
   const [timeLeft, setTimeLeft] = useState(5);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       navigate("/");
     }, 5000);
+
+    return () => {
+      clearTimeout(timer);
+    };
   });
 
   useEffect(() => {
