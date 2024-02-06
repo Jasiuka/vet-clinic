@@ -11,11 +11,11 @@ The design was created by myself.
 
 ### Website
 
-- Responsive design
+- Responsive design (Not full)
 - Animations
 - Services filter / search
 - Accordion (FAQ)
-- Mini e-shop
+- Mini e-shop (Not full)
 
 ### Client/User
 
@@ -26,7 +26,6 @@ The design was created by myself.
 - View pet documents sent by doctors
 - Diagnosis/disease history
 - Pet appointments history
-- Live communication with vet clinic employees (adminstration)
 - Leave review
 
 ### Veterinarians
@@ -37,11 +36,6 @@ The design was created by myself.
 - Fills out clients pet diagnosis/condition information
 - View their visits
 
-### Administration
-
-    #### For administration employees I will create separate project (probably in Vue.js framework), it will be simple data base management system. Which will have features:
-        - Communicates live with clients
-        - CRUD Operations of tables
 
 ## 🔧 Tech stack
 
@@ -64,3 +58,5 @@ The design was created by myself.
 ## 👤 Author
 
 Lukas Jasiukaitis (Jasiuka)
+
+# I wont continue to work on this project anymore, it was for learning purposes only, found my mistakes during development of this project, I will learn from mistakes which I made in this project and keep going with other projects.
